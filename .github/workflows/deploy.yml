@@ -5,6 +5,9 @@ on:
     branches:
       - master  # Cambia a "master" si usas ese nombre
 
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
