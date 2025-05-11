@@ -248,6 +248,61 @@ jan@basic2:~$ cat /home/kay/.ssh/id_rsa
 	</entry>
 	
 	<entry>
+		<title>Git 101</title>
+		<link href="https://update-me.com/posts/git/"/>
+		<updated>2025-05-11T00:00:00+00:00</updated>
+		<id>https://update-me.com/posts/git/</id>
+		<content type="html">
+		  &lt;p&gt;Git es la &lt;strong&gt;más importante&lt;/strong&gt; que no estás usando. Sin ella, no podrás colaborar en proyectos grandes, y te arriesgas a perder tu trabajo o romperlo tu mismo.&lt;/p&gt;
+&lt;h2 id=&quot;%C2%BFqu%C3%A9-es-git%3F&quot;&gt;¿Qué es Git? &lt;a class=&quot;direct-link&quot; href=&quot;#%C2%BFqu%C3%A9-es-git%3F&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Git soluciona un problema básico en el desarrollo de software: la gestión de versiones. Cuando trabajas en un proyecto, es probable que hagas cambios en el código pero luego no quedes satisfecho con los resultados. ¿Que haces entonces? Si fuiste precavido y guardaste una copia de seguridad, puedes volver a esa versión anterior. Pero si no lo hiciste, tendrás que editar manualmente el código hasta su estado anterior, esto es tedioso, y en ocasiones, imposible.&lt;/p&gt;
+&lt;p&gt;Git te evita este problema, puedes guardar diferentes versiones de tu código y volver a ellas cuando necesitas. Te permite crear copias de seguridad de tu trabajo y colaborar con otras personas en el mismo proyecto sin miedo a perder tu trabajo o romperlo con cambios de otros.&lt;/p&gt;
+&lt;h2 id=&quot;instalaci%C3%B3n&quot;&gt;Instalación &lt;a class=&quot;direct-link&quot; href=&quot;#instalaci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para instalar Git, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;configuraci%C3%B3n&quot;&gt;Configuración &lt;a class=&quot;direct-link&quot; href=&quot;#configuraci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Una vez instalado, es importante configurarlo con tu nombre y correo electrónico. Esto es importante porque Git utiliza esta información para identificar quién hizo qué cambios en el código.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config --global user.name &lt;span class=&quot;token string&quot;&gt;&quot;Tu Nombre&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config --global user.email &lt;span class=&quot;token string&quot;&gt;&quot;Tu Correo&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Puedes comprobar que la configuración se ha guardado correctamente con el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config --list&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;crear-un-repositorio-local&quot;&gt;Crear un repositorio local &lt;a class=&quot;direct-link&quot; href=&quot;#crear-un-repositorio-local&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para crear un repositorio en la carpeta actual, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; init&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esto creará una carpeta oculta llamada &lt;code&gt;.git&lt;/code&gt; en la carpeta actual. Esta carpeta contiene toda la información necesaria para gestionar el repositorio, incluyendo el historial de cambios y las versiones del código.&lt;/p&gt;
+&lt;p&gt;No tendrás que preocuparte por esta carpeta, Git la gestionará por ti.&lt;/p&gt;
+&lt;h2 id=&quot;%C3%A1reas-de-trabajo-en-git&quot;&gt;Áreas de trabajo en git &lt;a class=&quot;direct-link&quot; href=&quot;#%C3%A1reas-de-trabajo-en-git&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Git tiene tres áreas de trabajo:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Working Directory&lt;/strong&gt;: Es la carpeta donde tienes tu código. Aquí es donde haces los cambios en el código.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Staging Area&lt;/strong&gt;: Es una zona intermedia donde puedes preparar los cambios que quieres guardar en el repositorio. Aquí es donde decides qué cambios quieres incluir en el próximo commit.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Repository&lt;/strong&gt;: Es la carpeta oculta &lt;code&gt;.git&lt;/code&gt; donde Git guarda toda la información sobre el repositorio, incluyendo el historial de cambios y las versiones del código.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Puedes comprobar el estado de tu repositorio con el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; status&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esto te mostrará qué archivos han sido modificados, cuáles están en la Staging Area y cuáles no están siendo rastreados por Git.&lt;/p&gt;
+&lt;h2 id=&quot;a%C3%B1adir-archivos-al-repositorio&quot;&gt;Añadir archivos al repositorio &lt;a class=&quot;direct-link&quot; href=&quot;#a%C3%B1adir-archivos-al-repositorio&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para añadir archivos al repositorio, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_archivo&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esto añadirá el archivo a la Staging Area. Si quieres añadir todos los archivos, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;confirmar-cambios&quot;&gt;Confirmar cambios &lt;a class=&quot;direct-link&quot; href=&quot;#confirmar-cambios&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para confirmar los cambios y guardarlos en el repositorio, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; commit -m &lt;span class=&quot;token string&quot;&gt;&quot;Mensaje de confirmación&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Es &lt;strong&gt;muy&lt;/strong&gt; importante que escribas un mensaje de confirmación claro y conciso con el cambio que has realizado. En especial si estas trabajando en un proyecto con otras personas. Esto ayudará a los demás a entender qué cambios has realizado y por qué.&lt;/p&gt;
+&lt;p&gt;No hacer esto puede llevar a confusiones o incluso cancelar tus cambios en el repositorio.&lt;/p&gt;
+&lt;h2 id=&quot;ver-el-historial-de-cambios&quot;&gt;Ver el historial de cambios &lt;a class=&quot;direct-link&quot; href=&quot;#ver-el-historial-de-cambios&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para ver el historial de cambios en el repositorio, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; log&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;deshacer-ultimo-commit&quot;&gt;Deshacer ultimo commit &lt;a class=&quot;direct-link&quot; href=&quot;#deshacer-ultimo-commit&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Si quieres deshacer el último commit para arreglar algo, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; amend &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_archivo&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esto deshará el último commit y te permitirá hacer cambios en el código antes de volver a confirmarlo. Esto es útil si te das cuenta de que has cometido un error en el último commit o si quieres añadir más cambios antes de confirmar.&lt;/p&gt;
+
+			
+		</content>
+	</entry>
+	
+	<entry>
 		<title>Vulnhub #2: Kioptrix 1</title>
 		<link href="https://update-me.com/posts/kioptrix/"/>
 		<updated>2025-05-11T00:00:00+00:00</updated>
