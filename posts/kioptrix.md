@@ -1,6 +1,6 @@
 ---
 title: "Vulnhub #2: Kioptrix 1"
-description: Pentesting a máquina CSEC 2 en Vulnhub
+description: Pentesting a máquina Kioptrix en Vulnhub
 date: 2025-05-11
 scheduled: 2025-05-11
 tags:
