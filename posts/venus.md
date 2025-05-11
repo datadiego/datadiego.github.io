@@ -1,8 +1,8 @@
 ---
 title: "Vulnhub #3: Venus"
 description: Pentesting a máquina Venus en Vulnhub
-date: 2025-05-10
-scheduled: 2025-05-10
+date: 2025-05-11
+scheduled: 2025-05-11
 tags:
   - hacking
 layout: layouts/post.njk
