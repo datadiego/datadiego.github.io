@@ -1,8 +1,8 @@
 ---
 title: Despliegue con HTTPS y Caddy
 description: Guia de como implementar un servidor web con HTTPS utilizando Caddy.
-date: 2025-05-9
-scheduled: 2025-05-9
+date: 2025-05-09
+scheduled: 2025-05-09
 tags:
   - devops
 layout: layouts/post.njk
