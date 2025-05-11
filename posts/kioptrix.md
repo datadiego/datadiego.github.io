@@ -1,8 +1,8 @@
 ---
 title: "Vulnhub #2: Kioptrix 1"
 description: Pentesting a máquina Kioptrix en Vulnhub
-date: 2025-05-11
-scheduled: 2025-05-11
+date: 2025-05-10
+scheduled: 2025-05-10
 tags:
   - hacking
 layout: layouts/post.njk

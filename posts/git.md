@@ -1,8 +1,8 @@
 ---
 title: Git 101
 description: Guia básica de Git en local
-date: 2025-05-12
-scheduled: 2025-05-12
+date: 2025-05-10
+scheduled: 2025-05-10
 tags:
   - coding
 layout: layouts/post.njk
