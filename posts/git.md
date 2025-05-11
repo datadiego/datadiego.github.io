@@ -39,7 +39,7 @@ Puedes comprobar que la configuración se ha guardado correctamente con el sigui
 git config --list
 ```
 
-## Crear un repositorio local
+## Crear repositorio local
 
 Para crear un repositorio en la carpeta actual, puedes usar el siguiente comando:
 
@@ -51,7 +51,7 @@ Esto creará una carpeta oculta llamada `.git` en la carpeta actual. Esta carpet
 
 No tendrás que preocuparte por esta carpeta, Git la gestionará por ti.
 
-## Áreas de trabajo en git
+## Áreas de trabajo
 
 Git tiene tres áreas de trabajo:
 
@@ -67,7 +67,7 @@ git status
 
 Esto te mostrará qué archivos han sido modificados, cuáles están en la Staging Area y cuáles no están siendo rastreados por Git.
 
-## Añadir archivos al repositorio
+## Añadir archivos
 
 Para añadir archivos al repositorio, puedes usar el siguiente comando:
 
@@ -101,7 +101,7 @@ Para ver el historial de cambios en el repositorio, puedes usar el siguiente com
 git log
 ```
 
-## Deshacer ultimo commit
+## Deshacer commit
 
 Si quieres deshacer el último commit para arreglar algo, puedes usar el siguiente comando:
 

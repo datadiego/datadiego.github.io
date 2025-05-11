@@ -24,7 +24,7 @@ Ve a tu proveedor de dominio y añade un registro "a" que apunte a la dirección
 
 Comprueba la [propagación de dns](https://dnschecker.org/) para saber si ya es está redirigiendo.
 
-## Configuración de Caddy
+## Configuración Caddy
 
 Hay [guias](https://caddyserver.com/docs/install) para las diferentes formas de instalación de Caddy.
 
