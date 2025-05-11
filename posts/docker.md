@@ -1,11 +1,12 @@
 ---
 title: Docker 101
-description: Guia de como implementar un servidor web con HTTPS utilizando Cad
-dy.
+description: Guia básica de Docker
 date: 2025-05-10
 scheduled: 2025-05-10
 tags:
   - devops
+  - coding
+  - docker
 layout: layouts/post.njk
 ---
 
