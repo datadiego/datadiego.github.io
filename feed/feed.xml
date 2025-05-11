@@ -5,7 +5,7 @@
 	
 	<link href="https://update-me.com/feed/feed.xml" rel="self"/>
 	<link href="https://update-me.com"/>
-	<updated>2025-05-11T10:54:00.602+00:00</updated>
+	<updated>2025-05-10T00:00:00+00:00</updated>
 	<id>https://update-me.com</id>
 	<author>
 		<name>@datadiego</name>
@@ -55,13 +55,12 @@
 	</entry>
 	
 	<entry>
-		<title></title>
+		<title>Docker 101</title>
 		<link href="https://update-me.com/posts/docker/"/>
-		<updated>2025-05-11T10:54:00.602+00:00</updated>
+		<updated>2025-05-10T00:00:00+00:00</updated>
 		<id>https://update-me.com/posts/docker/</id>
 		<content type="html">
-		  &lt;h1 id=&quot;docker&quot;&gt;Docker &lt;a class=&quot;direct-link&quot; href=&quot;#docker&quot;&gt;#&lt;/a&gt;&lt;/h1&gt;
-&lt;h2 id=&quot;instalaci%C3%B3n&quot;&gt;Instalación &lt;a class=&quot;direct-link&quot; href=&quot;#instalaci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+		  &lt;h2 id=&quot;instalaci%C3%B3n&quot;&gt;Instalación &lt;a class=&quot;direct-link&quot; href=&quot;#instalaci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Lo mejor es seguir la &lt;a href=&quot;https://docs.docker.com/engine/install/ubuntu/&quot;&gt;guia Oficial&lt;/a&gt; para instalar siempre la última versión de docker.&lt;/p&gt;
 &lt;h2 id=&quot;configuracion&quot;&gt;Configuracion &lt;a class=&quot;direct-link&quot; href=&quot;#configuracion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Necesitarás iniciar el servicio de docker y añadir tu usuario al grupo de docker para poder ejecutar los comandos sin &lt;code&gt;sudo&lt;/code&gt;:&lt;/p&gt;
