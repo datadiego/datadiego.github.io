@@ -1,8 +1,8 @@
 ---
 title: "Vulnhub #4: Mercury"
 description: Pentesting a máquina Mercury en Vulnhub
-date: 2025-05-11
-scheduled: 2025-05-11
+date: 2025-05-09
+scheduled: 2025-05-09
 tags:
   - hacking
 layout: layouts/post.njk

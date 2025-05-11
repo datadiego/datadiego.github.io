@@ -1,8 +1,8 @@
 ---
 title: Docker 101
 description: Guia básica de Docker
-date: 2025-05-09
-scheduled: 2025-05-09
+date: 2025-05-08
+scheduled: 2025-05-08
 tags:
   - devops
   - coding
