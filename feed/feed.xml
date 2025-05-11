@@ -5,7 +5,7 @@
 	
 	<link href="https://update-me.com/feed/feed.xml" rel="self"/>
 	<link href="https://update-me.com"/>
-	<updated>2025-05-10T00:00:00+00:00</updated>
+	<updated>2025-05-11T10:54:00.602+00:00</updated>
 	<id>https://update-me.com</id>
 	<author>
 		<name>@datadiego</name>
@@ -49,6 +49,72 @@
 &lt;blockquote&gt;
 &lt;p&gt;Mientras también puedes arrancar tu servidor web si no lo has hecho ya, Caddy no necesita que el servidor web esté funcionando para obtener el certificado, pero si lo necesitas para comprobar que al final funciona correctamente.&lt;/p&gt;
 &lt;/blockquote&gt;
+
+			
+		</content>
+	</entry>
+	
+	<entry>
+		<title></title>
+		<link href="https://update-me.com/posts/docker/"/>
+		<updated>2025-05-11T10:54:00.602+00:00</updated>
+		<id>https://update-me.com/posts/docker/</id>
+		<content type="html">
+		  &lt;h1 id=&quot;docker&quot;&gt;Docker &lt;a class=&quot;direct-link&quot; href=&quot;#docker&quot;&gt;#&lt;/a&gt;&lt;/h1&gt;
+&lt;h2 id=&quot;instalaci%C3%B3n&quot;&gt;Instalación &lt;a class=&quot;direct-link&quot; href=&quot;#instalaci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Lo mejor es seguir la &lt;a href=&quot;https://docs.docker.com/engine/install/ubuntu/&quot;&gt;guia Oficial&lt;/a&gt; para instalar siempre la última versión de docker.&lt;/p&gt;
+&lt;h2 id=&quot;configuracion&quot;&gt;Configuracion &lt;a class=&quot;direct-link&quot; href=&quot;#configuracion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Necesitarás iniciar el servicio de docker y añadir tu usuario al grupo de docker para poder ejecutar los comandos sin &lt;code&gt;sudo&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; systemctl start &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; systemctl &lt;span class=&quot;token builtin class-name&quot;&gt;enable&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;usermod&lt;/span&gt; -aG &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; &lt;span class=&quot;token environment constant&quot;&gt;$USER&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;hello-world%3A&quot;&gt;Hello World: &lt;a class=&quot;direct-link&quot; href=&quot;#hello-world%3A&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Comprueba que todo funciona correctamente ejecutando el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; run hello-world&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Si ves un mensaje de éxito, ya tienes docker instalado y funcionando correctamente.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;%C2%BFqu%C3%A9-es-docker%3F&quot;&gt;¿Qué es Docker? &lt;a class=&quot;direct-link&quot; href=&quot;#%C2%BFqu%C3%A9-es-docker%3F&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Docker resuelve un problema recurrente en el desarrollo de software: la portabilidad. Cuando desarrollas una aplicación en tu ordenador y puedes arrancarla sin problemas es porque tienes todas las dependencias necesarias instaladas. Pero cuando intentas ejecutar esa misma aplicación en otro ordenador, puede que no funcione porque faltan librerías o dependencias.&lt;/p&gt;
+&lt;p&gt;Esto es un problema común, vuelve el desarrollo de software un proceso tedioso en el que muchas personas pasan horas intentando resolver problemas de compatibilidad manteniendo multiples entornos con diferentes versiones de librerías y dependencias. Además, si tienes que desplegar tu aplicación en un servidor, puede que no funcione porque el servidor tiene una versión diferente de una librería o una configuración diferente.&lt;/p&gt;
+&lt;p&gt;Docker resuelve este problema creando un contenedor que incluye todo lo necesario para ejecutar la aplicación: el código, las librerías, las dependencias y el sistema operativo. De esta forma, puedes ejecutar la misma aplicación en cualquier ordenador que tenga Docker instalado, sin preocuparte por las diferencias entre los entornos de ejecución.&lt;/p&gt;
+&lt;p&gt;Para entender mejor cómo funciona Docker, es importante conocer dos conceptos clave: imágenes y contenedores.&lt;/p&gt;
+&lt;h3 id=&quot;im%C3%A1genes&quot;&gt;Imágenes &lt;a class=&quot;direct-link&quot; href=&quot;#im%C3%A1genes&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Una imagen es el resultado de empaquetar una aplicación y todas sus dependencias. A partir de esta imagen, Docker puede crear un contenedor. Las imágenes son inmutables, lo que significa que no puedes cambiar una imagen una vez que ha sido creada. Si necesitas hacer cambios en la aplicación, debes crear una nueva imagen.&lt;/p&gt;
+&lt;p&gt;La forma de crear una imagen es mediante un archivo llamado &lt;code&gt;Dockerfile&lt;/code&gt;. Este archivo contiene una serie de instrucciones que Docker utiliza para construir la imagen. Por ejemplo, puedes especificar qué sistema operativo utilizar, qué librerías instalar y cómo ejecutar la aplicación.&lt;/p&gt;
+&lt;p&gt;Un ejemplo de un &lt;code&gt;Dockerfile&lt;/code&gt; para una aplicación en NodeJS con Express podría ser el siguiente:&lt;/p&gt;
+&lt;pre class=&quot;language-dockerfile&quot;&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Usa la imagen oficial de Node.js como base&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; node:14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# Establece el directorio de trabajo&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;WORKDIR&lt;/span&gt; /usr/src/app&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# Copia el package.json y package-lock.json&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; package*.json ./&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# Instala las dependencias&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; npm install&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# Copia el resto del código de la aplicación&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; . .&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# Expone el puerto 3000&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;EXPOSE&lt;/span&gt; 3000&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# Comando para ejecutar la aplicación&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; [&lt;span class=&quot;token string&quot;&gt;&quot;node&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;app.js&quot;&lt;/span&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Puedes crear una imagen a partir de un &lt;code&gt;Dockerfile&lt;/code&gt; utilizando el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; build -t &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_imagen&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;El &lt;code&gt;.&lt;/code&gt; al final del comando indica que el &lt;code&gt;Dockerfile&lt;/code&gt; se encuentra en el directorio actual. Puedes especificar una ruta diferente.&lt;br&gt;
+El &lt;code&gt;-t&lt;/code&gt; indica que quieres etiquetar la imagen con un nombre.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Luego, puedes ver todas las imágenes que tienes en tu ordenador utilizando el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; images&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;%C2%BFqu%C3%A9-es-un-contenedor%3F&quot;&gt;¿Qué es un contenedor? &lt;a class=&quot;direct-link&quot; href=&quot;#%C2%BFqu%C3%A9-es-un-contenedor%3F&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Un contenedor es una &lt;em&gt;unidad de software que empaqueta codigo y dependencias&lt;/em&gt; necesarias para ejecutar una aplicación. Un contenedor es un entorno aislado que incluye todo lo necesario para ejecutar la aplicación, incluyendo el sistema operativo, las librerías y las dependencias. Esto significa que puedes ejecutar la misma aplicación en cualquier ordenador que tenga Docker instalado, sin preocuparte por las diferencias entre los entornos de ejecución.&lt;/p&gt;
+&lt;p&gt;Puedes pensar en un contenedor como una pequeña máquina virtual a la que se le ha quitado todo hasta dejar lo necesario para ejecutar la aplicación. Esto hace que los contenedores sean mucho más ligeros y rápidos de arrancar que las máquinas virtuales, ya que no necesitan cargar un sistema operativo completo. Además, los contenedores son portables, lo que significa que puedes moverlos de un ordenador a otro sin problemas. Si tienes un contenedor que funciona en tu ordenador, también funcionará en el servidor, en la nube o en cualquier otro ordenador que tenga Docker instalado.&lt;/p&gt;
+&lt;p&gt;Puedes crear un contenedor a partir de una imagen utilizando el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; run -d -p &lt;span class=&quot;token number&quot;&gt;80&lt;/span&gt;:3000 &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_imagen&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;El &lt;code&gt;-d&lt;/code&gt; indica que quieres ejecutar el contenedor en segundo plano (detached mode).&lt;br&gt;
+El &lt;code&gt;-p&lt;/code&gt; indica que quieres mapear el puerto 80 del host al puerto 3000 del contenedor. Esto significa que si accedes a &lt;code&gt;http://localhost&lt;/code&gt;, estarás accediendo al puerto 3000 del contenedor.&lt;br&gt;
+El &lt;code&gt;&amp;lt;nombre_imagen&amp;gt;&lt;/code&gt; es el nombre de la imagen que quieres ejecutar.&lt;br&gt;
+Si no especificas un nombre de imagen, Docker buscará una imagen llamada &lt;code&gt;latest&lt;/code&gt; por defecto.&lt;br&gt;
+Puedes ver todos los contenedores que tienes en tu ordenador utilizando el siguiente comando:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ps&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Si quieres ver todos los contenedores, incluyendo los que están parados, puedes utilizar el siguiente comando:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ps&lt;/span&gt; -a&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Si quieres parar un contenedor, puedes utilizar el siguiente comando:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; stop &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_contenedor&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Si quieres eliminar un contenedor, puedes utilizar el siguiente comando:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;id_contenedor&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 
 			
 		</content>
