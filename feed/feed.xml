@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>datadiego</title>
+	<subtitle>Subtitle. Update me.</subtitle>
+	
+	<link href="https://update-me.com/feed/feed.xml" rel="self"/>
+	<link href="https://update-me.com"/>
+	<updated>2025-05-10T00:00:00+00:00</updated>
+	<id>https://update-me.com</id>
+	<author>
+		<name>@datadiego</name>
+		<email></email>
+	</author>
+	
+	<entry>
+		<title>Despliegue con HTTPS y Caddy</title>
+		<link href="https://update-me.com/posts/despliegue-caddy/"/>
+		<updated>2025-05-10T00:00:00+00:00</updated>
+		<id>https://update-me.com/posts/despliegue-caddy/</id>
+		<content type="html">
+		  &lt;p&gt;Añadir un certificado SSL/TLS puede hacerse de varias formas, en esta vamos a utilizar Caddy para añadir https a cualquier servidor web que tengamos funcionando.&lt;/p&gt;
+&lt;p&gt;Necesitarás:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Un servidor web, este puede ser un repositorio, un contenedor de docker, una aplicación que hemos instalado y lanzado, etc.&lt;/li&gt;
+&lt;li&gt;Un dominio, esto es necesario para solicitar un certificado SSL/TLS.&lt;/li&gt;
+&lt;li&gt;Un VPS en cualquier plataforma como linode o digitalocean.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;configuraci%C3%B3n-dns&quot;&gt;Configuración DNS &lt;a class=&quot;direct-link&quot; href=&quot;#configuraci%C3%B3n-dns&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Lo primero es configurar nuestro servidor DNS para que apunte al VPS.&lt;/p&gt;
+&lt;p&gt;Ve a tu proveedor de dominio y añade un registro &amp;quot;a&amp;quot; que apunte a la dirección IP de tu servidor.&lt;/p&gt;
+&lt;p&gt;Comprueba la &lt;a href=&quot;https://dnschecker.org/&quot;&gt;propagación de dns&lt;/a&gt; para saber si ya es está redirigiendo.&lt;/p&gt;
+&lt;h2 id=&quot;configuraci%C3%B3n-de-caddy&quot;&gt;Configuración de Caddy &lt;a class=&quot;direct-link&quot; href=&quot;#configuraci%C3%B3n-de-caddy&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Hay &lt;a href=&quot;https://caddyserver.com/docs/install&quot;&gt;guias&lt;/a&gt; para las diferentes formas de instalación de Caddy.&lt;/p&gt;
+&lt;p&gt;En nuestro caso, con ubuntu:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; update&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -y debian-keyring debian-archive-keyring apt-transport-https &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -1sLf &lt;span class=&quot;token string&quot;&gt;&#39;https://dl.cloudsmith.io/public/caddy/stable/gpg.key&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -1sLf &lt;span class=&quot;token string&quot;&gt;&#39;https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;tee&lt;/span&gt; /etc/apt/sources.list.d/caddy-stable.list&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; update&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; caddy&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Vamos a utilizar Caddy como un proxy reverso, este escuchará primero en el puerto 80 para solicitar los certificados SSL/TLS, si el DNS esta apuntando correctamente, el proceso debería ser exitoso y Caddy empezará a escuchar solicitudes HTTP en el puerto 443 utilizando HTTPS, y se comunicará localmente con tu servidor funcionando en el puerto que configures.&lt;/p&gt;
+&lt;p&gt;Caddy funciona mediante archivos de configuración llamados &lt;code&gt;Caddyfile&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cyberbunny.online {
+    reverse_proxy localhost:8000
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Donde &lt;code&gt;cyberbunny.online&lt;/code&gt; es el dominio, &lt;code&gt;reverse_proxy&lt;/code&gt; el modo en el que queremos que actue Caddy y &lt;code&gt;localhost:8000&lt;/code&gt; la dirección y puerto donde tenemos nuestro servidor web funcionando.&lt;/p&gt;
+&lt;p&gt;Edita el archivo en &lt;code&gt;/etc/caddy/Caddyfile&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Caddy no usará la configuración hasta que lo reinicies con &lt;code&gt;sudo systemctl restart caddy&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Cuando lo reinicies, comprueba el estado de la obtención del certificado con &lt;code&gt;sudo systemctl status caddy&lt;/code&gt;, si ves algo como esto, es que ha funcionado correctamente:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Si la obtención del certificado falló, puede que debas esperar un poco hasta que el DNS se propague, además, Caddy espera varios minutos antes de volver a intentar la obtención del certificado, así que si no funciona a la primera, no te preocupes, espera un poco y vuelve a consultar el estado mas tarde mientras verificas que tu DNS está apuntando correctamente y tu configuración es correcta.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Mientras también puedes arrancar tu servidor web si no lo has hecho ya, Caddy no necesita que el servidor web esté funcionando para obtener el certificado, pero si lo necesitas para comprobar que al final funciona correctamente.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+			
+		</content>
+	</entry>
+</feed>
