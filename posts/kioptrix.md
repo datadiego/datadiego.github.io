@@ -1,5 +1,5 @@
 ---
-title: "Vulnhub #3: Kioptrix 1"
+title: "Vulnhub #2: Kioptrix 1"
 description: Pentesting a máquina CSEC 2 en Vulnhub
 date: 2025-05-11
 scheduled: 2025-05-11
