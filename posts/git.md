@@ -8,7 +8,7 @@ tags:
 layout: layouts/post.njk
 ---
 
-Git es la **más importante** que no estás usando. Sin ella, no podrás colaborar en proyectos grandes, y te arriesgas a perder tu trabajo o romperlo tu mismo.
+Git es la herramienta **más importante** que deberías estar usando para desarrollar. Sin ella, no podrás colaborar en proyectos grandes, y te arriesgas a perder tu trabajo o romperlo tu mismo.
 
 ## ¿Qué es Git?
 
