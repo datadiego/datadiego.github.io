@@ -84,9 +84,11 @@ Luego, puedes ver todas las imágenes que tienes en tu ordenador utilizando el s
 docker images
 ```
 
-### ¿Qué es un contenedor?
+### Contenedores
 
-Un contenedor es una *unidad de software que empaqueta codigo y dependencias* necesarias para ejecutar una aplicación. Un contenedor es un entorno aislado que incluye todo lo necesario para ejecutar la aplicación, incluyendo el sistema operativo, las librerías y las dependencias. Esto significa que puedes ejecutar la misma aplicación en cualquier ordenador que tenga Docker instalado, sin preocuparte por las diferencias entre los entornos de ejecución.
+>Un contenedor es una *unidad de software que empaqueta codigo y dependencias* necesarias para ejecutar una aplicación. Un contenedor es un entorno aislado que incluye todo lo necesario para ejecutar la aplicación, incluyendo el sistema operativo, las librerías y las dependencias. 
+
+Esto significa que puedes ejecutar la misma aplicación en cualquier ordenador que tenga Docker instalado, sin preocuparte por las diferencias entre los entornos de ejecución.
 
 Puedes pensar en un contenedor como una pequeña máquina virtual a la que se le ha quitado todo hasta dejar lo necesario para ejecutar la aplicación. Esto hace que los contenedores sean mucho más ligeros y rápidos de arrancar que las máquinas virtuales, ya que no necesitan cargar un sistema operativo completo. Además, los contenedores son portables, lo que significa que puedes moverlos de un ordenador a otro sin problemas. Si tienes un contenedor que funciona en tu ordenador, también funcionará en el servidor, en la nube o en cualquier otro ordenador que tenga Docker instalado.
 
