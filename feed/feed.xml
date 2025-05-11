@@ -30,12 +30,12 @@
 &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config --global user.name &lt;span class=&quot;token string&quot;&gt;&quot;Tu Nombre&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config --global user.email &lt;span class=&quot;token string&quot;&gt;&quot;Tu Correo&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Puedes comprobar que la configuración se ha guardado correctamente con el siguiente comando:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config --list&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;crear-un-repositorio-local&quot;&gt;Crear un repositorio local &lt;a class=&quot;direct-link&quot; href=&quot;#crear-un-repositorio-local&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;crear-repositorio-local&quot;&gt;Crear repositorio local &lt;a class=&quot;direct-link&quot; href=&quot;#crear-repositorio-local&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Para crear un repositorio en la carpeta actual, puedes usar el siguiente comando:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; init&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Esto creará una carpeta oculta llamada &lt;code&gt;.git&lt;/code&gt; en la carpeta actual. Esta carpeta contiene toda la información necesaria para gestionar el repositorio, incluyendo el historial de cambios y las versiones del código.&lt;/p&gt;
 &lt;p&gt;No tendrás que preocuparte por esta carpeta, Git la gestionará por ti.&lt;/p&gt;
-&lt;h2 id=&quot;%C3%A1reas-de-trabajo-en-git&quot;&gt;Áreas de trabajo en git &lt;a class=&quot;direct-link&quot; href=&quot;#%C3%A1reas-de-trabajo-en-git&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;%C3%A1reas-de-trabajo&quot;&gt;Áreas de trabajo &lt;a class=&quot;direct-link&quot; href=&quot;#%C3%A1reas-de-trabajo&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Git tiene tres áreas de trabajo:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Working Directory&lt;/strong&gt;: Es la carpeta donde tienes tu código. Aquí es donde haces los cambios en el código.&lt;/li&gt;
@@ -45,7 +45,7 @@
 &lt;p&gt;Puedes comprobar el estado de tu repositorio con el siguiente comando:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; status&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Esto te mostrará qué archivos han sido modificados, cuáles están en la Staging Area y cuáles no están siendo rastreados por Git.&lt;/p&gt;
-&lt;h2 id=&quot;a%C3%B1adir-archivos-al-repositorio&quot;&gt;Añadir archivos al repositorio &lt;a class=&quot;direct-link&quot; href=&quot;#a%C3%B1adir-archivos-al-repositorio&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;a%C3%B1adir-archivos&quot;&gt;Añadir archivos &lt;a class=&quot;direct-link&quot; href=&quot;#a%C3%B1adir-archivos&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Para añadir archivos al repositorio, puedes usar el siguiente comando:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_archivo&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Esto añadirá el archivo a la Staging Area. Si quieres añadir todos los archivos, puedes usar el siguiente comando:&lt;/p&gt;
@@ -58,7 +58,7 @@
 &lt;h2 id=&quot;ver-el-historial-de-cambios&quot;&gt;Ver el historial de cambios &lt;a class=&quot;direct-link&quot; href=&quot;#ver-el-historial-de-cambios&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Para ver el historial de cambios en el repositorio, puedes usar el siguiente comando:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; log&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;deshacer-ultimo-commit&quot;&gt;Deshacer ultimo commit &lt;a class=&quot;direct-link&quot; href=&quot;#deshacer-ultimo-commit&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;deshacer-commit&quot;&gt;Deshacer commit &lt;a class=&quot;direct-link&quot; href=&quot;#deshacer-commit&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Si quieres deshacer el último commit para arreglar algo, puedes usar el siguiente comando:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; amend &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_archivo&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Esto deshará el último commit y te permitirá hacer cambios en el código antes de volver a confirmarlo. Esto es útil si te das cuenta de que has cometido un error en el último commit o si quieres añadir más cambios antes de confirmar.&lt;/p&gt;
@@ -84,7 +84,7 @@
 &lt;p&gt;Lo primero es configurar nuestro servidor DNS para que apunte al VPS.&lt;/p&gt;
 &lt;p&gt;Ve a tu proveedor de dominio y añade un registro &amp;quot;a&amp;quot; que apunte a la dirección IP de tu servidor.&lt;/p&gt;
 &lt;p&gt;Comprueba la &lt;a href=&quot;https://dnschecker.org/&quot;&gt;propagación de dns&lt;/a&gt; para saber si ya es está redirigiendo.&lt;/p&gt;
-&lt;h2 id=&quot;configuraci%C3%B3n-de-caddy&quot;&gt;Configuración de Caddy &lt;a class=&quot;direct-link&quot; href=&quot;#configuraci%C3%B3n-de-caddy&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;configuraci%C3%B3n-caddy&quot;&gt;Configuración Caddy &lt;a class=&quot;direct-link&quot; href=&quot;#configuraci%C3%B3n-caddy&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Hay &lt;a href=&quot;https://caddyserver.com/docs/install&quot;&gt;guias&lt;/a&gt; para las diferentes formas de instalación de Caddy.&lt;/p&gt;
 &lt;p&gt;En nuestro caso, con ubuntu:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; update&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -y debian-keyring debian-archive-keyring apt-transport-https &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -1sLf &lt;span class=&quot;token string&quot;&gt;&#39;https://dl.cloudsmith.io/public/caddy/stable/gpg.key&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -1sLf &lt;span class=&quot;token string&quot;&gt;&#39;https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;tee&lt;/span&gt; /etc/apt/sources.list.d/caddy-stable.list&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; update&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; caddy&lt;/code&gt;&lt;/pre&gt;
