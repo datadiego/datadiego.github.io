@@ -1,8 +1,8 @@
 ---
 title: nvm + npm + Node.js 101
 description: Guia básica de nvm + npm y Node.js
-date: 2025-05-11
-scheduled: 2025-05-11
+date: 2025-05-09
+scheduled: 2025-05-09
 tags:
   - coding
 layout: layouts/post.njk
