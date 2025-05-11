@@ -12,8 +12,23 @@
     
   
   <url>
+    <loc>https://update-me.com/posts/basic_pentesting_1/</loc>
+    <lastmod>2025-05-11T11:05:27.000Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+    
+  
+  <url>
     <loc>https://update-me.com/posts/despliegue-caddy/</loc>
-    <lastmod>2025-05-11T10:58:24.000Z</lastmod>
+    <lastmod>2025-05-11T11:05:27.000Z</lastmod>
   </url>
   
   
@@ -28,7 +43,7 @@
   
   <url>
     <loc>https://update-me.com/posts/docker/</loc>
-    <lastmod>2025-05-11T10:58:24.000Z</lastmod>
+    <lastmod>2025-05-11T11:05:27.000Z</lastmod>
   </url>
   
   
@@ -41,7 +56,7 @@
   
   <url>
     <loc>https://update-me.com/about/</loc>
-    <lastmod>2025-05-11T10:58:36.165Z</lastmod>
+    <lastmod>2025-05-11T11:05:37.638Z</lastmod>
   </url>
   
   
@@ -54,7 +69,7 @@
   
   <url>
     <loc>https://update-me.com/posts/</loc>
-    <lastmod>2025-05-11T10:58:36.165Z</lastmod>
+    <lastmod>2025-05-11T11:05:37.638Z</lastmod>
   </url>
   
   
@@ -67,7 +82,7 @@
   
   <url>
     <loc>https://update-me.com/</loc>
-    <lastmod>2025-05-11T10:58:36.179Z</lastmod>
+    <lastmod>2025-05-11T11:05:37.652Z</lastmod>
   </url>
   
   
@@ -80,7 +95,7 @@
   
   <url>
     <loc>https://update-me.com/page-list/</loc>
-    <lastmod>2025-05-11T10:58:36.181Z</lastmod>
+    <lastmod>2025-05-11T11:05:37.654Z</lastmod>
   </url>
   
   
@@ -93,7 +108,20 @@
   
   <url>
     <loc>https://update-me.com/tags/</loc>
-    <lastmod>2025-05-11T10:58:36.181Z</lastmod>
+    <lastmod>2025-05-11T11:05:37.654Z</lastmod>
+  </url>
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <url>
+    <loc>https://update-me.com/tags/hacking/</loc>
+    <lastmod>2025-05-11T11:05:37.654Z</lastmod>
   </url>
   
   
@@ -106,7 +134,7 @@
   
   <url>
     <loc>https://update-me.com/tags/devops/</loc>
-    <lastmod>2025-05-11T10:58:36.181Z</lastmod>
+    <lastmod>2025-05-11T11:05:37.654Z</lastmod>
   </url>
   
   
@@ -119,7 +147,7 @@
   
   <url>
     <loc>https://update-me.com/tags/coding/</loc>
-    <lastmod>2025-05-11T10:58:36.181Z</lastmod>
+    <lastmod>2025-05-11T11:05:37.654Z</lastmod>
   </url>
   
   
@@ -132,6 +160,6 @@
   
   <url>
     <loc>https://update-me.com/tags/docker/</loc>
-    <lastmod>2025-05-11T10:58:36.181Z</lastmod>
+    <lastmod>2025-05-11T11:05:37.654Z</lastmod>
   </url>
 </urlset>
