@@ -245,7 +245,7 @@ jan@basic2:~$ cat /home/kay/.ssh/id_rsa
 	</entry>
 	
 	<entry>
-		<title>Vulnhub #3: Kioptrix 1</title>
+		<title>Vulnhub #2: Kioptrix 1</title>
 		<link href="https://update-me.com/posts/kioptrix/"/>
 		<updated>2025-05-11T00:00:00+00:00</updated>
 		<id>https://update-me.com/posts/kioptrix/</id>
