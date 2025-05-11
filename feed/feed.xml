@@ -13,6 +13,61 @@
 	</author>
 	
 	<entry>
+		<title>Git 101</title>
+		<link href="https://update-me.com/posts/git/"/>
+		<updated>2025-05-08T00:00:00+00:00</updated>
+		<id>https://update-me.com/posts/git/</id>
+		<content type="html">
+		  &lt;p&gt;Git es la &lt;strong&gt;más importante&lt;/strong&gt; que no estás usando. Sin ella, no podrás colaborar en proyectos grandes, y te arriesgas a perder tu trabajo o romperlo tu mismo.&lt;/p&gt;
+&lt;h2 id=&quot;%C2%BFqu%C3%A9-es-git%3F&quot;&gt;¿Qué es Git? &lt;a class=&quot;direct-link&quot; href=&quot;#%C2%BFqu%C3%A9-es-git%3F&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Git soluciona un problema básico en el desarrollo de software: la gestión de versiones. Cuando trabajas en un proyecto, es probable que hagas cambios en el código pero luego no quedes satisfecho con los resultados. ¿Que haces entonces? Si fuiste precavido y guardaste una copia de seguridad, puedes volver a esa versión anterior. Pero si no lo hiciste, tendrás que editar manualmente el código hasta su estado anterior, esto es tedioso, y en ocasiones, imposible.&lt;/p&gt;
+&lt;p&gt;Git te evita este problema, puedes guardar diferentes versiones de tu código y volver a ellas cuando necesitas. Te permite crear copias de seguridad de tu trabajo y colaborar con otras personas en el mismo proyecto sin miedo a perder tu trabajo o romperlo con cambios de otros.&lt;/p&gt;
+&lt;h2 id=&quot;instalaci%C3%B3n&quot;&gt;Instalación &lt;a class=&quot;direct-link&quot; href=&quot;#instalaci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para instalar Git, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;configuraci%C3%B3n&quot;&gt;Configuración &lt;a class=&quot;direct-link&quot; href=&quot;#configuraci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Una vez instalado, es importante configurarlo con tu nombre y correo electrónico. Esto es importante porque Git utiliza esta información para identificar quién hizo qué cambios en el código.&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config --global user.name &lt;span class=&quot;token string&quot;&gt;&quot;Tu Nombre&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config --global user.email &lt;span class=&quot;token string&quot;&gt;&quot;Tu Correo&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Puedes comprobar que la configuración se ha guardado correctamente con el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config --list&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;crear-un-repositorio-local&quot;&gt;Crear un repositorio local &lt;a class=&quot;direct-link&quot; href=&quot;#crear-un-repositorio-local&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para crear un repositorio en la carpeta actual, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; init&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esto creará una carpeta oculta llamada &lt;code&gt;.git&lt;/code&gt; en la carpeta actual. Esta carpeta contiene toda la información necesaria para gestionar el repositorio, incluyendo el historial de cambios y las versiones del código.&lt;/p&gt;
+&lt;p&gt;No tendrás que preocuparte por esta carpeta, Git la gestionará por ti.&lt;/p&gt;
+&lt;h2 id=&quot;%C3%A1reas-de-trabajo-en-git&quot;&gt;Áreas de trabajo en git &lt;a class=&quot;direct-link&quot; href=&quot;#%C3%A1reas-de-trabajo-en-git&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Git tiene tres áreas de trabajo:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Working Directory&lt;/strong&gt;: Es la carpeta donde tienes tu código. Aquí es donde haces los cambios en el código.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Staging Area&lt;/strong&gt;: Es una zona intermedia donde puedes preparar los cambios que quieres guardar en el repositorio. Aquí es donde decides qué cambios quieres incluir en el próximo commit.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Repository&lt;/strong&gt;: Es la carpeta oculta &lt;code&gt;.git&lt;/code&gt; donde Git guarda toda la información sobre el repositorio, incluyendo el historial de cambios y las versiones del código.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Puedes comprobar el estado de tu repositorio con el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; status&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esto te mostrará qué archivos han sido modificados, cuáles están en la Staging Area y cuáles no están siendo rastreados por Git.&lt;/p&gt;
+&lt;h2 id=&quot;a%C3%B1adir-archivos-al-repositorio&quot;&gt;Añadir archivos al repositorio &lt;a class=&quot;direct-link&quot; href=&quot;#a%C3%B1adir-archivos-al-repositorio&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para añadir archivos al repositorio, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_archivo&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esto añadirá el archivo a la Staging Area. Si quieres añadir todos los archivos, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;confirmar-cambios&quot;&gt;Confirmar cambios &lt;a class=&quot;direct-link&quot; href=&quot;#confirmar-cambios&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para confirmar los cambios y guardarlos en el repositorio, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; commit -m &lt;span class=&quot;token string&quot;&gt;&quot;Mensaje de confirmación&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Es &lt;strong&gt;muy&lt;/strong&gt; importante que escribas un mensaje de confirmación claro y conciso con el cambio que has realizado. En especial si estas trabajando en un proyecto con otras personas. Esto ayudará a los demás a entender qué cambios has realizado y por qué.&lt;/p&gt;
+&lt;p&gt;No hacer esto puede llevar a confusiones o incluso cancelar tus cambios en el repositorio.&lt;/p&gt;
+&lt;h2 id=&quot;ver-el-historial-de-cambios&quot;&gt;Ver el historial de cambios &lt;a class=&quot;direct-link&quot; href=&quot;#ver-el-historial-de-cambios&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para ver el historial de cambios en el repositorio, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; log&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;deshacer-ultimo-commit&quot;&gt;Deshacer ultimo commit &lt;a class=&quot;direct-link&quot; href=&quot;#deshacer-ultimo-commit&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Si quieres deshacer el último commit para arreglar algo, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; amend &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_archivo&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esto deshará el último commit y te permitirá hacer cambios en el código antes de volver a confirmarlo. Esto es útil si te das cuenta de que has cometido un error en el último commit o si quieres añadir más cambios antes de confirmar.&lt;/p&gt;
+
+			
+		</content>
+	</entry>
+	
+	<entry>
 		<title>Despliegue con HTTPS y Caddy</title>
 		<link href="https://update-me.com/posts/despliegue-caddy/"/>
 		<updated>2025-05-09T00:00:00+00:00</updated>
@@ -49,6 +104,141 @@
 &lt;blockquote&gt;
 &lt;p&gt;Mientras también puedes arrancar tu servidor web si no lo has hecho ya, Caddy no necesita que el servidor web esté funcionando para obtener el certificado, pero si lo necesitas para comprobar que al final funciona correctamente.&lt;/p&gt;
 &lt;/blockquote&gt;
+
+			
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Docker 101</title>
+		<link href="https://update-me.com/posts/docker/"/>
+		<updated>2025-05-09T00:00:00+00:00</updated>
+		<id>https://update-me.com/posts/docker/</id>
+		<content type="html">
+		  &lt;h2 id=&quot;instalaci%C3%B3n&quot;&gt;Instalación &lt;a class=&quot;direct-link&quot; href=&quot;#instalaci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Lo mejor es seguir la &lt;a href=&quot;https://docs.docker.com/engine/install/ubuntu/&quot;&gt;guia Oficial&lt;/a&gt; para instalar siempre la última versión de docker.&lt;/p&gt;
+&lt;h2 id=&quot;configuracion&quot;&gt;Configuracion &lt;a class=&quot;direct-link&quot; href=&quot;#configuracion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Necesitarás iniciar el servicio de docker y añadir tu usuario al grupo de docker para poder ejecutar los comandos sin &lt;code&gt;sudo&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; systemctl start &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; systemctl &lt;span class=&quot;token builtin class-name&quot;&gt;enable&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;usermod&lt;/span&gt; -aG &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; &lt;span class=&quot;token environment constant&quot;&gt;$USER&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;hello-world%3A&quot;&gt;Hello World: &lt;a class=&quot;direct-link&quot; href=&quot;#hello-world%3A&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Comprueba que todo funciona correctamente ejecutando el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; run hello-world&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Si ves un mensaje de éxito, ya tienes docker instalado y funcionando correctamente.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;%C2%BFqu%C3%A9-es-docker%3F&quot;&gt;¿Qué es Docker? &lt;a class=&quot;direct-link&quot; href=&quot;#%C2%BFqu%C3%A9-es-docker%3F&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Docker resuelve un problema recurrente en el desarrollo de software: la portabilidad. Cuando desarrollas una aplicación en tu ordenador y puedes arrancarla sin problemas es porque tienes todas las dependencias necesarias instaladas. Pero cuando intentas ejecutar esa misma aplicación en otro ordenador, puede que no funcione porque faltan librerías o dependencias.&lt;/p&gt;
+&lt;p&gt;Esto es un problema común, vuelve el desarrollo de software un proceso tedioso en el que muchas personas pasan horas intentando resolver problemas de compatibilidad manteniendo multiples entornos con diferentes versiones de librerías y dependencias. Además, si tienes que desplegar tu aplicación en un servidor, puede que no funcione porque el servidor tiene una versión diferente de una librería o una configuración diferente.&lt;/p&gt;
+&lt;p&gt;Docker resuelve este problema creando un contenedor que incluye todo lo necesario para ejecutar la aplicación: el código, las librerías, las dependencias y el sistema operativo. De esta forma, puedes ejecutar la misma aplicación en cualquier ordenador que tenga Docker instalado, sin preocuparte por las diferencias entre los entornos de ejecución.&lt;/p&gt;
+&lt;p&gt;Para entender mejor cómo funciona Docker, es importante conocer dos conceptos clave: imágenes y contenedores.&lt;/p&gt;
+&lt;h3 id=&quot;im%C3%A1genes&quot;&gt;Imágenes &lt;a class=&quot;direct-link&quot; href=&quot;#im%C3%A1genes&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Una imagen es el resultado de empaquetar una aplicación y todas sus dependencias. A partir de esta imagen, Docker puede crear un contenedor. Las imágenes son inmutables, lo que significa que no puedes cambiar una imagen una vez que ha sido creada. Si necesitas hacer cambios en la aplicación, debes crear una nueva imagen.&lt;/p&gt;
+&lt;p&gt;La forma de crear una imagen es mediante un archivo llamado &lt;code&gt;Dockerfile&lt;/code&gt;. Este archivo contiene una serie de instrucciones que Docker utiliza para construir la imagen. Por ejemplo, puedes especificar qué sistema operativo utilizar, qué librerías instalar y cómo ejecutar la aplicación.&lt;/p&gt;
+&lt;p&gt;Un ejemplo de un &lt;code&gt;Dockerfile&lt;/code&gt; para una aplicación en NodeJS con Express podría ser el siguiente:&lt;/p&gt;
+&lt;pre class=&quot;language-dockerfile&quot;&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Usa la imagen oficial de Node.js como base&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; node:14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# Establece el directorio de trabajo&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;WORKDIR&lt;/span&gt; /usr/src/app&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# Copia el package.json y package-lock.json&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; package*.json ./&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# Instala las dependencias&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; npm install&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# Copia el resto del código de la aplicación&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; . .&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# Expone el puerto 3000&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;EXPOSE&lt;/span&gt; 3000&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# Comando para ejecutar la aplicación&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; [&lt;span class=&quot;token string&quot;&gt;&quot;node&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;app.js&quot;&lt;/span&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Puedes crear una imagen a partir de un &lt;code&gt;Dockerfile&lt;/code&gt; utilizando el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; build -t &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_imagen&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;El &lt;code&gt;.&lt;/code&gt; al final del comando indica que el &lt;code&gt;Dockerfile&lt;/code&gt; se encuentra en el directorio actual. Puedes especificar una ruta diferente.&lt;br&gt;
+El &lt;code&gt;-t&lt;/code&gt; indica que quieres etiquetar la imagen con un nombre.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Luego, puedes ver todas las imágenes que tienes en tu ordenador utilizando el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; images&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;contenedores&quot;&gt;Contenedores &lt;a class=&quot;direct-link&quot; href=&quot;#contenedores&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Un contenedor es una &lt;em&gt;unidad de software que empaqueta codigo y dependencias&lt;/em&gt; necesarias para ejecutar una aplicación. Un contenedor es un entorno aislado que incluye todo lo necesario para ejecutar la aplicación, incluyendo el sistema operativo, las librerías y las dependencias.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Esto significa que puedes ejecutar la misma aplicación en cualquier ordenador que tenga Docker instalado, sin preocuparte por las diferencias entre los entornos de ejecución.&lt;/p&gt;
+&lt;p&gt;Puedes pensar en un contenedor como una pequeña máquina virtual a la que se le ha quitado todo hasta dejar lo necesario para ejecutar la aplicación. Esto hace que los contenedores sean mucho más ligeros y rápidos de arrancar que las máquinas virtuales, ya que no necesitan cargar un sistema operativo completo. Además, los contenedores son portables, lo que significa que puedes moverlos de un ordenador a otro sin problemas. Si tienes un contenedor que funciona en tu ordenador, también funcionará en el servidor, en la nube o en cualquier otro ordenador que tenga Docker instalado.&lt;/p&gt;
+&lt;p&gt;Puedes crear un contenedor a partir de una imagen utilizando el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; run -d -p &lt;span class=&quot;token number&quot;&gt;80&lt;/span&gt;:3000 &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_imagen&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;El &lt;code&gt;-d&lt;/code&gt; indica que quieres ejecutar el contenedor en segundo plano (detached mode).&lt;br&gt;
+El &lt;code&gt;-p&lt;/code&gt; indica que quieres mapear el puerto 80 del host al puerto 3000 del contenedor. Esto significa que si accedes a &lt;code&gt;http://localhost&lt;/code&gt;, estarás accediendo al puerto 3000 del contenedor.&lt;br&gt;
+El &lt;code&gt;&amp;lt;nombre_imagen&amp;gt;&lt;/code&gt; es el nombre de la imagen que quieres ejecutar.&lt;br&gt;
+Si no especificas un nombre de imagen, Docker buscará una imagen llamada &lt;code&gt;latest&lt;/code&gt; por defecto.&lt;br&gt;
+Puedes ver todos los contenedores que tienes en tu ordenador utilizando el siguiente comando:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ps&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Si quieres ver todos los contenedores, incluyendo los que están parados, puedes utilizar el siguiente comando:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ps&lt;/span&gt; -a&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Si quieres parar un contenedor, puedes utilizar el siguiente comando:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; stop &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_contenedor&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Si quieres eliminar un contenedor, puedes utilizar el siguiente comando:&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;id_contenedor&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+
+			
+		</content>
+	</entry>
+	
+	<entry>
+		<title>nvm + npm + Node.js 101</title>
+		<link href="https://update-me.com/posts/npm-node/"/>
+		<updated>2025-05-09T00:00:00+00:00</updated>
+		<id>https://update-me.com/posts/npm-node/</id>
+		<content type="html">
+		  &lt;p&gt;Nodejs y npm son herramientas muy potentes para el desarrollo de aplicaciones web.&lt;/p&gt;
+&lt;p&gt;Este ecosistema es muy amplio y tiene &lt;strong&gt;muchas&lt;/strong&gt; librerias y frameworks modernos para desarrollar aplicaciones web.&lt;/p&gt;
+&lt;h2 id=&quot;nodejs&quot;&gt;nodejs &lt;a class=&quot;direct-link&quot; href=&quot;#nodejs&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Node.js es un &lt;strong&gt;entorno de ejecución&lt;/strong&gt; para JavaScript que permite ejecutar código JavaScript en el servidor. Esto significa que puedes usar JavaScript para crear aplicaciones del lado del servidor, lo que antes solo era posible con lenguajes como PHP o Ruby.&lt;/p&gt;
+&lt;p&gt;Es una herramienta muy popular y usada por muchas empresas y desarrolladores para crear aplicaciones web, APIs y servicios en la nube.&lt;/p&gt;
+&lt;p&gt;Para instalarla, puedes usar &lt;code&gt;nvm&lt;/code&gt; (Node Version Manager) que es una herramienta que te permite instalar y gestionar diferentes versiones de Node.js en tu máquina.&lt;/p&gt;
+&lt;h2 id=&quot;nvm&quot;&gt;nvm &lt;a class=&quot;direct-link&quot; href=&quot;#nvm&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;nvm&lt;/code&gt; es una herramienta que te permite instalar y gestionar diferentes versiones de Node.js en tu máquina. Esto es útil porque algunas aplicaciones pueden requerir versiones específicas de Node.js para funcionar correctamente.&lt;/p&gt;
+&lt;p&gt;En el &lt;a href=&quot;https://github.com/nvm-sh/nvm&quot;&gt;repositorio oficial de nvm&lt;/a&gt; puedes encontrar la documentación oficial y las instrucciones de instalación.&lt;/p&gt;
+&lt;p&gt;Puedes lanzar el siguiente comando para instalar la version &lt;code&gt;0.40.3&lt;/code&gt; de nvm:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;bash&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Luego, puedes instalar versiones y usarlas asi:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;nvm &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;22.12&lt;/span&gt;&lt;br&gt;nvm use &lt;span class=&quot;token number&quot;&gt;22.12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;node&lt;/span&gt; -v&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Puedes ver todas las versiones instaladas con el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;nvm &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;npm&quot;&gt;npm &lt;a class=&quot;direct-link&quot; href=&quot;#npm&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;npm es el gestor de paquetes para Node.js. Te permite instalar y gestionar librerías y dependencias para tus aplicaciones. Es similar a &lt;code&gt;pip&lt;/code&gt; en Python o &lt;code&gt;composer&lt;/code&gt; en PHP.&lt;/p&gt;
+&lt;p&gt;npm es la &lt;strong&gt;mayor fuente de librerías y codigo&lt;/strong&gt; abierto en el mundo. Puedes encontrar librerías para casi cualquier cosa, desde frameworks completos como React o Angular, hasta pequeñas utilidades para hacer tareas específicas.&lt;/p&gt;
+&lt;p&gt;Puedes instalarlo y actualizarlo con los siguientes comandos:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# instala la version de npm que viene con tu distribucion&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -g &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# actualiza npm a la ultima version&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;crear-un-proyecto&quot;&gt;Crear un proyecto &lt;a class=&quot;direct-link&quot; href=&quot;#crear-un-proyecto&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para crear un nuevo proyecto con npm, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; init -y&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esto creará un archivo &lt;code&gt;package.json&lt;/code&gt; en tu directorio actual. Este archivo contiene información sobre tu proyecto y sus dependencias.&lt;/p&gt;
+&lt;h3 id=&quot;package.json&quot;&gt;package.json &lt;a class=&quot;direct-link&quot; href=&quot;#package.json&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Este archivo contiene la configuración de tu proyecto, asi como sus dependencias y otros metadatos.&lt;/p&gt;
+&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;1.0.0&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;main&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;index.js&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;scripts&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token property&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;echo &#92;&quot;Error: no test specified&#92;&quot; &amp;amp;&amp;amp; exit 1&quot;&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;keywords&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;author&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;license&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;ISC&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;commonjs&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Este es el archivo base que crea &lt;code&gt;npm init -y&lt;/code&gt;. Dentro podemos encontrar:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;name&lt;/code&gt;: el nombre de tu proyecto.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;version&lt;/code&gt;: la version de tu proyecto.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;description&lt;/code&gt;: una breve descripcion de tu proyecto.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main&lt;/code&gt;: el archivo principal de ejecucion de tu proyecto.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;scripts&lt;/code&gt;: una serie de scripts que puedes ejecutar con npm.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;keywords&lt;/code&gt;: palabras clave relacionadas con tu proyecto.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;author&lt;/code&gt;: el autor de tu proyecto.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;license&lt;/code&gt;: la licencia de tu proyecto.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;type&lt;/code&gt;: el tipo de modulo que usas en tu proyecto. Puede ser &lt;code&gt;commonjs&lt;/code&gt; o &lt;code&gt;module&lt;/code&gt;. Si usas &lt;code&gt;module&lt;/code&gt;, puedes usar la sintaxis de importacion de ES6.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dependencies&lt;/code&gt;: las dependencias de tu proyecto. Este campo se llena automaticamente cuando instalas una dependencia.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;instalar-dependencias&quot;&gt;Instalar dependencias &lt;a class=&quot;direct-link&quot; href=&quot;#instalar-dependencias&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para instalar una dependencia, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_dependencia&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esto instalará la dependencia y la añadirá al archivo &lt;code&gt;package.json&lt;/code&gt; en la sección de &lt;code&gt;dependencies&lt;/code&gt;. Si quieres instalar una dependencia solo para desarrollo, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_dependencia&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; --save-dev&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Si quieres instalar una dependencia de forma global, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_dependencia&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; -g&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esto instalará la dependencia en el directorio global de npm, lo que significa que estará disponible para todos los proyectos en tu máquina. Esto es útil para herramientas de línea de comandos como &lt;code&gt;nodemon&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -g nodemon&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;ejecutar-scripts&quot;&gt;Ejecutar scripts &lt;a class=&quot;direct-link&quot; href=&quot;#ejecutar-scripts&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Puedes ejecutar scripts definidos en el archivo &lt;code&gt;package.json&lt;/code&gt; con el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; run &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_script&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Un script muy comun es &lt;code&gt;dev&lt;/code&gt;, que se usa para ejecutar el proyecto en modo desarrollo. Puedes definirlo en el archivo &lt;code&gt;package.json&lt;/code&gt; de la siguiente manera:&lt;/p&gt;
+&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token property&quot;&gt;&quot;scripts&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;dev&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;nodemon -e js,html,css,njk index.js&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Luego, puedes ejecutar el script con el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; run dev&lt;/code&gt;&lt;/pre&gt;
 
 			
 		</content>
@@ -174,129 +364,6 @@ jan@basic2:~$ cat /home/kay/.ssh/id_rsa
 &lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;sudo vi&lt;br&gt;Escribimos :!sh y nos devuelve una consola root&lt;/code&gt;&lt;/pre&gt;
 &lt;h4 id=&quot;more&quot;&gt;more &lt;a class=&quot;direct-link&quot; href=&quot;#more&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
 &lt;pre class=&quot;language-plaintext&quot;&gt;&lt;code class=&quot;language-plaintext&quot;&gt;Escribimos un archivo relativamente largo y lo abrimos con `more` y tenemos algo similar a vi&lt;br&gt;Con !sh podremos abrir otra consola.&lt;/code&gt;&lt;/pre&gt;
-
-			
-		</content>
-	</entry>
-	
-	<entry>
-		<title>Docker 101</title>
-		<link href="https://update-me.com/posts/docker/"/>
-		<updated>2025-05-10T00:00:00+00:00</updated>
-		<id>https://update-me.com/posts/docker/</id>
-		<content type="html">
-		  &lt;h2 id=&quot;instalaci%C3%B3n&quot;&gt;Instalación &lt;a class=&quot;direct-link&quot; href=&quot;#instalaci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Lo mejor es seguir la &lt;a href=&quot;https://docs.docker.com/engine/install/ubuntu/&quot;&gt;guia Oficial&lt;/a&gt; para instalar siempre la última versión de docker.&lt;/p&gt;
-&lt;h2 id=&quot;configuracion&quot;&gt;Configuracion &lt;a class=&quot;direct-link&quot; href=&quot;#configuracion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Necesitarás iniciar el servicio de docker y añadir tu usuario al grupo de docker para poder ejecutar los comandos sin &lt;code&gt;sudo&lt;/code&gt;:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; systemctl start &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; systemctl &lt;span class=&quot;token builtin class-name&quot;&gt;enable&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;usermod&lt;/span&gt; -aG &lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; &lt;span class=&quot;token environment constant&quot;&gt;$USER&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;hello-world%3A&quot;&gt;Hello World: &lt;a class=&quot;direct-link&quot; href=&quot;#hello-world%3A&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Comprueba que todo funciona correctamente ejecutando el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; run hello-world&lt;/code&gt;&lt;/pre&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Si ves un mensaje de éxito, ya tienes docker instalado y funcionando correctamente.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;%C2%BFqu%C3%A9-es-docker%3F&quot;&gt;¿Qué es Docker? &lt;a class=&quot;direct-link&quot; href=&quot;#%C2%BFqu%C3%A9-es-docker%3F&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Docker resuelve un problema recurrente en el desarrollo de software: la portabilidad. Cuando desarrollas una aplicación en tu ordenador y puedes arrancarla sin problemas es porque tienes todas las dependencias necesarias instaladas. Pero cuando intentas ejecutar esa misma aplicación en otro ordenador, puede que no funcione porque faltan librerías o dependencias.&lt;/p&gt;
-&lt;p&gt;Esto es un problema común, vuelve el desarrollo de software un proceso tedioso en el que muchas personas pasan horas intentando resolver problemas de compatibilidad manteniendo multiples entornos con diferentes versiones de librerías y dependencias. Además, si tienes que desplegar tu aplicación en un servidor, puede que no funcione porque el servidor tiene una versión diferente de una librería o una configuración diferente.&lt;/p&gt;
-&lt;p&gt;Docker resuelve este problema creando un contenedor que incluye todo lo necesario para ejecutar la aplicación: el código, las librerías, las dependencias y el sistema operativo. De esta forma, puedes ejecutar la misma aplicación en cualquier ordenador que tenga Docker instalado, sin preocuparte por las diferencias entre los entornos de ejecución.&lt;/p&gt;
-&lt;p&gt;Para entender mejor cómo funciona Docker, es importante conocer dos conceptos clave: imágenes y contenedores.&lt;/p&gt;
-&lt;h3 id=&quot;im%C3%A1genes&quot;&gt;Imágenes &lt;a class=&quot;direct-link&quot; href=&quot;#im%C3%A1genes&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Una imagen es el resultado de empaquetar una aplicación y todas sus dependencias. A partir de esta imagen, Docker puede crear un contenedor. Las imágenes son inmutables, lo que significa que no puedes cambiar una imagen una vez que ha sido creada. Si necesitas hacer cambios en la aplicación, debes crear una nueva imagen.&lt;/p&gt;
-&lt;p&gt;La forma de crear una imagen es mediante un archivo llamado &lt;code&gt;Dockerfile&lt;/code&gt;. Este archivo contiene una serie de instrucciones que Docker utiliza para construir la imagen. Por ejemplo, puedes especificar qué sistema operativo utilizar, qué librerías instalar y cómo ejecutar la aplicación.&lt;/p&gt;
-&lt;p&gt;Un ejemplo de un &lt;code&gt;Dockerfile&lt;/code&gt; para una aplicación en NodeJS con Express podría ser el siguiente:&lt;/p&gt;
-&lt;pre class=&quot;language-dockerfile&quot;&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;&lt;span class=&quot;token comment&quot;&gt;# Usa la imagen oficial de Node.js como base&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;FROM&lt;/span&gt; node:14&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# Establece el directorio de trabajo&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;WORKDIR&lt;/span&gt; /usr/src/app&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# Copia el package.json y package-lock.json&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; package*.json ./&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# Instala las dependencias&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;RUN&lt;/span&gt; npm install&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# Copia el resto del código de la aplicación&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;COPY&lt;/span&gt; . .&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# Expone el puerto 3000&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;EXPOSE&lt;/span&gt; 3000&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token comment&quot;&gt;# Comando para ejecutar la aplicación&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token instruction&quot;&gt;&lt;span class=&quot;token keyword&quot;&gt;CMD&lt;/span&gt; [&lt;span class=&quot;token string&quot;&gt;&quot;node&quot;&lt;/span&gt;, &lt;span class=&quot;token string&quot;&gt;&quot;app.js&quot;&lt;/span&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Puedes crear una imagen a partir de un &lt;code&gt;Dockerfile&lt;/code&gt; utilizando el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; build -t &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_imagen&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;blockquote&gt;
-&lt;p&gt;El &lt;code&gt;.&lt;/code&gt; al final del comando indica que el &lt;code&gt;Dockerfile&lt;/code&gt; se encuentra en el directorio actual. Puedes especificar una ruta diferente.&lt;br&gt;
-El &lt;code&gt;-t&lt;/code&gt; indica que quieres etiquetar la imagen con un nombre.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Luego, puedes ver todas las imágenes que tienes en tu ordenador utilizando el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; images&lt;/code&gt;&lt;/pre&gt;
-&lt;h3 id=&quot;contenedores&quot;&gt;Contenedores &lt;a class=&quot;direct-link&quot; href=&quot;#contenedores&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Un contenedor es una &lt;em&gt;unidad de software que empaqueta codigo y dependencias&lt;/em&gt; necesarias para ejecutar una aplicación. Un contenedor es un entorno aislado que incluye todo lo necesario para ejecutar la aplicación, incluyendo el sistema operativo, las librerías y las dependencias.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Esto significa que puedes ejecutar la misma aplicación en cualquier ordenador que tenga Docker instalado, sin preocuparte por las diferencias entre los entornos de ejecución.&lt;/p&gt;
-&lt;p&gt;Puedes pensar en un contenedor como una pequeña máquina virtual a la que se le ha quitado todo hasta dejar lo necesario para ejecutar la aplicación. Esto hace que los contenedores sean mucho más ligeros y rápidos de arrancar que las máquinas virtuales, ya que no necesitan cargar un sistema operativo completo. Además, los contenedores son portables, lo que significa que puedes moverlos de un ordenador a otro sin problemas. Si tienes un contenedor que funciona en tu ordenador, también funcionará en el servidor, en la nube o en cualquier otro ordenador que tenga Docker instalado.&lt;/p&gt;
-&lt;p&gt;Puedes crear un contenedor a partir de una imagen utilizando el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; run -d -p &lt;span class=&quot;token number&quot;&gt;80&lt;/span&gt;:3000 &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_imagen&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;blockquote&gt;
-&lt;p&gt;El &lt;code&gt;-d&lt;/code&gt; indica que quieres ejecutar el contenedor en segundo plano (detached mode).&lt;br&gt;
-El &lt;code&gt;-p&lt;/code&gt; indica que quieres mapear el puerto 80 del host al puerto 3000 del contenedor. Esto significa que si accedes a &lt;code&gt;http://localhost&lt;/code&gt;, estarás accediendo al puerto 3000 del contenedor.&lt;br&gt;
-El &lt;code&gt;&amp;lt;nombre_imagen&amp;gt;&lt;/code&gt; es el nombre de la imagen que quieres ejecutar.&lt;br&gt;
-Si no especificas un nombre de imagen, Docker buscará una imagen llamada &lt;code&gt;latest&lt;/code&gt; por defecto.&lt;br&gt;
-Puedes ver todos los contenedores que tienes en tu ordenador utilizando el siguiente comando:&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ps&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Si quieres ver todos los contenedores, incluyendo los que están parados, puedes utilizar el siguiente comando:&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;ps&lt;/span&gt; -a&lt;/code&gt;&lt;/pre&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Si quieres parar un contenedor, puedes utilizar el siguiente comando:&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; stop &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_contenedor&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Si quieres eliminar un contenedor, puedes utilizar el siguiente comando:&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;rm&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;id_contenedor&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-
-			
-		</content>
-	</entry>
-	
-	<entry>
-		<title>Git 101</title>
-		<link href="https://update-me.com/posts/git/"/>
-		<updated>2025-05-10T00:00:00+00:00</updated>
-		<id>https://update-me.com/posts/git/</id>
-		<content type="html">
-		  &lt;p&gt;Git es la &lt;strong&gt;más importante&lt;/strong&gt; que no estás usando. Sin ella, no podrás colaborar en proyectos grandes, y te arriesgas a perder tu trabajo o romperlo tu mismo.&lt;/p&gt;
-&lt;h2 id=&quot;%C2%BFqu%C3%A9-es-git%3F&quot;&gt;¿Qué es Git? &lt;a class=&quot;direct-link&quot; href=&quot;#%C2%BFqu%C3%A9-es-git%3F&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Git soluciona un problema básico en el desarrollo de software: la gestión de versiones. Cuando trabajas en un proyecto, es probable que hagas cambios en el código pero luego no quedes satisfecho con los resultados. ¿Que haces entonces? Si fuiste precavido y guardaste una copia de seguridad, puedes volver a esa versión anterior. Pero si no lo hiciste, tendrás que editar manualmente el código hasta su estado anterior, esto es tedioso, y en ocasiones, imposible.&lt;/p&gt;
-&lt;p&gt;Git te evita este problema, puedes guardar diferentes versiones de tu código y volver a ellas cuando necesitas. Te permite crear copias de seguridad de tu trabajo y colaborar con otras personas en el mismo proyecto sin miedo a perder tu trabajo o romperlo con cambios de otros.&lt;/p&gt;
-&lt;h2 id=&quot;instalaci%C3%B3n&quot;&gt;Instalación &lt;a class=&quot;direct-link&quot; href=&quot;#instalaci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Para instalar Git, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;sudo&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;configuraci%C3%B3n&quot;&gt;Configuración &lt;a class=&quot;direct-link&quot; href=&quot;#configuraci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Una vez instalado, es importante configurarlo con tu nombre y correo electrónico. Esto es importante porque Git utiliza esta información para identificar quién hizo qué cambios en el código.&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config --global user.name &lt;span class=&quot;token string&quot;&gt;&quot;Tu Nombre&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config --global user.email &lt;span class=&quot;token string&quot;&gt;&quot;Tu Correo&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Puedes comprobar que la configuración se ha guardado correctamente con el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; config --list&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;crear-un-repositorio-local&quot;&gt;Crear un repositorio local &lt;a class=&quot;direct-link&quot; href=&quot;#crear-un-repositorio-local&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Para crear un repositorio en la carpeta actual, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; init&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Esto creará una carpeta oculta llamada &lt;code&gt;.git&lt;/code&gt; en la carpeta actual. Esta carpeta contiene toda la información necesaria para gestionar el repositorio, incluyendo el historial de cambios y las versiones del código.&lt;/p&gt;
-&lt;p&gt;No tendrás que preocuparte por esta carpeta, Git la gestionará por ti.&lt;/p&gt;
-&lt;h2 id=&quot;%C3%A1reas-de-trabajo-en-git&quot;&gt;Áreas de trabajo en git &lt;a class=&quot;direct-link&quot; href=&quot;#%C3%A1reas-de-trabajo-en-git&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Git tiene tres áreas de trabajo:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Working Directory&lt;/strong&gt;: Es la carpeta donde tienes tu código. Aquí es donde haces los cambios en el código.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Staging Area&lt;/strong&gt;: Es una zona intermedia donde puedes preparar los cambios que quieres guardar en el repositorio. Aquí es donde decides qué cambios quieres incluir en el próximo commit.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Repository&lt;/strong&gt;: Es la carpeta oculta &lt;code&gt;.git&lt;/code&gt; donde Git guarda toda la información sobre el repositorio, incluyendo el historial de cambios y las versiones del código.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Puedes comprobar el estado de tu repositorio con el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; status&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Esto te mostrará qué archivos han sido modificados, cuáles están en la Staging Area y cuáles no están siendo rastreados por Git.&lt;/p&gt;
-&lt;h2 id=&quot;a%C3%B1adir-archivos-al-repositorio&quot;&gt;Añadir archivos al repositorio &lt;a class=&quot;direct-link&quot; href=&quot;#a%C3%B1adir-archivos-al-repositorio&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Para añadir archivos al repositorio, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_archivo&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Esto añadirá el archivo a la Staging Area. Si quieres añadir todos los archivos, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;add&lt;/span&gt; &lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;confirmar-cambios&quot;&gt;Confirmar cambios &lt;a class=&quot;direct-link&quot; href=&quot;#confirmar-cambios&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Para confirmar los cambios y guardarlos en el repositorio, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; commit -m &lt;span class=&quot;token string&quot;&gt;&quot;Mensaje de confirmación&quot;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Es &lt;strong&gt;muy&lt;/strong&gt; importante que escribas un mensaje de confirmación claro y conciso con el cambio que has realizado. En especial si estas trabajando en un proyecto con otras personas. Esto ayudará a los demás a entender qué cambios has realizado y por qué.&lt;/p&gt;
-&lt;p&gt;No hacer esto puede llevar a confusiones o incluso cancelar tus cambios en el repositorio.&lt;/p&gt;
-&lt;h2 id=&quot;ver-el-historial-de-cambios&quot;&gt;Ver el historial de cambios &lt;a class=&quot;direct-link&quot; href=&quot;#ver-el-historial-de-cambios&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Para ver el historial de cambios en el repositorio, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; log&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;deshacer-ultimo-commit&quot;&gt;Deshacer ultimo commit &lt;a class=&quot;direct-link&quot; href=&quot;#deshacer-ultimo-commit&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Si quieres deshacer el último commit para arreglar algo, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;git&lt;/span&gt; amend &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_archivo&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Esto deshará el último commit y te permitirá hacer cambios en el código antes de volver a confirmarlo. Esto es útil si te das cuenta de que has cometido un error en el último commit o si quieres añadir más cambios antes de confirmar.&lt;/p&gt;
 
 			
 		</content>
@@ -543,73 +610,6 @@ root@mercury:/tmp/malito# whoami
 root
 root@mercury:/tmp/malito# 
 &lt;/code&gt;&lt;/pre&gt;
-
-			
-		</content>
-	</entry>
-	
-	<entry>
-		<title>nvm + npm + Node.js 101</title>
-		<link href="https://update-me.com/posts/npm-node/"/>
-		<updated>2025-05-11T00:00:00+00:00</updated>
-		<id>https://update-me.com/posts/npm-node/</id>
-		<content type="html">
-		  &lt;p&gt;Nodejs y npm son herramientas muy potentes para el desarrollo de aplicaciones web.&lt;/p&gt;
-&lt;p&gt;Este ecosistema es muy amplio y tiene &lt;strong&gt;muchas&lt;/strong&gt; librerias y frameworks modernos para desarrollar aplicaciones web.&lt;/p&gt;
-&lt;h2 id=&quot;nodejs&quot;&gt;nodejs &lt;a class=&quot;direct-link&quot; href=&quot;#nodejs&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Node.js es un &lt;strong&gt;entorno de ejecución&lt;/strong&gt; para JavaScript que permite ejecutar código JavaScript en el servidor. Esto significa que puedes usar JavaScript para crear aplicaciones del lado del servidor, lo que antes solo era posible con lenguajes como PHP o Ruby.&lt;/p&gt;
-&lt;p&gt;Es una herramienta muy popular y usada por muchas empresas y desarrolladores para crear aplicaciones web, APIs y servicios en la nube.&lt;/p&gt;
-&lt;p&gt;Para instalarla, puedes usar &lt;code&gt;nvm&lt;/code&gt; (Node Version Manager) que es una herramienta que te permite instalar y gestionar diferentes versiones de Node.js en tu máquina.&lt;/p&gt;
-&lt;h2 id=&quot;nvm&quot;&gt;nvm &lt;a class=&quot;direct-link&quot; href=&quot;#nvm&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;nvm&lt;/code&gt; es una herramienta que te permite instalar y gestionar diferentes versiones de Node.js en tu máquina. Esto es útil porque algunas aplicaciones pueden requerir versiones específicas de Node.js para funcionar correctamente.&lt;/p&gt;
-&lt;p&gt;En el &lt;a href=&quot;https://github.com/nvm-sh/nvm&quot;&gt;repositorio oficial de nvm&lt;/a&gt; puedes encontrar la documentación oficial y las instrucciones de instalación.&lt;/p&gt;
-&lt;p&gt;Puedes lanzar el siguiente comando para instalar la version &lt;code&gt;0.40.3&lt;/code&gt; de nvm:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;bash&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Luego, puedes instalar versiones y usarlas asi:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;nvm &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;22.12&lt;/span&gt;&lt;br&gt;nvm use &lt;span class=&quot;token number&quot;&gt;22.12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;node&lt;/span&gt; -v&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Puedes ver todas las versiones instaladas con el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;nvm &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;npm&quot;&gt;npm &lt;a class=&quot;direct-link&quot; href=&quot;#npm&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;npm es el gestor de paquetes para Node.js. Te permite instalar y gestionar librerías y dependencias para tus aplicaciones. Es similar a &lt;code&gt;pip&lt;/code&gt; en Python o &lt;code&gt;composer&lt;/code&gt; en PHP.&lt;/p&gt;
-&lt;p&gt;npm es la &lt;strong&gt;mayor fuente de librerías y codigo&lt;/strong&gt; abierto en el mundo. Puedes encontrar librerías para casi cualquier cosa, desde frameworks completos como React o Angular, hasta pequeñas utilidades para hacer tareas específicas.&lt;/p&gt;
-&lt;p&gt;Puedes instalarlo y actualizarlo con los siguientes comandos:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# instala la version de npm que viene con tu distribucion&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -g &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# actualiza npm a la ultima version&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;crear-un-proyecto&quot;&gt;Crear un proyecto &lt;a class=&quot;direct-link&quot; href=&quot;#crear-un-proyecto&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Para crear un nuevo proyecto con npm, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; init -y&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Esto creará un archivo &lt;code&gt;package.json&lt;/code&gt; en tu directorio actual. Este archivo contiene información sobre tu proyecto y sus dependencias.&lt;/p&gt;
-&lt;h3 id=&quot;package.json&quot;&gt;package.json &lt;a class=&quot;direct-link&quot; href=&quot;#package.json&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Este archivo contiene la configuración de tu proyecto, asi como sus dependencias y otros metadatos.&lt;/p&gt;
-&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;1.0.0&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;main&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;index.js&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;scripts&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token property&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;echo &#92;&quot;Error: no test specified&#92;&quot; &amp;amp;&amp;amp; exit 1&quot;&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;keywords&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;author&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;license&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;ISC&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;commonjs&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Este es el archivo base que crea &lt;code&gt;npm init -y&lt;/code&gt;. Dentro podemos encontrar:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;name&lt;/code&gt;: el nombre de tu proyecto.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;version&lt;/code&gt;: la version de tu proyecto.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;description&lt;/code&gt;: una breve descripcion de tu proyecto.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;main&lt;/code&gt;: el archivo principal de ejecucion de tu proyecto.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;scripts&lt;/code&gt;: una serie de scripts que puedes ejecutar con npm.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;keywords&lt;/code&gt;: palabras clave relacionadas con tu proyecto.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;author&lt;/code&gt;: el autor de tu proyecto.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;license&lt;/code&gt;: la licencia de tu proyecto.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;type&lt;/code&gt;: el tipo de modulo que usas en tu proyecto. Puede ser &lt;code&gt;commonjs&lt;/code&gt; o &lt;code&gt;module&lt;/code&gt;. Si usas &lt;code&gt;module&lt;/code&gt;, puedes usar la sintaxis de importacion de ES6.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;dependencies&lt;/code&gt;: las dependencias de tu proyecto. Este campo se llena automaticamente cuando instalas una dependencia.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;instalar-dependencias&quot;&gt;Instalar dependencias &lt;a class=&quot;direct-link&quot; href=&quot;#instalar-dependencias&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Para instalar una dependencia, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_dependencia&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Esto instalará la dependencia y la añadirá al archivo &lt;code&gt;package.json&lt;/code&gt; en la sección de &lt;code&gt;dependencies&lt;/code&gt;. Si quieres instalar una dependencia solo para desarrollo, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_dependencia&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; --save-dev&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Si quieres instalar una dependencia de forma global, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_dependencia&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; -g&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Esto instalará la dependencia en el directorio global de npm, lo que significa que estará disponible para todos los proyectos en tu máquina. Esto es útil para herramientas de línea de comandos como &lt;code&gt;nodemon&lt;/code&gt;:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -g nodemon&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;ejecutar-scripts&quot;&gt;Ejecutar scripts &lt;a class=&quot;direct-link&quot; href=&quot;#ejecutar-scripts&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Puedes ejecutar scripts definidos en el archivo &lt;code&gt;package.json&lt;/code&gt; con el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; run &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_script&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Un script muy comun es &lt;code&gt;dev&lt;/code&gt;, que se usa para ejecutar el proyecto en modo desarrollo. Puedes definirlo en el archivo &lt;code&gt;package.json&lt;/code&gt; de la siguiente manera:&lt;/p&gt;
-&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token property&quot;&gt;&quot;scripts&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;dev&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;nodemon -e js,html,css,njk index.js&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Luego, puedes ejecutar el script con el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; run dev&lt;/code&gt;&lt;/pre&gt;
 
 			
 		</content>
