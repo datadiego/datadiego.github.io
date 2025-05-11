@@ -7,9 +7,8 @@ tags:
   - hacking
 layout: layouts/post.njk
 ---
-# Venus
 
-https://www.vulnhub.com/entry/the-planets-venus,705/
+Puedes descargar la maquina desde [vulnhub](https://www.vulnhub.com/entry/the-planets-venus,705/)
 
 ## 1. Enumeración
 
@@ -18,6 +17,7 @@ IP Victima: 10.0.12.26
 
 ## 2. Servicios
 
+```bash
 PORT     STATE SERVICE    VERSION
 22/tcp   open  ssh        OpenSSH 8.5 (protocol 2.0)
 8080/tcp open  http-proxy WSGIServer/0.2 CPython/3.9.5
@@ -62,6 +62,7 @@ SF:dy>\n</html>\n");
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 190.10 seconds
+```
 
 ## 3. Enumeración Web
 
@@ -108,6 +109,8 @@ There were 2 failed login attempts since the last successful login.
 [magellan@venus ~]$ whoami
 magellan
 ```
+
+Funciona!
 
 ## 4. Escalada de privilegios
 
