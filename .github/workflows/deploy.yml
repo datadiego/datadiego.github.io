@@ -3,7 +3,7 @@ name: Deploy 11ty to GitHub Pages
 on:
   push:
     branches:
-      - main  # Cambia a "master" si usas ese nombre
+      - master  # Cambia a "master" si usas ese nombre
 
 jobs:
   build-and-deploy:
