@@ -382,73 +382,6 @@ Shellcodes: No Results
 	</entry>
 	
 	<entry>
-		<title>nvm + npm + Node.js 101</title>
-		<link href="https://update-me.com/posts/npm-node/"/>
-		<updated>2025-05-10T00:00:00+00:00</updated>
-		<id>https://update-me.com/posts/npm-node/</id>
-		<content type="html">
-		  &lt;p&gt;Nodejs y npm son herramientas muy potentes para el desarrollo de aplicaciones web.&lt;/p&gt;
-&lt;p&gt;Este ecosistema es muy amplio y tiene &lt;strong&gt;muchas&lt;/strong&gt; librerias y frameworks modernos para desarrollar aplicaciones web.&lt;/p&gt;
-&lt;h2 id=&quot;nodejs&quot;&gt;nodejs &lt;a class=&quot;direct-link&quot; href=&quot;#nodejs&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Node.js es un &lt;strong&gt;entorno de ejecución&lt;/strong&gt; para JavaScript que permite ejecutar código JavaScript en el servidor. Esto significa que puedes usar JavaScript para crear aplicaciones del lado del servidor, lo que antes solo era posible con lenguajes como PHP o Ruby.&lt;/p&gt;
-&lt;p&gt;Es una herramienta muy popular y usada por muchas empresas y desarrolladores para crear aplicaciones web, APIs y servicios en la nube.&lt;/p&gt;
-&lt;p&gt;Para instalarla, puedes usar &lt;code&gt;nvm&lt;/code&gt; (Node Version Manager) que es una herramienta que te permite instalar y gestionar diferentes versiones de Node.js en tu máquina.&lt;/p&gt;
-&lt;h2 id=&quot;nvm&quot;&gt;nvm &lt;a class=&quot;direct-link&quot; href=&quot;#nvm&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;&lt;code&gt;nvm&lt;/code&gt; es una herramienta que te permite instalar y gestionar diferentes versiones de Node.js en tu máquina. Esto es útil porque algunas aplicaciones pueden requerir versiones específicas de Node.js para funcionar correctamente.&lt;/p&gt;
-&lt;p&gt;En el &lt;a href=&quot;https://github.com/nvm-sh/nvm&quot;&gt;repositorio oficial de nvm&lt;/a&gt; puedes encontrar la documentación oficial y las instrucciones de instalación.&lt;/p&gt;
-&lt;p&gt;Puedes lanzar el siguiente comando para instalar la version &lt;code&gt;0.40.3&lt;/code&gt; de nvm:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;bash&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Luego, puedes instalar versiones y usarlas asi:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;nvm &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;22.12&lt;/span&gt;&lt;br&gt;nvm use &lt;span class=&quot;token number&quot;&gt;22.12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;node&lt;/span&gt; -v&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Puedes ver todas las versiones instaladas con el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;nvm &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;npm&quot;&gt;npm &lt;a class=&quot;direct-link&quot; href=&quot;#npm&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;npm es el gestor de paquetes para Node.js. Te permite instalar y gestionar librerías y dependencias para tus aplicaciones. Es similar a &lt;code&gt;pip&lt;/code&gt; en Python o &lt;code&gt;composer&lt;/code&gt; en PHP.&lt;/p&gt;
-&lt;p&gt;npm es la &lt;strong&gt;mayor fuente de librerías y codigo&lt;/strong&gt; abierto en el mundo. Puedes encontrar librerías para casi cualquier cosa, desde frameworks completos como React o Angular, hasta pequeñas utilidades para hacer tareas específicas.&lt;/p&gt;
-&lt;p&gt;Puedes instalarlo y actualizarlo con los siguientes comandos:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# instala la version de npm que viene con tu distribucion&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -g &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# actualiza npm a la ultima version&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;crear-un-proyecto&quot;&gt;Crear un proyecto &lt;a class=&quot;direct-link&quot; href=&quot;#crear-un-proyecto&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Para crear un nuevo proyecto con npm, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; init -y&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Esto creará un archivo &lt;code&gt;package.json&lt;/code&gt; en tu directorio actual. Este archivo contiene información sobre tu proyecto y sus dependencias.&lt;/p&gt;
-&lt;h3 id=&quot;package.json&quot;&gt;package.json &lt;a class=&quot;direct-link&quot; href=&quot;#package.json&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
-&lt;p&gt;Este archivo contiene la configuración de tu proyecto, asi como sus dependencias y otros metadatos.&lt;/p&gt;
-&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;1.0.0&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;main&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;index.js&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;scripts&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token property&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;echo &#92;&quot;Error: no test specified&#92;&quot; &amp;amp;&amp;amp; exit 1&quot;&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;keywords&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;author&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;license&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;ISC&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;commonjs&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Este es el archivo base que crea &lt;code&gt;npm init -y&lt;/code&gt;. Dentro podemos encontrar:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;code&gt;name&lt;/code&gt;: el nombre de tu proyecto.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;version&lt;/code&gt;: la version de tu proyecto.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;description&lt;/code&gt;: una breve descripcion de tu proyecto.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;main&lt;/code&gt;: el archivo principal de ejecucion de tu proyecto.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;scripts&lt;/code&gt;: una serie de scripts que puedes ejecutar con npm.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;keywords&lt;/code&gt;: palabras clave relacionadas con tu proyecto.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;author&lt;/code&gt;: el autor de tu proyecto.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;license&lt;/code&gt;: la licencia de tu proyecto.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;type&lt;/code&gt;: el tipo de modulo que usas en tu proyecto. Puede ser &lt;code&gt;commonjs&lt;/code&gt; o &lt;code&gt;module&lt;/code&gt;. Si usas &lt;code&gt;module&lt;/code&gt;, puedes usar la sintaxis de importacion de ES6.&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;dependencies&lt;/code&gt;: las dependencias de tu proyecto. Este campo se llena automaticamente cuando instalas una dependencia.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h2 id=&quot;instalar-dependencias&quot;&gt;Instalar dependencias &lt;a class=&quot;direct-link&quot; href=&quot;#instalar-dependencias&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Para instalar una dependencia, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_dependencia&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Esto instalará la dependencia y la añadirá al archivo &lt;code&gt;package.json&lt;/code&gt; en la sección de &lt;code&gt;dependencies&lt;/code&gt;. Si quieres instalar una dependencia solo para desarrollo, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_dependencia&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; --save-dev&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Si quieres instalar una dependencia de forma global, puedes usar el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_dependencia&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; -g&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Esto instalará la dependencia en el directorio global de npm, lo que significa que estará disponible para todos los proyectos en tu máquina. Esto es útil para herramientas de línea de comandos como &lt;code&gt;nodemon&lt;/code&gt;:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -g nodemon&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;ejecutar-scripts&quot;&gt;Ejecutar scripts &lt;a class=&quot;direct-link&quot; href=&quot;#ejecutar-scripts&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;p&gt;Puedes ejecutar scripts definidos en el archivo &lt;code&gt;package.json&lt;/code&gt; con el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; run &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_script&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Un script muy comun es &lt;code&gt;dev&lt;/code&gt;, que se usa para ejecutar el proyecto en modo desarrollo. Puedes definirlo en el archivo &lt;code&gt;package.json&lt;/code&gt; de la siguiente manera:&lt;/p&gt;
-&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token property&quot;&gt;&quot;scripts&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;dev&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;nodemon -e js,html,css,njk index.js&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;Luego, puedes ejecutar el script con el siguiente comando:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; run dev&lt;/code&gt;&lt;/pre&gt;
-
-			
-		</content>
-	</entry>
-	
-	<entry>
 		<title>Vulnhub #4: Mercury</title>
 		<link href="https://update-me.com/posts/mercury/"/>
 		<updated>2025-05-11T00:00:00+00:00</updated>
@@ -610,6 +543,73 @@ root@mercury:/tmp/malito# whoami
 root
 root@mercury:/tmp/malito# 
 &lt;/code&gt;&lt;/pre&gt;
+
+			
+		</content>
+	</entry>
+	
+	<entry>
+		<title>nvm + npm + Node.js 101</title>
+		<link href="https://update-me.com/posts/npm-node/"/>
+		<updated>2025-05-11T00:00:00+00:00</updated>
+		<id>https://update-me.com/posts/npm-node/</id>
+		<content type="html">
+		  &lt;p&gt;Nodejs y npm son herramientas muy potentes para el desarrollo de aplicaciones web.&lt;/p&gt;
+&lt;p&gt;Este ecosistema es muy amplio y tiene &lt;strong&gt;muchas&lt;/strong&gt; librerias y frameworks modernos para desarrollar aplicaciones web.&lt;/p&gt;
+&lt;h2 id=&quot;nodejs&quot;&gt;nodejs &lt;a class=&quot;direct-link&quot; href=&quot;#nodejs&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Node.js es un &lt;strong&gt;entorno de ejecución&lt;/strong&gt; para JavaScript que permite ejecutar código JavaScript en el servidor. Esto significa que puedes usar JavaScript para crear aplicaciones del lado del servidor, lo que antes solo era posible con lenguajes como PHP o Ruby.&lt;/p&gt;
+&lt;p&gt;Es una herramienta muy popular y usada por muchas empresas y desarrolladores para crear aplicaciones web, APIs y servicios en la nube.&lt;/p&gt;
+&lt;p&gt;Para instalarla, puedes usar &lt;code&gt;nvm&lt;/code&gt; (Node Version Manager) que es una herramienta que te permite instalar y gestionar diferentes versiones de Node.js en tu máquina.&lt;/p&gt;
+&lt;h2 id=&quot;nvm&quot;&gt;nvm &lt;a class=&quot;direct-link&quot; href=&quot;#nvm&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;nvm&lt;/code&gt; es una herramienta que te permite instalar y gestionar diferentes versiones de Node.js en tu máquina. Esto es útil porque algunas aplicaciones pueden requerir versiones específicas de Node.js para funcionar correctamente.&lt;/p&gt;
+&lt;p&gt;En el &lt;a href=&quot;https://github.com/nvm-sh/nvm&quot;&gt;repositorio oficial de nvm&lt;/a&gt; puedes encontrar la documentación oficial y las instrucciones de instalación.&lt;/p&gt;
+&lt;p&gt;Puedes lanzar el siguiente comando para instalar la version &lt;code&gt;0.40.3&lt;/code&gt; de nvm:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;curl&lt;/span&gt; -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh &lt;span class=&quot;token operator&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;bash&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Luego, puedes instalar versiones y usarlas asi:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;nvm &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;22.12&lt;/span&gt;&lt;br&gt;nvm use &lt;span class=&quot;token number&quot;&gt;22.12&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;node&lt;/span&gt; -v&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Puedes ver todas las versiones instaladas con el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;nvm &lt;span class=&quot;token function&quot;&gt;ls&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;npm&quot;&gt;npm &lt;a class=&quot;direct-link&quot; href=&quot;#npm&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;npm es el gestor de paquetes para Node.js. Te permite instalar y gestionar librerías y dependencias para tus aplicaciones. Es similar a &lt;code&gt;pip&lt;/code&gt; en Python o &lt;code&gt;composer&lt;/code&gt; en PHP.&lt;/p&gt;
+&lt;p&gt;npm es la &lt;strong&gt;mayor fuente de librerías y codigo&lt;/strong&gt; abierto en el mundo. Puedes encontrar librerías para casi cualquier cosa, desde frameworks completos como React o Angular, hasta pequeñas utilidades para hacer tareas específicas.&lt;/p&gt;
+&lt;p&gt;Puedes instalarlo y actualizarlo con los siguientes comandos:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;apt&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# instala la version de npm que viene con tu distribucion&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -g &lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt;  &lt;span class=&quot;token comment&quot;&gt;# actualiza npm a la ultima version&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;crear-un-proyecto&quot;&gt;Crear un proyecto &lt;a class=&quot;direct-link&quot; href=&quot;#crear-un-proyecto&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para crear un nuevo proyecto con npm, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; init -y&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esto creará un archivo &lt;code&gt;package.json&lt;/code&gt; en tu directorio actual. Este archivo contiene información sobre tu proyecto y sus dependencias.&lt;/p&gt;
+&lt;h3 id=&quot;package.json&quot;&gt;package.json &lt;a class=&quot;direct-link&quot; href=&quot;#package.json&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Este archivo contiene la configuración de tu proyecto, asi como sus dependencias y otros metadatos.&lt;/p&gt;
+&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;version&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;1.0.0&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;description&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;main&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;index.js&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;scripts&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token property&quot;&gt;&quot;test&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;echo &#92;&quot;Error: no test specified&#92;&quot; &amp;amp;&amp;amp; exit 1&quot;&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;keywords&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;author&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;license&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;ISC&quot;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;,&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;type&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;commonjs&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Este es el archivo base que crea &lt;code&gt;npm init -y&lt;/code&gt;. Dentro podemos encontrar:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;name&lt;/code&gt;: el nombre de tu proyecto.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;version&lt;/code&gt;: la version de tu proyecto.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;description&lt;/code&gt;: una breve descripcion de tu proyecto.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;main&lt;/code&gt;: el archivo principal de ejecucion de tu proyecto.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;scripts&lt;/code&gt;: una serie de scripts que puedes ejecutar con npm.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;keywords&lt;/code&gt;: palabras clave relacionadas con tu proyecto.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;author&lt;/code&gt;: el autor de tu proyecto.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;license&lt;/code&gt;: la licencia de tu proyecto.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;type&lt;/code&gt;: el tipo de modulo que usas en tu proyecto. Puede ser &lt;code&gt;commonjs&lt;/code&gt; o &lt;code&gt;module&lt;/code&gt;. Si usas &lt;code&gt;module&lt;/code&gt;, puedes usar la sintaxis de importacion de ES6.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;dependencies&lt;/code&gt;: las dependencias de tu proyecto. Este campo se llena automaticamente cuando instalas una dependencia.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;instalar-dependencias&quot;&gt;Instalar dependencias &lt;a class=&quot;direct-link&quot; href=&quot;#instalar-dependencias&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para instalar una dependencia, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_dependencia&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esto instalará la dependencia y la añadirá al archivo &lt;code&gt;package.json&lt;/code&gt; en la sección de &lt;code&gt;dependencies&lt;/code&gt;. Si quieres instalar una dependencia solo para desarrollo, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_dependencia&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; --save-dev&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Si quieres instalar una dependencia de forma global, puedes usar el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_dependencia&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; -g&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esto instalará la dependencia en el directorio global de npm, lo que significa que estará disponible para todos los proyectos en tu máquina. Esto es útil para herramientas de línea de comandos como &lt;code&gt;nodemon&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; &lt;span class=&quot;token function&quot;&gt;install&lt;/span&gt; -g nodemon&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;ejecutar-scripts&quot;&gt;Ejecutar scripts &lt;a class=&quot;direct-link&quot; href=&quot;#ejecutar-scripts&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Puedes ejecutar scripts definidos en el archivo &lt;code&gt;package.json&lt;/code&gt; con el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; run &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;nombre_script&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Un script muy comun es &lt;code&gt;dev&lt;/code&gt;, que se usa para ejecutar el proyecto en modo desarrollo. Puedes definirlo en el archivo &lt;code&gt;package.json&lt;/code&gt; de la siguiente manera:&lt;/p&gt;
+&lt;pre class=&quot;language-json&quot;&gt;&lt;code class=&quot;language-json&quot;&gt;&lt;span class=&quot;token property&quot;&gt;&quot;scripts&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;{&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token property&quot;&gt;&quot;dev&quot;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token string&quot;&gt;&quot;nodemon -e js,html,css,njk index.js&quot;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;}&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Luego, puedes ejecutar el script con el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;npm&lt;/span&gt; run dev&lt;/code&gt;&lt;/pre&gt;
 
 			
 		</content>
