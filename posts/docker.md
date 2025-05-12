@@ -102,19 +102,65 @@ docker run -d -p 80:3000 <nombre_imagen>
 > El `-p` indica que quieres mapear el puerto 80 del host al puerto 3000 del contenedor. Esto significa que si accedes a `http://localhost`, estarás accediendo al puerto 3000 del contenedor.
 > El `<nombre_imagen>` es el nombre de la imagen que quieres ejecutar.
 > Si no especificas un nombre de imagen, Docker buscará una imagen llamada `latest` por defecto.
-> Puedes ver todos los contenedores que tienes en tu ordenador utilizando el siguiente comando:
+
+## Comprobar contenedores
+
+Puedes ver los contenedores que estan en ejecución con:
+
 ```bash
 docker ps
 ```
-> Si quieres ver todos los contenedores, incluyendo los que están parados, puedes utilizar el siguiente comando:
+> Si quieres ver todos los contenedores, incluyendo los que están parados:
 ```bash
 docker ps -a
 ```
-> Si quieres parar un contenedor, puedes utilizar el siguiente comando:
+> Si quieres parar un contenedor:
 ```bash
 docker stop <nombre_contenedor>
 ```
-> Si quieres eliminar un contenedor, puedes utilizar el siguiente comando:
+> Si quieres iniciar un contenedor parado:
+```bash
+docker restart <nombre_contenedor>
+```
+> Si quieres reiniciar un contenedor en ejecución:
+```bash
+docker restart <nombre_contenedor>
+```
+
+## Eliminar imagenes
+
+En algun momento necesitarás eliminar imagenes y contenedores que no usas o que no funcionan como esperabas. Para eliminar imagenes puedes usar el siguiente comando:
+
+```bash
+docker rmi <id_imagen>
+```
+
+> Si quieres eliminar todas las imagenes que no están siendo utilizadas por ningun contenedor, puedes utilizar el siguiente comando:
+```bash
+docker rmi $(docker images -f "dangling=true" -q)
+```
+> Si quieres eliminar todas las imagenes, puedes utilizar el siguiente comando:
+```bash
+docker rmi $(docker images -q)
+```
+> Puedes forzar la eliminación de una imagen utilizando el siguiente comando:
+```bash
+docker rmi -f <id_imagen>
+```
+
+## Eliminar contenedores
+
+Para eliminar contenedores es muy similar:
+
 ```bash
 docker rm <id_contenedor>
+```
+
+> Si quieres eliminar todos los contenedores, puedes utilizar el siguiente comando:
+```bash
+docker rm $(docker ps -a -q)
+```
+> Puedes forzar la eliminación de un contenedor utilizando el siguiente comando:
+```bash
+docker rm -f <id_contenedor>
 ```
