@@ -16,6 +16,21 @@ Necesitarás:
 - Un dominio, esto es necesario para solicitar un certificado SSL/TLS.
 - Un VPS en cualquier plataforma como linode o digitalocean.
 
+## Configuración VPS
+
+Necesitaremos los puertos `80` y `443` abiertos en el firewall de nuestro VPS.
+
+Si estás usando `ufw` puedes abrirlos con los siguientes comandos:
+
+```bash
+sudo ufw enable # opcional si ya lo tienes activo
+sudo ufw allow 22 # si no abres tambien el puerto 22, perderás el acceso SSH
+sudo ufw allow 80
+sudo ufw allow 443
+sudo ufw reload
+sudo ufw status # comprueba que los puertos están abiertos
+```
+
 ## Configuración DNS
 
 Lo primero es configurar nuestro servidor DNS para que apunte al VPS.
