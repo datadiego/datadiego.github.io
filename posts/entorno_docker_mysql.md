@@ -26,13 +26,11 @@ Este entorno tiene una estructura bastante simple:
 ```bash
 .
 ├── Dockerfile
-├── launch.sh
 ├── mysqld.cnf
 └── paneldb_dump.sql
 ```
 
 - **Dockerfile**: Este archivo contiene las instrucciones para construir la imagen de Docker que se usará para crear el contenedor de MySQL.
-- **launch.sh**: Este script se encarga de iniciar el contenedor de MySQL y ejecutar el script de volcado de la base de datos, es opcional, pero puede ayudar a automatizar el proceso de configuración.
 - **mysqld.cnf**: Este archivo contiene la configuración de MySQL que se usará al iniciar el contenedor.
 - **paneldb_dump.sql**: Este archivo contiene el volcado de la base de datos que se usará para inicializar la base de datos en el contenedor de MySQL. Puedes usar un volcado de tu propia base de datos o crear uno nuevo desde cero.
 
