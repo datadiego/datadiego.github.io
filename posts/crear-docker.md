@@ -124,3 +124,47 @@ COPY prueba.txt /cyber
 ```
 
 Al construir la imagen y ejecutar el contenedor, deberías ver un archivo llamado `prueba.txt` en tu directorio de trabajo con el contenido que hayas escrito en el archivo.
+
+## ENV
+La instrucción `ENV` se usa para establecer variables de entorno dentro del contenedor. Estas variables estarán disponibles para cualquier comando que se ejecute en el contenedor.
+
+```
+ENV <nombre_variable> <valor_variable>
+ENV NODE_ENV=production
+ENV PORT=3000
+```
+
+En algunos casos, puedes ver que se usa la instrucción `ENV` para declarar variables sensibles como contraseñas o tokens de acceso. Evita hacer esto, en su lugar, usa la instrucción `ARG`.
+
+## ARG
+
+La instrucción `ARG` se usa para declarar variables que se pueden pasar al contenedor durante la construcción de la imagen. Estas variables no estarán disponibles en el contenedor, pero se pueden usar para personalizar la construcción de la imagen. Por ejemplo:
+
+```
+ARG PORT
+ARG NODE_ENV=production
+```
+
+El primer argumento `PORT` no tiene valor por defecto, por lo que tendrás que pasarlo al construir la imagen. El segundo argumento `NODE_ENV` tiene un valor por defecto de `production`, pero puedes cambiarlo al construir la imagen, por ejemplo:
+
+```
+docker build --build-arg PORT=3000 --build-arg NODE_ENV=development -t test .
+```
+
+Esto pasará los argumentos al contenedor y podrás usarlos en el `Dockerfile` como variables de entorno de forma segura.
+
+## EXPOSE
+
+Por defecto, los contenedores de Docker no exponen puertos al host por seguridad. Si necesitas disponer de un puerto para accederlo desde el host que ejecuta el contenedor, tendrás que usar la instrucción `EXPOSE` para exponer el puerto al host.
+
+```
+FROM node:latest
+WORKDIR /cyber
+COPY . .
+RUN npm install
+EXPOSE 3000
+CMD ["node", "app.js"]
+```
+
+Este `Dockerfile` parte de la imagen oficial de `node`, establece un directorio de trabajo, copia todo el contenido del directorio actual al contenedor, instala npm y expone el puerto 3000 al host. Luego, ejecuta el comando `node app.js` para iniciar la aplicación.
+
