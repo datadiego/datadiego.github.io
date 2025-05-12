@@ -879,6 +879,46 @@ root@mercury:/tmp/malito#
 	</entry>
 	
 	<entry>
+		<title>Deploy GitHub Pages</title>
+		<link href="https://update-me.com/posts/deploy-gh-pages/"/>
+		<updated>2025-05-12T00:00:00+00:00</updated>
+		<id>https://update-me.com/posts/deploy-gh-pages/</id>
+		<content type="html">
+		  &lt;p&gt;Github Pages es una herramienta que permite alojar sitios web estáticos directamente desde un repositorio en GitHub totalmente gratis.&lt;/p&gt;
+&lt;h2 id=&quot;repositorio&quot;&gt;Repositorio &lt;a class=&quot;direct-link&quot; href=&quot;#repositorio&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Tendrás que crear un repositorio en GitHub que tenga el siguiente nombre:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;username&amp;gt;.github.io
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Donde &lt;code&gt;&amp;lt;username&amp;gt;&lt;/code&gt; es tu nombre de usuario de GitHub.&lt;/p&gt;
+&lt;h3 id=&quot;workflow&quot;&gt;workflow &lt;a class=&quot;direct-link&quot; href=&quot;#workflow&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;Este proyecto necesitará un workflow de GitHub Actions para hacer el deploy automáticamente cada vez que hagas un push a la rama &lt;code&gt;main&lt;/code&gt; del repositorio. Puedes crear un archivo &lt;code&gt;.github/workflows/deploy.yml&lt;/code&gt; con el siguiente contenido:&lt;/p&gt;
+&lt;pre class=&quot;language-yaml&quot;&gt;&lt;code class=&quot;language-yaml&quot;&gt;&lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Deploy 11ty to GitHub Pages&lt;br&gt;&lt;br&gt;&lt;span class=&quot;token key atrule&quot;&gt;on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token key atrule&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token key atrule&quot;&gt;branches&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; master  &lt;span class=&quot;token comment&quot;&gt;# Cambia a &quot;master&quot; si usas ese nombre&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span class=&quot;token key atrule&quot;&gt;permissions&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token key atrule&quot;&gt;contents&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; write&lt;br&gt;&lt;br&gt;&lt;span class=&quot;token key atrule&quot;&gt;jobs&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;token key atrule&quot;&gt;build-and-deploy&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;    &lt;span class=&quot;token key atrule&quot;&gt;runs-on&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ubuntu&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;latest&lt;br&gt;&lt;br&gt;    &lt;span class=&quot;token key atrule&quot;&gt;steps&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Checkout code&lt;br&gt;        &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; actions/checkout@v3&lt;br&gt;&lt;br&gt;      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Set up Node.js&lt;br&gt;        &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; actions/setup&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;node@v3&lt;br&gt;        &lt;span class=&quot;token key atrule&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;          &lt;span class=&quot;token key atrule&quot;&gt;node-version&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;18&lt;/span&gt;&lt;br&gt;&lt;br&gt;      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Install dependencies&lt;br&gt;        &lt;span class=&quot;token key atrule&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; npm ci&lt;br&gt;&lt;br&gt;      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Build the site&lt;br&gt;        &lt;span class=&quot;token key atrule&quot;&gt;run&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; npm run build&lt;br&gt;&lt;br&gt;      &lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;token key atrule&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; Deploy to GitHub Pages&lt;br&gt;        &lt;span class=&quot;token key atrule&quot;&gt;uses&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; peaceiris/actions&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;gh&lt;span class=&quot;token punctuation&quot;&gt;-&lt;/span&gt;pages@v4&lt;br&gt;        &lt;span class=&quot;token key atrule&quot;&gt;with&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt;&lt;br&gt;          &lt;span class=&quot;token key atrule&quot;&gt;github_token&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; $&lt;br&gt;          &lt;span class=&quot;token key atrule&quot;&gt;publish_dir&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;:&lt;/span&gt; ./_site  &lt;span class=&quot;token comment&quot;&gt;# Cambia esto si tu build genera otra carpeta&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Este workflow está configurado para ejecutarse cada vez que hagas un push a la rama &lt;code&gt;master&lt;/code&gt;. Si usas otra rama, asegúrate de cambiar el nombre en la sección &lt;code&gt;on&lt;/code&gt; del archivo.&lt;br&gt;
+El workflow se encargará de instalar las dependencias necesarias, construir el sitio y desplegarlo en GitHub Pages.&lt;br&gt;
+El proyecto está configurado para usar Node.js 18, pero puedes cambiar la versión si es necesario. En caso de que uses otro lenguaje o framework, asegúrate de ajustar el workflow para que se adapte a tus necesidades.&lt;br&gt;
+El workflow utiliza la acción &lt;code&gt;peaceiris/actions-gh-pages&lt;/code&gt; para desplegar el sitio. Esta acción es muy popular y fácil de usar, pero hay otras opciones disponibles si prefieres usar otra.&lt;br&gt;
+Asegúrate de que la carpeta &lt;code&gt;_site&lt;/code&gt; es la que genera tu build. Si usas otro nombre, cámbialo en la sección &lt;code&gt;publish_dir&lt;/code&gt;.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;configuraci%C3%B3n-de-github-pages&quot;&gt;Configuración de GitHub Pages &lt;a class=&quot;direct-link&quot; href=&quot;#configuraci%C3%B3n-de-github-pages&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Una vez tengas tu repositorio y el workflow configurado, tendrás que habilitar GitHub Pages en la configuración del repositorio.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Antes de nada, crea una rama llamada &lt;code&gt;gh-pages&lt;/code&gt; en GitHub.&lt;/li&gt;
+&lt;li&gt;Ve a la pestaña &amp;quot;Settings&amp;quot; de tu repositorio.&lt;/li&gt;
+&lt;li&gt;Ve a la sección &amp;quot;Pages&amp;quot; en el menú de la izquierda.&lt;/li&gt;
+&lt;li&gt;Busca la sección &lt;code&gt;Build and deployment&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;En la opción &lt;code&gt;Source&lt;/code&gt;, selecciona &lt;code&gt;Deploy from a branch&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;En la opción &lt;code&gt;Branch&lt;/code&gt;, selecciona &lt;code&gt;gh-pages&lt;/code&gt; y &lt;code&gt;/(root)&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Haz clic en &lt;code&gt;Save&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;mandar-cambios&quot;&gt;Mandar cambios &lt;a class=&quot;direct-link&quot; href=&quot;#mandar-cambios&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Una vez tengas todo configurado, cada vez que hagas un push a la rama &lt;code&gt;main&lt;/code&gt; del repositorio, el workflow se ejecutará automáticamente y desplegará los cambios en GitHub Pages.&lt;/p&gt;
+
+			
+		</content>
+	</entry>
+	
+	<entry>
 		<title>Entorno Docker + MySQL</title>
 		<link href="https://update-me.com/posts/entorno_docker_mysql/"/>
 		<updated>2025-05-12T00:00:00+00:00</updated>
