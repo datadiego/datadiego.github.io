@@ -46,7 +46,7 @@ COPY . .
 RUN npm install
 EXPOSE 3000
 CMD ["node", "app.js"]
-</code></pre><p>Este <code>Dockerfile</code> parte de la imagen oficial de <code>node</code>, establece un directorio de trabajo, copia todo el contenido del directorio actual al contenedor, instala npm y expone el puerto 3000 al host. Luego, ejecuta el comando <code>node app.js</code> para iniciar la aplicación.</p><share-widget><button aria-label=Share href=https://update-me.com/posts/crear-docker/ on-click=share><div></div></button></share-widget><script type=application/ld+json>{
+</code></pre><p>Este <code>Dockerfile</code> parte de la imagen oficial de <code>node</code>, establece un directorio de trabajo, copia todo el contenido del directorio actual al contenedor, instala npm y expone el puerto 3000 al host. Luego, ejecuta el comando <code>node app.js</code> para iniciar la aplicación.<h2 id=volumes>VOLUMES <a href=#volumes class=direct-link>#</a></h2><h2 id=entrypoint>ENTRYPOINT <a href=#entrypoint class=direct-link>#</a></h2><share-widget><button aria-label=Share href=https://update-me.com/posts/crear-docker/ on-click=share><div></div></button></share-widget><script type=application/ld+json>{
   "@context": "https://schema.org",
   "@type": "Article",
   "headline": "Dockerfile a fondo",

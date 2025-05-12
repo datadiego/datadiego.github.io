@@ -18,7 +18,8 @@
 		<updated>2025-05-08T00:00:00+00:00</updated>
 		<id>https://update-me.com/posts/docker/</id>
 		<content type="html">
-		  &lt;h2 id=&quot;instalaci%C3%B3n&quot;&gt;Instalación &lt;a class=&quot;direct-link&quot; href=&quot;#instalaci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+		  &lt;p&gt;Esta guía te enseñará los aspectos más básicos de Docker, desde la instalación hasta la creación de imágenes y contenedores.&lt;/p&gt;
+&lt;h2 id=&quot;instalaci%C3%B3n&quot;&gt;Instalación &lt;a class=&quot;direct-link&quot; href=&quot;#instalaci%C3%B3n&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Lo mejor es seguir la &lt;a href=&quot;https://docs.docker.com/engine/install/ubuntu/&quot;&gt;guia Oficial&lt;/a&gt; para instalar siempre la última versión de docker.&lt;/p&gt;
 &lt;h2 id=&quot;configuracion&quot;&gt;Configuracion &lt;a class=&quot;direct-link&quot; href=&quot;#configuracion&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Necesitarás iniciar el servicio de docker y añadir tu usuario al grupo de docker para poder ejecutar los comandos sin &lt;code&gt;sudo&lt;/code&gt;:&lt;/p&gt;
@@ -33,6 +34,15 @@
 &lt;p&gt;Docker resuelve un problema recurrente en el desarrollo de software: la portabilidad. Cuando desarrollas una aplicación en tu ordenador y puedes arrancarla sin problemas es porque tienes todas las dependencias necesarias instaladas. Pero cuando intentas ejecutar esa misma aplicación en otro ordenador, puede que no funcione porque faltan librerías o dependencias.&lt;/p&gt;
 &lt;p&gt;Esto es un problema común, vuelve el desarrollo de software un proceso tedioso en el que muchas personas pasan horas intentando resolver problemas de compatibilidad manteniendo multiples entornos con diferentes versiones de librerías y dependencias. Además, si tienes que desplegar tu aplicación en un servidor, puede que no funcione porque el servidor tiene una versión diferente de una librería o una configuración diferente.&lt;/p&gt;
 &lt;p&gt;Docker resuelve este problema creando un contenedor que incluye todo lo necesario para ejecutar la aplicación: el código, las librerías, las dependencias y el sistema operativo. De esta forma, puedes ejecutar la misma aplicación en cualquier ordenador que tenga Docker instalado, sin preocuparte por las diferencias entre los entornos de ejecución.&lt;/p&gt;
+&lt;p&gt;Algunos usos comunes de Docker son:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Desarrollar aplicaciones en entornos aislados.&lt;/li&gt;
+&lt;li&gt;Desplegar aplicaciones en servidores.&lt;/li&gt;
+&lt;li&gt;Crear entornos de desarrollo y producción consistentes y reproducibles.&lt;/li&gt;
+&lt;li&gt;Crear entornos de prueba para aplicaciones.&lt;/li&gt;
+&lt;li&gt;Crear laboratorios de seguridad para practicar hacking ético.&lt;/li&gt;
+&lt;li&gt;Lanzar aplicaciones en la nube o localmente de forma más simple y sin tener que aprender ecosistemas enteros de herramientas.&lt;/li&gt;
+&lt;/ul&gt;
 &lt;p&gt;Para entender mejor cómo funciona Docker, es importante conocer dos conceptos clave: imágenes y contenedores.&lt;/p&gt;
 &lt;h3 id=&quot;im%C3%A1genes&quot;&gt;Imágenes &lt;a class=&quot;direct-link&quot; href=&quot;#im%C3%A1genes&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
 &lt;p&gt;Una imagen es el resultado de empaquetar una aplicación y todas sus dependencias. A partir de esta imagen, Docker puede crear un contenedor. Las imágenes son inmutables, lo que significa que no puedes cambiar una imagen una vez que ha sido creada. Si necesitas hacer cambios en la aplicación, debes crear una nueva imagen.&lt;/p&gt;
@@ -987,6 +997,8 @@ EXPOSE 3000
 CMD [&amp;quot;node&amp;quot;, &amp;quot;app.js&amp;quot;]
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Este &lt;code&gt;Dockerfile&lt;/code&gt; parte de la imagen oficial de &lt;code&gt;node&lt;/code&gt;, establece un directorio de trabajo, copia todo el contenido del directorio actual al contenedor, instala npm y expone el puerto 3000 al host. Luego, ejecuta el comando &lt;code&gt;node app.js&lt;/code&gt; para iniciar la aplicación.&lt;/p&gt;
+&lt;h2 id=&quot;volumes&quot;&gt;VOLUMES &lt;a class=&quot;direct-link&quot; href=&quot;#volumes&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;entrypoint&quot;&gt;ENTRYPOINT &lt;a class=&quot;direct-link&quot; href=&quot;#entrypoint&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 
 			
 		</content>
