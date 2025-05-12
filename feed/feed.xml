@@ -917,6 +917,8 @@ Asegúrate de que la carpeta &lt;code&gt;_site&lt;/code&gt; es la que genera tu 
 &lt;/ol&gt;
 &lt;h2 id=&quot;mandar-cambios&quot;&gt;Mandar cambios &lt;a class=&quot;direct-link&quot; href=&quot;#mandar-cambios&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Una vez tengas todo configurado, cada vez que hagas un push a la rama &lt;code&gt;main&lt;/code&gt; del repositorio, el workflow se ejecutará automáticamente y desplegará los cambios en GitHub Pages.&lt;/p&gt;
+&lt;h2 id=&quot;repositorio-de-ejemplo&quot;&gt;Repositorio de ejemplo &lt;a class=&quot;direct-link&quot; href=&quot;#repositorio-de-ejemplo&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Este blog está alojado en Github Pages, puedes ver el repositorio y como funciona &lt;a href=&quot;https://github.com/datadiego/datadiego.github.io&quot;&gt;aqui&lt;/a&gt;&lt;/p&gt;
 
 			
 		</content>
