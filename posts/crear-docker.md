@@ -1,8 +1,8 @@
 ---
 title: Dockerfile a fondo
 description: Guia para crear imagenes de docker a partir de un Dockerfile
-date: 2025-05-08
-scheduled: 2025-05-08
+date: 2025-05-12
+scheduled: 2025-05-12
 tags:
   - devops
   - coding
