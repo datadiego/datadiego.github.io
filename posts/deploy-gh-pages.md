@@ -82,3 +82,7 @@ Una vez tengas tu repositorio y el workflow configurado, tendrás que habilitar 
 ## Mandar cambios
 
 Una vez tengas todo configurado, cada vez que hagas un push a la rama `main` del repositorio, el workflow se ejecutará automáticamente y desplegará los cambios en GitHub Pages.
+
+## Repositorio de ejemplo
+
+Este blog está alojado en Github Pages, puedes ver el repositorio y como funciona [aqui](https://github.com/datadiego/datadiego.github.io)
