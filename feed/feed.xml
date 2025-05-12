@@ -1064,10 +1064,9 @@ Asegúrate de que la carpeta &lt;code&gt;_site&lt;/code&gt; es la que genera tu 
 &lt;/ul&gt;
 &lt;h2 id=&quot;estructura-del-entorno&quot;&gt;Estructura del entorno &lt;a class=&quot;direct-link&quot; href=&quot;#estructura-del-entorno&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Este entorno tiene una estructura bastante simple:&lt;/p&gt;
-&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;&lt;br&gt;├── Dockerfile&lt;br&gt;├── launch.sh&lt;br&gt;├── mysqld.cnf&lt;br&gt;└── paneldb_dump.sql&lt;/code&gt;&lt;/pre&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token builtin class-name&quot;&gt;.&lt;/span&gt;&lt;br&gt;├── Dockerfile&lt;br&gt;├── mysqld.cnf&lt;br&gt;└── paneldb_dump.sql&lt;/code&gt;&lt;/pre&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Dockerfile&lt;/strong&gt;: Este archivo contiene las instrucciones para construir la imagen de Docker que se usará para crear el contenedor de MySQL.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;&lt;a href=&quot;http://launch.sh/&quot;&gt;launch.sh&lt;/a&gt;&lt;/strong&gt;: Este script se encarga de iniciar el contenedor de MySQL y ejecutar el script de volcado de la base de datos, es opcional, pero puede ayudar a automatizar el proceso de configuración.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;mysqld.cnf&lt;/strong&gt;: Este archivo contiene la configuración de MySQL que se usará al iniciar el contenedor.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;paneldb_dump.sql&lt;/strong&gt;: Este archivo contiene el volcado de la base de datos que se usará para inicializar la base de datos en el contenedor de MySQL. Puedes usar un volcado de tu propia base de datos o crear uno nuevo desde cero.&lt;/li&gt;
 &lt;/ul&gt;
