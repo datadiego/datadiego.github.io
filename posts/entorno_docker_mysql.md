@@ -63,7 +63,7 @@ EXPOSE 3306
 
 ## mysqld.cnf
 
-```cnf
+```
 [mysqld]
 bind-address = 0.0.0.0
 ```
