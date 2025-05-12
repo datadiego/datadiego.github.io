@@ -883,6 +883,89 @@ root@mercury:/tmp/malito#
 	</entry>
 	
 	<entry>
+		<title>Dockerfile a fondo</title>
+		<link href="https://update-me.com/posts/crear-docker/"/>
+		<updated>2025-05-12T00:00:00+00:00</updated>
+		<id>https://update-me.com/posts/crear-docker/</id>
+		<content type="html">
+		  &lt;p&gt;Los &lt;code&gt;Dockerfile&lt;/code&gt; son los archivos básicos usados para crear imágenes de Docker.&lt;/p&gt;
+&lt;p&gt;Un &lt;code&gt;Dockerfile&lt;/code&gt; no es mas que un archivo de texto que contiene las instrucciones necesarias para crear un servicio o aplicación. Estas instrucciones son leídas por Docker y se ejecutan en el orden en que aparecen en el archivo.&lt;/p&gt;
+&lt;h2 id=&quot;creando-un-dockerfile-b%C3%A1sico&quot;&gt;Creando un Dockerfile básico &lt;a class=&quot;direct-link&quot; href=&quot;#creando-un-dockerfile-b%C3%A1sico&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Vamos a crear un contenedor básico que use &lt;code&gt;Ubuntu&lt;/code&gt; como base:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;# Usa la imagen oficial de Ubuntu como base
+FROM ubuntu:latest
+# Establece el directorio de trabajo
+WORKDIR /cyber
+# devuelve una terminal
+CMD [&amp;quot;/bin/bash&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Construye tu imagen con &lt;code&gt;docker build -t test .&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Luego, ejecuta el contenedor con &lt;code&gt;docker run -it test&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Esto te devolverá una terminal dentro del contenedor, puedes usarla como si fuera un sistema operativo normal, instalar paquetes, crear archivos, etc.&lt;/p&gt;
+&lt;h2 id=&quot;instrucciones-b%C3%A1sicas&quot;&gt;Instrucciones básicas &lt;a class=&quot;direct-link&quot; href=&quot;#instrucciones-b%C3%A1sicas&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Partiendo del ejemplo anterior, vamos a ver las instrucciones más comunes que encontrarás en un &lt;code&gt;Dockerfile&lt;/code&gt;:&lt;/p&gt;
+&lt;h3 id=&quot;from&quot;&gt;FROM &lt;a class=&quot;direct-link&quot; href=&quot;#from&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;La instrucción &lt;code&gt;FROM&lt;/code&gt; se usa para especificar que imagen se usa como base para crear nuestra imagen.&lt;/p&gt;
+&lt;p&gt;Algunos ejemplos de imágenes base:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;FROM ubuntu:latest
+FROM python:latest
+FROM node:latest
+FROM mysql:latest
+FROM ctfd:latest
+FROM datadiego/ejemplo:latest
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esta instrucción es obligatoria y debe ser la primera en el &lt;code&gt;Dockerfile&lt;/code&gt;.&lt;/p&gt;
+&lt;h3 id=&quot;workdir&quot;&gt;WORKDIR &lt;a class=&quot;direct-link&quot; href=&quot;#workdir&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;La instrucción &lt;code&gt;WORKDIR&lt;/code&gt; se usa para establecer el directorio de trabajo dentro del contenedor. Este directorio es donde se ejecutarán las instrucciones siguientes.&lt;/p&gt;
+&lt;p&gt;Si accedes al contenedor, el directorio de trabajo será el que hayas especificado en esta instrucción.&lt;/p&gt;
+&lt;h3 id=&quot;cmd&quot;&gt;CMD &lt;a class=&quot;direct-link&quot; href=&quot;#cmd&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;La instrucción &lt;code&gt;CMD&lt;/code&gt; se usa para especificar el comando que se ejecutará cuando se inicie el contenedor. Este comando se ejecutará en el directorio de trabajo especificado por la instrucción &lt;code&gt;WORKDIR&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;SOLO&lt;/strong&gt; se ejecutará al crear el contenedor, si quieres ejecutar un comando cada vez que inicies el contenedor, usa la instrucción &lt;code&gt;ENTRYPOINT&lt;/code&gt; en su lugar.&lt;/p&gt;
+&lt;p&gt;Algunos ejemplos de comandos utiles para Docker:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;CMD [&amp;quot;python&amp;quot;, &amp;quot;app.py&amp;quot;] # ejecutar un script de python
+CMD [&amp;quot;node&amp;quot;, &amp;quot;app.js&amp;quot;] # ejecutar un script de node
+CMD [&amp;quot;nginx&amp;quot;, &amp;quot;-g&amp;quot;, &amp;quot;daemon off;&amp;quot;] # ejecutar nginx
+CMD [&amp;quot;/bin/bash&amp;quot;] # abrir una terminal
+CMD [&amp;quot;python3&amp;quot;, &amp;quot;-m&amp;quot;, &amp;quot;http.server&amp;quot;] # ejecutar un servidor web en python
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h3 id=&quot;run&quot;&gt;RUN &lt;a class=&quot;direct-link&quot; href=&quot;#run&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;La instrucción &lt;code&gt;RUN&lt;/code&gt; se usa para ejecutar un comando en el contenedor durante la construcción de la imagen. Este comando se ejecutará en el directorio de trabajo especificado por la instrucción &lt;code&gt;WORKDIR&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Es útil para instalar paquetes o ejecutar scripts que son necesarios para la aplicación.&lt;/p&gt;
+&lt;p&gt;Vamos a añadir un par de instrucciones &lt;code&gt;RUN&lt;/code&gt; al &lt;code&gt;Dockerfile&lt;/code&gt; que creamos al principio:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;FROM ubuntu:latest
+WORKDIR /cyber
+RUN apt-get update
+RUN apt-get install -y figlet
+RUN figlet &amp;quot;Hola Mundo&amp;quot; &amp;gt; test.txt
+CMD [&amp;quot;/bin/bash&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Vuelve a construir la imagen y ejecutar el contenedor. Deberías ver un archivo llamado &lt;code&gt;test.txt&lt;/code&gt; en tu directorio de trabajo con el siguiente contenido:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;datadiego@/tmp/test docker run -it testdocker
+root@737d06c77b19:/cyber# ls
+test.txt
+root@737d06c77b19:/cyber# cat test.txt 
+ _   _       _         __  __                 _       
+| | | | ___ | | __ _  |  &#92;/  |_   _ _ __   __| | ___  
+| |_| |/ _ &#92;| |/ _` | | |&#92;/| | | | | &#39;_ &#92; / _` |/ _ &#92; 
+|  _  | (_) | | (_| | | |  | | |_| | | | | (_| | (_) |
+|_| |_|&#92;___/|_|&#92;__,_| |_|  |_|&#92;__,_|_| |_|&#92;__,_|&#92;___/ 
+                                                      
+root@737d06c77b19:/cyber# 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&quot;copy&quot;&gt;COPY &lt;a class=&quot;direct-link&quot; href=&quot;#copy&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La instrucción &lt;code&gt;COPY&lt;/code&gt; se usa para copiar archivos o directorios desde el host al contenedor. Esta instrucción se ejecutará en el directorio de trabajo especificado por la instrucción &lt;code&gt;WORKDIR&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;COPY &amp;lt;fuente&amp;gt; &amp;lt;destino&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Crea un archivo &lt;code&gt;prueba.txt&lt;/code&gt; en el mismo directorio que el &lt;code&gt;Dockerfile&lt;/code&gt; y añade el siguiente contenido:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;COPY prueba.txt /cyber
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Al construir la imagen y ejecutar el contenedor, deberías ver un archivo llamado &lt;code&gt;prueba.txt&lt;/code&gt; en tu directorio de trabajo con el contenido que hayas escrito en el archivo.&lt;/p&gt;
+
+			
+		</content>
+	</entry>
+	
+	<entry>
 		<title>Deploy GitHub Pages</title>
 		<link href="https://update-me.com/posts/deploy-gh-pages/"/>
 		<updated>2025-05-12T00:00:00+00:00</updated>
