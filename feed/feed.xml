@@ -961,6 +961,32 @@ root@737d06c77b19:/cyber#
 &lt;pre&gt;&lt;code&gt;COPY prueba.txt /cyber
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Al construir la imagen y ejecutar el contenedor, deberías ver un archivo llamado &lt;code&gt;prueba.txt&lt;/code&gt; en tu directorio de trabajo con el contenido que hayas escrito en el archivo.&lt;/p&gt;
+&lt;h2 id=&quot;env&quot;&gt;ENV &lt;a class=&quot;direct-link&quot; href=&quot;#env&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La instrucción &lt;code&gt;ENV&lt;/code&gt; se usa para establecer variables de entorno dentro del contenedor. Estas variables estarán disponibles para cualquier comando que se ejecute en el contenedor.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ENV &amp;lt;nombre_variable&amp;gt; &amp;lt;valor_variable&amp;gt;
+ENV NODE_ENV=production
+ENV PORT=3000
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;En algunos casos, puedes ver que se usa la instrucción &lt;code&gt;ENV&lt;/code&gt; para declarar variables sensibles como contraseñas o tokens de acceso. Evita hacer esto, en su lugar, usa la instrucción &lt;code&gt;ARG&lt;/code&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;arg&quot;&gt;ARG &lt;a class=&quot;direct-link&quot; href=&quot;#arg&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;La instrucción &lt;code&gt;ARG&lt;/code&gt; se usa para declarar variables que se pueden pasar al contenedor durante la construcción de la imagen. Estas variables no estarán disponibles en el contenedor, pero se pueden usar para personalizar la construcción de la imagen. Por ejemplo:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;ARG PORT
+ARG NODE_ENV=production
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;El primer argumento &lt;code&gt;PORT&lt;/code&gt; no tiene valor por defecto, por lo que tendrás que pasarlo al construir la imagen. El segundo argumento &lt;code&gt;NODE_ENV&lt;/code&gt; tiene un valor por defecto de &lt;code&gt;production&lt;/code&gt;, pero puedes cambiarlo al construir la imagen, por ejemplo:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;docker build --build-arg PORT=3000 --build-arg NODE_ENV=development -t test .
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Esto pasará los argumentos al contenedor y podrás usarlos en el &lt;code&gt;Dockerfile&lt;/code&gt; como variables de entorno de forma segura.&lt;/p&gt;
+&lt;h2 id=&quot;expose&quot;&gt;EXPOSE &lt;a class=&quot;direct-link&quot; href=&quot;#expose&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Por defecto, los contenedores de Docker no exponen puertos al host por seguridad. Si necesitas disponer de un puerto para accederlo desde el host que ejecuta el contenedor, tendrás que usar la instrucción &lt;code&gt;EXPOSE&lt;/code&gt; para exponer el puerto al host.&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;FROM node:latest
+WORKDIR /cyber
+COPY . .
+RUN npm install
+EXPOSE 3000
+CMD [&amp;quot;node&amp;quot;, &amp;quot;app.js&amp;quot;]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Este &lt;code&gt;Dockerfile&lt;/code&gt; parte de la imagen oficial de &lt;code&gt;node&lt;/code&gt;, establece un directorio de trabajo, copia todo el contenido del directorio actual al contenedor, instala npm y expone el puerto 3000 al host. Luego, ejecuta el comando &lt;code&gt;node app.js&lt;/code&gt; para iniciar la aplicación.&lt;/p&gt;
 
 			
 		</content>
