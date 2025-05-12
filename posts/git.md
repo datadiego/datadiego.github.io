@@ -59,6 +59,14 @@ Git tiene tres áreas de trabajo:
 - **Staging Area**: Es una zona intermedia donde puedes preparar los cambios que quieres guardar en el repositorio. Aquí es donde decides qué cambios quieres incluir en el próximo commit.
 - **Repository**: Es la carpeta oculta `.git` donde Git guarda toda la información sobre el repositorio, incluyendo el historial de cambios y las versiones del código.
 
+```mermaid
+flowchart TD
+    
+    work --"git add server.js"-->
+    stagging --"git commit -m 'nueva funcionalidad'"-->
+    repo
+```
+
 Puedes comprobar el estado de tu repositorio con el siguiente comando:
 
 ```bash
