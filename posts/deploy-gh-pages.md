@@ -62,6 +62,8 @@ jobs:
           publish_dir: ./_site  # Cambia esto si tu build genera otra carpeta
 ```
 
+Asegurate de poner `github_token: ${{ secrets.GITHUB_TOKEN }}` para que el workflow tenga permisos para hacer el deploy.
+
 > Este workflow está configurado para ejecutarse cada vez que hagas un push a la rama `master`. Si usas otra rama, asegúrate de cambiar el nombre en la sección `on` del archivo.
 > El workflow se encargará de instalar las dependencias necesarias, construir el sitio y desplegarlo en GitHub Pages.
 > El proyecto está configurado para usar Node.js 18, pero puedes cambiar la versión si es necesario. En caso de que uses otro lenguaje o framework, asegúrate de ajustar el workflow para que se adapte a tus necesidades.

@@ -61,7 +61,6 @@ Git tiene tres áreas de trabajo:
 
 ```mermaid
 flowchart TD
-    
     work --"git add server.js"-->
     stagging --"git commit -m 'nueva funcionalidad'"-->
     repo
