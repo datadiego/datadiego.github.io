@@ -140,3 +140,5 @@ docker run -d --name mysql-test -p 3306:3306 mysql-test
 ```
 
 Esto iniciará el contenedor en segundo plano (`-d` significa "detached") y mapeará el puerto 3306 del contenedor al puerto 3306 de tu máquina local. Puedes cambiar el nombre del contenedor y el puerto según tus necesidades.
+
+Puedes lanzar `docker exec -it <container_id> mysql -u root -p` para acceder a la consola de MySQL dentro del contenedor. Te pedirá la contraseña que configuraste en el `Dockerfile` (en este caso, `pass1234`).
