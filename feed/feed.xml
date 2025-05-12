@@ -895,6 +895,7 @@ bind-address = 0.0.0.0
 &lt;p&gt;Para ejecutar el contenedor, puedes usar el siguiente comando:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; run -d --name mysql-test -p &lt;span class=&quot;token number&quot;&gt;3306&lt;/span&gt;:3306 mysql-test&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Esto iniciará el contenedor en segundo plano (&lt;code&gt;-d&lt;/code&gt; significa &amp;quot;detached&amp;quot;) y mapeará el puerto 3306 del contenedor al puerto 3306 de tu máquina local. Puedes cambiar el nombre del contenedor y el puerto según tus necesidades.&lt;/p&gt;
+&lt;p&gt;Puedes lanzar &lt;code&gt;docker exec -it &amp;lt;container_id&amp;gt; mysql -u root -p&lt;/code&gt; para acceder a la consola de MySQL dentro del contenedor. Te pedirá la contraseña que configuraste en el &lt;code&gt;Dockerfile&lt;/code&gt; (en este caso, &lt;code&gt;pass1234&lt;/code&gt;).&lt;/p&gt;
 
 			
 		</content>
