@@ -10,6 +10,8 @@ tags:
 layout: layouts/post.njk
 ---
 
+Esta guía te enseñará los aspectos más básicos de Docker, desde la instalación hasta la creación de imágenes y contenedores.
+
 ## Instalación
 
 Lo mejor es seguir la [guia Oficial](https://docs.docker.com/engine/install/ubuntu/) para instalar siempre la última versión de docker.
@@ -41,6 +43,14 @@ Docker resuelve un problema recurrente en el desarrollo de software: la portabil
 Esto es un problema común, vuelve el desarrollo de software un proceso tedioso en el que muchas personas pasan horas intentando resolver problemas de compatibilidad manteniendo multiples entornos con diferentes versiones de librerías y dependencias. Además, si tienes que desplegar tu aplicación en un servidor, puede que no funcione porque el servidor tiene una versión diferente de una librería o una configuración diferente.
 
 Docker resuelve este problema creando un contenedor que incluye todo lo necesario para ejecutar la aplicación: el código, las librerías, las dependencias y el sistema operativo. De esta forma, puedes ejecutar la misma aplicación en cualquier ordenador que tenga Docker instalado, sin preocuparte por las diferencias entre los entornos de ejecución.
+
+Algunos usos comunes de Docker son:
+- Desarrollar aplicaciones en entornos aislados.
+- Desplegar aplicaciones en servidores.
+- Crear entornos de desarrollo y producción consistentes y reproducibles.
+- Crear entornos de prueba para aplicaciones.
+- Crear laboratorios de seguridad para practicar hacking ético.
+- Lanzar aplicaciones en la nube o localmente de forma más simple y sin tener que aprender ecosistemas enteros de herramientas.
 
 Para entender mejor cómo funciona Docker, es importante conocer dos conceptos clave: imágenes y contenedores.
 

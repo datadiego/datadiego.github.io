@@ -168,3 +168,5 @@ CMD ["node", "app.js"]
 
 Este `Dockerfile` parte de la imagen oficial de `node`, establece un directorio de trabajo, copia todo el contenido del directorio actual al contenedor, instala npm y expone el puerto 3000 al host. Luego, ejecuta el comando `node app.js` para iniciar la aplicación.
 
+## VOLUMES
+## ENTRYPOINT
