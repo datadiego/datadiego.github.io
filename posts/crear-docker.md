@@ -18,7 +18,7 @@ Un `Dockerfile` no es mas que un archivo de texto que contiene las instrucciones
 
 Vamos a crear un contenedor básico que use `Ubuntu` como base:
 
-```Dockerfile
+```
 # Usa la imagen oficial de Ubuntu como base
 FROM ubuntu:latest
 # Establece el directorio de trabajo
@@ -43,7 +43,7 @@ La instrucción `FROM` se usa para especificar que imagen se usa como base para 
 
 Algunos ejemplos de imágenes base:
 
-```Dockerfile
+```
 FROM ubuntu:latest
 FROM python:latest
 FROM node:latest
@@ -68,7 +68,7 @@ La instrucción `CMD` se usa para especificar el comando que se ejecutará cuand
 
 Algunos ejemplos de comandos utiles para Docker:
 
-```Dockerfile
+```
 CMD ["python", "app.py"] # ejecutar un script de python
 CMD ["node", "app.js"] # ejecutar un script de node
 CMD ["nginx", "-g", "daemon off;"] # ejecutar nginx
@@ -84,7 +84,7 @@ Es útil para instalar paquetes o ejecutar scripts que son necesarios para la ap
 
 Vamos a añadir un par de instrucciones `RUN` al `Dockerfile` que creamos al principio:
 
-```Dockerfile
+```
 FROM ubuntu:latest
 WORKDIR /cyber
 RUN apt-get update
@@ -113,7 +113,7 @@ root@737d06c77b19:/cyber#
 
 La instrucción `COPY` se usa para copiar archivos o directorios desde el host al contenedor. Esta instrucción se ejecutará en el directorio de trabajo especificado por la instrucción `WORKDIR`.
 
-```Dockerfile
+```
 COPY <fuente> <destino>
 ```
 
