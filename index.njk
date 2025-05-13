@@ -10,9 +10,12 @@ date: Last Modified
 
 <script>
 let duckModel;
-
+let textureModel;
+let cybercat
 function preload() {
   duckModel = loadModel('/img/duck/12248_Bird_v1_L2.obj', true);
+  textureModel = loadImage('/img/duck/12248_Bird_v1_diff.jpg');
+  cybercat = loadImage('/img/cybercat.jpeg');
 }
 
 function setup() {
@@ -24,10 +27,13 @@ function setup() {
 }
 let velX = 0.01;
 let velY = 0.01;
+let putTexture = false;
 function draw() {
   if(frameCount % 300 === 0){
     velX = random(-0.1, 0.1);
     velY = random(-0.01, 0.01);
+    random(0, 1) > 0.5 ? putTexture = true : putTexture = false;
+    //load texture
     clear()
   }
   //clear()
@@ -36,7 +42,13 @@ function draw() {
   scale(noise(frameCount * 0.025) * 3);
   normalMaterial();
   if (duckModel) {
+    /*
+    if (textureModel && putTexture) {
+      texture(textureModel);
+    }
+    */
     model(duckModel);
+
   }
 }
 </script>
