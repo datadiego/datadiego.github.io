@@ -14,7 +14,7 @@ function setup() {
 let velX = 0.01;
 let velY = 0.01;
 function draw() {
-  if(frameCount % 100 === 0){
+  if(frameCount % 300 === 0){
     velX = random(-0.1, 0.1);
     velY = random(-0.01, 0.01);
     clear()
@@ -22,7 +22,7 @@ function draw() {
   //clear()
   rotateY(noise(frameCount * velY) * TWO_PI);
   rotateX(frameCount * velX);
-  scale(1.25);
+  scale(noise(frameCount * 0.025) * 3);
   normalMaterial();
   if (duckModel) {
     model(duckModel);
