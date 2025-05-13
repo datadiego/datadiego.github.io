@@ -272,7 +272,7 @@ body {
 }
 h1 {
   font-size: 2em;
-  margin: 0.67em 0;
+  /* margin: 0.32em 0; */
 }
 hr {
   box-sizing: content-box;
@@ -871,7 +871,7 @@ header label {
   display: none;
 }
 header {
-  padding: 4.5em 1.5em 3em;
+  /* padding: 4.5em 1.5em 3em; */
   width: 37.5em;
   margin: 0 auto;
   text-align: center;
@@ -923,7 +923,7 @@ header nav label {
 main {
   max-width: 70rem;
   margin: 0 auto;
-  border-top: 0.5px solid #ccc;
+  /* border-top: 0.5px solid #ccc; */
 }
 footer {
   background: rgba(0, 0, 0, 0.8);
