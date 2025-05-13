@@ -998,7 +998,7 @@ header label {
 }
 
 header {
-  /* padding: 4.5em 1.5em 3em; */
+  padding: 1em 1.5em 1em;
   width: 37.5em;
   margin: 0 auto;
   text-align: center;
