@@ -40,7 +40,7 @@ function draw() {
   //clear()
   rotateY(noise(frameCount * velY) * TWO_PI);
   rotateX(frameCount * velX);
-  scale(noise(frameCount * 0.025) * 3);
+  scale(cos(frameCount * 0.01) * 1.5);
   normalMaterial();
   if (duckModel) {
     /*
