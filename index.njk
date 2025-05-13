@@ -23,11 +23,13 @@ function setup() {
 }
 
 function draw() {
-  background(200);
-  clear();
+  if(frameCount % 300 === 0){
+    clear()
+  }
+  clear()
   rotateY(frameCount * 0.01);
   rotateX(frameCount * 0.01);
-  scale(1.45);
+  scale(1.25);
   normalMaterial();
   if (duckModel) {
     model(duckModel);
