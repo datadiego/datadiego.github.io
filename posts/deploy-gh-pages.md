@@ -21,7 +21,7 @@ Tendrás que crear un repositorio en GitHub que tenga el siguiente nombre:
 
 Donde `<username>` es tu nombre de usuario de GitHub.
 
-### workflow
+### Workflow
 
 Este proyecto necesitará un workflow de GitHub Actions para hacer el deploy automáticamente cada vez que hagas un push a la rama `main` del repositorio. Puedes crear un archivo `.github/workflows/deploy.yml` con el siguiente contenido:
 
@@ -31,7 +31,7 @@ name: Deploy 11ty to GitHub Pages
 on:
   push:
     branches:
-      - master  # Cambia a "master" si usas ese nombre
+      - main  # Cambia a "master" si usas ese nombre
 
 permissions:
   contents: write
@@ -58,16 +58,20 @@ jobs:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          {% raw %}github_token: ${{ secrets.GITHUB_TOKEN }}{% endraw %}
           publish_dir: ./_site  # Cambia esto si tu build genera otra carpeta
 ```
 
 Asegurate de poner `github_token: ${{ secrets.GITHUB_TOKEN }}` para que el workflow tenga permisos para hacer el deploy.
 
 > Este workflow está configurado para ejecutarse cada vez que hagas un push a la rama `master`. Si usas otra rama, asegúrate de cambiar el nombre en la sección `on` del archivo.
+
 > El workflow se encargará de instalar las dependencias necesarias, construir el sitio y desplegarlo en GitHub Pages.
+
 > El proyecto está configurado para usar Node.js 18, pero puedes cambiar la versión si es necesario. En caso de que uses otro lenguaje o framework, asegúrate de ajustar el workflow para que se adapte a tus necesidades.
+
 > El workflow utiliza la acción `peaceiris/actions-gh-pages` para desplegar el sitio. Esta acción es muy popular y fácil de usar, pero hay otras opciones disponibles si prefieres usar otra.
+
 > Asegúrate de que la carpeta `_site` es la que genera tu build. Si usas otro nombre, cámbialo en la sección `publish_dir`.
 
 ## Configuración de GitHub Pages
