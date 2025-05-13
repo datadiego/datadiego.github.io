@@ -26,7 +26,8 @@ jobs:
 
       - name: Build the site
         run: npm run build
-
+      - name: Copy CNAME to _site
+        run: cp CNAME _site/CNAME
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
