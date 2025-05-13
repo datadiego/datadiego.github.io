@@ -1,6 +1,6 @@
 ---
-title: Cloudflare I: Conectar tu dominio
-description: Guia para conectar tu dominio a Cloudflare
+title: Cloudflare 101
+description: Guia para la plataforma Cloudflare
 date: 2025-05-13
 scheduled: 2025-05-13
 tags:
