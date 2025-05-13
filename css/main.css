@@ -998,7 +998,7 @@ header label {
 }
 
 header {
-  padding: 4.5em 1.5em 3em;
+  /* padding: 4.5em 1.5em 3em; */
   width: 37.5em;
   margin: 0 auto;
   text-align: center;
@@ -1058,7 +1058,7 @@ header nav label {
 main {
   max-width: 70rem;
   margin: 0 auto;
-  border-top: 0.5px solid #ccc;
+  /* border-top: 0.5px solid #ccc; */
 }
 
 footer {
