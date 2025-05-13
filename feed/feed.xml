@@ -5,7 +5,7 @@
 	
 	<link href="https://update-me.com/feed/feed.xml" rel="self"/>
 	<link href="https://update-me.com"/>
-	<updated>2025-05-12T00:00:00+00:00</updated>
+	<updated>2025-05-13T00:00:00+00:00</updated>
 	<id>https://update-me.com</id>
 	<author>
 		<name>@datadiego</name>
@@ -1103,6 +1103,36 @@ bind-address = 0.0.0.0
 &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;docker&lt;/span&gt; run &lt;span class=&quot;token parameter variable&quot;&gt;-d&lt;/span&gt; &lt;span class=&quot;token parameter variable&quot;&gt;--name&lt;/span&gt; mysql-test &lt;span class=&quot;token parameter variable&quot;&gt;-p&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;3306&lt;/span&gt;:3306 mysql-test&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Esto iniciará el contenedor en segundo plano (&lt;code&gt;-d&lt;/code&gt; significa &amp;quot;detached&amp;quot;) y mapeará el puerto 3306 del contenedor al puerto 3306 de tu máquina local. Puedes cambiar el nombre del contenedor y el puerto según tus necesidades.&lt;/p&gt;
 &lt;p&gt;Puedes lanzar &lt;code&gt;docker exec -it &amp;lt;container_id&amp;gt; mysql -u root -p&lt;/code&gt; para acceder a la consola de MySQL dentro del contenedor. Te pedirá la contraseña que configuraste en el &lt;code&gt;Dockerfile&lt;/code&gt; (en este caso, &lt;code&gt;pass1234&lt;/code&gt;).&lt;/p&gt;
+
+			
+		</content>
+	</entry>
+	
+	<entry>
+		<title>Cloudflare 101</title>
+		<link href="https://update-me.com/posts/cloudflare_1/"/>
+		<updated>2025-05-13T00:00:00+00:00</updated>
+		<id>https://update-me.com/posts/cloudflare_1/</id>
+		<content type="html">
+		  &lt;p&gt;Cloudflare es un servicio de CDN (Content Delivery Network) con varias funcionalidades como protección DDoS, WAF, DNS, etc.&lt;/p&gt;
+&lt;p&gt;Necesitarás un dominio para usar Cloudflare en tu proveedor de hosting. Puedes comprar un dominio en cualquier proveedor de dominios, como Namecheap, GoDaddy, Porkbun, etc.&lt;/p&gt;
+&lt;h2 id=&quot;configuraci%C3%B3n-de-cloudflare&quot;&gt;Configuración de Cloudflare &lt;a class=&quot;direct-link&quot; href=&quot;#configuraci%C3%B3n-de-cloudflare&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Crea una cuenta en &lt;a href=&quot;https://www.cloudflare.com/&quot;&gt;Cloudflare&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;Agrega tu dominio a Cloudflare.&lt;/li&gt;
+&lt;li&gt;Cloudflare escaneará automáticamente los registros DNS de tu dominio. Revisa que estén correctos y haz clic en &amp;quot;Continuar&amp;quot;.&lt;/li&gt;
+&lt;li&gt;Selecciona el plan que deseas usar. Puedes empezar con el plan gratuito.&lt;/li&gt;
+&lt;li&gt;Cloudflare te proporcionará dos &lt;code&gt;nameservers&lt;/code&gt;. Copia ambos y configura tu dominio para usarlos. Tendrás que hacerlo en el panel de control de tu proveedor de dominios.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;En &lt;code&gt;namecheap&lt;/code&gt; debes cambiar tus nameservers a la opcion &lt;code&gt;Custom DNS&lt;/code&gt; y añadirlos:&lt;br&gt;
+&lt;img src=&quot;https://update-me.com/img/nameservers.png&quot; alt=&quot;imagen&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Nota&lt;/strong&gt;: La propagación de los cambios en los &lt;code&gt;nameservers&lt;/code&gt; puede tardar algo de tiempo, así que ten paciencia. Puedes usar herramientas como &lt;a href=&quot;https://www.whatsmydns.net/&quot;&gt;WhatsMyDNS&lt;/a&gt; para verificar si los cambios se han propagado correctamente.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;ol start=&quot;6&quot;&gt;
+&lt;li&gt;Una vez configurado, en Cloudflare verás el estado del proxy de tu dominio pasando a color naranja, lo que significa que el tráfico de tu dominio pasará a través de Cloudflare.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://update-me.com/img/cloudflare.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
 
 			
 		</content>
