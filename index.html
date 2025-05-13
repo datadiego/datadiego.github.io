@@ -17,12 +17,14 @@ function setup() {
 let velX = 0.01;
 let velY = 0.01;
 let putTexture = false;
+
 function draw() {
-  if(frameCount % 300 === 0){
+  console.log(cos(frameCount * 0.01) * 1.5);
+  if(Math.floor(cos(frameCount * 0.01) * 1.5 < 0.01) && Math.floor(cos(frameCount * 0.01) * 1.5 > -0.01)) {
+    
     velX = random(-0.1, 0.1);
     velY = random(-0.01, 0.01);
     random(0, 1) > 0.5 ? putTexture = true : putTexture = false;
-    //load texture
     clear()
   }
   //clear()
