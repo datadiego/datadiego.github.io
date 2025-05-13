@@ -412,7 +412,6 @@ h1 {
 h2 {
   font-size: 2.5em;
   line-height: 1.2;
-  margin-bottom: 0.6em;
 }
 h3 {
   font-size: 2em;
@@ -456,7 +455,7 @@ h1 {
 h1,
 h2 {
   line-height: 2.4rem;
-  margin-bottom: 1.36rem;
+  /* margin-bottom: 1.36rem; */
 }
 h2 {
   font-size: 1.728rem;
@@ -496,10 +495,6 @@ ul {
   h1 {
     font-size: 4.3978rem;
     line-height: 4.4rem;
-  }
-  h1,
-  h2 {
-    margin-bottom: 1.496rem;
   }
   h2 {
     font-size: 3.1097rem;
@@ -545,10 +540,6 @@ ul {
   h1 {
     font-size: 6.0756rem;
     line-height: 6.72rem;
-  }
-  h1,
-  h2 {
-    margin-bottom: 1.632rem;
   }
   h2 {
     font-size: 4.05rem;
