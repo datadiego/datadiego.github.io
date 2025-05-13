@@ -1083,7 +1083,7 @@ footer p {
 
 article {
   max-width: 100%;
-  /* padding: 1.5em; */
+  padding: 1.5em;
   width: 37.5em;
   margin: 0 auto;
 }
