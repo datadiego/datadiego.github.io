@@ -7,22 +7,34 @@ date: Last Modified
 ---
 <div id="canvas-container">
 </div>
-<!--
+
 <script>
+let duckModel;
+
+function preload() {
+  duckModel = loadModel('/img/duck/12248_Bird_v1_L2.obj', true);
+}
+
 function setup() {
-  let canvas = createCanvas(400, 400);
+  let canvas = createCanvas(400, 400, WEBGL);
   canvas.parent("#canvas-container");
   canvas.style("margin", "0 auto");
   canvas.style("display", "block");
-  canvas.style("border", "1px solid white");
-  }
+}
+
 function draw() {
-  //background(220);
-  fill(255, 0, 0);
-  ellipse(200, 200, 50, 50);
+  background(200);
+  clear();
+  rotateY(frameCount * 0.01);
+  rotateX(frameCount * 0.01);
+  scale(1);
+  normalMaterial();
+  if (duckModel) {
+    model(duckModel);
+  }
 }
 </script>
--->
+
 <div id="posts">
   <h2>Posts</h2>
   {% set postslist = collections.posts %}
