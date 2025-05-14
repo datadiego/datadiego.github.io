@@ -19,9 +19,11 @@ function preload() {
   cybercat = loadImage('/img/cybercat.jpeg');
 }
 let canvas;
+let max = 1.5
 function setup() {
   if(window.innerWidth < 400) {
     canvas = createCanvas(300, 400, WEBGL);
+    max = 1
   } else {
     canvas = createCanvas(400, 400, WEBGL);
   }

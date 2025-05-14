@@ -1294,3 +1294,7 @@ a {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
 }
+
+canvas{
+  margin: 0;
+}
