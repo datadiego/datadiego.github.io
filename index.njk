@@ -18,10 +18,13 @@ function preload() {
   textureModel = loadImage('/img/duck/12248_Bird_v1_diff.jpg');
   cybercat = loadImage('/img/cybercat.jpeg');
 }
-
+let canvas;
 function setup() {
-  
-  let canvas = createCanvas(400, 400, WEBGL);
+  if(window.innerWidth < 400) {
+    canvas = createCanvas(300, 400, WEBGL);
+  } else {
+    canvas = createCanvas(400, 400, WEBGL);
+  }
   canvas.parent("#canvas-container");
   canvas.style("margin", "0 auto");
   canvas.style("display", "block");
