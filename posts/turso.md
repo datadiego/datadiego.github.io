@@ -89,7 +89,7 @@ export PATH="/home/datadiego/.turso:$PATH"
 
 > Asegúrate de usar **tu** ruta de instalación de Turso, que puede ser diferente a la mía.
 
-## Crear una base de datos
+## Crear la base de datos
 
 Usamos el comando `turso db create <nombre>` para crear una nueva base de datos:
 
@@ -146,7 +146,7 @@ Algunos campos importantes a tener en cuenta:
 - **Group**: Grupo al que pertenece la base de datos. Los grupos son una forma de organizar tus bases de datos en Turso.
 - **Locations**: Ubicación de la base de datos. Esto es importante para la latencia y el rendimiento de la base de datos.
 
-## Crear una base de tabla
+## Crear una tabla
 
 Iniciamos una shell de SQL con `turso db shell <nombre>`:
 
@@ -311,7 +311,7 @@ Are you sure you want to do this? [y/n]: y
 Run turso db tokens create <database-name> [flags] to get a new one!
 ```
 
-## Destruir la base de datos
+## Destruir base de datos
 
 Si ya no necesitas la base de datos, puedes eliminarla con `turso db destroy <nombre>`:
 
