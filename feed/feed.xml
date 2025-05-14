@@ -1162,7 +1162,7 @@ bind-address = 0.0.0.0
 &lt;blockquote&gt;
 &lt;p&gt;Asegúrate de usar &lt;strong&gt;tu&lt;/strong&gt; ruta de instalación de Turso, que puede ser diferente a la mía.&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;h2 id=&quot;crear-una-base-de-datos&quot;&gt;Crear una base de datos &lt;a class=&quot;direct-link&quot; href=&quot;#crear-una-base-de-datos&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;crear-la-base-de-datos&quot;&gt;Crear la base de datos &lt;a class=&quot;direct-link&quot; href=&quot;#crear-la-base-de-datos&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Usamos el comando &lt;code&gt;turso db create &amp;lt;nombre&amp;gt;&lt;/code&gt; para crear una nueva base de datos:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;datadiego@~ turso db create datatest&lt;br&gt;Created database datatest at group testing &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; 624ms.&lt;br&gt;&lt;br&gt;Start an interactive SQL shell with:&lt;br&gt;&lt;br&gt;   turso db shell datatest&lt;br&gt;&lt;br&gt;To see information about the database, including a connection URL, run:&lt;br&gt;&lt;br&gt;   turso db show datatest&lt;br&gt;&lt;br&gt;To get an authentication token &lt;span class=&quot;token keyword&quot;&gt;for&lt;/span&gt; the database, run:&lt;br&gt;&lt;br&gt;   turso db tokens create datatest&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Nos da tres opciones para interactuar con la base de datos:&lt;/p&gt;
@@ -1182,7 +1182,7 @@ bind-address = 0.0.0.0
 &lt;li&gt;&lt;strong&gt;Group&lt;/strong&gt;: Grupo al que pertenece la base de datos. Los grupos son una forma de organizar tus bases de datos en Turso.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Locations&lt;/strong&gt;: Ubicación de la base de datos. Esto es importante para la latencia y el rendimiento de la base de datos.&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h2 id=&quot;crear-una-base-de-tabla&quot;&gt;Crear una base de tabla &lt;a class=&quot;direct-link&quot; href=&quot;#crear-una-base-de-tabla&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;crear-una-tabla&quot;&gt;Crear una tabla &lt;a class=&quot;direct-link&quot; href=&quot;#crear-una-tabla&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Iniciamos una shell de SQL con &lt;code&gt;turso db shell &amp;lt;nombre&amp;gt;&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;turso db shell datatest&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Y mandamos nuestra primera query de SQL:&lt;/p&gt;
@@ -1223,7 +1223,7 @@ bind-address = 0.0.0.0
 &lt;h2 id=&quot;revocar-tokens&quot;&gt;Revocar tokens &lt;a class=&quot;direct-link&quot; href=&quot;#revocar-tokens&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Puedes eliminar los tokens de autenticación de la base de datos con &lt;code&gt;turso db tokens invalidate &amp;lt;nombre&amp;gt;&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;datadiego@~ turso db tokens invalidate datatest&lt;br&gt;To invalidate datatest database tokens, all its replicas must be restarted.&lt;br&gt;All your active connections to the DB will be dropped and there will be a short downtime.&lt;br&gt;&lt;br&gt;Are you sure you want to &lt;span class=&quot;token keyword&quot;&gt;do&lt;/span&gt; this? &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;y/n&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;: y&lt;br&gt;✔  Success&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt; Tokens invalidated successfully. &lt;br&gt;Run turso db tokens create &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;database-name&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt; &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;flags&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt; to get a new one&lt;span class=&quot;token operator&quot;&gt;!&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h2 id=&quot;destruir-la-base-de-datos&quot;&gt;Destruir la base de datos &lt;a class=&quot;direct-link&quot; href=&quot;#destruir-la-base-de-datos&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;h2 id=&quot;destruir-base-de-datos&quot;&gt;Destruir base de datos &lt;a class=&quot;direct-link&quot; href=&quot;#destruir-base-de-datos&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Si ya no necesitas la base de datos, puedes eliminarla con &lt;code&gt;turso db destroy &amp;lt;nombre&amp;gt;&lt;/code&gt;:&lt;/p&gt;
 &lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;datadiego@~ turso db destroy datatest                    &lt;br&gt;Database datatest and all its data will be destroyed.&lt;br&gt;Are you sure you want to &lt;span class=&quot;token keyword&quot;&gt;do&lt;/span&gt; this? &lt;span class=&quot;token punctuation&quot;&gt;[&lt;/span&gt;y/n&lt;span class=&quot;token punctuation&quot;&gt;]&lt;/span&gt;: y&lt;br&gt;Destroyed database datatest &lt;span class=&quot;token keyword&quot;&gt;in&lt;/span&gt; &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;.037s.&lt;/code&gt;&lt;/pre&gt;
 
