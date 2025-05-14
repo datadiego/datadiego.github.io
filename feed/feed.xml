@@ -1230,4 +1230,52 @@ bind-address = 0.0.0.0
 			
 		</content>
 	</entry>
+	
+	<entry>
+		<title>Despliegue WordPress en Linode</title>
+		<link href="https://update-me.com/posts/wordpress-linode/"/>
+		<updated>2025-05-14T00:00:00+00:00</updated>
+		<id>https://update-me.com/posts/wordpress-linode/</id>
+		<content type="html">
+		  &lt;p&gt;Vamos a crear un servidor de WordPress en Linode. Esta plataforma nos deja usar su &amp;quot;One-Click App&amp;quot; para crear un servidor de WordPress rápidamente.&lt;/p&gt;
+&lt;h2 id=&quot;eligiendo-nuestra-imagen-base&quot;&gt;Eligiendo nuestra imagen base &lt;a class=&quot;direct-link&quot; href=&quot;#eligiendo-nuestra-imagen-base&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Entra a tu cuenta y entra a la sección de &amp;quot;Linodes&amp;quot;.&lt;/li&gt;
+&lt;li&gt;Da click en &amp;quot;Create Linode&amp;quot;.&lt;/li&gt;
+&lt;li&gt;Selecciona &amp;quot;Marketplace&amp;quot; y busca &amp;quot;WordPress&amp;quot;.&lt;/li&gt;
+&lt;li&gt;Selecciona la imagen de WordPress.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&quot;configurando-el-servidor&quot;&gt;Configurando el servidor &lt;a class=&quot;direct-link&quot; href=&quot;#configurando-el-servidor&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Para desplegar la aplicación, debemos rellenar los siguientes campos:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Email address&lt;/strong&gt;: Escribe tu correo electrónico. Necesario para conseguir credenciales SSL/TLS y disponer de HTTPS.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stack&lt;/strong&gt;: Selecciona &amp;quot;LAMP&amp;quot; (Linux, Apache, MySQL y PHP).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Website title&lt;/strong&gt;: Escribe el nombre que quieras darle a tu wordpress.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Wordpress Admin username&lt;/strong&gt;: Escribe el nombre de usuario que quieras usar para acceder a tu WordPress como administrador.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Wordpress database user&lt;/strong&gt;: Escribe el nombre de usuario que quieras usar para acceder a tu base de datos de WordPress.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Wordpress database name&lt;/strong&gt;: Escribe el nombre de la base de datos que quieras usar para tu WordPress, cualquiera está bien.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Limited sudo user&lt;/strong&gt;: Nombre de usuario con creado en el servidor.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Linode API token&lt;/strong&gt;: Se usa para los registros DNS, puedes escribir uno cualquiera o dejarlo vacío.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Add Prometheus data exporter&lt;/strong&gt;: Usa &lt;code&gt;mysqld_exporter&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Region&lt;/strong&gt;: Pais y ciudad donde quieres tu servidor. Elige &lt;code&gt;Madrid&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Linode Plan&lt;/strong&gt;: La pagina no tendra mucho tráfico, y wordpress no consume muchos recursos, asi que puedes elegir el plan &lt;code&gt;Nanode 1GB&lt;/code&gt; dentro de la sección &lt;code&gt;Shared CPU&lt;/code&gt;, es el plan más barato en la actualidad.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Linode Label&lt;/strong&gt;: Escribe un nombre para tu servidor, por ejemplo &lt;code&gt;wordpress&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Root password&lt;/strong&gt;: Escribe una contraseña para el usuario root. Asegúrate de que sea segura.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Estos campos son los más importantes, el resto puedes dejarlos en sus valores por defecto.&lt;/p&gt;
+&lt;h2 id=&quot;entrando-al-vps&quot;&gt;Entrando al VPS &lt;a class=&quot;direct-link&quot; href=&quot;#entrando-al-vps&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Si vuelves a entrar a la seccion de &lt;code&gt;Linodes&lt;/code&gt; verás el servidor que acabas de crear. Puedes entrar mediante SSH con el siguiente comando:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt;&lt;span class=&quot;token function&quot;&gt;ssh&lt;/span&gt; root@&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&lt;/span&gt;IP del servidor&lt;span class=&quot;token operator&quot;&gt;&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Una vez entres, puedes comprobar como va el proceso de instalación con &lt;code&gt;tail -f /var/log/stackscript.log&lt;/code&gt;. Este proceso puede tardar un poco, así que ten paciencia. Cuando termine, deberás tener tus credenciales de acceso a WordPress en &lt;code&gt;/home/&amp;lt;usuario&amp;gt;/.credentials&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&quot;acceder-a-wordpress&quot;&gt;Acceder a WordPress &lt;a class=&quot;direct-link&quot; href=&quot;#acceder-a-wordpress&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Accede a tu WordPress desde el navegador con la dirección &lt;code&gt;http://&amp;lt;IP del servidor&amp;gt;&lt;/code&gt;. Si esto da problemas, busca tu &lt;em&gt;Reverse DNS&lt;/em&gt; en la sección de &lt;code&gt;Networking&lt;/code&gt; de tu servidor, deberías ver uno que sigue un patrón similar a &lt;code&gt;172-233-121-90.ip.linodeusercontent.com&lt;/code&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Asegúrate de usar las credenciales que te han dado en el archivo &lt;code&gt;.credentials&lt;/code&gt;, si no lo encuentras, lanza &lt;code&gt;find / -name &amp;quot;.credentials&amp;quot; 2&amp;gt; /dev/null&lt;/code&gt; para buscarlo.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&quot;migraci%C3%B3n-de-wordpress&quot;&gt;Migración de WordPress &lt;a class=&quot;direct-link&quot; href=&quot;#migraci%C3%B3n-de-wordpress&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Si quieres migrar tu WordPress a otro servidor, puedes usar el plugin &lt;code&gt;All-in-One WP Migration&lt;/code&gt;. Este plugin te permite exportar tu WordPress a un archivo &lt;code&gt;.wpress&lt;/code&gt;, que puedes importar en otro servidor con el mismo plugin. Puedes instalarlo desde la sección de plugins de tu WordPress.&lt;/p&gt;
+
+			
+		</content>
+	</entry>
 </feed>
