@@ -1523,15 +1523,15 @@ Un valor TTL más bajo significa que los cambios en el registro se propagarán m
 &lt;h2 id=&quot;recursos-extra&quot;&gt;Recursos extra &lt;a class=&quot;direct-link&quot; href=&quot;#recursos-extra&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Existen varios RFC que definen su uso:&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://update-me.com/posts/dns101/www.ietf.org/rfc/rfc1034.txt&quot;&gt;RFC 1034&lt;/a&gt;, define la arquitectura y funcionamiento del Sistema de Nombres de Dominio (DNS), incluyendo su estructura jerárquica, resolución de nombres y caché de resultados.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://update-me.com/posts/dns101/www.ietf.org/rfc/rfc1035.txt&quot;&gt;RFC 1035&lt;/a&gt;, especifica los formatos de mensajes y registros DNS, como A, MX, CNAME y PTR, así como los protocolos para consultas y respuestas.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://update-me.com/posts/dns101/www.ietf.org/rfc/rfc1183.txt&quot;&gt;RFC 1183&lt;/a&gt;, introduce registros adicionales, como RP (Responsible Person), AFSDB (AFS Database) y TXT, ampliando las capacidades de los registros DNS.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://update-me.com/posts/dns101/www.ietf.org/rfc/rfc1912.txt&quot;&gt;RFC 1912&lt;/a&gt;, establece las mejores prácticas para la configuración y administración de servidores DNS, incluyendo la consistencia de zonas y gestión de errores.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://update-me.com/posts/dns101/www.ietf.org/rfc/rfc3596.txt&quot;&gt;RFC 3596&lt;/a&gt;, define el uso de direcciones IPv6 en DNS, introduciendo el registro AAAA y la resolución de nombres para IPv6.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://update-me.com/posts/dns101/www.ietf.org/rfc/rfc2181.txt&quot;&gt;RFC 2181&lt;/a&gt;, precisa la semántica de los registros DNS, aclarando aspectos como la autoridad, consistencia de datos y validación de respuestas.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://update-me.com/posts/dns101/www.ietf.org/rfc/rfc4033.txt&quot;&gt;RFC 4033&lt;/a&gt;, define los fundamentos de DNS Security Extensions (DNSSEC), proporcionando autenticidad e integridad a las respuestas DNS.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://update-me.com/posts/dns101/www.ietf.org/rfc/rfc4034.txt&quot;&gt;RFC 4034&lt;/a&gt;, detalla los registros específicos para DNSSEC, como RRSIG, DNSKEY y DS, que permiten verificar la autenticidad de las zonas firmadas.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://update-me.com/posts/dns101/www.ietf.org/rfc/rfc4035.txt&quot;&gt;RFC 4035&lt;/a&gt;, describe cómo implementar y validar las firmas DNSSEC para garantizar la autenticidad de las respuestas en entornos DNS seguros.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.ietf.org/rfc/rfc1034.txt&quot;&gt;RFC 1034&lt;/a&gt;, define la arquitectura y funcionamiento del Sistema de Nombres de Dominio (DNS), incluyendo su estructura jerárquica, resolución de nombres y caché de resultados.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.ietf.org/rfc/rfc1035.txt&quot;&gt;RFC 1035&lt;/a&gt;, especifica los formatos de mensajes y registros DNS, como A, MX, CNAME y PTR, así como los protocolos para consultas y respuestas.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.ietf.org/rfc/rfc1183.txt&quot;&gt;RFC 1183&lt;/a&gt;, introduce registros adicionales, como RP (Responsible Person), AFSDB (AFS Database) y TXT, ampliando las capacidades de los registros DNS.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.ietf.org/rfc/rfc1912.txt&quot;&gt;RFC 1912&lt;/a&gt;, establece las mejores prácticas para la configuración y administración de servidores DNS, incluyendo la consistencia de zonas y gestión de errores.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.ietf.org/rfc/rfc3596.txt&quot;&gt;RFC 3596&lt;/a&gt;, define el uso de direcciones IPv6 en DNS, introduciendo el registro AAAA y la resolución de nombres para IPv6.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.ietf.org/rfc/rfc2181.txt&quot;&gt;RFC 2181&lt;/a&gt;, precisa la semántica de los registros DNS, aclarando aspectos como la autoridad, consistencia de datos y validación de respuestas.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.ietf.org/rfc/rfc4033.txt&quot;&gt;RFC 4033&lt;/a&gt;, define los fundamentos de DNS Security Extensions (DNSSEC), proporcionando autenticidad e integridad a las respuestas DNS.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.ietf.org/rfc/rfc4034.txt&quot;&gt;RFC 4034&lt;/a&gt;, detalla los registros específicos para DNSSEC, como RRSIG, DNSKEY y DS, que permiten verificar la autenticidad de las zonas firmadas.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.ietf.org/rfc/rfc4035.txt&quot;&gt;RFC 4035&lt;/a&gt;, describe cómo implementar y validar las firmas DNSSEC para garantizar la autenticidad de las respuestas en entornos DNS seguros.&lt;/li&gt;
 &lt;/ul&gt;
 
 			
