@@ -5,7 +5,7 @@
 	
 	<link href="https://update-me.com/feed/feed.xml" rel="self"/>
 	<link href="https://update-me.com"/>
-	<updated>2025-05-14T00:00:00+00:00</updated>
+	<updated>2025-05-15T00:00:00+00:00</updated>
 	<id>https://update-me.com</id>
 	<author>
 		<name>@datadiego</name>
@@ -1274,6 +1274,265 @@ bind-address = 0.0.0.0
 &lt;/blockquote&gt;
 &lt;h2 id=&quot;migraci%C3%B3n-de-wordpress&quot;&gt;Migración de WordPress &lt;a class=&quot;direct-link&quot; href=&quot;#migraci%C3%B3n-de-wordpress&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;p&gt;Si quieres migrar tu WordPress a otro servidor, puedes usar el plugin &lt;code&gt;All-in-One WP Migration&lt;/code&gt;. Este plugin te permite exportar tu WordPress a un archivo &lt;code&gt;.wpress&lt;/code&gt;, que puedes importar en otro servidor con el mismo plugin. Puedes instalarlo desde la sección de plugins de tu WordPress.&lt;/p&gt;
+
+			
+		</content>
+	</entry>
+	
+	<entry>
+		<title>DNS 101</title>
+		<link href="https://update-me.com/posts/dns101/"/>
+		<updated>2025-05-15T00:00:00+00:00</updated>
+		<id>https://update-me.com/posts/dns101/</id>
+		<content type="html">
+		  &lt;p&gt;Los DNS son una pieza dentro de la infraestructura que nos facilita navegar por la web. Se encargan de evitar que tengamos que recordar direcciones IPs para acceder a un sitio web.&lt;/p&gt;
+&lt;p&gt;Cada vez que accedes a un sitio web como &lt;code&gt;www.google.com&lt;/code&gt;, tu cliente en realidad no sabe como llegar solo con ese &lt;em&gt;string&lt;/em&gt;, antes debe traducirlo a una dirección IP pública donde realmente pueda mandar su petición.&lt;/p&gt;
+&lt;p&gt;En concreto, el cliente solicita al servidor DNS esa dirección IP mediante accediendo al &lt;em&gt;registro DNS&lt;/em&gt; del dominio. El servidor DNS responde con la dirección IP y el cliente puede enviar su petición HTTP al servidor web.&lt;/p&gt;
+&lt;h2 id=&quot;secuencia-de-resoluci%C3%B3n-de-dns&quot;&gt;Secuencia de resolución de DNS &lt;a class=&quot;direct-link&quot; href=&quot;#secuencia-de-resoluci%C3%B3n-de-dns&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Esto es lo que ocurre cuando accedes a un sitio web dos veces seguidas:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;El cliente pregunta al servidor DNS por la dirección IP del dominio.&lt;/li&gt;
+&lt;li&gt;El servidor DNS responde con la dirección IP.&lt;/li&gt;
+&lt;li&gt;El cliente envía una petición HTTP al servidor web usando la dirección IP.&lt;/li&gt;
+&lt;li&gt;El servidor web responde con el contenido de la página.&lt;/li&gt;
+&lt;li&gt;El cliente guarda en caché la respuesta del servidor DNS y el contenido de la página.&lt;/li&gt;
+&lt;li&gt;En la segunda visita, el cliente verifica si tiene en caché la respuesta del servidor DNS y el contenido de la página.&lt;/li&gt;
+&lt;li&gt;Si el contenido de la página está en caché y es válido, lo usa directamente.&lt;/li&gt;
+&lt;li&gt;Si el contenido de la página no está en caché o ha expirado, el cliente envía una nueva petición HTTP al servidor web.&lt;/li&gt;
+&lt;li&gt;El servidor web responde con el contenido de la página.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://update-me.com/img/diagrama-dns.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;descubriendo-la-ip-de-un-dominio&quot;&gt;Descubriendo la IP de un dominio &lt;a class=&quot;direct-link&quot; href=&quot;#descubriendo-la-ip-de-un-dominio&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Podemos consultar los &lt;em&gt;registros DNS&lt;/em&gt; de un dominio con &lt;code&gt;dig&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt; ~ &lt;span class=&quot;token function&quot;&gt;dig&lt;/span&gt; www.google.com&lt;br&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt; DiG &lt;span class=&quot;token number&quot;&gt;9.18&lt;/span&gt;.30-0ubuntu0.22.04.2-Ubuntu &lt;span class=&quot;token operator&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt; www.google.com&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; global options: &lt;span class=&quot;token parameter variable&quot;&gt;-cmd&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; Got answer:&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; -&lt;span class=&quot;token operator&quot;&gt;&gt;&gt;&lt;/span&gt;HEADER&lt;span class=&quot;token operator&quot;&gt;&amp;lt;&amp;lt;-&lt;/span&gt; opcode: QUERY, status: NOERROR, id: &lt;span class=&quot;token number&quot;&gt;37872&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; flags: qr rd ra&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; QUERY: &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;, ANSWER: &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;, AUTHORITY: &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;, ADDITIONAL: &lt;span class=&quot;token number&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; OPT PSEUDOSECTION:&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; EDNS: version: &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt;, flags:&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; udp: &lt;span class=&quot;token number&quot;&gt;65494&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; QUESTION SECTION:&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;www.google.com.			IN	A&lt;br&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; ANSWER SECTION:&lt;br&gt;www.google.com.		&lt;span class=&quot;token number&quot;&gt;45&lt;/span&gt;	IN	A	&lt;span class=&quot;token number&quot;&gt;142.250&lt;/span&gt;.200.132&lt;br&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; Query time: &lt;span class=&quot;token number&quot;&gt;0&lt;/span&gt; msec&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; SERVER: &lt;span class=&quot;token number&quot;&gt;127.0&lt;/span&gt;.0.53&lt;span class=&quot;token comment&quot;&gt;#53(127.0.0.53) (UDP)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; WHEN: Thu May &lt;span class=&quot;token number&quot;&gt;15&lt;/span&gt; 01:39:49 CEST &lt;span class=&quot;token number&quot;&gt;2025&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;token punctuation&quot;&gt;;&lt;/span&gt; MSG SIZE  rcvd: &lt;span class=&quot;token number&quot;&gt;59&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Y con &lt;code&gt;nslookup&lt;/code&gt;:&lt;/p&gt;
+&lt;pre class=&quot;language-bash&quot;&gt;&lt;code class=&quot;language-bash&quot;&gt; ~ &lt;span class=&quot;token function&quot;&gt;nslookup&lt;/span&gt; www.google.com&lt;br&gt;Server:		&lt;span class=&quot;token number&quot;&gt;127.0&lt;/span&gt;.0.53&lt;br&gt;Address:	&lt;span class=&quot;token number&quot;&gt;127.0&lt;/span&gt;.0.53&lt;span class=&quot;token comment&quot;&gt;#53&lt;/span&gt;&lt;br&gt;&lt;br&gt;Non-authoritative answer:&lt;br&gt;Name:	www.google.com&lt;br&gt;Address: &lt;span class=&quot;token number&quot;&gt;142.250&lt;/span&gt;.200.132&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Podemos ver tanto la peticion como la respuesta, ademas de información sobre el servidor al que realizamos la consulta.&lt;/p&gt;
+&lt;h2 id=&quot;servidores-autoritativos&quot;&gt;Servidores Autoritativos &lt;a class=&quot;direct-link&quot; href=&quot;#servidores-autoritativos&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Los servidores DNS autoritativos son los que tienen la información más actualizada sobre un dominio y sus registros. Cuando un cliente consulta un dominio, el servidor DNS primero verifica si tiene la información en su caché. Si no la tiene, consulta a los servidores de nombres autoritativos para ese dominio.&lt;/p&gt;
+&lt;p&gt;Cuando compras un dominio, generalmente te dan uno o varios NS (Name Server) que son los servidores autoritativos para ese dominio. Estos servidores son responsables de almacenar y proporcionar la información sobre el dominio y sus registros.&lt;/p&gt;
+&lt;h2 id=&quot;zona&quot;&gt;Zona &lt;a class=&quot;direct-link&quot; href=&quot;#zona&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Una zona DNS es una parte del espacio de nombres DNS que es administrada por un servidor de nombres específico. Una zona puede contener uno o más dominios y subdominios, y es responsable de almacenar los registros DNS para esos dominios.&lt;/p&gt;
+&lt;p&gt;Diferentes dominios pueden tener diferentes servidores de nombres autoritativos. Por ejemplo, el dominio &lt;code&gt;example.com&lt;/code&gt; puede tener un servidor de nombres autoritativo diferente al dominio &lt;code&gt;example.org&lt;/code&gt;. Sin embargo, ambos dominios pueden estar en la misma zona DNS si son administrados por el mismo servidor de nombres.&lt;/p&gt;
+&lt;h2 id=&quot;estructura-de-registros-dns&quot;&gt;Estructura de registros DNS &lt;a class=&quot;direct-link&quot; href=&quot;#estructura-de-registros-dns&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;En muchos sitios, verás que se refieren a los registros como &lt;em&gt;RR&lt;/em&gt; o &lt;em&gt;Resource Records&lt;/em&gt;. Esto es porque los registros DNS son un tipo de recurso que se almacena en el servidor DNS. Cada registro tiene un tipo, un nombre, un valor y un tiempo de vida (TTL).&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;      0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
+    +-----------------------------------------------+
+    |                      NAME                     |
+    +-----------------------------------------------+
+    |                      TYPE                     |
+    +-----------------------------------------------+
+    |                     CLASS                     |
+    +-----------------------------------------------+
+    |                      TTL                      |
+    +-----------------------------------------------+
+    |                   RDLENGTH                    |
+    +-----------------------------------------------|
+    |                     RDATA                     |
+    +-----------------------------------------------+
+&lt;/code&gt;&lt;/pre&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;NAME&lt;/strong&gt;: Nombre del dominio al que se aplica el registro. Ocupa un número variable de octetos, dependiendo del nombre.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TYPE&lt;/strong&gt;: Tipo de registro (A, AAAA, CNAME, MX, etc.). 2 bytes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;CLASS&lt;/strong&gt;: Clase del registro, generalmente IN (Internet). 2 bytes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;TTL&lt;/strong&gt;: Tiempo de vida del registro, en segundos. 4 bytes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RDLENGTH&lt;/strong&gt;: Longitud de los datos del registro, en bytes. 2 bytes.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RDATA&lt;/strong&gt;: Datos del registro, que varían según el tipo de registro. Ocupa un número variable de octetos.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;type&quot;&gt;TYPE &lt;a class=&quot;direct-link&quot; href=&quot;#type&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;El campo TYPE indica el tipo de registro DNS. Cada tipo de registro tiene un significado específico y se utiliza para diferentes propósitos. Por ejemplo, el tipo A se utiliza para direcciones IPv4, mientras que el MX se utiliza para registros de intercambio de correo. El campo TYPE es un número de 16 bits que identifica el tipo de registro.&lt;/p&gt;
+&lt;p&gt;En el RFC1035 se definen los tipos de registros DNS más comunes:&lt;/p&gt;
+&lt;p&gt;Claro, aquí tienes la tabla en español:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;TIPO&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Valor&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Significado&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;Dirección de un host&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;NS&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;Servidor de nombres autorizado&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;MD&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;Destino de correo (&lt;strong&gt;Obsoleto&lt;/strong&gt; - usar MX)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;MF&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;Reenvío de correo (&lt;strong&gt;Obsoleto&lt;/strong&gt; - usar MX)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;CNAME&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;5&lt;/td&gt;
+&lt;td&gt;Nombre canónico para un alias&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;SOA&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;6&lt;/td&gt;
+&lt;td&gt;Marca el inicio de una zona de autoridad&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;MB&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;7&lt;/td&gt;
+&lt;td&gt;Nombre de dominio de buzón (&lt;strong&gt;EXPERIMENTAL&lt;/strong&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;MG&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;8&lt;/td&gt;
+&lt;td&gt;Miembro de grupo de correo (&lt;strong&gt;EXPERIMENTAL&lt;/strong&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;MR&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;9&lt;/td&gt;
+&lt;td&gt;Nombre de dominio para renombrar correo (&lt;strong&gt;EXPERIMENTAL&lt;/strong&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;NULL&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;10&lt;/td&gt;
+&lt;td&gt;Registro nulo (&lt;strong&gt;EXPERIMENTAL&lt;/strong&gt;)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;WKS&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;11&lt;/td&gt;
+&lt;td&gt;Descripción de un servicio conocido&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;PTR&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;12&lt;/td&gt;
+&lt;td&gt;Apuntador a un nombre de dominio&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;HINFO&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;13&lt;/td&gt;
+&lt;td&gt;Información del host&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;MINFO&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;14&lt;/td&gt;
+&lt;td&gt;Información de buzón o lista de correo&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;MX&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;15&lt;/td&gt;
+&lt;td&gt;Intercambio de correo (Mail Exchange)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;TXT&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;16&lt;/td&gt;
+&lt;td&gt;Cadenas de texto&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Si ya conoces algo de registros DNS, verás que hay registros que no aparecen en la tabla. Muchos de estos registros se añadieron posteriormente al RFC1035, como el registro &lt;code&gt;AAAA&lt;/code&gt; para IPv6, o el registro &lt;code&gt;SRV&lt;/code&gt; para servicios. Actualmente existen más de 70 tipos de registros DNS, aunque este número variará con el tiempo.&lt;/p&gt;
+&lt;h2 id=&quot;qtype&quot;&gt;QTYPE &lt;a class=&quot;direct-link&quot; href=&quot;#qtype&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Los QTYPE van dentro de la &lt;em&gt;consulta&lt;/em&gt; que se envía al servidor DNS. &lt;strong&gt;Todos&lt;/strong&gt; los TYPEs son válidos como &lt;em&gt;QTYPE&lt;/em&gt;, además de los siguientes:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;TIPO&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Valor&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Significado&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;AXFR&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;252&lt;/td&gt;
+&lt;td&gt;Solicitud de transferencia de una zona completa&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;MAILB&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;253&lt;/td&gt;
+&lt;td&gt;Solicitud de registros relacionados con buzones (MB, MG o MR)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;MAILA&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;254&lt;/td&gt;
+&lt;td&gt;Solicitud de registros de agente de correo (&lt;strong&gt;Obsoleto&lt;/strong&gt; - ver MX)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;*&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;255&lt;/td&gt;
+&lt;td&gt;Solicitud de todos los registros&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&quot;class&quot;&gt;CLASS &lt;a class=&quot;direct-link&quot; href=&quot;#class&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;El campo CLASS indica la clase del registro DNS.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;strong&gt;TIPO&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Valor&lt;/strong&gt;&lt;/th&gt;
+&lt;th&gt;&lt;strong&gt;Significado&lt;/strong&gt;&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;IN&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;1&lt;/td&gt;
+&lt;td&gt;Internet&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;CS&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;2&lt;/td&gt;
+&lt;td&gt;Sistema de nombres de red comercial del MIT (Obsoleta)&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;CH&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;3&lt;/td&gt;
+&lt;td&gt;Sistema de nombres de red de &lt;a href=&quot;https://es.wikipedia.org/wiki/Chaosnet&quot;&gt;Chaosnet&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;strong&gt;HS&lt;/strong&gt;&lt;/td&gt;
+&lt;td&gt;4&lt;/td&gt;
+&lt;td&gt;Sistema de nombres de red de &lt;a href=&quot;https://en.wikipedia.org/wiki/Hesiod_(name_service)&quot;&gt;Hesiod&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&quot;ttl&quot;&gt;TTL &lt;a class=&quot;direct-link&quot; href=&quot;#ttl&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;El campo TTL (Time To Live) indica el tiempo de vida del registro DNS en segundos. Este valor determina cuánto tiempo un registro DNS puede ser almacenado en caché por los servidores y clientes antes de que deba ser consultado nuevamente al servidor DNS autoritativo.&lt;br&gt;
+Un valor TTL más bajo significa que los cambios en el registro se propagarán más rápidamente, pero también puede aumentar la carga en el servidor DNS. Un valor TTL más alto reduce la carga en el servidor, pero los cambios tardarán más en propagarse.&lt;/p&gt;
+&lt;h3 id=&quot;registro-a&quot;&gt;Registro A &lt;a class=&quot;direct-link&quot; href=&quot;#registro-a&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;El registro A (Address) es un tipo de registro DNS que asocia un nombre de dominio a una dirección IPv4. Este registro es fundamental para la resolución de nombres, ya que permite que los navegadores y otros clientes encuentren la dirección IP correspondiente a un nombre de dominio.&lt;/p&gt;
+&lt;h3 id=&quot;registro-cname&quot;&gt;Registro CNAME &lt;a class=&quot;direct-link&quot; href=&quot;#registro-cname&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;El registro CNAME (Canonical Name) es un tipo de registro DNS que permite crear un alias para otro dominio. Esto significa que puedes apuntar varios nombres de dominio a una sola dirección IP o servidor.&lt;/p&gt;
+&lt;p&gt;Por ejemplo, &lt;strong&gt;github&lt;/strong&gt; deja alojar tu página web como un subdominio de &lt;code&gt;github.io&lt;/code&gt;, pero también puedes usar tu propio dominio. Para ello, debes crear un registro CNAME que apunte a tu &lt;code&gt;username.github.io&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://update-me.com/img/diagrama_ns.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;registro-mx&quot;&gt;Registro MX &lt;a class=&quot;direct-link&quot; href=&quot;#registro-mx&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;El registro MX (Mail Exchange) es un tipo de registro DNS que especifica los servidores de correo electrónico responsables de recibir correos electrónicos para un dominio. Este registro es esencial para la entrega de correos electrónicos, ya que indica a otros servidores de correo a dónde deben enviar los mensajes dirigidos a ese dominio.&lt;/p&gt;
+&lt;h3 id=&quot;registro-ns&quot;&gt;Registro NS &lt;a class=&quot;direct-link&quot; href=&quot;#registro-ns&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;El registro NS (Name Server) es un tipo de registro DNS que indica qué servidores de nombres son responsables de un dominio o subdominio específico. Este registro es fundamental para la jerarquía del sistema DNS, ya que permite a los servidores DNS delegar la autoridad sobre un dominio a otros servidores.&lt;/p&gt;
+&lt;p&gt;Cuando consultas un dominio, el servidor DNS primero verifica si tiene la información en su caché. Si no la tiene, consulta a los servidores de nombres autoritativos para ese dominio. Estos servidores son los que tienen la información más actualizada sobre el dominio y sus registros.&lt;/p&gt;
+&lt;h3 id=&quot;registro-soa&quot;&gt;Registro SOA &lt;a class=&quot;direct-link&quot; href=&quot;#registro-soa&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;El registro SOA (Start of Authority) es un tipo de registro DNS que indica el servidor de nombres autoritativo para una zona DNS. Este registro contiene información importante sobre la zona, como el nombre del servidor de nombres primario, la dirección de correo electrónico del administrador de la zona, el número de serie de la zona y los valores de tiempo de actualización y expiración.&lt;/p&gt;
+&lt;h3 id=&quot;registro-ptr&quot;&gt;Registro PTR &lt;a class=&quot;direct-link&quot; href=&quot;#registro-ptr&quot;&gt;#&lt;/a&gt;&lt;/h3&gt;
+&lt;p&gt;El registro PTR (Pointer) es un tipo de registro DNS que se utiliza para la resolución inversa de direcciones IP. A diferencia de los registros A, que asocian un nombre de dominio a una dirección IP, los registros PTR asocian una dirección IP a un nombre de dominio.&lt;/p&gt;
+&lt;p&gt;Las has podido ver como &lt;code&gt;IN-ADDR&lt;/code&gt; en el ejemplo de &lt;code&gt;dig&lt;/code&gt; y &lt;code&gt;nslookup&lt;/code&gt;. Este tipo de registro es útil para verificar la identidad de un servidor o dispositivo en la red, ya que permite resolver una dirección IP a su nombre de dominio correspondiente.&lt;/p&gt;
+&lt;h2 id=&quot;recursos-extra&quot;&gt;Recursos extra &lt;a class=&quot;direct-link&quot; href=&quot;#recursos-extra&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;p&gt;Existen varios RFC que definen su uso:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://update-me.com/www.ietf.org/rfc/rfc1034.txt&quot;&gt;RFC 1034&lt;/a&gt;, define la arquitectura y funcionamiento del Sistema de Nombres de Dominio (DNS), incluyendo su estructura jerárquica, resolución de nombres y caché de resultados.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://update-me.com/www.ietf.org/rfc/rfc1035.txt&quot;&gt;RFC 1035&lt;/a&gt;, especifica los formatos de mensajes y registros DNS, como A, MX, CNAME y PTR, así como los protocolos para consultas y respuestas.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://update-me.com/www.ietf.org/rfc/rfc1183.txt&quot;&gt;RFC 1183&lt;/a&gt;, introduce registros adicionales, como RP (Responsible Person), AFSDB (AFS Database) y TXT, ampliando las capacidades de los registros DNS.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://update-me.com/www.ietf.org/rfc/rfc1912.txt&quot;&gt;RFC 1912&lt;/a&gt;, establece las mejores prácticas para la configuración y administración de servidores DNS, incluyendo la consistencia de zonas y gestión de errores.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://update-me.com/www.ietf.org/rfc/rfc3596.txt&quot;&gt;RFC 3596&lt;/a&gt;, define el uso de direcciones IPv6 en DNS, introduciendo el registro AAAA y la resolución de nombres para IPv6.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://update-me.com/www.ietf.org/rfc/rfc2181.txt&quot;&gt;RFC 2181&lt;/a&gt;, precisa la semántica de los registros DNS, aclarando aspectos como la autoridad, consistencia de datos y validación de respuestas.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://update-me.com/www.ietf.org/rfc/rfc4033.txt&quot;&gt;RFC 4033&lt;/a&gt;, define los fundamentos de DNS Security Extensions (DNSSEC), proporcionando autenticidad e integridad a las respuestas DNS.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://update-me.com/www.ietf.org/rfc/rfc4034.txt&quot;&gt;RFC 4034&lt;/a&gt;, detalla los registros específicos para DNSSEC, como RRSIG, DNSKEY y DS, que permiten verificar la autenticidad de las zonas firmadas.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://update-me.com/www.ietf.org/rfc/rfc4035.txt&quot;&gt;RFC 4035&lt;/a&gt;, describe cómo implementar y validar las firmas DNSSEC para garantizar la autenticidad de las respuestas en entornos DNS seguros.&lt;/li&gt;
+&lt;/ul&gt;
 
 			
 		</content>
