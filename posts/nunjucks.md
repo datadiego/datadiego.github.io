@@ -23,6 +23,7 @@ Vamos a partir de un ejemplo en el que solo usamos Nunjucks sin ningún framewor
 
 Crea un archivo `index.njk` con el siguiente contenido:
 
+{% raw %}
 ```html
 <h1>{{title}}<h1>
 <p>{{desc}}<p>
@@ -32,6 +33,7 @@ Crea un archivo `index.njk` con el siguiente contenido:
   {% endfor %}
 </ul>
 ```
+{% endraw %}
 
 Luego, crea un archivo `index.js` con el siguiente contenido:
 
@@ -89,6 +91,7 @@ Vamos a crear una plantilla base que usaremos como punto de partida para otras p
 
 Luego, actualiza tu archivo `index.njk` para que use la plantilla base:
 
+{% raw %}
 ```html
 {% extends "base.njk" %}
 
@@ -102,6 +105,7 @@ Luego, actualiza tu archivo `index.njk` para que use la plantilla base:
 </ul>
 {% endblock %}
 ```
+{% endraw %}
 
 Por ultimo, actualiza tu archivo `index.js` para añadir las nuevas variables `version` y `author`:
 
@@ -162,14 +166,18 @@ Ahora que hemos visto un ejemplo básico, vamos a ver mas en detalle la sintaxis
 
 ### Variables
 
+{% raw %}
 Las variables se definen entre llaves dobles `{{ }}`. Por ejemplo:
+{% endraw %}
 
+{% raw %}
 ```html
 <p>{{ title }}</p>
 <p>{{ lista[0] }}
 <p>{{ objeto.propiedad }}</p>
 <p>{{ objeto["propiedad"] }}</p>
 ```
+{% endraw %}
 
 Esto se reemplazará por el valor de la variable `title` que le pasemos al renderizar la plantilla.
 
@@ -177,21 +185,30 @@ Esto se reemplazará por el valor de la variable `title` que le pasemos al rende
 
 ### Bloques
 
+{% raw %}
 Los bloques se definen con `{% block nombre %}` y `{% endblock %}`. Por ejemplo:
+{% endraw %}
 
+{% raw %}
 ```html
 {% block content %}
     <p>Contenido del bloque</p>
     {{ variable }}
 {% endblock %}
 ```
+{% endraw %}
 
+{% raw %}
 Esto nos permite definir secciones de la plantilla que pueden ser sobrescritas por otras plantillas que extiendan esta plantilla base mediante `{% extends "xyz.njk" %}`.
+{% endraw %}
 
 ### Condicionales
 
+{% raw %}
 Los condicionales se definen con `{% if %}` y `{% endif %}`. Por ejemplo:
+{% endraw %}
 
+{% raw %}
 ```html
 {% if respuesta %}
     <p>La respuesta es: {{ respuesta }}</p>
@@ -199,18 +216,23 @@ Los condicionales se definen con `{% if %}` y `{% endif %}`. Por ejemplo:
     <p>No hay respuesta</p>
 {% endif %}
 ```
+{% endraw %}
 
 Esto se reemplazará por el contenido del bloque `if` si la variable `respuesta` es existe o es `true`, de lo contrario se reemplazará por el bloque `else`.
 
 ### Bucles
+{% raw %}
+Los bucles se definen con `{% for elemento in lista %}` y `{% endfor %}`. 
+{% endraw %}
+Por ejemplo:
 
-Los bucles se definen con `{% for elemento in lista %}` y `{% endfor %}`. Por ejemplo:
-
+{% raw %}
 ```html
 {% for item in items %}
     <li>{{ item }}</li>
 {% endfor %}
 ```
+{% endraw %}
 
 Esto se reemplazará por una lista de elementos, donde cada elemento de la lista `items` se renderiza dentro de un `<li>`.
 
@@ -218,6 +240,7 @@ Esto se reemplazará por una lista de elementos, donde cada elemento de la lista
 
 Los filtros se aplican a las variables con el símbolo `|`. Por ejemplo:
 
+{% raw %}
 ```html
 <p>{{ title | upper }}</p>
 <p>{{ items | dump(2) }}</p>
@@ -229,6 +252,7 @@ Los filtros se aplican a las variables con el símbolo `|`. Por ejemplo:
 <p>{{ items | last }}</p>
 <p>{{ items | join(", ") }}</p>
 ```
+{% endraw %}
 
 Estos filtros nos devolverian:
 
@@ -250,20 +274,26 @@ En estos ejemplos asumimos que `title` es una cadena de texto y `items` es una l
 Puedes consultar los [filtros disponibles](https://mozilla.github.io/nunjucks/templating.html#builtin-filters) que ya incluye por defecto Nunjucks, o crear tus propios filtros personalizados.
 
 ### Funciones
-
+{% raw %}
 Las funciones se definen con `{% set nombre = funcion(parametros) %}`. Por ejemplo:
+{% endraw %}
 
+{% raw %}
 ```html
 {% set resultado = suma(2, 3) %}
 <p>El resultado de la suma es: {{ resultado }}</p>
 ```
+{% endraw %}
 
 Esto se reemplazará por el resultado de la función `suma` con los parámetros `2` y `3`. Puedes definir tus propias funciones en JavaScript y pasarlas a Nunjucks al renderizar la plantilla. 
 
 ### Macros
 
+{% raw %}
 Los macros son funciones que se definen dentro de la plantilla y se pueden reutilizar en diferentes partes de la misma. Se definen con `{% macro nombre(parametros) %}` y se llaman con `{{ nombre(parametros) }}`. Por ejemplo:
+{% endraw %}
 
+{% raw %}
 ```html
 {% macro saludo(nombre) %}
     <p>Hola {{ nombre }}</p>
@@ -271,14 +301,17 @@ Los macros son funciones que se definen dentro de la plantilla y se pueden reuti
 
 {{ saludo("Diego") }}
 ```
+{% endraw %}
 
 ### Comentarios
 
 Los comentarios se definen con `{# comentario #}`. Por ejemplo:
 
+{% raw %}
 ```html
 {# Este es un comentario #}
 <p>Este es un párrafo</p>
 {# <p>Este párrafo no se renderizará</p> #}
 {# Este es otro comentario #}
 ```
+{% endraw %}
