@@ -1,8 +1,0 @@
-- [RFC 1034](https:/www.ietf.org/rfc/rfc1034.txt), define la arquitectura y funcionamiento del Sistema de Nombres de Dominio (DNS), incluyendo su estructura jerárquica, resolución de nombres y caché de resultados.  
-- [RFC 1035](https:/www.ietf.org/rfc/rfc1035.txt), especifica los formatos de mensajes y registros DNS, como A, MX, CNAME y PTR, así como los protocolos para consultas y respuestas.  
-- [RFC 1183](https:/www.ietf.org/rfc/rfc1183.txt), introduce registros adicionales, como RP (Responsible Person), AFSDB (AFS Database) y TXT, ampliando las capacidades de los registros DNS.  
-- [RFC 1912](https:/www.ietf.org/rfc/rfc1912.txt), establece las mejores prácticas para la configuración y administración de servidores DNS, incluyendo la consistencia de zonas y gestión de errores.  
-- [RFC 2181](https:/www.ietf.org/rfc/rfc2181.txt), precisa la semántica de los registros DNS, aclarando aspectos como la autoridad, consistencia de datos y validación de respuestas.  
-- [RFC 4033](https:/www.ietf.org/rfc/rfc4033.txt), define los fundamentos de DNS Security Extensions (DNSSEC), proporcionando autenticidad e integridad a las respuestas DNS.  
-- [RFC 4034](https:/www.ietf.org/rfc/rfc4034.txt), detalla los registros específicos para DNSSEC, como RRSIG, DNSKEY y DS, que permiten verificar la autenticidad de las zonas firmadas.  
-- [RFC 4035](https:/www.ietf.org/rfc/rfc4035.txt), describe cómo implementar y validar las firmas DNSSEC para garantizar la autenticidad de las respuestas en entornos DNS seguros.  
