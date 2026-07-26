@@ -1,0 +1,260 @@
+/* Chroma syntax highlighting — base16-dark palette */
+.chroma {
+  background-color: var(--inner-bg);
+  color: var(--off-fg);
+}
+
+/* Line highlight */
+.chroma .hl {
+  background-color: var(--base01);
+}
+
+/* Error */
+.chroma .err {
+  color: var(--base08);
+}
+
+/* Keyword */
+.chroma .k,
+.chroma .kc,
+.chroma .kd,
+.chroma .kn,
+.chroma .kp,
+.chroma .kr {
+  color: var(--base0E);
+}
+
+/* Keyword Type */
+.chroma .kt {
+  color: var(--base0D);
+}
+
+/* Name */
+.chroma .n {
+  color: var(--off-fg);
+}
+
+/* Name Attribute */
+.chroma .na {
+  color: var(--base0A);
+}
+
+/* Name Builtin */
+.chroma .nb,
+.chroma .bp {
+  color: var(--base0E);
+}
+
+/* Name Class */
+.chroma .nc {
+  color: var(--base0D);
+}
+
+/* Name Constant */
+.chroma .no {
+  color: var(--base09);
+}
+
+/* Name Decorator */
+.chroma .nd {
+  color: var(--base0A);
+}
+
+/* Name Entity */
+.chroma .ni {
+  color: var(--base0D);
+}
+
+/* Name Exception */
+.chroma .ne {
+  color: var(--base08);
+}
+
+/* Name Function */
+.chroma .nf {
+  color: var(--base0D);
+}
+
+/* Name Label */
+.chroma .nl {
+  color: var(--base0C);
+}
+
+/* Name Namespace */
+.chroma .nn {
+  color: var(--base0E);
+}
+
+/* Name Tag */
+.chroma .nt {
+  color: var(--base08);
+}
+
+/* Name Variable */
+.chroma .nv,
+.chroma .vc,
+.chroma .vg,
+.chroma .vi,
+.chroma .vm {
+  color: var(--off-fg);
+}
+
+/* Name Other / Property */
+.chroma .nx,
+.chroma .py {
+  color: var(--off-fg);
+}
+
+/* Operator */
+.chroma .o,
+.chroma .ow {
+  color: var(--base0C);
+}
+
+/* Punctuation */
+.chroma .p {
+  color: var(--off-fg);
+}
+
+/* Literal Number */
+.chroma .m,
+.chroma .mb,
+.chroma .mf,
+.chroma .mh,
+.chroma .mi,
+.chroma .il,
+.chroma .mo {
+  color: var(--base09);
+}
+
+/* Literal String */
+.chroma .s,
+.chroma .s1,
+.chroma .s2,
+.chroma .sb,
+.chroma .sa,
+.chroma .sc,
+.chroma .dl,
+.chroma .sh,
+.chroma .sx {
+  color: var(--base0B);
+}
+
+/* Literal String Doc */
+.chroma .sd {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Literal String Escape / Interpol / Symbol */
+.chroma .se,
+.chroma .si,
+.chroma .ss {
+  color: var(--base09);
+}
+
+/* Literal String Regex */
+.chroma .sr {
+  color: var(--base0C);
+}
+
+/* Comment Preproc */
+.chroma .cp {
+  color: var(--base09);
+}
+
+/* Comment */
+.chroma .c,
+.chroma .cm,
+.chroma .c1,
+.chroma .cs {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Generic Deleted */
+.chroma .gd {
+  color: var(--base08);
+}
+
+/* Generic Inserted */
+.chroma .gi {
+  color: var(--base0B);
+}
+
+/* Generic Heading / Prompt */
+.chroma .gh,
+.chroma .gp {
+  font-weight: bold;
+}
+
+/* Generic Subheading */
+.chroma .gu {
+  color: var(--base0C);
+}
+
+/* Generic Output / Traceback / Error */
+.chroma .go,
+.chroma .w {
+  color: var(--muted);
+}
+
+.chroma .gt,
+.chroma .gr {
+  color: var(--base08);
+}
+
+/* Generic Underline */
+.chroma .gl {
+  text-decoration: underline;
+}
+
+/* Generic Emphasis */
+.chroma .ge {
+  font-style: italic;
+}
+
+/* Generic Strong */
+.chroma .gs {
+  font-weight: bold;
+}
+
+/* Copy button */
+.highlight {
+  position: relative;
+}
+
+.copy-btn {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--base03);
+  border-radius: 4px;
+  background: var(--base01);
+  color: var(--base04);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+  line-height: 0;
+}
+
+.highlight:hover .copy-btn {
+  opacity: 1;
+}
+
+.copy-btn:hover {
+  color: var(--base05);
+  border-color: var(--base05);
+}
+
+.copy-btn.copied {
+  color: var(--base0B);
+  border-color: var(--base0B);
+}

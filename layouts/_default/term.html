@@ -1,0 +1,26 @@
+{{ define "main" }}
+    <header class="content__header">
+        <h1>{{ .Title | markdownify }}</h1>
+        {{ .Content }}
+    </header>
+
+    {{ range .Pages }}
+    <article class="post">
+        <header class="post__header">
+            <h1><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a>{{ with .Params.author }} — {{ . }},{{ end }} <span class="date">{{ .Date.Format "2 January 2006" }}</span></h1>
+        </header>
+    </article>
+    {{ end }}
+{{ end }}
+
+{{define "aside" }}
+    <hr>
+    <h2>Tags</h2>
+    <ul class="tags">
+    {{ range $taxonomy := site.Taxonomies.tags.Alphabetical }}
+      {{- if ne $taxonomy.Page.Title "Index" }}
+        <li><a href="{{ $taxonomy.Page.RelPermalink }}">#{{ $taxonomy.Page.Title }}</a>&nbsp;({{ $taxonomy.Count }})</li>
+      {{- end }}
+    {{ end }}
+    </ul>
+{{ end }}

@@ -1,0 +1,17 @@
+{{ define "main" }}
+    <header class="content__header">
+        <h1>{{ .Title | markdownify }}</h1>
+    </header>
+
+    <ul class="tags">
+    {{ range $name, $taxonomy := .Data.Terms.Alphabetical }}
+      {{- if ne $taxonomy.Page.Title "Index" }}
+        <li><a href="{{ $taxonomy.Page.RelPermalink }}">#{{ $taxonomy.Page.Title }}</a>&nbsp;({{ $taxonomy.Count }})</li>
+      {{- end }}
+    {{ end }}
+    </ul>
+{{ end }}
+
+{{define "aside" }}
+    {{ if .Params.description }}<p>{{ .Params.description }}</p>{{ end }}
+{{ end }}
