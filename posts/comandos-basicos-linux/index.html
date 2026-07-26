@@ -1,0 +1,333 @@
+<!doctype html><html lang=en><head><title>Comandos básicos en Linux &ndash; /dev/random</title><meta name=description content="Cultura hacker, software open source y arte hiperdigital"><meta name=viewport content="width=device-width,initial-scale=1"><meta charset=UTF-8><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css integrity="sha512-IW0nhlW5MgNydsXJO40En2EoCkTTjZhI3yuODrZIc8cQ4h1XcF53PsqDHa09NqnkXuIe0Oiyyj171BqZFwISBw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://datadiego.github.io/blog-nekoweb/css/palettes/base16-dark.css><link rel=stylesheet href=https://datadiego.github.io/blog-nekoweb/css/risotto.css><link rel=stylesheet href=https://datadiego.github.io/blog-nekoweb/css/custom.css><link rel=stylesheet href=/blog-nekoweb/css/syntax.css><script src=/blog-nekoweb/js/copy-code.js defer></script><meta property="og:title" content="Comandos básicos en Linux &ndash; /dev/random"><meta property="og:url" content="https://datadiego.github.io/blog-nekoweb/posts/comandos-basicos-linux/"><meta property="og:description" content="Comandos que necesitas dominar para administrar tu sistema &ndash; "><meta property="og:locale" content="es-ES"><meta property="og:image" content></head><body><div class=page><header class=page__header><nav class="page__nav main-nav"><ul><li class=nomarker><h1 class=page__logo><a href=https://datadiego.github.io/blog-nekoweb/ class=page__logo-inner>/dev/random</a></h1></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/blog-nekoweb/posts/ title>Posts</a></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/blog-nekoweb/about/ title>About</a></li></ul></nav></header><section class=page__body><header class=content__header><h1>Comandos básicos en Linux</h1></header><div class=content__body><p>Si ya tienes tu sistema Linux y quieres aprender a administrar tu sistema, necesitas conocer la <em>terminal</em>.</p><p>Aunque para un uso básico del sistema puedes funcionar mediante la interfaz gráfica, un administrador de sistemas <strong>necesita</strong> conocer como utilizar esta herramienta.</p><h2 id=por-que-usar-la-terminal>Por que usar la terminal</h2><p>La terminal es la interfaz que te va a permitir comunicarte con tu sistema, aunque pueda parecer algo <em>viejo</em> y <em>obsoleto</em>, sigue siendo la forma más completa y versátil de interactuar con un sistema.</p><p>Muchos programas con interfaz gráfica no son más que un programa de terminal con otra parte de código que renderiza una GUI con la que interactuar.</p><p>Por ejemplo, <code>Github Desktop</code>:</p><p><img src=./githubdesktop.png alt="github desktop"></p><p><code>Gitkraken</code>:</p><p><img src=./gitkraken.png alt="git kraken"></p><p>Y <code>Lazygit</code>:</p><p><img src=./lazygit.png alt=lazygit></p><p>Solo son <code>wrappers</code> que ejecutan comandos de <code>git</code> interactuando con sus menus y botones.</p><p>Todos son programas <strong>muy completos</strong>, pero en muchas ocasiones, en lugar de escribir un comando, debemos de pasar múltiples menus y opciones, que pueden cambiar con el tiempo, y que deben actualizar cuando la herramienta principal sobre la que se basan se actualiza.</p><p>Algunos programas <strong>muy comunes</strong> que has podido usar sin saberlo son <a href="https://imagemagick.org/#gsc.tab=0">Imagemagick</a> para editar y convertir imágenes, <a href=https://github.com/yt-dlp/yt-dlp>yt-dlp</a> para descargar videos de youtube o <a href=https://www.ffmpeg.org/>ffmpeg</a> que está presente en prácticamente cualquier software de edición de video.</p><p>Además, aprender a usar comandos te servirá para crear <strong>scripts y automatizaciones</strong>, que simplificarán mucho tus tareas diarias.</p><p>Finalmente, hay herramientas <strong>exclusivas de terminal</strong>, que no encontrarás con interfaz gráfica, si no sabes usarla, te pierdes muchísimo software moderno y experimental que puede solucionarte muchísimos problemas.</p><h2 id=lo-que-ves-al-abrir-la-terminal>Lo que ves al abrir la terminal</h2><p>Cuando abres la terminal, verás tu <code>bash prompt</code>, el texto que aparece cuando la terminal espera que introduzcas un comando.</p><p>Este bash prompt contiene información útil, como la <em>ruta</em> en la que te encuentras, tu <em>usuario</em> o el <em>hostname</em> de tu equipo.</p><p>Por ejemplo, en un fedora por defecto veras tu usuario, hostname y la ruta en la que te encuentras:</p><pre tabindex=0><code>datadiego@fedora:~$ 
+</code></pre><p>En mi arch, simplemente tengo:</p><pre tabindex=0><code>~ ❯
+</code></pre><p>Puedes crear un <code>bash prompt</code> personalizado. Para el final de esta guia, deberías ser capaz de modificarlo a tu gusto.</p><h2 id=tus-primeros-comandos>Tus primeros comandos</h2><p>Vamos a ver nuestros primeros comandos, empezando por algunos muy sencillos</p><h3 id=whoami>whoami</h3><p>Te devuelve el nombre de tu usuario, no hace nada más!</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>~ ❯ whoami
+</span></span><span class=line><span class=cl>datadiego
+</span></span></code></pre></div><p>Puede parecer un comando bastante tonto, pero ten en cuenta que Linux es un sistema <strong>multiusuario</strong>, y que en algunas ocasiones donde estés administrando un sistema quizá te mueves de un usuario a otro con frecuencia.</p><h3 id=pwd>pwd</h3><p>Este si es muy util, devuelve <strong>donde estas situado</strong> ahora mismo, con la terminal puedes moverte de directorio, igual que lo harias en un gestor de archivos, con esto puedes asegurarte de donde te encuentras ahora mismo.</p><p>Una terminal nueva suele abrirse en nuestro <code>home</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>~ ❯ <span class=nb>pwd</span>
+</span></span><span class=line><span class=cl>/home/datadiego
+</span></span></code></pre></div><p>Es la carpeta que cada usuario tiene donde puede crear sus archivos e instalar programas a los que solo ese usuario en principio tendrá acceso.</p><p>Por ejemplo:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>blog-nekoweb master  ? ❯ <span class=nb>pwd</span>
+</span></span><span class=line><span class=cl>/home/datadiego/Projects/blog-nekoweb
+</span></span></code></pre></div><p>Aqui puedes ver donde estoy situado mientras escribo este post, dentro de mi <code>home</code> tengo un directorio llamado <code>Projects</code> donde tengo múltiples proyectos, el directorio donde trabajo en mi blog se llama <code>blog-nekoweb</code>.</p><h3 id=ls>ls</h3><p>Devuelve los archivos y directorios donde estas situado ahora mismo:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>datadiego@fedora:~$ ls
+</span></span><span class=line><span class=cl>Descargas   Escritorio  Música      Público
+</span></span><span class=line><span class=cl>Documentos  Imágenes    Plantillas  Vídeos
+</span></span></code></pre></div><p>En este Fedora tenemos varios directorios a los que podemos movernos.</p><p>Los comandos disponen de diferentes <code>flags</code>, opciones que podemos mandar despues de escribir el comando y que modifican o añaden como actua ese comando en concreto.</p><p><code>ls --all</code> devuelve <strong>todos</strong> los archivos del directorio en el que nos encontramos, incluyendo archivos y directorios ocultos:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>malware@fedora:~$ ls --all
+</span></span><span class=line><span class=cl>.             .bash_profile  .config     Escritorio  Música      Vídeos
+</span></span><span class=line><span class=cl>..            .bashrc        Descargas   Imágenes    Plantillas
+</span></span><span class=line><span class=cl>.bash_logout  .cache         Documentos  .local      Público
+</span></span></code></pre></div><p>Ahora han aparecido nuevos archivos y directorios que antes no salían.</p><blockquote><p>Los <code>flags</code> pueden tener una version corta, por ejemplo, puedes utilizar <code>--all</code> <code>-a</code>, ambos hacen lo mismo.</p></blockquote><p>Aún asi, no podemos distinguir que es un directorio y que es un archivo, para eso, podemos hacer <code>ls -la</code>, que devuelve más información y la organiza en formato lista:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>datadiego@fedora:~$ ls -la
+</span></span><span class=line><span class=cl>total <span class=m>12</span>
+</span></span><span class=line><span class=cl>drwx------. <span class=m>1</span> datadiego datadiego <span class=m>242</span> jul <span class=m>12</span> 10:38 .
+</span></span><span class=line><span class=cl>drwxr-xr-x. <span class=m>1</span> root    root     <span class=m>14</span> jul <span class=m>12</span> 10:38 ..
+</span></span><span class=line><span class=cl>-rw-r--r--. <span class=m>1</span> datadiego datadiego  <span class=m>18</span> ene <span class=m>16</span>  <span class=m>2026</span> .bash_logout
+</span></span><span class=line><span class=cl>-rw-r--r--. <span class=m>1</span> datadiego datadiego <span class=m>144</span> ene <span class=m>16</span>  <span class=m>2026</span> .bash_profile
+</span></span><span class=line><span class=cl>-rw-r--r--. <span class=m>1</span> datadiego datadiego <span class=m>522</span> ene <span class=m>16</span>  <span class=m>2026</span> .bashrc
+</span></span><span class=line><span class=cl>drwx------. <span class=m>1</span> datadiego datadiego <span class=m>402</span> jul <span class=m>19</span> 19:24 .cache
+</span></span><span class=line><span class=cl>drwxr-xr-x. <span class=m>1</span> datadiego datadiego <span class=m>270</span> jul <span class=m>19</span> 19:24 .config
+</span></span><span class=line><span class=cl>drwxr-xr-x. <span class=m>1</span> datadiego datadiego   <span class=m>0</span> jul <span class=m>12</span> 10:38 Descargas
+</span></span><span class=line><span class=cl>drwxr-xr-x. <span class=m>1</span> datadiego datadiego   <span class=m>0</span> jul <span class=m>12</span> 10:38 Documentos
+</span></span><span class=line><span class=cl>drwxr-xr-x. <span class=m>1</span> datadiego datadiego   <span class=m>0</span> jul <span class=m>12</span> 10:38 Escritorio
+</span></span><span class=line><span class=cl>drwxr-xr-x. <span class=m>1</span> datadiego datadiego   <span class=m>0</span> jul <span class=m>12</span> 10:38 Imágenes
+</span></span><span class=line><span class=cl>drwxr-xr-x. <span class=m>1</span> datadiego datadiego  <span class=m>20</span> jul <span class=m>12</span> 10:38 .local
+</span></span><span class=line><span class=cl>drwxr-xr-x. <span class=m>1</span> datadiego datadiego   <span class=m>0</span> jul <span class=m>12</span> 10:38 Música
+</span></span><span class=line><span class=cl>drwxr-xr-x. <span class=m>1</span> datadiego datadiego   <span class=m>0</span> jul <span class=m>12</span> 10:38 Plantillas
+</span></span><span class=line><span class=cl>drwxr-xr-x. <span class=m>1</span> datadiego datadiego   <span class=m>0</span> jul <span class=m>12</span> 10:38 Público
+</span></span><span class=line><span class=cl>drwxr-xr-x. <span class=m>1</span> datadiego datadiego   <span class=m>0</span> jul <span class=m>12</span> 10:38 Vídeos
+</span></span></code></pre></div><p>La primera columna nos muestra los <strong>permisos</strong> del archivo, aunque por ahora solo tienes que fijar en el primer caracter que aparece:</p><ul><li><code>d</code> es un directorio.</li><li><code>-</code> es un archivo.</li></ul><p>Hablaremos de permisos más adelante. Por ahora solo necesitas recordar que con <code>-l</code> puedes puedes ver cuales tienen.</p><blockquote><p>Recuerda que hemos usado <code>-al</code> para mezclar dos flags, <code>--all</code> y <code>--list</code>, el orden da igual, <code>-la</code> hace lo mismo.</p></blockquote><h3 id=el-flag---help-o--h>El flag <code>--help</code> o <code>-h</code></h3><p>Todos los comandos tienen una flag de ayuda que te ayudarán a recordar que flags tienen disponibles y como usarlos. Consulta esta flag siempre que tengas dudas sobre que hace o como usar un comando.</p><h3 id=cd>cd</h3><p>El comando <code>cd</code> de <code>change directory</code> nos permite movernos a otros directorios:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>datadiego@fedora:~$ <span class=nb>pwd</span>
+</span></span><span class=line><span class=cl>/home/datadiego
+</span></span><span class=line><span class=cl>datadiego@fedora:~$ ls
+</span></span><span class=line><span class=cl>Descargas   Escritorio  Música      Público
+</span></span><span class=line><span class=cl>Documentos  Imágenes    Plantillas  Vídeos
+</span></span><span class=line><span class=cl>datadiego@fedora:~$ <span class=nb>cd</span> Documentos/
+</span></span><span class=line><span class=cl>datadiego@fedora:~/Documentos$ ls
+</span></span><span class=line><span class=cl>web-server
+</span></span><span class=line><span class=cl>datadiego@fedora:~/Documentos$ <span class=nb>cd</span> web-server/
+</span></span><span class=line><span class=cl>datadiego@fedora:~/Documentos/web-server$ ls
+</span></span><span class=line><span class=cl>guia-servidor.md  install.sh  launch.sh
+</span></span><span class=line><span class=cl>datadiego@fedora:~/Documentos/web-server$ <span class=nb>cd</span> ..
+</span></span><span class=line><span class=cl>datadiego@fedora:~/Documentos$ <span class=nb>pwd</span>
+</span></span><span class=line><span class=cl>/home/datadiego/Documentos
+</span></span><span class=line><span class=cl>datadiego@fedora:~/Documentos$ <span class=nb>cd</span> ..
+</span></span><span class=line><span class=cl>datadiego@fedora:~$ <span class=nb>pwd</span>
+</span></span><span class=line><span class=cl>/home/datadiego
+</span></span></code></pre></div><p><code>cd ..</code> nos envia ir al directorio <em>superior</em>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>datadiego@fedora:~/Documentos/web-server$ <span class=nb>cd</span> ..
+</span></span><span class=line><span class=cl>datadiego@fedora:~/Documentos$ <span class=nb>pwd</span>
+</span></span><span class=line><span class=cl>/home/datadiego/Documentos
+</span></span><span class=line><span class=cl>datadiego@fedora:~/Documentos$ <span class=nb>cd</span> ..
+</span></span><span class=line><span class=cl>datadiego@fedora:~$ <span class=nb>pwd</span>
+</span></span><span class=line><span class=cl>/home/datadiego
+</span></span></code></pre></div><p><code>cd</code> sin argumentos nos cambia a nuestro <code>home</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>blog-nekoweb master  ❯ <span class=nb>pwd</span>
+</span></span><span class=line><span class=cl>/home/datadiego/Projects/blog-nekoweb
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>blog-nekoweb master  ❯ <span class=nb>cd</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>~ ❯ <span class=nb>pwd</span>
+</span></span><span class=line><span class=cl>/home/datadiego
+</span></span></code></pre></div><p><code>cd -</code> nos envia al último directorio distinto del actual:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>blog-nekoweb master  ❯ <span class=nb>pwd</span>
+</span></span><span class=line><span class=cl>/home/datadiego/Projects/blog-nekoweb
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>blog-nekoweb master  ❯ <span class=nb>cd</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>~ ❯ <span class=nb>pwd</span>
+</span></span><span class=line><span class=cl>/home/datadiego
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>~ ❯ <span class=nb>cd</span> /tmp/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp ❯ <span class=nb>cd</span> /home/datadiego/Projects/blog-nekoweb/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>blog-nekoweb master  ❯ <span class=nb>cd</span> -
+</span></span><span class=line><span class=cl>󱞩 /tmp
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp ❯ <span class=nb>pwd</span>
+</span></span><span class=line><span class=cl>/tmp
+</span></span></code></pre></div><p>Ten en cuenta que no tienes por que recordar rutas completas, cuando estas haciendo cd puedes explorar en directo los directorios pulsando <code>tabulador</code>, por ejemplo, aqui hemos escrito <code>cd</code> y luego hemos pulsado <code>tab</code>, mostrandonos donde podemos movernos.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>~ ❯ <span class=nb>cd</span>
+</span></span><span class=line><span class=cl>analisis/  go/        Pictures/  rockyou/   Videos/
+</span></span><span class=line><span class=cl>Documents/ Music/     Projects/  screens/   VMs/
+</span></span><span class=line><span class=cl>Downloads/ Notes/     prueba/    test/      Work/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>~ ❯ <span class=nb>cd</span>
+</span></span></code></pre></div><p>No tienes por que escribir todo el nombre de un directorio para moverte, el tabulador tambien los autocompleta, imagina este caso:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp/test ❯ ls
+</span></span><span class=line><span class=cl>Permissions Size User      Date Modified Name
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>19</span> Jul 20:21   dirA
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>19</span> Jul 20:21   dirB
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>19</span> Jul 20:21   dirC
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>19</span> Jul 20:21   resultados
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ <span class=nb>cd</span> res
+</span></span></code></pre></div><p>Si cuando escribes <code>cd res</code> tabulas, autocompleta a resultados.</p><p>Si escribes <code>cd di</code> y tabulas:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp/test ❯ <span class=nb>cd</span> di
+</span></span><span class=line><span class=cl>dirA/ dirB/ dirC/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ <span class=nb>cd</span> dir
+</span></span></code></pre></div><p>Autocompleta a <code>cd dir</code> y como hay <code>A</code>, <code>B</code> o <code>C</code>, te pide que elijas a cual de ellos quieres moverte.</p><blockquote><p>La funcion de autocompletado no es solo para el comando <code>cd</code>, vale para cualquier ruta que escribas en la terminal.</p></blockquote><h3 id=mkdir>mkdir</h3><p>Ahora que sabes moverte entre directorios, puedes empezar a usar <code>mkdir</code>, de <em>make directory</em> para crear nuevas carpetas:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>~ ❯ <span class=nb>cd</span> /tmp/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp ❯ mkdir <span class=nb>test</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp ❯ <span class=nb>cd</span> test/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ mkdir dirA
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ mkdir dirB
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ mkdir dirC/otro_directorio
+</span></span><span class=line><span class=cl>mkdir: cannot create directory ‘dirC/otro_directorio’: No such file or directory
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ✗ mkdir -p dirC/otro_directorio
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ ls
+</span></span><span class=line><span class=cl>Permissions Size User      Date Modified Name
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>20</span> Jul 09:34   dirA
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>20</span> Jul 09:34   dirB
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>20</span> Jul 09:34   dirC
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ tree .
+</span></span><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>├── dirA
+</span></span><span class=line><span class=cl>├── dirB
+</span></span><span class=line><span class=cl>└── dirC
+</span></span><span class=line><span class=cl>    └── otro_directorio
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=m>5</span> directories, <span class=m>0</span> files
+</span></span></code></pre></div><p>Como ves, podemos crear cualquier directorio donde estamos situados ahora mismo.</p><p>Si queremos crear directamente una estructura con múltiples directorios como <code>dirC/otro_directorio</code>.</p><p>Recuerda que <strong>no tienes por que estar situado en el directorio</strong> para crearlos:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>~ ❯ mkdir -p /tmp/test/dirA
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>~ ❯ mkdir -p /tmp/test/dirB
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>~ ❯ mkdir -p /tmp/test/dirC/otro_directorio
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>~ ❯ mkdir -p /tmp/test/dirC/otro_directorio_mas
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>~ ❯ tree /tmp/test/
+</span></span><span class=line><span class=cl>/tmp/test/
+</span></span><span class=line><span class=cl>├── dirA
+</span></span><span class=line><span class=cl>├── dirB
+</span></span><span class=line><span class=cl>└── dirC
+</span></span><span class=line><span class=cl>    ├── otro_directorio
+</span></span><span class=line><span class=cl>    └── otro_directorio_mas
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=m>6</span> directories, <span class=m>0</span> files
+</span></span></code></pre></div><h3 id=nano>nano</h3><p><code>nano</code> es un editor de texto en terminal que nos permite crear y modificar archivos rápidamente, suele estar en cualquier distro, asi que deberías saberlo usar minimamente, porque muy posiblemente lo uses bastante a la hora de configurar un <em>VPS</em> en el que no tienes disponibles editores de texto gráficos:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>~ ❯ <span class=nb>cd</span> /tmp/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp ❯ nano prueba.txt
+</span></span></code></pre></div><p>Cuando lances <code>nano prueba.txt</code> verás el editor:</p><p><img src=./nano.png alt=nano></p><p>Escribe el texto que quieras, y usa <code>Ctrl + o</code> para guardar el archivo, te preguntará confirmación de que nombre quieres que tenga el archivo, puedes pulsar <code>enter</code> para guardarlo en <code>prueba.txt</code>. Luego, sal con <code>Ctrl + x</code> y volverás a estar en el directorio de <code>/tmp</code>.</p><blockquote><p>Hay mejores editores, y los atajos de <code>nano</code> pueden ser un poco contraintuitivos, <code>micro</code> es un buen editor por el que puedes sustituirlo, pero <strong>debes</strong> aprender nano minimamente, lo usarás mucho.
+<code>vi</code> y <code>vim</code> son aún mejores opciones, y suelen estar también por defecto en la instalación de cualquier distro, pero su uso es más complejo.</p></blockquote><h3 id=cat>cat</h3><p>Ya tenemos un archivo, con <code>cat</code> podemos leerlo:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp ❯ cat prueba.txt
+</span></span><span class=line><span class=cl>hola mundo
+</span></span></code></pre></div><blockquote><p>Te animo a leer el archivo que hay en tu <code>home</code> con el nombre <code>.bashrc</code>, esa es la configuración de tu terminal, cada vez que abres una, se ejecuta ese archivo :)</p></blockquote><p>Puedes leer múltiples archivos:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp/test ❯ ls
+</span></span><span class=line><span class=cl>Permissions Size User      Date Modified Name
+</span></span><span class=line><span class=cl>.rw-r--r--    <span class=m>66</span> datadiego <span class=m>20</span> Jul 09:57  󰡯 final
+</span></span><span class=line><span class=cl>.rw-r--r--     <span class=m>9</span> datadiego <span class=m>20</span> Jul 09:57   otro.txt
+</span></span><span class=line><span class=cl>.rw-r--r--    <span class=m>11</span> datadiego <span class=m>20</span> Jul 09:56   prueba.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ cat prueba.txt
+</span></span><span class=line><span class=cl>hola mundo
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ cat otro.txt
+</span></span><span class=line><span class=cl>que tal?
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ cat final
+</span></span><span class=line><span class=cl>Añadir .txt al final no hace nada especial, no hace falta usarlo
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ cat prueba.txt otro.txt final
+</span></span><span class=line><span class=cl>hola mundo
+</span></span><span class=line><span class=cl>que tal?
+</span></span><span class=line><span class=cl>Añadir .txt al final no hace nada especial, no hace falta usarlo
+</span></span></code></pre></div><p>Además, puedes usar la <em>wildcard</em> <code>*</code>, que significa <em>todos los archivos</em>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp/test ❯ cat *
+</span></span><span class=line><span class=cl>Añadir .txt al final no hace nada especial, no hace falta usarlo
+</span></span><span class=line><span class=cl>que tal?
+</span></span><span class=line><span class=cl>hola mundo
+</span></span></code></pre></div><p>La wildcard también puede usarse para apuntar a diferentes formatos, <code>*.txt</code> significa <em>todos los archivos que terminan en .txt</em>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp/test ❯ cat *.txt
+</span></span><span class=line><span class=cl>que tal?
+</span></span><span class=line><span class=cl>hola mundo
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ cat *
+</span></span><span class=line><span class=cl>Añadir .txt al final no hace nada especial, no hace falta usarlo
+</span></span><span class=line><span class=cl>que tal?
+</span></span><span class=line><span class=cl>hola mundo
+</span></span></code></pre></div><h3 id=echo>echo</h3><p>Devuelve el string que escribas:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp/test ❯ <span class=nb>echo</span> <span class=s2>&#34;hola mundo&#34;</span>
+</span></span><span class=line><span class=cl>hola mundo
+</span></span></code></pre></div><p>No suena muy útil, pero en algunos comandos más avanzados se usa bastante.</p><p>Nos puede servir para crear archivos con texto rápidamente si usamos un operador de redirección <code>></code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp/test ❯ <span class=nb>echo</span> <span class=s2>&#34;hola mundo&#34;</span> &gt; prueba.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ cat prueba.txt
+</span></span><span class=line><span class=cl>hola mundo
+</span></span></code></pre></div><p>La redirección <code>></code> le dice a la terminal <em>en lugar de devolver la salida del comando, redirigelo a un archivo y crealo si no existe</em>.</p><h3 id=rm>rm</h3><p>Ya sabes crear directorios y archivos, para borrarlos usamos <code>rm</code> si es un archivo:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp/test ❯ <span class=nb>echo</span> <span class=s2>&#34;hola mundo&#34;</span> &gt; prueba.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ cat prueba.txt
+</span></span><span class=line><span class=cl>hola mundo
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ rm prueba.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ ls
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯
+</span></span></code></pre></div><p>Y <code>rm -fr</code> para un directorio:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp/test ❯ mkdir dirA
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ mkdir dirB
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ rm dirA
+</span></span><span class=line><span class=cl>rm: cannot remove <span class=s1>&#39;dirA&#39;</span>: Is a directory
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ✗ rm -fr dirA
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ ls
+</span></span><span class=line><span class=cl>Permissions Size User      Date Modified Name
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>20</span> Jul 10:09   dirB
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ rm -rf dirB
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ ls
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯
+</span></span></code></pre></div><p>Con <code>rm</code> también podemos usar la wildcard <code>*</code>, por ejemplo, podemos borrar todos los archivos de un formato determinado:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ <span class=nb>echo</span> <span class=s2>&#34;hola&#34;</span> &gt; prueba.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ <span class=nb>echo</span> <span class=s2>&#34;adios&#34;</span> &gt; prueba2.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ <span class=nb>echo</span> <span class=s2>&#34;otro mas&#34;</span> &gt; prueba3.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ <span class=nb>echo</span> <span class=s2>&#34;este archivo no tiene .txt&#34;</span> &gt; sin_formato
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ rm *.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ ls
+</span></span><span class=line><span class=cl>Permissions Size User      Date Modified Name
+</span></span><span class=line><span class=cl>.rw-r--r--    <span class=m>27</span> datadiego <span class=m>20</span> Jul 10:11  󰡯 sin_formato
+</span></span></code></pre></div><blockquote><p>Una regla para recordar la flag <code>-fr</code> para borrar directorios es <code>for real</code>, aunque en realidad significa <code>force recursive</code>
+<code>rm</code> no es como enviar a la papelera en Windows, los archivos se <strong>borran por completo de disco y no son recuperables</strong>, ten cuidado con este comando, no hay vuelta atrás una vez lo lanzas</p></blockquote><h2 id=cp>cp</h2><p>El comando para crear <em>copias</em> de archivos y directorios, se usa con <code>cp origen destino</code>, donde <code>origen</code> es el archivo o directorio que queremos copiar, y <code>destino</code> donde lo queremos:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp/test ❯ mkdir dirA
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ mkdir dirB
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ <span class=nb>echo</span> <span class=s2>&#34;hola mundo&#34;</span> &gt; prueba.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ cp prueba.txt dir
+</span></span><span class=line><span class=cl>dirA/ dirB/ dirC/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ cp prueba.txt dirA/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ cp prueba.txt dirB/otro_nombre.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ cat dirA/prueba.txt
+</span></span><span class=line><span class=cl>hola mundo
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ tree .
+</span></span><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>├── dirA
+</span></span><span class=line><span class=cl>│   └── prueba.txt
+</span></span><span class=line><span class=cl>├── dirB
+</span></span><span class=line><span class=cl>│   └── otro_nombre.txt
+</span></span><span class=line><span class=cl>└── prueba.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=m>4</span> directories, <span class=m>3</span> files
+</span></span></code></pre></div><p>Como ves, podemos copiar sin especificar un nombre de archivo y heredará el original, pero también podemos cambiarlo especificando otro distinto.</p><p>Si queremos copiar un directorio y todo su contenido usamos <code>cp -r origen destino</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp/test ❯ tree .
+</span></span><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>├── dirA
+</span></span><span class=line><span class=cl>│   └── prueba.txt
+</span></span><span class=line><span class=cl>├── dirB
+</span></span><span class=line><span class=cl>│   └── prueba.txt
+</span></span><span class=line><span class=cl>└── prueba.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=m>3</span> directories, <span class=m>3</span> files
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ cp -r dirA dirC
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ tree .
+</span></span><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>├── dirA
+</span></span><span class=line><span class=cl>│   └── prueba.txt
+</span></span><span class=line><span class=cl>├── dirB
+</span></span><span class=line><span class=cl>│   └── prueba.txt
+</span></span><span class=line><span class=cl>├── dirC
+</span></span><span class=line><span class=cl>│   └── prueba.txt
+</span></span><span class=line><span class=cl>└── prueba.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=m>4</span> directories, <span class=m>4</span> files
+</span></span></code></pre></div><p>Recuerda que puedes copiar a cualquier sitio y de cualquier sitio:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp/test ❯ cp ~/.bashrc mibashrc
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ ls
+</span></span><span class=line><span class=cl>Permissions Size User      Date Modified Name
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>20</span> Jul 10:47   dirA
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>20</span> Jul 11:05   dirB
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>20</span> Jul 11:05   dirC
+</span></span><span class=line><span class=cl>.rw-r--r--   <span class=m>437</span> datadiego <span class=m>20</span> Jul 11:06  󰡯 mibashrc
+</span></span><span class=line><span class=cl>.rw-r--r--    <span class=m>11</span> datadiego <span class=m>20</span> Jul 10:47   prueba.txt
+</span></span></code></pre></div><h2 id=mv>mv</h2><p>Sirve para <strong>mover</strong> archivos sin copiarlos, su uso es igual que <code>cp</code>, donde debemos pasar un <code>origen</code> y un <code>destino</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp/test ❯ mkdir dirA
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ mkdir dirB
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ✗ <span class=nb>echo</span> <span class=s2>&#34;hola mundo&#34;</span> &gt; dirA/hola
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ tree .
+</span></span><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>├── dirA
+</span></span><span class=line><span class=cl>│   └── hola
+</span></span><span class=line><span class=cl>└── dirB
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=m>3</span> directories, <span class=m>1</span> file
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ mv dirA/hola dirB/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ tree .
+</span></span><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>├── dirA
+</span></span><span class=line><span class=cl>└── dirB
+</span></span><span class=line><span class=cl>    └── hola
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=m>3</span> directories, <span class=m>1</span> file
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ mv dirB/hola .
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test ❯ tree .
+</span></span><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>├── dirA
+</span></span><span class=line><span class=cl>├── dirB
+</span></span><span class=line><span class=cl>└── hola
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=m>3</span> directories, <span class=m>1</span> file
+</span></span></code></pre></div><h2 id=personalizar-tu-prompt>Personalizar tu <code>prompt</code></h2><p>Vamos a usar algunos de estos comandos para personalizar nuestro <code>prompt</code>, utilizaremos <a href=https://bash-prompt-generator.org/>esta herramienta web</a> para crear una con la información que queramos y los colores que nos gusten.</p><p>Por ejemplo, he creado este:</p><pre tabindex=0><code>PS1=&#39;\[\e[38;5;197m\]\u\[\e[0m\]@\[\e[38;5;48m\]\H\[\e[0m\]:\[\e[38;5;198m\]\w\[\e[0m\]&#39;
+</code></pre><p>Si desde la terminal lanzas:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>export</span> <span class=nv>PS1</span><span class=o>=</span><span class=s1>&#39;\[\e[38;5;197m\]\u\[\e[0m\]@\[\e[38;5;48m\]\H\[\e[0m\]:\[\e[38;5;198m\]\w\[\e[0m\]&#39;</span>
+</span></span></code></pre></div><p>Verás tu prompt nuevo, lo que hace <code>export</code> es <em>crear una variable de entorno</em>, existen varias, como <em>hostname</em> o <em>username</em>, las variables de entorno siempre van precedidas de <code>$</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>~ ❯ <span class=nb>echo</span> <span class=s2>&#34;</span><span class=nv>$HOSTNAME</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>omarchy
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>~ ❯ <span class=nb>echo</span> <span class=s2>&#34;</span><span class=nv>$USER</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>datadiego
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>~ ❯ <span class=nb>echo</span> <span class=s2>&#34;</span><span class=nv>$PS1</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=se>\[\]</span>~<span class=se>\[\]</span> <span class=se>\[\]</span>❯<span class=se>\[\]</span>
+</span></span></code></pre></div><p>Sin embargo, si cierras y abres la terminal, tu <code>prompt</code> personalizado desaparece.</p><p>Para hacer que la variable de entorno <code>$PS1</code> original se sustituya cada vez que lanzas la terminal, tendrás que editar el archivo <code>.bashrc</code> en tu <code>home</code> y añadir tu exportación:</p><p><img src=./prompt.png alt=bahsrc></p><p>El archivo <code>~/.bashrc</code> se ejecuta <strong>cada vez que lanzas una terminal</strong>, cuando guardes tus cambios no verás los cambios, tendrás que cerrar y abrir una nueva, o ejecutar <code>source ~/.bashrc</code>:</p><p><img src=./prompt2.png alt=prompt></p><h2 id=finalizando>Finalizando</h2><p>Ya sabes lo básico de comandos para moverte y manipular archivos en Linux, estos comandos se usan prácticamente <strong>a diario</strong>, asi que deberías conocerlos muy bien.</p><p>Utiliza el directorio <code>/tmp</code> para hacer pruebas, todo lo que hagas aqui se borrará cuando cierres tu sistema, de forma que puedes hacer cualquier prueba sin miedo a llenar tu <code>home</code> de basura.</p><p>Tus siguientes pasos deberían ser aprender más sobre el sistema de archivos en linux, seguir avanzando con comandos más avanzados, y aprender sobre el sistema de usuarios y de permisos.</p></div><footer class=content__footer></footer></section><section class=page__aside><div class=aside__about><div class=aside__about><span class=about__logo role=img>✨</span>&nbsp;<h1 class=about__title>/dev/random</h1><p class=about__description>Cultura hacker, software open source y arte hiperdigital</p></div><ul class=aside__social-links><li><a href=https://github.com/datadiego rel=me aria-label=GitHub title=GitHub><i class="fa-brands fa-github" aria-hidden=true></i></a>&nbsp;</li><li><a href=juandiegomariscal@gmail.com rel=me aria-label=Email title=Email><i class="fa-solid fa-envelope" aria-hidden=true></i></a>&nbsp;</li></ul></div><hr><div class=aside__content><p>Comandos que necesitas dominar para administrar tu sistema</p><p>By datadiego,
+2025-02-10</p></div></section><footer class=page__footer><p><br><span class=active>$ echo $LANG<br><b></b></span><br></p><br><br><p class=copyright>© datadiego</p><script src=https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js></script><script>mermaid.initialize({startOnLoad:!0,theme:"dark"})</script></footer></div></body></html>

