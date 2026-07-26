@@ -1,8 +1,8 @@
 ---
-title: "Glitch Art #2: Circuit bending a una cámara digital"
+title: "Glitch Art #2: Circuit bending a una cámara"
 author: datadiego
 draft: false
-description: Provocando cortocircuitos a una cámara
+description: Provocando cortocircuitos al sensor de una cámara digital para niños
 date: 2026-07-18
 tags:
   - hacking
