@@ -1,4 +1,4 @@
-baseURL = 'https://datadiego.github.io/blog-nekoweb/'
+baseURL = 'https://datadiego.github.io/blog/'
 locale = 'es-ES'
 title = '/dev/random'
 theme = 'risotto'
