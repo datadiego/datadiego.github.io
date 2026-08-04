@@ -3,7 +3,7 @@ title: "Foremost: Recuperando archivos de un USB formateado"
 author: datadiego
 draft: false
 description: Realizando análisis forénsico en un USB
-date: 2026-08-26
+date: 2026-08-04
 tags:
   - hacking
   - análisis forénsico
