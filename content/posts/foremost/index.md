@@ -228,3 +228,11 @@ sudo badblocks -wsv -b 4096 /dev/sdb
 ```
 
 Aun asi, hay laboratorios, agencias de inteligencia y empresas forenses especializadas que serían capaces de recuperar datos con técnicas avanzadas. Si realmente **no quieres que nadie obtenga nada**, lo único que queda es la **destrucción física** del dispositivo, mediante triturado, incineración o disolución con químicos. Es la **unica forma fiable** de que nadie obtenga nada.
+
+## Otras utilidades
+
+`foremost` es muy sencilla y está bien para empezar a hacer este tipo de tareas.
+
+Aun asi, la que **suelo probar primero** es `photorec`, suele recuperar más datos y funciona mejor en algunos casos, por ejemplo, cuando la tabla de particiones ha sido eliminada o cambiada.
+
+Si necesitas o tienes interés en poder explorar **en que rutas estaban los archivos** `Sleuth Kit` es el que mas sencillo te permite hacerlo.
