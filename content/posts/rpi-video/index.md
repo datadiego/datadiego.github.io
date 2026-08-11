@@ -3,7 +3,7 @@ title: "Video en rpi"
 author: datadiego
 draft: false
 description: Automatizando la reproducción de videos para instalaciones artisticas
-date: 2026-11-08
+date: 2026-08-11
 tags:
   - guia
 layout: layouts/post.njk
