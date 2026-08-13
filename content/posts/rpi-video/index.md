@@ -17,11 +17,19 @@ Aunque reproducir video es una tarea simple, cuando tenemos que automatizarlo va
 - Para la exposición, debía dejar unas instrucciones para arrancar cada una.
 - Si algo sale mal, debía ir en persona y arreglarlo.
 
-## Preparando las Raspberries
+## Preparando la rpi
 
 Lo primero era sustituir el sistema operativo por algo más ligero.
 
-Elegí **Raspberry Pi OS Lite**, misma distribución que estaba usando, pero sin ningún escritorio, no podemos bajar mucho más el consumo que usando una **tty**, usando este OS tenemos los siguientes resultados de consumo:
+Elegí **Raspberry Pi OS Lite**, misma distribución que estaba usando, pero sin ningún escritorio, no podemos bajar mucho más el consumo que usando una **tty**.
+
+Grabamos la distro en una SD usando `dd`:
+
+```bash
+xzcat ~/Downloads/2026-06-18-raspios-trixie-arm64-lite.img.xz | sudo dd of=/dev/sda bs=4M status=progress conv=fsync
+```
+
+usando este OS tenemos los siguientes resultados de consumo:
 
 ### Consumo CPU
 
