@@ -1,9 +1,9 @@
 ---
 title: "Repositorios bare en git"
 author: datadiego
-draft: true
+draft: false
 description: Uso de repositorios bare en servidores privados
-date: 2026-08-17
+date: 2026-08-18
 # la fecha va en formato año-mes-dia
 tags:
   - coding
