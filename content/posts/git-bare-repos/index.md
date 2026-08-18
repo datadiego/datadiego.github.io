@@ -170,3 +170,30 @@ Por último, demuestra lo potente que es `git` de base, y lo flexible que es.
 ## Migrando nuestros repositorios a bare repos
 
 Si esto te ha gustado quizá quieras migrar tus repositorios a tu propio servidor.
+
+Si estás en github y tienes `gh` instalado:
+
+```bash
+#!/usr/bin/env bash
+set -euo pipefail
+
+DEST="${1:-.}"
+mkdir -p "$DEST" && cd "$DEST"
+
+gh repo list --limit 1000 --json nameWithOwner -q '.[].nameWithOwner' |
+while read -r repo; do
+    dir="${repo##*/}"
+    [ -d "$dir" ] && echo "SKIP: $repo" && continue
+    gh repo clone "$repo" "$dir" -- --bare 2>&1 && echo "OK: $repo" || echo "FALLO: $repo" >&2
+done
+```
+
+Esto descargará todos tus repos en formato *bare* en el directorio que le indiques:
+
+```bash
+./clone.sh /media/ssd0/repos
+```
+
+Si no le indicas directorio, lo descargará donde esté el script.
+
+Dejalo un buen rato (dependiendo de cuantos repos tengas) y en nada podrás gestionar todo lo que tenias directamente en tu servidor privado.
