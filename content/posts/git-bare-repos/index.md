@@ -197,3 +197,71 @@ Esto descargará todos tus repos en formato *bare* en el directorio que le indiq
 Si no le indicas directorio, lo descargará donde esté el script.
 
 Dejalo un buen rato (dependiendo de cuantos repos tengas) y en nada podrás gestionar todo lo que tenias directamente en tu servidor privado.
+
+## Mejorando la interacción con el servidor
+
+Esto funciona, pero si quiero clonar un repo que está en el ssd de mi rpi tengo que hacer:
+
+```bash
+git clone raspberrypi:/media/ssd0/repos/nombre-repositorio
+```
+
+Es demasiado largo! Aunque el hostname podemos cambiarlo en `.config/.ssh`, seguiremos teniendo que escribir toda la ruta.
+
+Podemos añadir esta función a nuestro `.bashrc`:
+
+```bash
+git() {
+    if [[ "$1" == "clone" && "$2" == rpi:* ]]; then
+        local repo="${2#rpi:}"
+        command git clone "raspberrypi:/media/ssd0/repos/$repo" "${@:3}"
+    else
+        command git "$@"
+    fi
+}
+```
+
+Con esto, podemos hacer:
+
+```bash
+git clone rpi:nombre-repositorio
+```
+
+Y no tendremos que escribir toda la ruta completa como antes.
+
+## Manteniendo tus repositorios en ambos sitios
+
+Si además quieres mantener tu remoto de github, verás que donde hayas clonado tu repo de la rpi:
+
+```bash
+nb-databases master ❯ git remote -v
+origin	raspberrypi:/media/ssd0/repos/nb-databases (fetch)
+origin	raspberrypi:/media/ssd0/repos/nb-databases (push)
+```
+
+No tendras configurado el remoto de github, solo el de la rpi.
+
+Si ejecutas lo mismo en el servidor *rpi*:
+
+```bash
+datadiego@raspberrypi:/media/ssd0/repos/nb-databases $ git remote -v
+origin	https://github.com/datadiego/nb-databases.git (fetch)
+origin	https://github.com/datadiego/nb-databases.git (push)
+```
+
+Esta si tiene como origen el remoto original de github.
+
+Puedes modificar la función anterior para que tambien añada el remoto si existe, aunque si en algun momento quieres hacer push a github, basta con:
+
+```bash
+git remote set-url origin https://github.com/datadiego/nb-databases.git
+git remote add raspberry raspberrypi:/media/ssd0/repos/nb-databases
+```
+
+De esta manera podemos hacer:
+
+```bash
+git push raspberry master
+```
+
+Cuando quieras actualizar tu repo en la *rpi*, y `git push` a secas lo envia a github.
