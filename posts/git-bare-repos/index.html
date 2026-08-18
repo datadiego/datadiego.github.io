@@ -1,0 +1,102 @@
+<!doctype html><html lang=en><head><title>Repositorios bare en git &ndash; /dev/random</title><meta name=description content="Cultura hacker, software open source y arte hiperdigital"><meta name=viewport content="width=device-width,initial-scale=1"><meta charset=UTF-8><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css integrity="sha512-IW0nhlW5MgNydsXJO40En2EoCkTTjZhI3yuODrZIc8cQ4h1XcF53PsqDHa09NqnkXuIe0Oiyyj171BqZFwISBw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://datadiego.github.io/blog/css/palettes/base16-dark.css><link rel=stylesheet href=https://datadiego.github.io/blog/css/risotto.css><link rel=stylesheet href=https://datadiego.github.io/blog/css/custom.css><link rel=stylesheet href=/blog/css/syntax.css><script src=/blog/js/copy-code.js defer></script><meta property="og:title" content="Repositorios bare en git &ndash; /dev/random"><meta property="og:url" content="https://datadiego.github.io/blog/posts/git-bare-repos/"><meta property="og:description" content="Uso de repositorios bare en servidores privados &ndash; "><meta property="og:locale" content="es-ES"><meta property="og:image" content></head><body><div class=page><header class=page__header><nav class="page__nav main-nav"><ul><li class=nomarker><h1 class=page__logo><a href=https://datadiego.github.io/blog/ class=page__logo-inner>/dev/random</a></h1></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/blog/posts/ title>Posts</a></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/blog/about/ title>About</a></li></ul></nav></header><section class=page__body><header class=content__header><h1>Repositorios bare en git</h1></header><div class=content__body><p>Este post viene de la mano de este video de Tsoding:</p><div style=position:relative;padding-bottom:56.25%;height:0;overflow:hidden><iframe allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" loading=eager referrerpolicy=strict-origin-when-cross-origin src="https://www.youtube-nocookie.com/embed/iuIdBfjL62s?autoplay=0&amp;controls=1&amp;end=0&amp;loop=0&amp;mute=0&amp;start=0" style=position:absolute;top:0;left:0;width:100%;height:100%;border:0 title="YouTube video"></iframe></div><p>Me pareció interesante y mucha gente quizá se puede perder entre el idioma y la rapidez al explicar, pero vamos a ver como <strong>no necesitamos Github</strong> para gestionar nuestros repositorios remotos.</p><p>Basta con una máquina a la que tenemos acceso por SSH para poder gestionarlos, aunque necesitaremos un <strong>bare repo</strong> para esto.</p><h2 id=repo-normal-vs-bare-repo>Repo normal vs Bare repo</h2><p>Normalmente estamos acostumbrados a hacer esto para iniciar un repositorio:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp ❯ mkdir prueba
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp ❯ <span class=nb>cd</span> prueba/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/prueba ❯ git init
+</span></span><span class=line><span class=cl>Initialized empty Git repository in /tmp/prueba/.git/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>prueba master ❯ ls -la
+</span></span><span class=line><span class=cl>Permissions Size User      Date Modified Name
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>18</span> Aug 12:34   .git
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>prueba master ❯ <span class=nb>echo</span> <span class=s2>&#34;hola mundo&#34;</span> &gt; miarchivo
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>prueba master ? ❯ ls -la
+</span></span><span class=line><span class=cl>Permissions Size User      Date Modified Name
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>18</span> Aug 12:34   .git
+</span></span><span class=line><span class=cl>.rw-r--r--    <span class=m>11</span> datadiego <span class=m>18</span> Aug 12:35  󰡯 miarchivo
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>prueba master ? ❯ git add miarchivo 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>prueba master ❯ git commit -m <span class=s2>&#34;creo un archivo&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>master <span class=o>(</span>root-commit<span class=o>)</span> 6fae141<span class=o>]</span> creo un archivo
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>1</span> insertion<span class=o>(</span>+<span class=o>)</span>
+</span></span><span class=line><span class=cl> create mode <span class=m>100644</span> miarchivo
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>prueba master ❯ git log
+</span></span><span class=line><span class=cl>commit 6fae141d0c018944dcb09f1441ce877d2881b77f <span class=o>(</span>HEAD -&gt; master<span class=o>)</span>
+</span></span><span class=line><span class=cl>Author: Juan Diego Mariscal &lt;juandiegomariscal@gmail.com&gt;
+</span></span><span class=line><span class=cl>Date:   Tue Aug <span class=m>18</span> 12:35:28 <span class=m>2026</span> +0200
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    creo un archivo
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>prueba master ❯ ls .git/
+</span></span><span class=line><span class=cl>Permissions Size User      Date Modified Name
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>18</span> Aug 12:34   hooks
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>18</span> Aug 12:34   info
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>18</span> Aug 12:35   logs
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>18</span> Aug 12:35   objects
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>18</span> Aug 12:34   refs
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>18</span> Aug 12:35   rr-cache
+</span></span><span class=line><span class=cl>.rw-r--r--    <span class=m>16</span> datadiego <span class=m>18</span> Aug 12:35  󰊢 COMMIT_EDITMSG
+</span></span><span class=line><span class=cl>.rw-r--r--    <span class=m>92</span> datadiego <span class=m>18</span> Aug 12:34  󱁻 config
+</span></span><span class=line><span class=cl>.rw-r--r--    <span class=m>73</span> datadiego <span class=m>18</span> Aug 12:34  󰡯 description
+</span></span><span class=line><span class=cl>.rw-r--r--    <span class=m>23</span> datadiego <span class=m>18</span> Aug 12:34  󰡯 HEAD
+</span></span><span class=line><span class=cl>.rw-r--r--   <span class=m>137</span> datadiego <span class=m>18</span> Aug 12:35  󰡯 index
+</span></span><span class=line><span class=cl>.rw-r--r--     <span class=m>0</span> datadiego <span class=m>18</span> Aug 12:35  󰡯 MERGE_RR
+</span></span></code></pre></div><p>Sabemos que tenemos por un lado nuestro <em>Working directory</em>, que contiene nuestros archivos, y por otro la carpeta <code>.git</code>, que contiene la información del repositorio y los cambios que commiteamos.</p><p>Vamos a comparar que sucede cuando creamos un repositorio <em>bare</em>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp ❯ mkdir prueba-bare
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp ❯ <span class=nb>cd</span> prueba-bare/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/prueba-bare ❯ git init --bare
+</span></span><span class=line><span class=cl>Initialized empty Git repository in /tmp/prueba-bare/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/prueba-bare master ❯ ls -la
+</span></span><span class=line><span class=cl>Permissions Size User      Date Modified Name
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>18</span> Aug 12:37   hooks
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>18</span> Aug 12:37   info
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>18</span> Aug 12:37   objects
+</span></span><span class=line><span class=cl>drwxr-xr-x     - datadiego <span class=m>18</span> Aug 12:37   refs
+</span></span><span class=line><span class=cl>.rw-r--r--    <span class=m>66</span> datadiego <span class=m>18</span> Aug 12:37  󱁻 config
+</span></span><span class=line><span class=cl>.rw-r--r--    <span class=m>73</span> datadiego <span class=m>18</span> Aug 12:37  󰡯 description
+</span></span><span class=line><span class=cl>.rw-r--r--    <span class=m>23</span> datadiego <span class=m>18</span> Aug 12:37  󰡯 HEAD
+</span></span></code></pre></div><p>En este repositorio <strong>no tenemos working directory</strong>, sino la carpeta <code>.git</code> a la que estamos acostumbrados directamente en la raiz del proyecto.</p><p>El repositorio bare aun asi contiene todo lo necesario para que trabajemos como estamos acostumbrados en github, gitlab o gitea.</p><h2 id=creando-nuestro-laboratorio>Creando nuestro laboratorio</h2><p>Vamos a usar una raspberrypi y nuestro laptop como laboratorio de como podemos montar un servidor.</p><p>Accederemos a la <em>rpi</em> usando <em>Tailscale</em>, aunque puedes usar un servidor SSH común, luego crearemos un repo bare:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>~ ❯ ssh raspberrypi
+</span></span><span class=line><span class=cl>datadiego@raspberrypi:~ $ git init prueba-repo --bare
+</span></span><span class=line><span class=cl>Initialized empty Git repository in /home/datadiego/prueba-repo/
+</span></span><span class=line><span class=cl>datadiego@raspberrypi:~ $ <span class=nb>cd</span> prueba-repo/
+</span></span><span class=line><span class=cl>datadiego@raspberrypi:~/prueba-repo $ ls
+</span></span><span class=line><span class=cl>HEAD  branches  config  description  hooks  info  objects  refs
+</span></span></code></pre></div><p>Podemos clonar el repositorio mediante <code>ssh &lt;user>@&lt;ip>:ruta-al-repo</code>.</p><p>Vamos a probarl en nuestro laptop, clonamos el repo y realizamos unos cambios:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp ❯ git clone raspberrypi:prueba-repo
+</span></span><span class=line><span class=cl>Cloning into <span class=s1>&#39;prueba-repo&#39;</span>...
+</span></span><span class=line><span class=cl>warning: You appear to have cloned an empty repository.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp ❯ <span class=nb>cd</span> pru
+</span></span><span class=line><span class=cl>prueba/   ...-bare/ ...-repo/ 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp ❯ <span class=nb>cd</span> prueba-repo/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>prueba-repo master ❯ <span class=nb>echo</span> <span class=s2>&#34;hola mundo&#34;</span> &gt; hola.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>prueba-repo master ? ❯ git add .
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>prueba-repo master ❯ git commit -m <span class=s2>&#34;creamos un archivo&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>master <span class=o>(</span>root-commit<span class=o>)</span> dd64987<span class=o>]</span> creamos un archivo
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>1</span> insertion<span class=o>(</span>+<span class=o>)</span>
+</span></span><span class=line><span class=cl> create mode <span class=m>100644</span> hola.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>prueba-repo master ❯ git push origin master
+</span></span><span class=line><span class=cl>Enumerating objects: 3, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>Counting objects: 100% <span class=o>(</span>3/3<span class=o>)</span>, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>Writing objects: 100% <span class=o>(</span>3/3<span class=o>)</span>, <span class=m>237</span> bytes <span class=p>|</span> 237.00 KiB/s, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>Total <span class=m>3</span> <span class=o>(</span>delta 0<span class=o>)</span>, reused <span class=m>0</span> <span class=o>(</span>delta 0<span class=o>)</span>, pack-reused <span class=m>0</span> <span class=o>(</span>from 0<span class=o>)</span>
+</span></span><span class=line><span class=cl>To raspberrypi:prueba-repo
+</span></span><span class=line><span class=cl> * <span class=o>[</span>new branch<span class=o>]</span>      master -&gt; master
+</span></span></code></pre></div><p>Comprobamos en nuestra rpi si hay cambios en el repo:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>datadiego@raspberrypi:~/prueba-repo $ git log
+</span></span><span class=line><span class=cl>commit dd64987ebcc8f709a71657c1418823d18a56782d <span class=o>(</span>HEAD -&gt; master<span class=o>)</span>
+</span></span><span class=line><span class=cl>Author: Juan Diego Mariscal &lt;juandiegomariscal@gmail.com&gt;
+</span></span><span class=line><span class=cl>Date:   Tue Aug <span class=m>18</span> 13:49:04 <span class=m>2026</span> +0200
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    creamos un archivo
+</span></span></code></pre></div><h2 id=por-qué-esto-es-útil>Por qué esto es útil</h2><p>Como con cualquier servicio en la nube, somos dependientes de sus servidores, github ha sido criticada duramente por los tiempos que ha tenido últimamente con caidas en sus servicios, como se muestran en páginas como <a href=https://mrshu.github.io/github-statuses/>esta</a>.</p><p>La opción <code>self hosted</code> siempre es interesante, añade una capa de privacidad que es <strong>muy atractiva</strong> y barata.</p><p>Si bien tenemos opciones como <a href=https://about.gitea.com/>gitea</a> que nos ofrecen una experiencia muy completa que podemos hostear por nosotros mismos, esta solución es lo suficientemente sólida y cómoda como para usarla si dispones de una rpi o un minipc, con <em>Tailscale</em> o <em>WireGuard</em> dispondrás de todos tus repositorios en cualquier lugar sin tener que configurar nada extra.</p><p>Por último, demuestra lo potente que es <code>git</code> de base, y lo flexible que es.</p><h2 id=migrando-nuestros-repositorios-a-bare-repos>Migrando nuestros repositorios a bare repos</h2><p>Si esto te ha gustado quizá quieras migrar tus repositorios a tu propio servidor.</p></div><footer class=content__footer></footer></section><section class=page__aside><div class=aside__about><div class=aside__about><span class=about__logo role=img>✨</span>&nbsp;<h1 class=about__title>/dev/random</h1><p class=about__description>Cultura hacker, software open source y arte hiperdigital</p></div><ul class=aside__social-links><li><a href=https://github.com/datadiego rel=me aria-label=GitHub title=GitHub><i class="fa-brands fa-github" aria-hidden=true></i></a>&nbsp;</li><li><a href=juandiegomariscal@gmail.com rel=me aria-label=Email title=Email><i class="fa-solid fa-envelope" aria-hidden=true></i></a>&nbsp;</li></ul></div><hr><div class=aside__content><p>Uso de repositorios bare en servidores privados</p><p>By datadiego,
+2026-08-18</p></div></section><footer class=page__footer><p><br><span class=active>$ echo $LANG<br><b></b></span><br></p><br><br><p class=copyright>© datadiego</p><script src=https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js></script><script>mermaid.initialize({startOnLoad:!0,theme:"dark"})</script></footer></div></body></html>
