@@ -3,7 +3,7 @@ title: "El sistema de archivos"
 author: datadiego
 draft: false
 description: Como se organiza tu sistema Linux
-date: 2025-07-20
+date: 2025-02-12
 tags:
   - linux
   - guia
