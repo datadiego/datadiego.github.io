@@ -201,3 +201,5 @@ Una vez estés registrado y tengas `glab` instalado, manteniendo el navegador ab
 
 El proceso es similar, nos preguntará si queremos usar *gitlab.com* o una instancia hosteada por nosotros, seleccionaremos *gitlab.com*, le diremos que entraremos usando *Web*, aceptaremos los dominios por defecto y luego nos redirigirá a la página de gitlab para autenticarnos, por ultimo, seleccionaremos *HTTPS* como protocolo y nos confirmará que todo ha ido bien.
 
+
+
