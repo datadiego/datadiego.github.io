@@ -193,4 +193,11 @@ otra linea mas
 
 Solo debes indicar como quieres que se llame el directorio al final, igual con `gh`.
 
+## Gitlab
+
+Usar [GitLab](https://gitlab.com) es muy similar, necesitarás una cuenta en el servicio, y para simplificar la tarea, la herramienta `glab`, instalalá siguiendo la opcion que prefieras en tu os siguiendo [esta guia](https://gitlab.com/gitlab-org/cli/-/blob/main/docs/installation_options.md).
+
+Una vez estés registrado y tengas `glab` instalado, manteniendo el navegador abierto vamos a hacer `glab auth login`.
+
+El proceso es similar, nos preguntará si queremos usar *gitlab.com* o una instancia hosteada por nosotros, seleccionaremos *gitlab.com*, le diremos que entraremos usando *Web*, aceptaremos los dominios por defecto y luego nos redirigirá a la página de gitlab para autenticarnos, por ultimo, seleccionaremos *HTTPS* como protocolo y nos confirmará que todo ha ido bien.
 
