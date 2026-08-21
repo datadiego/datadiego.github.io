@@ -63,4 +63,6 @@ Dispone de **muchisimos** plugins para personalizarlo como quieras, será raro q
 
 Por contra, es un editor gráfico, no puedes usarlo directamente en un servidor, y tiene **muchisima telemetria** de Microsoft. Consume muchos más recursos que cualquiera de los anteriores, en equipos modestos recomendaria cualquiera de los anteriores siempre.
 
-## Helix
+## druk
+
+Editor muy sencillo para terminal, pero que incluye **LSP**, y gestor para tu repositorio, es más que suficiente para tu dia a dia, y muy buena opción como entorno minimalista.
