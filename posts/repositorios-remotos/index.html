@@ -1,0 +1,100 @@
+<!doctype html><html lang=en><head><title>Repositorios remotos &ndash; /dev/random</title><meta name=description content="Cultura hacker, software open source y arte hiperdigital"><meta name=viewport content="width=device-width,initial-scale=1"><meta charset=UTF-8><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css integrity="sha512-IW0nhlW5MgNydsXJO40En2EoCkTTjZhI3yuODrZIc8cQ4h1XcF53PsqDHa09NqnkXuIe0Oiyyj171BqZFwISBw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://datadiego.github.io/blog/css/palettes/base16-dark.css><link rel=stylesheet href=https://datadiego.github.io/blog/css/risotto.css><link rel=stylesheet href=https://datadiego.github.io/blog/css/custom.css><link rel=stylesheet href=/blog/css/syntax.css><script src=/blog/js/copy-code.js defer></script><meta property="og:title" content="Repositorios remotos &ndash; /dev/random"><meta property="og:url" content="https://datadiego.github.io/blog/posts/repositorios-remotos/"><meta property="og:description" content="Como compartir tu código con otros &ndash; "><meta property="og:locale" content="es-ES"><meta property="og:image" content></head><body><div class=page><header class=page__header><nav class="page__nav main-nav"><ul><li class=nomarker><h1 class=page__logo><a href=https://datadiego.github.io/blog/ class=page__logo-inner>/dev/random</a></h1></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/blog/posts/ title>Posts</a></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/blog/about/ title>About</a></li></ul></nav></header><section class=page__body><header class=content__header><h1>Repositorios remotos</h1></header><div class=content__body><p>Si ya sabes manejar repositorios locales, es el momento de aprender a como compartir tu código con otros.</p><p>Si bien puedes crear tu propio servidor en casa o un VPS, vamos a empezar por plataformas conocidas que nos permitirán subirlas sin tener que hostear nuestro propio servicio.</p><h2 id=github>Github</h2><p>Plataforma de Microsoft, te permite subir tu código y hacer despliegue del mismo, generando binarios para distribuirlo o actualizando una web.</p><p>Necesitarás crearte una cuenta en <a href=https://github.com/>Github</a> para subir tu código.</p><p>Además, instala <a href=https://github.com/cli/cli/blob/trunk/docs/install_linux.md>gh cli</a>, nos simplificará mucho el interactuar con el servicio.</p><h3 id=logeando-en-gh-cli>Logeando en gh cli</h3><p>Una vez tengas tu cuenta en Github y hayas iniciado sesión en la web, lanza <code>gh auth login</code> en tu terminal:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>~ ❯ gh auth login
+</span></span><span class=line><span class=cl>? Where <span class=k>do</span> you use GitHub? GitHub.com
+</span></span><span class=line><span class=cl>? What is your preferred protocol <span class=k>for</span> Git operations on this host? HTTPS
+</span></span><span class=line><span class=cl>? How would you like to authenticate GitHub CLI? Login with a web browser
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>! First copy your one-time code: 6170-223E
+</span></span><span class=line><span class=cl>Press Enter to open https://github.com/login/device in your browser...
+</span></span></code></pre></div><p>Iniciaremos sesión mediante <strong>HTTPS</strong>, haciendo <strong>Login mediante el navegador web</strong>, nos darán un código de un solo uso que debemos copiar, y una vez lo tengamos, pulsaremos <strong>Enter</strong> para que se nos redirija a la página donde iniciaremos sesión.</p><p>Tendremos que elegir con que cuenta entrar:</p><p><img src=./login0.png alt=login0></p><p>Pegar el código que nos han dado:</p><p><img src=./login1.png alt=login1></p><p>Y dar permiso a la aplicación de <em>gh cli</em>:</p><p><img src=./login2.png alt=login2></p><p>Adicionalmente, deberás pasar el F2A mediante la aplicación de github o el método que tengas configurado como medida de seguridad.</p><p>Cuando termines, deberás ver:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>✓ Authentication complete.
+</span></span><span class=line><span class=cl>- gh config <span class=nb>set</span> -h github.com git_protocol https
+</span></span><span class=line><span class=cl>✓ Configured git protocol
+</span></span><span class=line><span class=cl>✓ Logged in as datadiego
+</span></span><span class=line><span class=cl>! You were already logged in to this account
+</span></span></code></pre></div><p>Con esto ya estas logeado y puedes crear repositorios remotos, actualizarlos y borrarlos.</p><h3 id=crear-un-repositorio-remoto>Crear un repositorio remoto</h3><p>Vamos a crear un repositorio local, añadir un archivo y commitearlo:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp ❯ git init prueba
+</span></span><span class=line><span class=cl>Initialized empty Git repository in /tmp/prueba/.git/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp ❯ <span class=nb>cd</span> prueba/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>prueba master ❯ <span class=nb>echo</span> <span class=s2>&#34;hola github&#34;</span> &gt; README.md
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>prueba master ? ❯ git add README.md 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>prueba master ❯ git commit -m <span class=s2>&#34;creamos archivo readme&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>master <span class=o>(</span>root-commit<span class=o>)</span> 291e78b<span class=o>]</span> creamos archivo readme
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>1</span> insertion<span class=o>(</span>+<span class=o>)</span>
+</span></span><span class=line><span class=cl> create mode <span class=m>100644</span> README.md
+</span></span></code></pre></div><p>Hasta aqui, nada nuevo. Si queremos crear un repositorio en github, es muy sencillo con <em>gh</em>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>prueba master ❯ gh repo create
+</span></span><span class=line><span class=cl>? What would you like to <span class=k>do</span>? Push an existing <span class=nb>local</span> repository to github.com
+</span></span><span class=line><span class=cl>? Path to <span class=nb>local</span> repository .
+</span></span><span class=line><span class=cl>? Repository name prueba
+</span></span><span class=line><span class=cl>? Repository owner datadiego
+</span></span><span class=line><span class=cl>? Description un repo de prueba
+</span></span><span class=line><span class=cl>? Visibility Private
+</span></span><span class=line><span class=cl>✓ Created repository datadiego/prueba on github.com
+</span></span><span class=line><span class=cl>  https://github.com/datadiego/prueba
+</span></span><span class=line><span class=cl>? Add a remote? Yes
+</span></span><span class=line><span class=cl>? What should the new remote be called? origin
+</span></span><span class=line><span class=cl>✓ Added remote https://github.com/datadiego/prueba.git
+</span></span><span class=line><span class=cl>? Would you like to push commits from the current branch to <span class=s2>&#34;origin&#34;</span>? Yes
+</span></span><span class=line><span class=cl>Enumerating objects: 3, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>Counting objects: 100% <span class=o>(</span>3/3<span class=o>)</span>, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>Writing objects: 100% <span class=o>(</span>3/3<span class=o>)</span>, <span class=m>243</span> bytes <span class=p>|</span> 243.00 KiB/s, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>Total <span class=m>3</span> <span class=o>(</span>delta 0<span class=o>)</span>, reused <span class=m>0</span> <span class=o>(</span>delta 0<span class=o>)</span>, pack-reused <span class=m>0</span> <span class=o>(</span>from 0<span class=o>)</span>
+</span></span><span class=line><span class=cl>To https://github.com/datadiego/prueba.git
+</span></span><span class=line><span class=cl> * <span class=o>[</span>new branch<span class=o>]</span>      HEAD -&gt; master
+</span></span><span class=line><span class=cl>branch <span class=s1>&#39;master&#39;</span> <span class=nb>set</span> up to track <span class=s1>&#39;origin/master&#39;</span>.
+</span></span><span class=line><span class=cl>✓ Pushed commits to https://github.com/datadiego/prueba.git
+</span></span></code></pre></div><p>Puedes ver que opciones son las que hemos usado para subir nuestro contenido, ahora tenemos un repositorio llamado &ldquo;prueba&rdquo; que podrás ver en tu perfil con el archivo <code>README.md</code>.</p><p>Vamos a modificar el archivo y mandar los cambios:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>prueba master ❯ <span class=nb>echo</span> <span class=s2>&#34;otra linea mas&#34;</span> &gt;&gt; README.md
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>prueba master  ❯ git add README.md 
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>prueba master ❯ git commit -m <span class=s2>&#34;un cambio al repositorio&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>master 401cb00<span class=o>]</span> un cambio al repositorio
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>1</span> insertion<span class=o>(</span>+<span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>prueba master ❯ git push
+</span></span><span class=line><span class=cl>Enumerating objects: 5, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>Counting objects: 100% <span class=o>(</span>5/5<span class=o>)</span>, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>Writing objects: 100% <span class=o>(</span>3/3<span class=o>)</span>, <span class=m>288</span> bytes <span class=p>|</span> 288.00 KiB/s, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>Total <span class=m>3</span> <span class=o>(</span>delta 0<span class=o>)</span>, reused <span class=m>0</span> <span class=o>(</span>delta 0<span class=o>)</span>, pack-reused <span class=m>0</span> <span class=o>(</span>from 0<span class=o>)</span>
+</span></span><span class=line><span class=cl>To https://github.com/datadiego/prueba.git
+</span></span><span class=line><span class=cl>   291e78b..401cb00  master -&gt; master
+</span></span></code></pre></div><h3 id=clonando-y-eliminando-el-repostorio>Clonando y eliminando el repostorio</h3><p>Puedes clonar el repositorio de varias maneras, las mas comunes:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1>#con git</span>
+</span></span><span class=line><span class=cl>git clone https://github.com/usuario/repositorio
+</span></span><span class=line><span class=cl><span class=c1>#con gh</span>
+</span></span><span class=line><span class=cl>gh repo clone repositorio
+</span></span></code></pre></div><p>Si usamos <code>git</code> con el repo que acabamos de crear:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp ❯ git clone https://github.com/datadiego/prueba
+</span></span><span class=line><span class=cl>Cloning into <span class=s1>&#39;prueba&#39;</span>...
+</span></span><span class=line><span class=cl>remote: Enumerating objects: 6, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>remote: Counting objects: 100% <span class=o>(</span>6/6<span class=o>)</span>, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>remote: Compressing objects: 100% <span class=o>(</span>2/2<span class=o>)</span>, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>remote: Total <span class=m>6</span> <span class=o>(</span>delta 0<span class=o>)</span>, reused <span class=m>6</span> <span class=o>(</span>delta 0<span class=o>)</span>, pack-reused <span class=m>0</span> <span class=o>(</span>from 0<span class=o>)</span>
+</span></span><span class=line><span class=cl>Receiving objects: 100% <span class=o>(</span>6/6<span class=o>)</span>, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp ❯ cat prueba/README.md 
+</span></span><span class=line><span class=cl>hola github
+</span></span><span class=line><span class=cl>otra linea mas
+</span></span></code></pre></div><p>Con <code>gh</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp ❯ gh repo clone prueba
+</span></span><span class=line><span class=cl>Cloning into <span class=s1>&#39;prueba&#39;</span>...
+</span></span><span class=line><span class=cl>remote: Enumerating objects: 6, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>remote: Counting objects: 100% <span class=o>(</span>6/6<span class=o>)</span>, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>remote: Compressing objects: 100% <span class=o>(</span>2/2<span class=o>)</span>, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>remote: Total <span class=m>6</span> <span class=o>(</span>delta 0<span class=o>)</span>, reused <span class=m>6</span> <span class=o>(</span>delta 0<span class=o>)</span>, pack-reused <span class=m>0</span> <span class=o>(</span>from 0<span class=o>)</span>
+</span></span><span class=line><span class=cl>Receiving objects: 100% <span class=o>(</span>6/6<span class=o>)</span>, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp ❯ cat prueba/README.md 
+</span></span><span class=line><span class=cl>hola github
+</span></span><span class=line><span class=cl>otra linea mas
+</span></span></code></pre></div><p>Ten en cuenta que cuando clonas puedes cambiar el nombre del directorio en el que lo descarga:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp ❯ git clone https://github.com/datadiego/prueba mi-repositorio
+</span></span><span class=line><span class=cl>Cloning into <span class=s1>&#39;mi-repositorio&#39;</span>...
+</span></span><span class=line><span class=cl>remote: Enumerating objects: 6, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>remote: Counting objects: 100% <span class=o>(</span>6/6<span class=o>)</span>, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>remote: Compressing objects: 100% <span class=o>(</span>2/2<span class=o>)</span>, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>remote: Total <span class=m>6</span> <span class=o>(</span>delta 0<span class=o>)</span>, reused <span class=m>6</span> <span class=o>(</span>delta 0<span class=o>)</span>, pack-reused <span class=m>0</span> <span class=o>(</span>from 0<span class=o>)</span>
+</span></span><span class=line><span class=cl>Receiving objects: 100% <span class=o>(</span>6/6<span class=o>)</span>, <span class=k>done</span>.
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp ❯ cat mi-repositorio/README.md 
+</span></span><span class=line><span class=cl>hola github
+</span></span><span class=line><span class=cl>otra linea mas
+</span></span></code></pre></div><p>Solo debes indicar como quieres que se llame el directorio al final, igual con <code>gh</code>.</p><h2 id=gitlab>Gitlab</h2><p>Usar <a href=https://gitlab.com>GitLab</a> es muy similar, necesitarás una cuenta en el servicio, y para simplificar la tarea, la herramienta <code>glab</code>, instalalá siguiendo la opcion que prefieras en tu os siguiendo <a href=https://gitlab.com/gitlab-org/cli/-/blob/main/docs/installation_options.md>esta guia</a>.</p><p>Una vez estés registrado y tengas <code>glab</code> instalado, manteniendo el navegador abierto vamos a hacer <code>glab auth login</code>.</p><p>El proceso es similar, nos preguntará si queremos usar <em>gitlab.com</em> o una instancia hosteada por nosotros, seleccionaremos <em>gitlab.com</em>, le diremos que entraremos usando <em>Web</em>, aceptaremos los dominios por defecto y luego nos redirigirá a la página de gitlab para autenticarnos, por ultimo, seleccionaremos <em>HTTPS</em> como protocolo y nos confirmará que todo ha ido bien.</p></div><footer class=content__footer></footer></section><section class=page__aside><div class=aside__about><div class=aside__about><span class=about__logo role=img>✨</span>&nbsp;<h1 class=about__title>/dev/random</h1><p class=about__description>Cultura hacker, software open source y arte hiperdigital</p></div><ul class=aside__social-links><li><a href=https://github.com/datadiego rel=me aria-label=GitHub title=GitHub><i class="fa-brands fa-github" aria-hidden=true></i></a>&nbsp;</li><li><a href=juandiegomariscal@gmail.com rel=me aria-label=Email title=Email><i class="fa-solid fa-envelope" aria-hidden=true></i></a>&nbsp;</li></ul></div><hr><div class=aside__content><p>Como compartir tu código con otros</p><p>By datadiego,
+2026-07-09</p></div></section><footer class=page__footer><p><br><span class=active>$ echo $LANG<br><b></b></span><br></p><br><br><p class=copyright>© datadiego</p><script src=https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js></script><script>mermaid.initialize({startOnLoad:!0,theme:"dark"})</script></footer></div></body></html>
