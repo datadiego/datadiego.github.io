@@ -17,7 +17,7 @@ jobs:
         with:
           hugo-version: latest
           extended: true
-      - run: hugo --minify
+      - run: hugo --minify --baseURL='https://datadiego.github.io/blog/'
       - uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
