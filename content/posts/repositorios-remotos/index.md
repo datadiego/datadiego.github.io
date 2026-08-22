@@ -1,7 +1,7 @@
 ---
 title: "Repositorios remotos"
 author: datadiego
-draft: true
+draft: false
 description: Como compartir tu código con otros
 date: 2026-07-09
 # la fecha va en formato año-mes-dia
