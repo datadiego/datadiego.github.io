@@ -29,4 +29,14 @@
     font-size: 0.7rem;
 }
 
+/* Ocultar la barra de scroll del aside (sigue siendo scrolleable con rueda/touch) */
+.page__aside {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE/Edge legacy */
+}
+
+.page__aside::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+
 
