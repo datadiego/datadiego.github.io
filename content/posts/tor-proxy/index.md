@@ -111,7 +111,25 @@ Tor oculta con quien hablas, https oculta que os decis.
 
 **Muchos servidores deniegan cualquier petición desde tor** por motivos de seguridad, muchas de las paginas que visitas diariamente pueden no funcionar a través de el, pero muchas ofrecen un servicio `.onion` que puedes visitar.
 
-Son servicios que solo pueden visitarse a través de Tor. Si intentas entrar desde tu navegador no podrás ver nada.
+La URL de un sitio onion es similar a:
+
+```
+za6kfmbjya3vallyt7pgy3oyghemcgs6j2amgd2wddpauap7w56dw6ad.onion
+```
+
+Son una clave criptográfica de 56 caracteres, con un TLD al final `.onion`.
+
+Los `.onion` no son dominios DNS normales, no hay jerarquia DNS que pueda resolverlos. No están asociados a una IP, esta puede cambiar y se conserva su identidad.
+
+Son servicios que solo pueden visitarse a través de Tor. Si intentas entrar desde tu navegador no podrás ver nada. De hecho este blog tiene un mirror `.onion` que solo puedes ver si estás conectado a través del mismo, puedes visitarlo [aqui](http://rogueo7ciqckck2yhf2dqmqxsrav3ydsobcxkun7f5dmysskcxyfgead.onion/)
+
+No necesitan abrir puertos en un firewall para poder llegar a los usuarios, pueden servirse a través de cualquier conexión de internet.
+
+Puedes leer más sobre como funcionan de manera general [aqui](https://community.torproject.org/onion-services/overview/).
+
+Los servicios `.onion` **no usan https**, de hecho, obtener un certificado de una CA para un sitio `.onion` es bastante complicado, ya que la organizacion certificadora no puede comprobar tan fácilmente que seas tu quien controla el dominio.
+
+Aun asi, el protocolo tor encripta el contenido de los sitios `.onion`, ni el nodo de salida ni el ISP pueden acceder al contenido. Puedes leer sobre esto en [la documentación oficial de Tor](https://community.torproject.org/onion-services/advanced/https/)
 
 ## Por qué es importante Tor
 
@@ -142,6 +160,8 @@ La opción más simple si solo quieres proteger tu navegación de internet es us
 Una opción mejor si vamos a realizar actividades sensibles es usar [TailsOS](https://tails.net/), un sistema operativo que arranca desde USB y que **elimina cualquier rastro de lo que hagas durante esa sesión**, cada vez que lo inicias, estará en blanco, siempre.
 
 En nuestro caso, vamos a instalar Tor como un servicio que podemos arrancar y parar en nuestro PC, y usaremos [FoxyProxy](https://addons.mozilla.org/es-ES/firefox/addon/foxyproxy-standard/) en cualquier navegador común para que nuestra conexión sea anonima.
+
+Esta forma de usarlo tiene algo más de complejidad en su configuración inicial, pero nos permitirá crear nuestros propios *hidden-services* y usarlo junto a *torsocks* junto a otros protocolos.
 
 Instala tor como servicio:
 
@@ -184,3 +204,39 @@ Una vez la actives puedes entrar en [esta pagina](https://check.torproject.org/)
 ![tor1](./tor1.png)
 
 Si compruebas tu localización en una pagina como [whatismyipaddress](https://whatismyipaddress.com/) verás que tu país ya no es el que corresponde con tu localización.
+
+## Navegando con Tor
+
+Es normal que veas como tu velocidad de conexión **baja muchísimo** mientras usas Tor, ten en cuenta que debe pasar por tres nodos antes de llegar a ti.
+
+Tienes *search engines* que te permiten buscar sitios `.onion` dentro de la red tor como [ahmia](https://ahmia.fi/) (version normal) o en [version onion](http://juhanurmihxlp77nkq76byazcldy2hlmovfu2epvl5ankdibsot4csyd.onion/).
+
+Algunos consejos para mantener tu privacidad:
+
+- Tor protege tu identidad, a no ser que seas tu mismo el que la rompe, vigila atentamente los formularios que rellenas y que datos estás enviando en cada uno.
+- No descargues torrents a través de tor, el tracker **siempre** realiza una petición GET que manda tu IP real, rompiendo la privacidad de tu tráfico.
+- Como hemos hablado antes, **HTTPS** cifra todo el contenido de la página, evita visitar sitios que solo tengan **HTTP** si no son sitios `.onion`.
+
+## Sobre la legitimidad del anonimato
+
+Tor **no garantiza** de forma absoluta tu anonimato, tampoco te piden que confíes ciegamente en quien los mantiene.
+
+Los *relays* que hacen de nodos **no tienen por que ser propiedad del proyecto**, con el fin de evitar que se ponga en duda su legitimidad, **intentan que no importe que incluso algunos nodos sean maliciosos**, ya que está diseñado de forma que sea casi imposible romper tu anonimato en ese caso.
+
+Sin embargo, hay amenazas reales acerca de cómo existen ciertos ataques que un adversario puede utilizar para quebrar tu privacidad.
+
+Si una organización puede controlar **gran parte de los relays de Tor** y comienza a vigilar el tráfico, en muchos casos podrán controlar y observar ambos extremos en los nodos que envian los paquetes entre si:
+
+```
+PC -> Router/NAT -> ISP -> Nodo malicioso -> Nodo malicioso -> Nodo malicioso -> Servidor Web
+```
+
+Si los tres nodos maliciosos pertenecen a la misma organización, pueden comparar cuando entran los paquetes, cuanto salen, que volumen tienen y patrones de tráfico que pueden acabar correlacionando ambos extremos, incluso si el contenido está cifrado.
+
+En 2014 Tor Project publico un aviso de seguridad sobre un [ataque real](https://blog.torproject.org/tor-security-advisory-relay-early-traffic-confirmation-attack/) en el que los atacantes llegaron a representar el 6,4% de los relays guard de la red y pudieron comprometer el anonimato de algunos usuarios.
+
+Basta con **controlar muchos nodos**.
+
+Aun asi, hay muchos discursos online acerca de que Tor Project está creado **precisamente para poder espiar tráfico** por parte de agencias gubernamentales, y esto es sencillamente falso, el protocolo en sí mismo protege contra esto.
+
+No hay nada que garantice tu privacidad online al 100%, pero el proyecto de Tor ha beneficiado enormemente a esto.
