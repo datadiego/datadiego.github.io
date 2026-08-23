@@ -117,3 +117,5 @@ sudo python3 -m http.server 80
 Luego, abre tu navegador, activa tu proxy y entra a la dirección onion que creaste, deberías ver un hola mundo a través de tu servicio oculto, cualquier persona con la dirección podrá visitarla.
 
 > No uses el servidor de python de forma permanente, con `nginx` o `apache` mucho mejor.
+
+Es sorpendentemente fácil desplegar estos servicios, mucho más que en un VPS con HTTPS.
