@@ -3,7 +3,7 @@ title: "Protocolo tor y red onion #1: Ocultando tu presencia online"
 author: datadiego
 draft: false
 description: Usando la red onion como proxy
-date: 2026-07-09
+date: 2026-08-23
 # la fecha va en formato año-mes-dia
 tags:
   - hacking
