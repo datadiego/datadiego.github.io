@@ -17,7 +17,7 @@ palette = "base16-dark"
 [params.about]
 title = "/dev/random"
 description = "Cultura hacker, software open source y arte hiperdigital"
-logo = "✨"
+logo = "ᓚᘏᗢ"
 
 [[params.socialLinks]]
 icon = "fa-brands fa-github"
