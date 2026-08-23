@@ -1,8 +1,8 @@
 ---
-title: "Protocolo tor y red onion #1: Ocultando tu presencia online"
+title: "Tor y red onion #1: Privacidad en linea"
 author: datadiego
 draft: false
-description: Usando la red onion como proxy
+description: Usando la red onion como proxy para proteger tu anonimato
 date: 2026-08-23
 # la fecha va en formato año-mes-dia
 tags:
