@@ -4,5 +4,5 @@ title = "Inicio"
 
 ᓚᘏᗢ /dev/random
 
-Blog personal de una entidad de materia orgánica dotada de capacidad cognitiva.
+Entidad de materia orgánica dotada de capacidad cognitiva escribiendo sobre que hace y que le interesa.
 
