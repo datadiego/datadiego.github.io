@@ -7,67 +7,295 @@ date: "2025-09-10"
 tags: ["guia", "linux"]
 ---
 
-Linux es famoso por la alta personalización que ofrece, puedes instalar diferentes escritorios, configurarlos a tu gusto y todo queda en archivos de texto que son fáciles y portables. 
+Linux es conocido por la altísima configuración que ofrece. Uno de los aspectos que más sorprende a quien llega de primeras a este sistema operativo es la capacidad de poder cambiar tu escritorio por completo e incluso poder tener multiples para cambiar la experiencia de usuario que prefieres en cada momento.
 
-La primera vez que configuré un *Desktop Environment* en Linux en el que me sentía cómodo fué una sensación genial, ir configurando en archivos de texto como queria que mi `i3` actuara era simple y rápido de modificar, sin embargo, hubo una idea que ya me estaba rondando la cabeza conforme lo estaba configurando:
+Otra característica que a mi me vendió muy rápido el pasar mis dispositivos a distros de Linux era poder automatizar la instalación de software que necesito en mi entorno.
 
-> ¿Voy a tener que hacer todo esto de nuevo si el dia de mañana tengo que formatear? ¿Y si quiero usar este mismo entorno en otra máquina o VM?
+Una parte que mucha gente encuentra inicialmente como _un paso atrás_ respecto a Windows o Mac es tener que editar archivos de texto para configurar tu sistema. Estamos acostumbrados a que la interfaz gráfica ha sido un avance (y en parte, lo es) pero los los archivos de texto para configurar tienen una clara ventaja que no es fácil de apreciar de primeras.
 
-La idea de linux de que *todo sea un archivo de texto* facilitaba esta tarea, pero no dejaba de ser algo un poco tedioso. Mientras iba configurando, iba pensando en ir creando un *bash script* para esto, la parte de instalar paquetes era fácil no era mas que un monton de `sudo apt install` con lo que necesitaba, pero la de mover todos los archivos de configuración necesitaba más trabajo y era más delicado.
+## La situación típica
 
-Acabé creando mi script, pero se volvió bastante insostenible hacerlo **entero** solo con bash.
+Has instalado Linux hace poco, configuraste tu sistema como prefieres, instalaste desktop environments nuevos, una terminal que te gusta más que la original, un editor de texto como nvim, configuraste todo este software en los archivos que necesitabas. Y aunque estás contento es normal que mientras estás haciendo todo esto te preguntes:
 
-La realidad es que podemos usar un par de herramientas que nos van a facilitar **muchísimo** esta tarea. Solo necesitarás usar `stow`, un `Makefile` y varios `bash scripts`. Esto además nos va a permitir adaptar más fácilmente nuestros `dotfiles` a diferentes distros y desktop environments.
+> ¿Como voy a volver a hacer todo esto el dia de mañana en otra maquina? Voy a perder varios dias en hacer todo esto.
 
-## Las bases
+La respuesta corta es: **No vas a hacerlo!**
 
-Vamos a hacer un desglose de las herramientas y conceptos que usaremos y que función cumplen dentro del proyecto.
+La respuesta larga viene en el resto del post, vamos a aprender a como automatizar todo esto fácilmente y tener tu entorno listo en minutos.
 
-### dotfiles
+Para ello, agruparemos nuestras configuraciones (conocidas como `dotfiles`) en un directorio que sincronizaremos con el resto de nuestro sistema. Además, aprenderás a usar los `dotfiles` de otros usuarios e integrarlos en tu sistema para que puedas copiar las configuraciones ya hechas de otros, ahorrandote aún más tiempo.
 
-Son nuestros archivos de configuración, lo que define nuestro sistema, generalmente están en `~/.config`, aunque otros como nuestro `.bashrc` viven directamente en nuestro home. Son los archivos que queremos que se muevan a nuestro nuevo sistema tras instalar las dependencias necesarias.
+## Estructura
 
-### stow
+Vamos a separar el como recrear tu entorno de Linux en otros dispositivos en varias partes, cada una te aporta una automatización en diferentes aspectos de tu sistema:
 
-Un software que **crea enlaces simbólicos** y situa nuestros *dotfiles* donde corresponde. De forma que podamos tenerlos todos organizados en un repositorio y mover **todos** con un solo comando.
+- **Automatización de la instalación de paquetes**: La más simple, dejar instalado todo lo que vas a usar para no tener que estar instalando manualmente.
+- **Gestión de dotfiles**: Como mover tus configuraciones donde deben estar para no editar a mano esos archivos.
+- **Automatizar todo**: Por ultimo, como integrar todo para que con un solo comando tu sistema quede listo en unos minutos.
 
-Al usar enlaces simbólicos, cuando editemos un *dotfile*, bien sea desde el repositorio o directamente en la ruta establecida, este se actualizará automáticamente, esto nos evita tener que estar copiando nuestros dotfiles con los cambios, o tener un script que gestione que dotfiles debemos actualizar.
+Antes de empezar, necesitarás conocer cómo usar **git** y alguna plataforma cómo **github** para tener tu repositorio disponible más fácilmente.
 
-### bash scripts
+Comienza por crear un directorio llamado `dotfiles`, puedes llamarlo como quieras, pero se suele llamar así al directorio donde vas a almacenar todo esto y compartirlo.
 
-Nos permiten crear scripts con los **comandos que ya conoces** de tu shell en linux.
+El directorio tendrá una estructura como esta:
 
-Se van a usar para automatizar la instalación de todas las dependencias que necesitemos.
-
-### Makefile
-
-Permite crear instrucciones y automatizar que scripts se lanzan dependiendo de que sistema deseamos.
-
-Un ejemplo de mi Makefile:
-
-```bash
-dotfiles master ❯ make
-     __     __  ____ __
- ___/ /__  / /_/ _(_) /__ ___
-/ _  / _ \/ __/ _/ / / -_|_-<
-\_,_/\___/\__/_//_/_/\__/___/
-
-  fedora-common   Configuración básica fedora + gnome
-  fedora-hyprland Configuración básica fedora + hyprland
-  fedora-dms      Configuración básica fedora + dank material shell
-  fedora-i3       Configuración básica fedora + i3
-  fedora-hacking  Herramientas de hacking y ciberseguridad para fedora
-  debian-hacking  Herramientas de hacking y ciberseguridad para debian
-  unstow          Unstow todos los paquetes
-  generate        Genera configs desde templates
-  clean           Limpia archivos generados
+```
+.
+├── bash
+├── btop
+├── hyprland
+├── Makefile
+├── noctalia
+├── nvim
+├── alacritty
+├── scripts
+│   ├── cybsec-tools-fedora.sh
+│   ├── common.sh
+│   ├── dev-tools.sh
+│   └── git-config.sh
+└── user-scripts
+    ├── launch-terminal
+    └── terminal-cwd
 ```
 
-Gracias a esto, podemos lanzar `make fedora-hyprland` si queremos un escritorio con un hyprland básico, `make fedora-i3` para un entorno i3, ambos con las herramientas que siempre uso.
+Los directorios y archivos son:
 
-Si necesito hacer alguna tarea de pentesting, con `make fedora-hacking` instalaré todas las herramientas de hacking y ciberseguridad que más uso.
+- **Makefile**: El archivo que automatizará la instalación y gestion de dotfiles de forma automática.
+- **scripts**: Directorio donde crearemos scripts para instalar paquetes.
+- **user-scripts**: Diferentes scripts y utilidades que usamos directamente en la terminal.
+- **El resto de directorios**: Contienen los `dotfiles` y configuraciones de cada aplicación que necesitemos configurar. Por ejemplo, `bash` contiene nuestro `.bashrc` con la configuración de nuestro entorno de terminal, `nvim` para nuestro editor de texto y `hyprland` la configuración del entorno de escritorio.
 
-Lo mejor es que puedes crear diferentes scripts para diferentes distros, los `dotfiles` no cambian entre ellas, asi que son compatibles.
+Antes de empezar a crearlo, si vas a empezar *desde cero*, es buena idea usar **timeshift** o **snapshots** si estas en una VM para comprobar si tu proyecto recrea correctamente bien el entorno.
 
-## Preparar un entorno
+### Automatizar la instalación de dependencias
+
+Esta parte es bien simple, crearemos un directorio llamado `scripts` donde vamos a automatizar todo el proceso con varios `bash scripts`.
+
+Ya estarás acostumbrado a instalar mediante la terminal tus programas, muchos desde tu gestor de paquetes, y otros mediante `flatpaks`, `appimages` o bash scripts que te dan los desarrolladores de apps.
+
+En realidad no tienes que hacer gran cosa, considera que cuando ejecutas esto en la terminal:
+
+```bash
+sudo dnf install <paquete>
+```
+
+También puedes escribirlo en un archivo y ejecutarlo:
+
+```bash
+❯ cat scripts/common.sh
+# utilidades
+sudo dnf install pipx unzip xclip yq jq fzf stow eza tldr fastfetch micro stow btop brightnessctl fd -y
+
+# editor
+sudo dnf install neovim -y
+
+# video
+sudo dnf install yt-dlp kdenlive -y
+
+❯ chmod +x scripts/common.sh
+
+❯ ./scripts/common.sh
+```
+
+La flag `-y` o `--yes` evita que nos pregunte si queremos instalar el paquete y tener que confirmarlo a mano.
+
+Es importante que independientemente de que método de instalación estés usando, siempre consigas que se ejecute sin tener que interactuar tu. La idea es que simplemente lo dejes instalando todo y te despreocupes.
+
+#### Separando responsabilidades
+
+Utilizar estos scripts te permite separar diferentes paquetes según propósitos, por ejemplo:
+
+```
+scripts/
+├── cybsec-tools-fedora.sh
+├── common.sh
+├── gaming.sh
+├── dev-tools.sh
+└── git-config.sh
+```
+
+En este caso:
+
+- `cybsec-tools-fedora.sh` solo instala paquetes para hacking, pentesting y demás propósitos.
+- `common.sh` son los paquetes que **siempre** vas a querer en cualquier máquina, los básicos que hacen que tu sistema funcione como quieres.
+- `gaming.sh` instala las plataformas y juegos que usas.
+- `dev-tools.sh` lenguajes, LSPs, herramientas para desarrollar software en general.
+
+Puedes tener archivos que configuren parte de tu sistema, por ejemplo, `git-config.sh`:
+
+```bash
+# Configurar git
+read -p "Introduce tu nombre para Git: " git_name
+read -p "Introduce tu email para Git: " git_email
+
+git config --global user.name "$git_name"
+git config --global user.email "$git_email"
+```
+
+Pregunta el nombre y email del usuario y los deja ya configurados, puedes meter más comandos de configuración aqui.
+
+Esto podría hacerse mediante `dotfiles`, pero al hacerlo mediante el script evitas que tu nombre y correo estén en un repositorio público, y que un usuario que quiera usar tu configuración acabe firmando commits en tu nombre.
+
+### Gestionando dotfiles
+
+Vamos a aprender como funcionan los archivos de configuración de tu sistema.
+
+La mayoría de estos archivos se encuentran en el directorio *home* de tu usuario, en el directorio `.config`:
+
+```bash
+~
+❯ tree .config/ -L 1
+.config/
+├── alacritty
+├── btop -> ../.dotfiles/btop/.config/btop
+├── dconf
+├── evolution
+├── gh
+├── go
+├── goa-1.0
+├── gtk-3.0
+├── gtk-4.0
+├── hypr -> ../.dotfiles/hyprland/.config/hypr
+├── ibus
+├── lazydocker
+├── lazygit
+├── mozilla
+├── nautilus
+├── noctalia -> ../.dotfiles/noctalia/.config/noctalia
+├── nvim -> ../.dotfiles/nvim/.config/nvim
+├── opencode -> ../.dotfiles/opencode/.config/opencode
+├── pulse
+├── qt5ct
+├── qt6ct
+├── QtProject.conf
+├── starship.toml
+└── uv
+```
+
+Aqui ya puedes apreciar cual es la clave de gestionar los dotfiles de aplicaciones en las que queremos conservar su configuracion:
+
+```
+├── nvim -> ../.dotfiles/nvim/.config/nvim
+```
+
+Esto no es un directorio, es un **symlink** o **enlace simbólico**, que apunta al directorio de dotfiles donde estamos trabajando.
+
+#### Entendiendo los symlinks
+
+Un enlace simbólico es similar a un **acceso directo** en windows, nos permite hacer una **copia** de un archivo en otro sitio, y esta es simplemente una *referencia* al mismo, si editamos el archivo original o el symlink, se modifican ambos:
+
+```bash
+/tmp/test-symlinks
+❯ mkdir dirA
+
+/tmp/test-symlinks
+❯ mkdir dirB
+
+/tmp/test-symlinks
+❯ echo "hola mundo" > dirA/mi-archivo.txt
+
+/tmp/test-symlinks
+❯ ln -s ../dirA/mi-archivo.txt dirB/mi-archivo.txt
+
+/tmp/test-symlinks
+❯ cat dirA/mi-archivo.txt
+hola mundo
+
+/tmp/test-symlinks
+❯ cat dirB/mi-archivo.txt
+hola mundo
+
+/tmp/test-symlinks
+❯ echo "edit 1" > dirB/mi-archivo.txt
+
+/tmp/test-symlinks
+❯ cat dirA/mi-archivo.txt
+edit 1
+
+/tmp/test-symlinks
+❯ echo "edit 2" > dirA/mi-archivo.txt
+
+/tmp/test-symlinks
+❯ cat dirB/mi-archivo.txt
+edit 2
+```
+
+Como ves, al crear el enlace tenemos que poner una ruta o bien relativa al directorio que estamos usando como en el ejemplo, o una absoluta, como seria `/tmp/test-symlinks/dirA/mi-archivo.txt`.
+
+`dirB/mi-archivo.txt` solo es una referencia al primer archivo creado, por eso, si cambiamos tanto en el original como en el enlace simbólico su contenido, ambos se modifican.
+
+### Usando stow para resolver los enlaces
+
+Podrias crear tu propio script para crear los enlaces simbolicos de tus dotfiles, pero por suerte, no tienes que hacer nada de eso, en su lugar usaremos `stow`, una herramienta que nos ayudará a simplificar esta tarea mucho.
+
+#### Como funciona stow
+
+Para entender qué hace y como hace `stow` para saber **donde** debe situar tus archivos, veamos este ejemplo:
+
+```bash
+~
+❯ pwd
+/home/datadiego
+
+~
+❯ mkdir prueba-stow
+
+~
+❯ cd prueba-stow/
+
+~/prueba-stow
+❯ mkdir -p test/mi-prueba/
+
+~/prueba-stow
+❯ echo "hola mundo" > test/mi-prueba/mi-archivo.txt
+
+~/prueba-stow
+❯ tree .
+.
+└── test
+    └── mi-prueba
+        └── mi-archivo.txt
+
+3 directories, 1 file
+```
+
+Hemos creado un directorio en nuestro `home`, llamado `prueba-stow`, luego hemos creado un directorio llamado `test`.
+
+`test` es el nombre **clave** que usará stow para que puedas decirle qué quieres mover. El resto de rutas dentro de esa carpeta se crearan en tu `home`, en este caso, acabaremos con `~/mi-prueba/mi-archivo.txt`
+
+```bash
+~/prueba-stow
+❯ ls ~
+drwxr-xr-x@ - datadiego 26 ago 10:00 Descargas
+drwxr-xr-x@ - datadiego 25 ago 13:03 Documentos
+drwxr-xr-x@ - datadiego 25 ago 09:18 Escritorio
+drwxr-xr-x@ - datadiego 25 ago 12:37 Imágenes
+drwxr-xr-x@ - datadiego 25 ago 09:18 Música
+drwxr-xr-x@ - datadiego 25 ago 13:26 notas
+drwxr-xr-x@ - datadiego 27 ago 14:07 Pictures
+drwxr-xr-x@ - datadiego 28 ago 23:41 prueba-stow
+drwxr-xr-x@ - datadiego 25 ago 09:18 Vídeos
+
+~/prueba-stow
+❯ stow test/
+
+~/prueba-stow
+❯ ls ~
+drwxr-xr-x@ - datadiego 26 ago 10:00 Descargas
+drwxr-xr-x@ - datadiego 25 ago 13:03 Documentos
+drwxr-xr-x@ - datadiego 25 ago 09:18 Escritorio
+drwxr-xr-x@ - datadiego 25 ago 12:37 Imágenes
+lrwxrwxrwx@ - datadiego 28 ago 23:42 mi-prueba -> prueba-stow/test/mi-prueba
+drwxr-xr-x@ - datadiego 25 ago 09:18 Música
+drwxr-xr-x@ - datadiego 25 ago 13:26 notas
+drwxr-xr-x@ - datadiego 27 ago 14:07 Pictures
+drwxr-xr-x@ - datadiego 28 ago 23:41 prueba-stow
+drwxr-xr-x@ - datadiego 25 ago 09:18 Vídeos
+
+~/prueba-stow
+❯ cat ~/mi-prueba/mi-archivo.txt
+hola mundo
+```
+
+
 

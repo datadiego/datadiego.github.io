@@ -17,15 +17,15 @@ Hay **demasiados** editores de texto como para tratar todos en un mismo post, pe
 
 ## nano
 
-Es el editor que suelen incluir la mayoria de distribuciones, funciona directamente en terminal, asi que podrás usarlo sin problema en un servidor con tty.
+Es el editor que suelen incluir la mayoría de distribuciones, funciona directamente en terminal, asi que podrás usarlo sin problema en un servidor con tty.
 
 ![nano](nano.png)
 
-Es muy ligero, no tiene resaltado de sintaxis ni ayudas, y aunque en la parte inferior aparecen los comandos que tenemos disponibles, no son los que estarás acostumbrado, lo que puede incomodar. Aun asi, recomiendo que aprendas a usarlo *minimamente*, con saber cambiar algo y guardar el archivo basta, ya que muchos servidores tendrán este editor y será el que uses para configurarlos.
+Es muy ligero, no tiene resaltado de sintaxis ni ayudas, y aunque en la parte inferior aparecen los comandos que tenemos disponibles, no son los que estarás acostumbrado, lo que puede incomodar. Aun asi, recomiendo que aprendas a usarlo _mínimamente_, con saber cambiar algo y guardar el archivo basta, ya que muchos servidores tendrán este editor y será el que uses para configurarlos.
 
 ## vi
 
-Otro editor que viene incluido en muchas distribuciones, es un editor muy minimalista de tipo **modal**, por lo que tendrás que moverte entre los modos *normal* para moverte en el texto, *visual* para seleccionar e *insertar* para escribir, te permite editar texto de forma **muy efectiva** y rápida, pero tiene una curva de dificultad considerable que no todo el mundo está dispuesto a superar.
+Otro editor que viene incluido en muchas distribuciones, es un editor muy minimalista de tipo **modal**, por lo que tendrás que moverte entre los modos _normal_ para moverte en el texto, _visual_ para seleccionar e _insertar_ para escribir, te permite editar texto de forma **muy efectiva** y rápida, pero tiene una curva de dificultad considerable que no todo el mundo está dispuesto a superar.
 
 ![vi](./vim.png)
 
@@ -33,9 +33,9 @@ No lo recomiendo si acabas de empezar a programar o empiezas en Linux, pero tenl
 
 ## micro
 
-Este editor está disponible en cualquier distro que uses, es el que suelo recomendar a cualquier usuario que comience a usar Linux y ya sepa usar minimamente nano, pero quiera tener atajos de teclado clásicos.
+Este editor está disponible para instalar en cualquier distro que uses, es el que suelo recomendar a cualquier usuario que comience a usar Linux y ya sepa usar minimamente nano, pero quiera tener atajos de teclado clásicos.
 
-Visualmente es bastante más atractivo, también tiene resaltado de sintaxis y puede ser más que suficiente para editar código en tu dia a dia:
+Visualmente es bastante más atractivo, también tiene resaltado de sintaxis y puede ser más que suficiente para editar código en tu día a día:
 
 ![micro](./micro.png)
 
