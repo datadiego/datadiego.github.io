@@ -1,0 +1,271 @@
+<!doctype html><html lang=en><head><title>Gestionando dotfiles &ndash; /dev/random</title><meta name=description content="Cultura hacker, software open source y arte hiperdigital"><meta name=viewport content="width=device-width,initial-scale=1"><meta charset=UTF-8><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css integrity="sha512-IW0nhlW5MgNydsXJO40En2EoCkTTjZhI3yuODrZIc8cQ4h1XcF53PsqDHa09NqnkXuIe0Oiyyj171BqZFwISBw==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://datadiego.github.io/css/palettes/base16-dark.css><link rel=stylesheet href=https://datadiego.github.io/css/risotto.css><link rel=stylesheet href=https://datadiego.github.io/css/custom.css><link rel=stylesheet href=/css/syntax.css><script src=/js/copy-code.js defer></script><meta property="og:title" content="Gestionando dotfiles &ndash; /dev/random"><meta property="og:url" content="https://datadiego.github.io/posts/gestionar-dotfiles/"><meta property="og:description" content="Guia de como usar tus dotfiles en otras máquinas y automatizar la instalación de tu entorno &ndash; "><meta property="og:locale" content="es-ES"><meta property="og:image" content></head><body><div class=page><header class=page__header><nav class="page__nav main-nav"><ul><li class=nomarker><h1 class=page__logo><a href=https://datadiego.github.io/ class=page__logo-inner>/dev/random</a></h1></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/posts/ title>Posts</a></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/about/ title>About</a></li></ul></nav></header><section class=page__body><header class=content__header><h1>Gestionando dotfiles</h1></header><div class=content__body><p>Linux es conocido por la altísima configuración que ofrece. Uno de los aspectos que más sorprende a quien llega de primeras a este sistema operativo es la capacidad de poder cambiar tu escritorio por completo e incluso poder tener multiples para cambiar la experiencia de usuario que prefieres en cada momento.</p><p>Otra característica que a mi me vendió muy rápido el pasar mis dispositivos a distros de Linux era poder automatizar la instalación de software que necesito en mi entorno.</p><p>Una parte que mucha gente encuentra inicialmente como <em>un paso atrás</em> respecto a Windows o Mac es tener que editar archivos de texto para configurar tu sistema. Estamos acostumbrados a que la interfaz gráfica ha sido un avance (y en parte, lo es) pero los los archivos de texto para configurar tienen una clara ventaja que no es fácil de apreciar de primeras.</p><h2 id=la-situación-típica>La situación típica</h2><p>Has instalado Linux hace poco, configuraste tu sistema como prefieres, instalaste desktop environments nuevos, una terminal que te gusta más que la original, un editor de texto como nvim, configuraste todo este software en los archivos que necesitabas. Y aunque estás contento es normal que mientras estás haciendo todo esto te preguntes:</p><blockquote><p>¿Como voy a volver a hacer todo esto el dia de mañana en otra maquina? Voy a perder varios dias en hacer todo esto.</p></blockquote><p>La respuesta corta es: <strong>No vas a hacerlo!</strong></p><p>La respuesta larga viene en el resto del post, vamos a aprender a como automatizar todo esto fácilmente y tener tu entorno listo en minutos.</p><p>Para ello, agruparemos nuestras configuraciones (conocidas como <code>dotfiles</code>) en un directorio que sincronizaremos con el resto de nuestro sistema. Además, aprenderás a usar los <code>dotfiles</code> de otros usuarios e integrarlos en tu sistema para que puedas copiar las configuraciones ya hechas de otros, ahorrandote aún más tiempo.</p><h2 id=estructura>Estructura</h2><p>Vamos a separar el como recrear tu entorno de Linux en otros dispositivos en varias partes, cada una te aporta una automatización en diferentes aspectos de tu sistema:</p><ul><li><strong>Automatización de la instalación de paquetes</strong>: La más simple, dejar instalado todo lo que vas a usar para no tener que estar instalando manualmente.</li><li><strong>Gestión de dotfiles</strong>: Como mover tus configuraciones donde deben estar para no editar a mano esos archivos.</li><li><strong>Automatizar todo</strong>: Por ultimo, como integrar todo para que con un solo comando tu sistema quede listo en unos minutos.</li></ul><p>Antes de empezar, necesitarás conocer cómo usar <strong>git</strong> y alguna plataforma cómo <strong>github</strong> para tener tu repositorio disponible más fácilmente.</p><p>Comienza por crear un directorio llamado <code>dotfiles</code>, puedes llamarlo como quieras, pero se suele llamar así al directorio donde vas a almacenar todo esto y compartirlo.</p><p>El directorio tendrá una estructura como esta:</p><pre tabindex=0><code>.
+├── bash
+├── btop
+├── hyprland
+├── Makefile
+├── noctalia
+├── nvim
+├── alacritty
+├── scripts
+│   ├── cybsec-tools-fedora.sh
+│   ├── common.sh
+│   ├── dev-tools.sh
+│   └── git-config.sh
+└── user-scripts
+    ├── launch-terminal
+    └── terminal-cwd
+</code></pre><p>Los directorios y archivos son:</p><ul><li><strong>Makefile</strong>: El archivo que automatizará la instalación y gestion de dotfiles de forma automática.</li><li><strong>scripts</strong>: Directorio donde crearemos scripts para instalar paquetes.</li><li><strong>user-scripts</strong>: Diferentes scripts y utilidades que usamos directamente en la terminal.</li><li><strong>El resto de directorios</strong>: Contienen los <code>dotfiles</code> y configuraciones de cada aplicación que necesitemos configurar. Por ejemplo, <code>bash</code> contiene nuestro <code>.bashrc</code> con la configuración de nuestro entorno de terminal, <code>nvim</code> para nuestro editor de texto y <code>hyprland</code> la configuración del entorno de escritorio.</li></ul><p>Antes de empezar a crearlo, si vas a empezar <em>desde cero</em>, es buena idea usar <strong>timeshift</strong> o <strong>snapshots</strong> si estas en una VM para comprobar si tu proyecto recrea correctamente bien el entorno.</p><h3 id=automatizar-la-instalación-de-dependencias>Automatizar la instalación de dependencias</h3><p>Esta parte es bien simple, crearemos un directorio llamado <code>scripts</code> donde vamos a automatizar todo el proceso con varios <code>bash scripts</code>.</p><p>Ya estarás acostumbrado a instalar mediante la terminal tus programas, muchos desde tu gestor de paquetes, y otros mediante <code>flatpaks</code>, <code>appimages</code> o bash scripts que te dan los desarrolladores de apps.</p><p>En realidad no tienes que hacer gran cosa, considera que cuando ejecutas esto en la terminal:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo dnf install &lt;paquete&gt;
+</span></span></code></pre></div><p>También puedes escribirlo en un archivo y ejecutarlo:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>❯ cat scripts/common.sh
+</span></span><span class=line><span class=cl><span class=c1># utilidades</span>
+</span></span><span class=line><span class=cl>sudo dnf install pipx unzip xclip yq jq fzf stow eza tldr fastfetch micro stow btop brightnessctl fd -y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># editor</span>
+</span></span><span class=line><span class=cl>sudo dnf install neovim -y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># video</span>
+</span></span><span class=line><span class=cl>sudo dnf install yt-dlp kdenlive -y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>❯ chmod +x scripts/common.sh
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>❯ ./scripts/common.sh
+</span></span></code></pre></div><p>La flag <code>-y</code> o <code>--yes</code> evita que nos pregunte si queremos instalar el paquete y tener que confirmarlo a mano.</p><p>Es importante que independientemente de que método de instalación estés usando, siempre consigas que se ejecute sin tener que interactuar tu. La idea es que simplemente lo dejes instalando todo y te despreocupes.</p><h4 id=separando-responsabilidades>Separando responsabilidades</h4><p>Utilizar estos scripts te permite separar diferentes paquetes según propósitos, por ejemplo:</p><pre tabindex=0><code>scripts/
+├── cybsec-tools-fedora.sh
+├── common.sh
+├── gaming.sh
+├── dev-tools.sh
+└── git-config.sh
+</code></pre><p>En este caso:</p><ul><li><code>cybsec-tools-fedora.sh</code> solo instala paquetes para hacking, pentesting y demás propósitos.</li><li><code>common.sh</code> son los paquetes que <strong>siempre</strong> vas a querer en cualquier máquina, los básicos que hacen que tu sistema funcione como quieres.</li><li><code>gaming.sh</code> instala las plataformas y juegos que usas.</li><li><code>dev-tools.sh</code> lenguajes, LSPs, herramientas para desarrollar software en general.</li></ul><p>Puedes tener archivos que configuren parte de tu sistema, por ejemplo, <code>git-config.sh</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Configurar git</span>
+</span></span><span class=line><span class=cl><span class=nb>read</span> -p <span class=s2>&#34;Introduce tu nombre para Git: &#34;</span> git_name
+</span></span><span class=line><span class=cl><span class=nb>read</span> -p <span class=s2>&#34;Introduce tu email para Git: &#34;</span> git_email
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>git config --global user.name <span class=s2>&#34;</span><span class=nv>$git_name</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>git config --global user.email <span class=s2>&#34;</span><span class=nv>$git_email</span><span class=s2>&#34;</span>
+</span></span></code></pre></div><p>Pregunta el nombre y email del usuario y los deja ya configurados, puedes meter más comandos de configuración aqui.</p><p>Esto podría hacerse mediante <code>dotfiles</code>, pero al hacerlo mediante el script evitas que tu nombre y correo estén en un repositorio público, y que un usuario que quiera usar tu configuración acabe firmando commits en tu nombre.</p><h3 id=gestionando-dotfiles>Gestionando dotfiles</h3><p>Vamos a aprender como funcionan los archivos de configuración de tu sistema.</p><p>La mayoría de estos archivos se encuentran en el directorio <em>home</em> de tu usuario, en el directorio <code>.config</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>~
+</span></span><span class=line><span class=cl>❯ tree .config/ -L <span class=m>1</span>
+</span></span><span class=line><span class=cl>.config/
+</span></span><span class=line><span class=cl>├── alacritty
+</span></span><span class=line><span class=cl>├── btop -&gt; ../.dotfiles/btop/.config/btop
+</span></span><span class=line><span class=cl>├── dconf
+</span></span><span class=line><span class=cl>├── evolution
+</span></span><span class=line><span class=cl>├── gh
+</span></span><span class=line><span class=cl>├── go
+</span></span><span class=line><span class=cl>├── goa-1.0
+</span></span><span class=line><span class=cl>├── gtk-3.0
+</span></span><span class=line><span class=cl>├── gtk-4.0
+</span></span><span class=line><span class=cl>├── hypr -&gt; ../.dotfiles/hyprland/.config/hypr
+</span></span><span class=line><span class=cl>├── ibus
+</span></span><span class=line><span class=cl>├── lazydocker
+</span></span><span class=line><span class=cl>├── lazygit
+</span></span><span class=line><span class=cl>├── mozilla
+</span></span><span class=line><span class=cl>├── nautilus
+</span></span><span class=line><span class=cl>├── noctalia -&gt; ../.dotfiles/noctalia/.config/noctalia
+</span></span><span class=line><span class=cl>├── nvim -&gt; ../.dotfiles/nvim/.config/nvim
+</span></span><span class=line><span class=cl>├── opencode -&gt; ../.dotfiles/opencode/.config/opencode
+</span></span><span class=line><span class=cl>├── pulse
+</span></span><span class=line><span class=cl>├── qt5ct
+</span></span><span class=line><span class=cl>├── qt6ct
+</span></span><span class=line><span class=cl>├── QtProject.conf
+</span></span><span class=line><span class=cl>├── starship.toml
+</span></span><span class=line><span class=cl>└── uv
+</span></span></code></pre></div><p>Aqui ya puedes apreciar cual es la clave de gestionar los dotfiles de aplicaciones en las que queremos conservar su configuracion:</p><pre tabindex=0><code>├── nvim -&gt; ../.dotfiles/nvim/.config/nvim
+</code></pre><p>Esto no es un directorio, es un <strong>symlink</strong> o <strong>enlace simbólico</strong>, que apunta al directorio de dotfiles donde estamos trabajando.</p><h4 id=entendiendo-los-symlinks>Entendiendo los symlinks</h4><p>Un enlace simbólico es similar a un <strong>acceso directo</strong> en windows, nos permite hacer una <strong>copia</strong> de un archivo en otro sitio, y esta es simplemente una <em>referencia</em> al mismo, si editamos el archivo original o el symlink, se modifican ambos:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp/test-symlinks
+</span></span><span class=line><span class=cl>❯ mkdir dirA
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test-symlinks
+</span></span><span class=line><span class=cl>❯ mkdir dirB
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test-symlinks
+</span></span><span class=line><span class=cl>❯ <span class=nb>echo</span> <span class=s2>&#34;hola mundo&#34;</span> &gt; dirA/mi-archivo.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test-symlinks
+</span></span><span class=line><span class=cl>❯ ln -s ../dirA/mi-archivo.txt dirB/mi-archivo.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test-symlinks
+</span></span><span class=line><span class=cl>❯ cat dirA/mi-archivo.txt
+</span></span><span class=line><span class=cl>hola mundo
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test-symlinks
+</span></span><span class=line><span class=cl>❯ cat dirB/mi-archivo.txt
+</span></span><span class=line><span class=cl>hola mundo
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test-symlinks
+</span></span><span class=line><span class=cl>❯ <span class=nb>echo</span> <span class=s2>&#34;edit 1&#34;</span> &gt; dirB/mi-archivo.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test-symlinks
+</span></span><span class=line><span class=cl>❯ cat dirA/mi-archivo.txt
+</span></span><span class=line><span class=cl>edit <span class=m>1</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test-symlinks
+</span></span><span class=line><span class=cl>❯ <span class=nb>echo</span> <span class=s2>&#34;edit 2&#34;</span> &gt; dirA/mi-archivo.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/test-symlinks
+</span></span><span class=line><span class=cl>❯ cat dirB/mi-archivo.txt
+</span></span><span class=line><span class=cl>edit <span class=m>2</span>
+</span></span></code></pre></div><p>Como ves, al crear el enlace tenemos que poner una ruta o bien relativa al directorio que estamos usando como en el ejemplo, o una absoluta, como seria <code>/tmp/test-symlinks/dirA/mi-archivo.txt</code>.</p><p><code>dirB/mi-archivo.txt</code> solo es una referencia al primer archivo creado, por eso, si cambiamos tanto en el original como en el enlace simbólico su contenido, ambos se modifican.</p><h3 id=usando-stow-para-resolver-los-enlaces>Usando stow para resolver los enlaces</h3><p>Podrias crear tu propio script para crear los enlaces simbolicos de tus dotfiles, pero por suerte, no tienes que hacer nada de eso, en su lugar usaremos <code>stow</code>, una herramienta que nos ayudará a simplificar esta tarea mucho.</p><h4 id=como-funciona-stow>Como funciona stow</h4><p><code>stow</code> creará symlinks en tu <code>home</code>, solo necesitas indicarle el directorio donde estas almacenando los dotfiles de algun programa en concreto. El directorio de tus dotfiles debe tener una estructura determinada que explicaremos más adelante.</p><p>Para entender qué hace y como hace <code>stow</code> para saber <strong>donde</strong> debe situar tus archivos, veamos este ejemplo:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>~
+</span></span><span class=line><span class=cl>❯ <span class=nb>pwd</span>
+</span></span><span class=line><span class=cl>/home/datadiego
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>~
+</span></span><span class=line><span class=cl>❯ mkdir prueba-stow
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>~
+</span></span><span class=line><span class=cl>❯ <span class=nb>cd</span> prueba-stow/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>~/prueba-stow
+</span></span><span class=line><span class=cl>❯ mkdir -p test/mi-prueba/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>~/prueba-stow
+</span></span><span class=line><span class=cl>❯ <span class=nb>echo</span> <span class=s2>&#34;hola mundo&#34;</span> &gt; test/mi-prueba/mi-archivo.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>~/prueba-stow
+</span></span><span class=line><span class=cl>❯ tree .
+</span></span><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>└── <span class=nb>test</span>
+</span></span><span class=line><span class=cl>    └── mi-prueba
+</span></span><span class=line><span class=cl>        └── mi-archivo.txt
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=m>3</span> directories, <span class=m>1</span> file
+</span></span></code></pre></div><p>Hemos creado un directorio en nuestro <code>home</code>, llamado <code>prueba-stow</code>, luego hemos creado un directorio llamado <code>test</code>.</p><p><code>test</code> es el nombre <strong>clave</strong> que usará stow para que puedas decirle qué quieres mover. El resto de rutas dentro de esa carpeta se crearan en tu <code>home</code>, en este caso, acabaremos con <code>~/mi-prueba/mi-archivo.txt</code></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>~/prueba-stow
+</span></span><span class=line><span class=cl>❯ ls ~
+</span></span><span class=line><span class=cl>drwxr-xr-x@ - datadiego <span class=m>26</span> ago 10:00 Descargas
+</span></span><span class=line><span class=cl>drwxr-xr-x@ - datadiego <span class=m>25</span> ago 13:03 Documentos
+</span></span><span class=line><span class=cl>drwxr-xr-x@ - datadiego <span class=m>25</span> ago 09:18 Escritorio
+</span></span><span class=line><span class=cl>drwxr-xr-x@ - datadiego <span class=m>25</span> ago 12:37 Imágenes
+</span></span><span class=line><span class=cl>drwxr-xr-x@ - datadiego <span class=m>25</span> ago 09:18 Música
+</span></span><span class=line><span class=cl>drwxr-xr-x@ - datadiego <span class=m>25</span> ago 13:26 notas
+</span></span><span class=line><span class=cl>drwxr-xr-x@ - datadiego <span class=m>27</span> ago 14:07 Pictures
+</span></span><span class=line><span class=cl>drwxr-xr-x@ - datadiego <span class=m>28</span> ago 23:41 prueba-stow
+</span></span><span class=line><span class=cl>drwxr-xr-x@ - datadiego <span class=m>25</span> ago 09:18 Vídeos
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>~/prueba-stow
+</span></span><span class=line><span class=cl>❯ stow test/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>~/prueba-stow
+</span></span><span class=line><span class=cl>❯ ls ~
+</span></span><span class=line><span class=cl>drwxr-xr-x@ - datadiego <span class=m>26</span> ago 10:00 Descargas
+</span></span><span class=line><span class=cl>drwxr-xr-x@ - datadiego <span class=m>25</span> ago 13:03 Documentos
+</span></span><span class=line><span class=cl>drwxr-xr-x@ - datadiego <span class=m>25</span> ago 09:18 Escritorio
+</span></span><span class=line><span class=cl>drwxr-xr-x@ - datadiego <span class=m>25</span> ago 12:37 Imágenes
+</span></span><span class=line><span class=cl>lrwxrwxrwx@ - datadiego <span class=m>28</span> ago 23:42 mi-prueba -&gt; prueba-stow/test/mi-prueba
+</span></span><span class=line><span class=cl>drwxr-xr-x@ - datadiego <span class=m>25</span> ago 09:18 Música
+</span></span><span class=line><span class=cl>drwxr-xr-x@ - datadiego <span class=m>25</span> ago 13:26 notas
+</span></span><span class=line><span class=cl>drwxr-xr-x@ - datadiego <span class=m>27</span> ago 14:07 Pictures
+</span></span><span class=line><span class=cl>drwxr-xr-x@ - datadiego <span class=m>28</span> ago 23:41 prueba-stow
+</span></span><span class=line><span class=cl>drwxr-xr-x@ - datadiego <span class=m>25</span> ago 09:18 Vídeos
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>~/prueba-stow
+</span></span><span class=line><span class=cl>❯ cat ~/mi-prueba/mi-archivo.txt
+</span></span><span class=line><span class=cl>hola mundo
+</span></span></code></pre></div><p>Como ves, <code>stow test</code> ha creado el enlace <code>~/mi-prueba/</code> con todos los archivos que habia en su interior.</p><h4 id=empezando-a-gestionar-nuestros-dotfiles>Empezando a gestionar nuestros dotfiles</h4><p>Vamos a empezar por gestionar nuestro <code>~/.bashrc</code>, este archivo está directamente en nuestro <code>home</code>, asi que en nuestro directorio de <code>dotfiles</code> crearemos esta estructura:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>.
+</span></span><span class=line><span class=cl>├── bash
+</span></span><span class=line><span class=cl>│   ├── .bashrc
+</span></span><span class=line><span class=cl>│   └── .bashrc.d
+</span></span><span class=line><span class=cl>│       ├── env.sh
+</span></span><span class=line><span class=cl>│       ├── git.sh
+</span></span><span class=line><span class=cl>│       ├── hello.sh
+</span></span><span class=line><span class=cl>│       ├── open.sh
+</span></span><span class=line><span class=cl>│       └── search-text.sh
+</span></span><span class=line><span class=cl>└── scripts
+</span></span><span class=line><span class=cl>    ├── cybsec-tools.sh
+</span></span><span class=line><span class=cl>    ├── dependencies.sh
+</span></span><span class=line><span class=cl>    ├── dev-tools.sh
+</span></span><span class=line><span class=cl>    └── git-config.sh
+</span></span></code></pre></div><p>El directorio <code>bash</code> contiene nuestro <code>.bashrc</code>, copia el archivo directamente de tu <code>home</code> a ese directorio.</p><p>El directorio <code>.bashrc.d</code> es opcional, pero es buena idea que separes la configuración de tu bash en archivos separados.</p><p>Ahora puedes hacer <code>stow bash</code> para que tu archivo <code>.bashrc</code> apunte al de tus dotfiles:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>datadiego@fedora:~/dotfiles$ mkdir bash
+</span></span><span class=line><span class=cl>datadiego@fedora:~/dotfiles$ cp ~/.bashrc bash/
+</span></span><span class=line><span class=cl>datadiego@fedora:~/dotfiles$ stow bash
+</span></span><span class=line><span class=cl>WARNING! stowing bash would cause conflicts:
+</span></span><span class=line><span class=cl>  * cannot stow dotfiles/bash/.bashrc over existing target .bashrc since neither a link nor a directory and --adopt not specified
+</span></span><span class=line><span class=cl>All operations aborted.
+</span></span></code></pre></div><p>Como ves, si el archivo ya existía previamente, dará error, tendrás que borrar el original para que <code>stow</code> lo sustituya:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>datadiego@fedora:~/dotfiles$ rm ~/.bashrc 
+</span></span><span class=line><span class=cl>datadiego@fedora:~/dotfiles$ stow bash
+</span></span><span class=line><span class=cl>datadiego@fedora:~/dotfiles$ ls -la ~/.bashrc
+</span></span><span class=line><span class=cl>lrwxrwxrwx. <span class=m>1</span> datadiego datadiego <span class=m>21</span> ago <span class=m>29</span> 01:34 /home/datadiego/.bashrc -&gt; dotfiles/bash/.bashrc
+</span></span></code></pre></div><p>Ahora nuestro <code>.bashrc</code> esta enlazado a nuestra carpeta dotfiles.</p><h4 id=otro-ejemplo>Otro ejemplo</h4><p>Vamos a crear el dotfile de <code>alacritty</code>, la terminal que suelo usar, en este caso, su configuración está en <code>.config/alacritty/alacritty.toml</code>, la mayoría de aplicaciones tienen una ruta similar, para crearla y hacer <code>stow</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>datadiego@fedora:~/dotfiles$ mkdir alacritty/.config/alacritty -p
+</span></span><span class=line><span class=cl>datadiego@fedora:~/dotfiles$ nano alacritty/.config/alacritty/alacritty.toml
+</span></span><span class=line><span class=cl>datadiego@fedora:~/dotfiles$ stow alacritty
+</span></span></code></pre></div><p><code>stow</code> no tiene mucho más que explicar, es un paquete muy sencillo una vez entiendes como usarlo.</p><p>Tienes otros gestores como <a href=https://www.chezmoi.io/>chezmoi</a> con muchas más funcionalidades, como la creación de plantillas que permiten configurar diferencias entre diferentes máquinas.</p><h3 id=automatizando-todo>Automatizando todo</h3><p>Con esto ya tenemos todo bastante automatizado, el proceso normalmente es:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git clone &lt;repo a tus dotfiles&gt;
+</span></span><span class=line><span class=cl><span class=nb>cd</span> dotfiles
+</span></span><span class=line><span class=cl>./scripts/common.sh
+</span></span><span class=line><span class=cl>./scripts/dev-tools.sh
+</span></span><span class=line><span class=cl>stow &lt;herramienta&gt;
+</span></span><span class=line><span class=cl>stow &lt;otra herramienta&gt;
+</span></span></code></pre></div><p>Y si, evidentemente podríamos crear un <code>.sh</code> que haga todos estos pasos para no tener que ir ejecutando cada script y <code>stow</code>, pero tenemos una mejor opcion, crear un <code>Makefile</code>.</p><h4 id=ejemplo-de-makefile>Ejemplo de Makefile</h4><p>Un <code>Makefile</code> nos permite automatizar ejecuciones de scripts y comandos de forma más sencilla y versátil que un <code>bash</code> script.</p><p>La idea es la siguiente, una vez tienes un <code>Makefile</code> listo, tendrás algo como esto:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>dotfiles on  master <span class=o>[</span>!<span class=o>]</span>
+</span></span><span class=line><span class=cl>❯ make
+</span></span><span class=line><span class=cl>       __      __  _____ __
+</span></span><span class=line><span class=cl>  ____/ /___  / /_/ __<span class=o>(</span>_<span class=o>)</span> /__  _____
+</span></span><span class=line><span class=cl> / __  / __ <span class=se>\/</span> __/ /_/ / / _ <span class=se>\/</span> ___/
+</span></span><span class=line><span class=cl>/ /_/ / /_/ / /_/ __/ / /  __<span class=o>(</span>__  <span class=o>)</span>
+</span></span><span class=line><span class=cl><span class=se>\_</span>_,_/<span class=se>\_</span>___/<span class=se>\_</span>_/_/ /_/_/<span class=se>\_</span>__/____/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  install         Instalar dependencias y dotfiles
+</span></span><span class=line><span class=cl>  hacking         Herramientas de hacking y pentesting
+</span></span><span class=line><span class=cl>  unstow          Unstow todos los paquetes
+</span></span><span class=line><span class=cl>  clean           Limpia archivos generados
+</span></span></code></pre></div><p>A partir de ahi, puedes ejecutar <code>make install</code> para que se instalen las dependencias comunes y tus dotfiles. Si necesitas herramientas de pentesting puedes hacer <code>make hacking</code>.</p><p>Vamos a analizar la estructura de este <code>Makefile</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Makefile data-lang=Makefile><span class=line><span class=cl><span class=nv>SHELL</span> <span class=o>:=</span> /bin/bash
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>PACKAGES</span> <span class=o>:=</span> hyprland niri bash nvim noctalia btop opencode ruby
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nf>.PHONY</span><span class=o>:</span> <span class=n>help</span> <span class=n>install</span> <span class=n>install</span>-<span class=n>dependencies</span> <span class=n>fedora</span>-<span class=n>hacking</span> <span class=n>git</span>-<span class=n>config</span> <span class=n>stow</span> <span class=n>post</span>-<span class=n>install</span> <span class=n>stow</span>-% <span class=n>unstow</span> <span class=n>unstow</span>-% <span class=n>clean</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nf>help</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>	@grep -E <span class=s1>&#39;^[a-zA-Z0-9_-]+:.*?## .*$$&#39;</span> <span class=k>$(</span>MAKEFILE_LIST<span class=k>)</span> <span class=p>|</span> awk <span class=s1>&#39;BEGIN {FS = &#34;:.*?## &#34;}; {printf &#34;  \033[36m%-15s\033[0m %s\n&#34;, $$1, $$2}&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nf>install</span><span class=o>:</span> <span class=n>git</span>-<span class=n>config</span> <span class=n>install</span>-<span class=n>dependencies</span> <span class=n>stow</span> <span class=n>post</span>-<span class=n>install</span> <span class=n>clean</span> <span class=c>## Instalar dependencias y dotfiles
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nf>install-dependencies</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>	@bash scripts/dependencies.sh
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nf>hacking</span><span class=o>:</span> <span class=c>## Herramientas de hacking y ciberseguridad para fedora
+</span></span></span><span class=line><span class=cl>	@bash scripts/cybsec-tools-fedora.sh
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nf>git-config</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>	@bash scripts/git-config.sh
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nf>stow</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>	@rm -f ~/.bashrc
+</span></span><span class=line><span class=cl>	@rm -rf ~/.config/nvim
+</span></span><span class=line><span class=cl>	@rm -rf ~/.config/noctalia
+</span></span><span class=line><span class=cl>	@for pkg in <span class=k>$(</span>PACKAGES<span class=k>)</span><span class=p>;</span> <span class=k>do</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>		<span class=nb>echo</span> <span class=s2>&#34;Stowing </span><span class=nv>$$</span><span class=s2>pkg...&#34;</span><span class=p>;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>		stow -S <span class=s2>&#34;</span><span class=nv>$$</span><span class=s2>pkg&#34;</span><span class=p>;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>	<span class=k>done</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nf>post-install</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>	@sudo cp ./user-scripts/launch-terminal /usr/local/bin/
+</span></span><span class=line><span class=cl>	@sudo cp ./user-scripts/terminal-cwd /usr/local/bin/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nf>stow-%</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>	@echo <span class=s2>&#34;Stowing </span><span class=nv>$*</span><span class=s2>...&#34;</span>
+</span></span><span class=line><span class=cl>	@stow -v <span class=s2>&#34;</span><span class=nv>$*</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nf>unstow</span><span class=o>:</span>  <span class=c>## Unstow todos los paquetes
+</span></span></span><span class=line><span class=cl>	@for pkg in <span class=k>$(</span>PACKAGES<span class=k>)</span><span class=p>;</span> <span class=k>do</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>		<span class=nb>echo</span> <span class=s2>&#34;Unstowing </span><span class=nv>$$</span><span class=s2>pkg...&#34;</span><span class=p>;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>		stow -v -D <span class=s2>&#34;</span><span class=nv>$$</span><span class=s2>pkg&#34;</span><span class=p>;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>	<span class=k>done</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nf>unstow-%</span><span class=o>:</span>  <span class=c>## Unstow un paquete específico (ej: make unstow-alacritty)
+</span></span></span><span class=line><span class=cl>	@echo <span class=s2>&#34;Unstowing </span><span class=nv>$*</span><span class=s2>...&#34;</span>
+</span></span><span class=line><span class=cl>	@stow -v -D <span class=s2>&#34;</span><span class=nv>$*</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nf>clean</span><span class=o>:</span>  <span class=c>## Limpia archivos generados
+</span></span></span><span class=line><span class=cl>	@rm -f *.zip
+</span></span><span class=line><span class=cl>	@echo <span class=s2>&#34;Archivos generados eliminados&#34;</span>
+</span></span></code></pre></div><p>Un <code>Makefile</code> se ejecuta con el comando <code>make</code> y funciona definiendo <strong>objetivos</strong> (targets) que representan tareas que queremos ejecutar. Cada objetivo puede tener comandos asociados que se ejecutan en orden.</p><p><strong>Variables</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Makefile data-lang=Makefile><span class=line><span class=cl><span class=nv>SHELL</span> <span class=o>:=</span> /bin/bash
+</span></span><span class=line><span class=cl><span class=nv>PACKAGES</span> <span class=o>:=</span> hyprland niri bash nvim noctalia btop opencode ruby
+</span></span></code></pre></div><ul><li><code>SHELL</code>: Define el shell que se usará para ejecutar los comandos. Es buena práctica usar <code>/bin/bash</code> para asegurar compatibilidad.</li><li><code>PACKAGES</code>: Una variable que contiene la lista de todos los paquetes que gestiona <code>stow</code>.</li></ul><p><strong>Objetivos y dependencias</strong></p><p>Los objetivos se definen con <code>nombre:</code>, es donde definimos los <strong>comandos</strong> que ejecutaremos.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Makefile data-lang=Makefile><span class=line><span class=cl><span class=nf>install</span><span class=o>:</span> <span class=n>git</span>-<span class=n>config</span> <span class=n>install</span>-<span class=n>dependencies</span> <span class=n>stow</span> <span class=n>post</span>-<span class=n>install</span> <span class=n>clean</span>
+</span></span></code></pre></div><p>Cuando ejecutas <code>make install</code>, se ejecutan en orden: <code>git-config</code>, <code>install-dependencies</code>, <code>stow</code>, <code>post-install</code> y <code>clean</code>.</p><p><strong>Comandos</strong></p><p>Los comandos dentro de cada objetivo se escriben indentados con tabulaciones. El prefijo <code>@</code> evita que <code>make</code> imprima el comando antes de ejecutarlo, manteniendo la salida limpia.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Makefile data-lang=Makefile><span class=line><span class=cl><span class=nf>stow</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>	@rm -f ~/.bashrc
+</span></span><span class=line><span class=cl>	@rm -rf ~/.config/nvim
+</span></span><span class=line><span class=cl>	@rm -rf ~/.config/noctalia
+</span></span><span class=line><span class=cl>	@for pkg in <span class=k>$(</span>PACKAGES<span class=k>)</span><span class=p>;</span> <span class=k>do</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>		<span class=nb>echo</span> <span class=s2>&#34;Stowing </span><span class=nv>$$</span><span class=s2>pkg...&#34;</span><span class=p>;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>		stow -S <span class=s2>&#34;</span><span class=nv>$$</span><span class=s2>pkg&#34;</span><span class=p>;</span> <span class=se>\
+</span></span></span><span class=line><span class=cl>	<span class=k>done</span>
+</span></span></code></pre></div><p>Este comando borrará los archivos para que <code>stow</code> no falle al crear los enlaces, y luego hará stow de cada uno de los directorios definidos en la lista <code>PACKAGES</code>.</p><p><strong>Comentario automático</strong></p><p>La línea <code>## Texto</code> después de un objetivo es un comentario que el objetivo <code>help</code> extrae automáticamente para generar la ayuda:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Makefile data-lang=Makefile><span class=line><span class=cl><span class=nf>help</span><span class=o>:</span>
+</span></span><span class=line><span class=cl><span class=nf>@grep -E &#39;^[a-zA-Z0-9_-]+</span><span class=o>:</span>.*?<span class=c>## .*$$&#39; $(MAKEFILE_LIST) | awk &#39;BEGIN {FS = &#34;:.*?## &#34;}; {printf &#34;  \033[36m%-15s\033[0m %s\n&#34;, $$1, $$2}&#39;
+</span></span></span></code></pre></div><p>Esto significa que cualquier objetivo que incluya <code>## Descripción</code> aparecerá automáticamente en la ayuda cuando ejecutes <code>make</code> sin argumentos.</p><p><strong>Objetivos con patrón</strong></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-Makefile data-lang=Makefile><span class=line><span class=cl><span class=nf>stow-%</span><span class=o>:</span>
+</span></span><span class=line><span class=cl>	@echo <span class=s2>&#34;Stowing </span><span class=nv>$*</span><span class=s2>...&#34;</span>
+</span></span><span class=line><span class=cl>	@stow -v <span class=s2>&#34;</span><span class=nv>$*</span><span class=s2>&#34;</span>
+</span></span></code></pre></div><p>El <code>%</code> es un comodín que coincide con cualquier nombre. Si ejecutas <code>make stow-nvim</code>, la variable <code>$*</code> tomará el valor <code>nvim</code>, permitiéndote ejecutar <code>stow</code> para un paquete específico sin tener que definir un objetivo para cada uno.</p><p>Puedes prácticamente copiar este <code>Makefile</code>, solo debes modificar los <code>PACKAGES</code> que usas en tus dotfiles, añadir que scripts estás lanzando para hacer <code>install</code> y el comando <code>stow</code> para borrar los directorios que necesites si <code>stow</code> falla.</p><h3 id=mas-allá-de-tus-dotfiles>Mas allá de tus dotfiles</h3><p>En cuanto eches una tarde con esto lo tendrás más que listo para llevartelo a otro sistema, poder gestionar tus dotfiles te abre muchas posibilidades para probar otras distros sin miedo, adaptar tu script de instalación de dependencias a otro gestor de paquetes es trivial, lo podrás hacer en la mayoría de casos mediante una sustitución de <code>sudo dnf</code> por <code>sudo apt</code> (o el comando del gestor de esa distro) en tu editor, o mediante el comando <code>sed</code>.</p><p>Además, encontrarás múltiples repositorios de otros usuarios que ya te dan sus <code>dotfiles</code> listos para usar, probarlos es rápido, y es una forma estupenda de ver que otros flujos de trabajo y configuraciones usan otros, luego puedes quedarte con los aspectos que más te gusten de cada uno, y añadirlos a los tuyos o modificarlos según prefieras.</p><p>Si el tema de reproducibilidad en diferentes sistemas te gusta, quizá deberías probar <a href=https://nixos.org/>NixOS</a>, una distribución <strong>declarativa</strong>, en la que en lugar de instalar paquetes lanzando comandos, los defines en un archivo junto a su configuración. Es una distribución <strong>muy potente</strong>, con su propio lenguaje para recrear entornos, y aunque consume bastante tiempo y supone un cambio de filosofía muy grande, si vas a instalar en múltiples sistemas el mismo, merece mucho la pena.</p></div><footer class=content__footer></footer></section><section class=page__aside><div class=aside__about><div class=aside__about><span class=about__logo role=img>ᓚᘏᗢ</span>&nbsp;<h1 class=about__title>/dev/random</h1><p class=about__description>Cultura hacker, software open source y arte hiperdigital</p></div><ul class=aside__social-links><li><a href=https://github.com/datadiego rel=me aria-label=GitHub title=GitHub><i class="fa-brands fa-github" aria-hidden=true></i></a>&nbsp;</li><li><a href=juandiegomariscal@gmail.com rel=me aria-label=Email title=Email><i class="fa-solid fa-envelope" aria-hidden=true></i></a>&nbsp;</li></ul></div><hr><div class=aside__content><p>Guia de como usar tus dotfiles en otras máquinas y automatizar la instalación de tu entorno</p><p>By datadiego,
+2025-09-10</p></div></section><footer class=page__footer><p><br><span class=active>$ echo $LANG<br><b></b></span><br></p><br><br><p>Este sitio está disponible en versión <a href=http://rogueo7ciqckck2yhf2dqmqxsrav3ydsobcxkun7f5dmysskcxyfgead.onion/>onion</a></p><p class=copyright>© datadiego</p><script src=https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js></script><script>mermaid.initialize({startOnLoad:!0,theme:"dark"})</script></footer></div></body></html>
