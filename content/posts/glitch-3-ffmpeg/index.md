@@ -1,7 +1,7 @@
 ---
 title: "Glitch Art #3: Video con ffmpeg"
 author: datadiego
-draft: true
+draft: false
 description: Manipulación de archivos en bruto con ffmpeg
 date: 2026-07-09
 tags:
@@ -13,6 +13,8 @@ layout: layouts/post.njk
 Seguimos con las publicaciones sobre Glitch Art.
 
 En esta ocasión vamos a crear **video**, cómo hemos estado haciendo hasta ahora, vamos a usar *databending* para reinterpretar datos y convertirlos a video.
+
+Es un post corto, la base es bastante fácil, pero puedes extenderla mucho con varias flags de `ffmpeg` y experimentación de los datos de entrada que uses.
 
 ## Software
 
@@ -36,7 +38,7 @@ Puedes ver que valores puedes pasar a `-pixel_format` con `ffmpeg -pix_fmts` o `
 
 En mi caso, lo tengo en un `bash script` para poderlo ejecutar más cómodo, pasandole mi archivo binario en `$1`.
 
-## Experimento #1: Datos binarios ejecutables
+## Datos binarios ejecutables
 
 Vamos a crear un binario con **todos** los archivos ejecutables que tenemos en `/usr/bin/`:
 
@@ -78,7 +80,7 @@ Vamos a renderizarlo esta vez en *1080x720*:
 
 {{< youtube DH8OCUw1_jM >}}
 
-## Experimento 2: Probando otros formatos de pixeles
+## Probando otros formatos de pixeles
 
 Por ahora solo hemos usado `-pixel_format rgb24`, vamos a probar otros formatos para obtener diferentes resultados.
 
@@ -94,3 +96,8 @@ Con *gbrp*:
 
 {{< youtube 05YkWBDc7Vs >}}
 
+## Mas allá
+
+En el post anterior vimos como **diferentes datos** producian diferentes resultados, la base para generar video a partir de datros en brutos ya la tienes, solo te queda experimentar con otras fuentes de datos que interpretar.
+
+`ffmpeg` ofrece **muchas** más flags con las que experimentar, quizá en un post futuro exploremos otros resultados, pero con esto tienes suficiente para comenzar a crear.
