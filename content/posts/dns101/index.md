@@ -4,7 +4,7 @@ draft = false
 title = "DNS 101"
 description = "Guia de inicio para DNS"
 date = "2025-10-20"
-tags = ["devops", "cybsec"]
+tags = ["devops", "ciberseguridad"]
 +++
 
 

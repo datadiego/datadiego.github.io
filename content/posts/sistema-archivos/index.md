@@ -6,7 +6,6 @@ description: Como se organiza tu sistema Linux
 date: 2025-02-12
 tags:
   - linux
-  - guia
 layout: layouts/post.njk
 ---
 

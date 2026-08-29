@@ -5,8 +5,8 @@ draft: false
 description: Configurando e instalando Fedora en VirtualBox
 date: 2025-02-09
 tags:
-  - Guia
-  - Linux
+  - linux
+  - virtualización
 layout: layouts/post.njk
 ---
 

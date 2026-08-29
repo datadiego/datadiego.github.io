@@ -6,7 +6,7 @@ description: Como crear una web .onion
 date: 2026-08-23
 # la fecha va en formato año-mes-dia
 tags:
-  - hacking
+  - privacy
 layout: layouts/post.njk
 ---
 

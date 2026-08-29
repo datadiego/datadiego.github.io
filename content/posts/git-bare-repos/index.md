@@ -6,6 +6,7 @@ description: Uso de repositorios bare en servidores privados
 date: 2026-08-18
 # la fecha va en formato año-mes-dia
 tags:
+  - git
   - coding
 layout: layouts/post.njk
 ---

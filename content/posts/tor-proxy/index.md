@@ -6,7 +6,7 @@ description: Usando la red onion como proxy para proteger tu anonimato
 date: 2026-08-22
 # la fecha va en formato año-mes-dia
 tags:
-  - hacking
+  - privacy
 layout: layouts/post.njk
 ---
 

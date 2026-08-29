@@ -4,7 +4,7 @@ draft = false
 title = "Reverse Tunnel en Gnome Boxes"
 description = "Como iniciar un tunel reverso dentro de Gnome Boxes"
 date = "2026-07-05"
-tags = ["hacking"]
+tags = ["hacking", "linux", "virtualización"]
 +++
 
 Me encanta usar Gnome Boxes, da igual la distro en la que esté, es una forma rápida de obtener una máquina virtual sin tener que descargar manualmente la iso, tienen portapapeles compartido con tu host, te permite crear snapshots, gestionar su consumo de memoria... y poco más.

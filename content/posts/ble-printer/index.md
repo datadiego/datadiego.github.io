@@ -4,7 +4,7 @@ title = "Hack a una impresora termica"
 draft = true
 date = "2026-05-10"
 description = "Como usar una impresora termica bluetooth propietaria"
-tags = ["guia", "hacking"]
+tags = ["hacking", "hardware", "linux"]
 
 +++
 

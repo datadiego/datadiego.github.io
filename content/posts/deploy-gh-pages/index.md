@@ -4,7 +4,7 @@ draft = false
 title = "Deploy GitHub Pages"
 description = "Guia para hacer deploy de un proyecto en GitHub Pages"
 date = "2026-01-26"
-tags = ["devops", "coding", "guia"]
+tags = ["devops", "coding"]
 +++
 
 

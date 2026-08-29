@@ -6,6 +6,7 @@ description: Como compartir tu código con otros
 date: 2025-06-07
 # la fecha va en formato año-mes-dia
 tags:
+  - git
   - coding
 layout: layouts/post.njk
 ---

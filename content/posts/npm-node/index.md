@@ -4,7 +4,7 @@ draft = false
 title = "nvm + npm + pnpm + Node.js 101"
 description = "Guia básica de nvm + npm y Node.js"
 date = "2025-01-01"
-tags = ["coding"]
+tags = ["coding", "javascript"]
 +++
 
 

@@ -5,8 +5,8 @@ draft: false
 description: Editando imágenes como audio en audacity
 date: 2026-07-16
 tags:
-  - hacking
   - glitch
+  - multimedia
 layout: layouts/post.njk
 ---
 

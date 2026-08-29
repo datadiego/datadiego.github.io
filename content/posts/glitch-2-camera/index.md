@@ -5,8 +5,9 @@ draft: false
 description: Provocando cortocircuitos al sensor de una cámara digital para niños
 date: 2026-07-18
 tags:
-  - hacking
   - glitch
+  - multimedia
+  - hardware
 layout: layouts/post.njk
 ---
 

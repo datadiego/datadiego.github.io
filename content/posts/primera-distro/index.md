@@ -5,7 +5,7 @@ draft: false
 description: Intentar recomendar distros para un usuario nuevo en Linux es una causa perdida
 date: 2026-07-10
 tags:
-  - hacking
+  - linux
 layout: layouts/post.njk
 ---
 

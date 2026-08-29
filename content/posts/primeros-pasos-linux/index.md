@@ -5,8 +5,7 @@ draft: false
 description: Que deberias conocer si acabas de empezar en Linux
 date: 2025-02-10
 tags:
-  - Guia
-  - Linux
+  - linux
 layout: layouts/post.njk
 ---
 

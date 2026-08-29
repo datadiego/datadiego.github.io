@@ -5,8 +5,8 @@ draft: false
 description: Manipulación de archivos en bruto con ffmpeg
 date: 2026-07-09
 tags:
-  - hacking
   - glitch
+  - multimedia
 layout: layouts/post.njk
 ---
 

@@ -4,7 +4,7 @@ title = "Cloudflare 101"
 draft = false
 description = "Guia para la plataforma Cloudflare"
 date = "2026-05-04"
-tags = ["guia", "blue team", "devops"]
+tags = ["devops", "ciberseguridad"]
 +++
 
 Cloudflare es un servicio de CDN (Content Delivery Network) con varias funcionalidades como protección DDoS, WAF, DNS, etc.

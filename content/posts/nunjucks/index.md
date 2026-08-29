@@ -4,7 +4,7 @@ draft = false
 title = "Nunjucks 101"
 description = "Guia de inicio con Nunjucks"
 date = "2025-05-11"
-tags = ["coding"]
+tags = ["coding", "javascript"]
 +++
 
 

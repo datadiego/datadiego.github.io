@@ -4,7 +4,7 @@ draft = false
 title = "Visualizando JOINs en bases de datos"
 description = "Guia de ayuda a la hora de hacer JOINs entre tablas"
 date = "2026-05-07"
-tags = ["Bases de datos"]
+tags = ["bases de datos", "educación"]
 +++
 
 Generalmente, la asignatura de bases de datos no suele ser dificil para mis alumnos, pero el primer gran muro que suelen encontrar es utilizar `JOIN` para unir diferentes tablas relacionadas entre si.

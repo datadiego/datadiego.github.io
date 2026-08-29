@@ -6,7 +6,7 @@ description: Que es el glitch y cómo corromper tu primer archivo creativamente
 date: 2026-07-14
 tags:
   - glitch
-  - hacking
+  - multimedia
 layout: layouts/post.njk
 ---
 

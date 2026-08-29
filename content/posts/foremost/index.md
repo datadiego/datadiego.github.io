@@ -5,8 +5,9 @@ draft: false
 description: Realizando análisis forénsico en un USB
 date: 2026-08-04
 tags:
+  - forense
   - hacking
-  - análisis forénsico
+  - linux
 layout: layouts/post.njk
 ---
 

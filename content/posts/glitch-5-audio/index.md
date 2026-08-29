@@ -5,8 +5,8 @@ draft: true
 description: Generar glitches sonoros desde cualquier fuente
 date: 2026-07-17
 tags:
-  - hacking
   - glitch
+  - multimedia
 layout: layouts/post.njk
 ---
 

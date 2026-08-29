@@ -4,7 +4,7 @@ draft = false
 title = "Despliegue WordPress en Linode"
 description = "Guia para configurar y desplegar un servidor de WordPress"
 date = "2025-02-02"
-tags = ["devops"]
+tags = ["devops", "linux"]
 +++
 
 

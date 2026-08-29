@@ -6,7 +6,7 @@ description: Infotaiment en el sector IT
 date: 2026-08-22
 # la fecha va en formato año-mes-dia
 tags:
-  - otros
+  - educación
 layout: layouts/post.njk
 ---
 

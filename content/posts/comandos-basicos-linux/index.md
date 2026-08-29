@@ -5,8 +5,7 @@ draft: false
 description: Comandos que necesitas dominar para administrar tu sistema
 date: 2025-02-10
 tags:
-  - Guia
-  - Linux
+  - linux
 layout: layouts/post.njk
 ---
 

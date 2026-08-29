@@ -4,7 +4,7 @@ draft = false
 title = "Despliegue con HTTPS y Caddy"
 description = "Guia de como implementar un servidor web con HTTPS utilizando Caddy."
 date = "2025-12-25"
-tags = ["devops", "guia"]
+tags = ["devops"]
 +++
 
 

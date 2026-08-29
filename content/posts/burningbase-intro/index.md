@@ -6,6 +6,7 @@ description: Herramienta de pentesting para servicios Firebase
 date: 2026-07-09
 tags:
   - hacking
+  - pentesting
 layout: layouts/post.njk
 ---
 

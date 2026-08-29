@@ -5,7 +5,8 @@ draft: false
 description: Automatizando la reproducción de videos para instalaciones artisticas
 date: 2026-08-11
 tags:
-  - guia
+  - linux
+  - multimedia
 layout: layouts/post.njk
 ---
 

@@ -4,7 +4,7 @@ draft = false
 title = "Vulnhub: Kioptrix 1"
 description = "Pentesting a máquina Kioptrix en Vulnhub"
 date = "2025-06-12"
-tags = ["hacking"]
+tags = ["pentesting"]
 +++
 
 

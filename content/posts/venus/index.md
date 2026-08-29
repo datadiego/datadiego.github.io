@@ -4,7 +4,7 @@ draft = false
 title = "Vulnhub: Venus"
 description = "Pentesting a máquina Venus en Vulnhub"
 date = "2025-03-07"
-tags = ["hacking"]
+tags = ["pentesting"]
 +++
 
 
