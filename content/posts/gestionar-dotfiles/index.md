@@ -1,6 +1,6 @@
 ---
 author: "datadiego"
-draft: true
+draft: false
 title: "Gestionando dotfiles"
 description: "Guia de como usar tus dotfiles en otras máquinas y automatizar la instalación de tu entorno"
 date: "2025-09-10"
@@ -400,7 +400,7 @@ dotfiles on  master [!]
 
 A partir de ahi, puedes ejecutar `make install` para que se instalen las dependencias comunes y tus dotfiles. Si necesitas herramientas de pentesting puedes hacer `make hacking`.
 
-Vamos a analizar la estructura que recomiendo para empezar:
+Vamos a analizar la estructura de este `Makefile`:
 
 ```Makefile
 SHELL := /bin/bash
@@ -466,11 +466,11 @@ PACKAGES := hyprland niri bash nvim noctalia btop opencode ruby
 ```
 
 - `SHELL`: Define el shell que se usará para ejecutar los comandos. Es buena práctica usar `/bin/bash` para asegurar compatibilidad.
-- `PACKAGES`: Una variable que contiene la lista de todos los paquetes que gestiona `stow`. Esto permite evitar repetir los nombres en cada objetivo.
+- `PACKAGES`: Una variable que contiene la lista de todos los paquetes que gestiona `stow`.
 
 **Objetivos y dependencias**
 
-Los objetivos se definen con `nombre:` y pueden tener dependencias que se ejecutan antes. Por ejemplo:
+Los objetivos se definen con `nombre:`, es donde definimos los **comandos** que ejecutaremos.
 
 ```Makefile
 install: git-config install-dependencies stow post-install clean
@@ -482,6 +482,30 @@ Cuando ejecutas `make install`, se ejecutan en orden: `git-config`, `install-dep
 
 Los comandos dentro de cada objetivo se escriben indentados con tabulaciones. El prefijo `@` evita que `make` imprima el comando antes de ejecutarlo, manteniendo la salida limpia.
 
+```Makefile
+stow:
+	@rm -f ~/.bashrc
+	@rm -rf ~/.config/nvim
+	@rm -rf ~/.config/noctalia
+	@for pkg in $(PACKAGES); do \
+		echo "Stowing $$pkg..."; \
+		stow -S "$$pkg"; \
+	done
+```
+
+Este comando borrará los archivos para que `stow` no falle al crear los enlaces, y luego hará stow de cada uno de los directorios definidos en la lista `PACKAGES`.
+
+**Comentario automático**
+
+La línea `## Texto` después de un objetivo es un comentario que el objetivo `help` extrae automáticamente para generar la ayuda:
+
+```Makefile
+help:
+@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2}'
+```
+
+Esto significa que cualquier objetivo que incluya `## Descripción` aparecerá automáticamente en la ayuda cuando ejecutes `make` sin argumentos.
+
 **Objetivos con patrón**
 
 ```Makefile
@@ -492,18 +516,12 @@ stow-%:
 
 El `%` es un comodín que coincide con cualquier nombre. Si ejecutas `make stow-nvim`, la variable `$*` tomará el valor `nvim`, permitiéndote ejecutar `stow` para un paquete específico sin tener que definir un objetivo para cada uno.
 
-**Comentario automático**
+Puedes prácticamente copiar este `Makefile`, solo debes modificar los `PACKAGES` que usas en tus dotfiles, añadir que scripts estás lanzando para hacer `install` y el comando `stow` para borrar los directorios que necesites si `stow` falla.
 
-La línea `## Texto` después de un objetivo es un comentario que el objetivo `help` extrae automáticamente para generar la ayuda:
+### Mas allá de tus dotfiles
 
-```Makefile
-help:
-	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2}'
-```
+En cuanto eches una tarde con esto lo tendrás más que listo para llevartelo a otro sistema, poder gestionar tus dotfiles te abre muchas posibilidades para probar otras distros sin miedo, adaptar tu script de instalación de dependencias a otro gestor de paquetes es trivial, lo podrás hacer en la mayoría de casos mediante una sustitución de `sudo dnf` por `sudo apt` (o el comando del gestor de esa distro) en tu editor, o mediante el comando `sed`.
 
-Esto significa que cualquier objetivo que incluya `## Descripción` aparecerá automáticamente en la ayuda cuando ejecutes `make` sin argumentos.
+Además, encontrarás múltiples repositorios de otros usuarios que ya te dan sus `dotfiles` listos para usar, probarlos es rápido, y es una forma estupenda de ver que otros flujos de trabajo y configuraciones usan otros, luego puedes quedarte con los aspectos que más te gusten de cada uno, y añadirlos a los tuyos o modificarlos según prefieras.
 
-**Variables especiales**
-
-- `$$pkg` en los bucles for se usa para acceder a la variable del shell dentro del Makefile (doble `$$` porque Make interpreta un solo `$`).
-- `$*` en los objetivos con patrón contiene la parte que coincide con el `%`.
+Si el tema de reproducibilidad en diferentes sistemas te gusta, quizá deberías probar [NixOS](https://nixos.org/), una distribución **declarativa**, en la que en lugar de instalar paquetes lanzando comandos, los defines en un archivo junto a su configuración. Es una distribución **muy potente**, con su propio lenguaje para recrear entornos, y aunque consume bastante tiempo y supone un cambio de filosofía muy grande, si vas a instalar en múltiples sistemas el mismo, merece mucho la pena.
