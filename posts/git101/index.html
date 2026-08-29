@@ -13,5 +13,272 @@
 </span></span></code></pre></div><h2 id=confirmar-cambios>Confirmar cambios</h2><p>Para confirmar los cambios y guardarlos en el repositorio, puedes usar el siguiente comando:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git commit -m <span class=s2>&#34;Mensaje de confirmación&#34;</span>
 </span></span></code></pre></div><p>Es <strong>muy</strong> importante que escribas un mensaje de confirmación claro y conciso con el cambio que has realizado. En especial si estas trabajando en un proyecto con otras personas. Esto ayudará a los demás a entender qué cambios has realizado y por qué.</p><p>No hacer esto puede llevar a confusiones o incluso cancelar tus cambios en el repositorio.</p><h2 id=ver-el-historial-de-cambios>Ver el historial de cambios</h2><p>Para ver el historial de cambios en el repositorio, puedes usar el siguiente comando:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git log
 </span></span></code></pre></div><h2 id=deshacer-commit>Deshacer commit</h2><p>Si quieres deshacer el último commit para arreglar algo, puedes usar el siguiente comando:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git amend &lt;nombre_archivo&gt;
-</span></span></code></pre></div><p>Esto deshará el último commit y te permitirá hacer cambios en el código antes de volver a confirmarlo. Esto es útil si te das cuenta de que has cometido un error en el último commit o si quieres añadir más cambios antes de confirmar.</p></div><footer class=content__footer></footer></section><section class=page__aside><div class=aside__about><div class=aside__about><span class=about__logo role=img>ᓚᘏᗢ</span>&nbsp;<h1 class=about__title>/dev/random</h1><p class=about__description>Cultura hacker, software open source y arte hiperdigital</p></div><ul class=aside__social-links><li><a href=https://github.com/datadiego rel=me aria-label=GitHub title=GitHub><i class="fa-brands fa-github" aria-hidden=true></i></a>&nbsp;</li><li><a href=juandiegomariscal@gmail.com rel=me aria-label=Email title=Email><i class="fa-solid fa-envelope" aria-hidden=true></i></a>&nbsp;</li></ul></div><hr><div class=aside__content><p>Guia básica de Git en local</p><p>By datadiego,
+</span></span></code></pre></div><p>Esto deshará el último commit y te permitirá hacer cambios en el código antes de volver a confirmarlo. Esto es útil si te das cuenta de que has cometido un error en el último commit o si quieres añadir más cambios antes de confirmar.</p><h2 id=ejemplo-de-uso>Ejemplo de uso</h2><p>Vamos a ver un flujo de trabajo típico y minimo de <code>git</code> funcionando localmente.</p><h3 id=crear-el-repo>Crear el repo</h3><p>Crearemos un directorio, iniciamos con <code>git init</code></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>/tmp
+</span></span><span class=line><span class=cl>❯ mkdir web
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp
+</span></span><span class=line><span class=cl>❯ <span class=nb>cd</span> web/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>/tmp/web
+</span></span><span class=line><span class=cl>❯ git init
+</span></span><span class=line><span class=cl>Inicializado repositorio Git vacío en /tmp/web/.git/
+</span></span></code></pre></div><p>Si acabas de instalar git puedes recibir un mensaje de aviso en el que te dice que tu rama principal se llama <code>master</code>, y como puedes cambiarla si prefieres usar <code>main</code> u otro nombre para la misma.</p><p>Para comprobar que el repositorio se ha iniciado correctamente:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>web on  master
+</span></span><span class=line><span class=cl>❯ ls -la
+</span></span><span class=line><span class=cl>drwxr-xr-x@ - datadiego <span class=m>29</span> ago 12:37 .git
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>web on  master
+</span></span><span class=line><span class=cl>❯ git status
+</span></span><span class=line><span class=cl>En la rama master
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>No hay commits todavía
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>no hay nada para confirmar <span class=o>(</span>crea/copia archivos y usa <span class=s2>&#34;git add&#34;</span> para hacerles seguimiento<span class=o>)</span>
+</span></span></code></pre></div><p>Vemos que existe <code>.git</code> y que no hay commits ni archivos que añadir al <code>staging area</code> con <code>git add</code></p><h3 id=provocando-cambios-en-el-repositorio>Provocando cambios en el repositorio</h3><p>Creamos dos archivos simples:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>web on  master
+</span></span><span class=line><span class=cl>❯ <span class=nb>echo</span> <span class=s2>&#34;hola mundo&#34;</span> &gt; index.html
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>web on  master <span class=o>[</span>?<span class=o>]</span>
+</span></span><span class=line><span class=cl>❯ <span class=nb>echo</span> <span class=s2>&#34;# Proyecto de website&#34;</span> &gt; README.md
+</span></span></code></pre></div><p>Ahora veremos que con <code>git status</code> se han detectado cambios en el repositorio:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>web on  master <span class=o>[</span>?<span class=o>]</span>
+</span></span><span class=line><span class=cl>❯ git status
+</span></span><span class=line><span class=cl>En la rama master
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>No hay commits todavía
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Archivos sin seguimiento:
+</span></span><span class=line><span class=cl>  <span class=o>(</span>usa <span class=s2>&#34;git add &lt;archivo&gt;...&#34;</span> para incluirlo a lo que será confirmado<span class=o>)</span>
+</span></span><span class=line><span class=cl>	README.md
+</span></span><span class=line><span class=cl>	index.html
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>no hay nada agregado al commit pero hay archivos sin seguimiento presentes <span class=o>(</span>usa <span class=s2>&#34;git add&#34;</span> para hacerles seguimiento<span class=o>)</span>
+</span></span></code></pre></div><p>Tenemos dos archivos sin seguimiento, vamos a añadir los cambios del <code>README.md</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>web on  master <span class=o>[</span>?<span class=o>]</span>
+</span></span><span class=line><span class=cl>❯ git add README.md
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>web on  master <span class=o>[</span>+?<span class=o>]</span>
+</span></span><span class=line><span class=cl>❯ git status
+</span></span><span class=line><span class=cl>En la rama master
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>No hay commits todavía
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Cambios a ser confirmados:
+</span></span><span class=line><span class=cl>  <span class=o>(</span>usa <span class=s2>&#34;git rm --cached &lt;archivo&gt;...&#34;</span> para sacar del área de stage<span class=o>)</span>
+</span></span><span class=line><span class=cl>	nuevos archivos: README.md
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Archivos sin seguimiento:
+</span></span><span class=line><span class=cl>  <span class=o>(</span>usa <span class=s2>&#34;git add &lt;archivo&gt;...&#34;</span> para incluirlo a lo que será confirmado<span class=o>)</span>
+</span></span><span class=line><span class=cl>	index.html
+</span></span></code></pre></div><p>Y a confirmarlos con <code>git commit -m "descripcion de los cambios"</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>web on  master <span class=o>[</span>+?<span class=o>]</span>
+</span></span><span class=line><span class=cl>❯ git commit -m <span class=s2>&#34;iniciamos readme para describir el proyecto&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>master <span class=o>(</span>commit-raíz<span class=o>)</span> a36508d<span class=o>]</span> iniciamos readme para describir el proyecto
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>1</span> insertion<span class=o>(</span>+<span class=o>)</span>
+</span></span><span class=line><span class=cl> create mode <span class=m>100644</span> README.md
+</span></span></code></pre></div><p>Ahora podemos comprobar que solo hay un cambio por añadir:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>web on  master <span class=o>[</span>?<span class=o>]</span>
+</span></span><span class=line><span class=cl>❯ git status
+</span></span><span class=line><span class=cl>En la rama master
+</span></span><span class=line><span class=cl>Archivos sin seguimiento:
+</span></span><span class=line><span class=cl>  <span class=o>(</span>usa <span class=s2>&#34;git add &lt;archivo&gt;...&#34;</span> para incluirlo a lo que será confirmado<span class=o>)</span>
+</span></span><span class=line><span class=cl>	index.html
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>no hay nada agregado al commit pero hay archivos sin seguimiento presentes <span class=o>(</span>usa <span class=s2>&#34;git add&#34;</span> para hacerles seguimiento<span class=o>)</span>
+</span></span></code></pre></div><p>Y que en nuestro log tenemos un commit realizado:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>web on  master <span class=o>[</span>?<span class=o>]</span>
+</span></span><span class=line><span class=cl>❯ git log
+</span></span><span class=line><span class=cl>commit a36508df1e50e97da9406c333d360e10f4d29fdb <span class=o>(</span>HEAD -&gt; master<span class=o>)</span>
+</span></span><span class=line><span class=cl>Author: Juan Diego &lt;juandiegomariscal@gmail.com&gt;
+</span></span><span class=line><span class=cl>Date:   Sat Aug <span class=m>29</span> 12:45:54 <span class=m>2026</span> +0200
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    iniciamos readme para describir el proyecto
+</span></span></code></pre></div><p>Vamos a realizar lo mismo con <code>index.html</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>web on  master <span class=o>[</span>?<span class=o>]</span>
+</span></span><span class=line><span class=cl>❯ git add index.html
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>web on  master <span class=o>[</span>+<span class=o>]</span>
+</span></span><span class=line><span class=cl>❯ git commit -m <span class=s2>&#34;hola mundo&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>master 585707a<span class=o>]</span> hola mundo
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>1</span> insertion<span class=o>(</span>+<span class=o>)</span>
+</span></span><span class=line><span class=cl> create mode <span class=m>100644</span> index.html
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>web on  master
+</span></span><span class=line><span class=cl>❯ git status
+</span></span><span class=line><span class=cl>En la rama master
+</span></span><span class=line><span class=cl>nada para hacer commit, el árbol de trabajo está limpio
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>web on  master
+</span></span><span class=line><span class=cl>❯ git log
+</span></span><span class=line><span class=cl>commit 585707a2b306b913d1b8042197b2e6c10c337a0a <span class=o>(</span>HEAD -&gt; master<span class=o>)</span>
+</span></span><span class=line><span class=cl>Author: Juan Diego &lt;juandiegomariscal@gmail.com&gt;
+</span></span><span class=line><span class=cl>Date:   Sat Aug <span class=m>29</span> 12:47:37 <span class=m>2026</span> +0200
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    hola mundo
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>commit a36508df1e50e97da9406c333d360e10f4d29fdb
+</span></span><span class=line><span class=cl>Author: Juan Diego &lt;juandiegomariscal@gmail.com&gt;
+</span></span><span class=line><span class=cl>Date:   Sat Aug <span class=m>29</span> 12:45:54 <span class=m>2026</span> +0200
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    iniciamos readme para describir el proyecto
+</span></span></code></pre></div><h3 id=arreglando-commits-con-amend>Arreglando commits con amend</h3><p>Nos podemos equivocar al hacer un commit:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>web on  master
+</span></span><span class=line><span class=cl>❯ <span class=nb>echo</span> <span class=s2>&#34;&lt;h1&gt;hola mundo&lt;h1&gt;&#34;</span> &gt; index.html
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>web on  master <span class=o>[</span>!<span class=o>]</span>
+</span></span><span class=line><span class=cl>❯ git add .
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>web on  master <span class=o>[</span>+<span class=o>]</span>
+</span></span><span class=line><span class=cl>❯ git commit -m <span class=s2>&#34;usamos tags h1 en hola mundo&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>master a5dbb2a<span class=o>]</span> usamos tags h1 en hola mundo
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>1</span> insertion<span class=o>(</span>+<span class=o>)</span>, <span class=m>1</span> deletion<span class=o>(</span>-<span class=o>)</span>
+</span></span></code></pre></div><p>Nuestro log ahora tiene un commit más:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>web on  master
+</span></span><span class=line><span class=cl>❯ git log --oneline
+</span></span><span class=line><span class=cl>a5dbb2a <span class=o>(</span>HEAD -&gt; master<span class=o>)</span> usamos tags h1 en hola mundo
+</span></span><span class=line><span class=cl>585707a hola mundo
+</span></span><span class=line><span class=cl>a36508d iniciamos readme para describir el proyecto
+</span></span></code></pre></div><p>Pero conforme lo hiciste te das cuenta que pusiste <code>&lt;h1>hola mundo&lt;h1></code> en lugar de <code>&lt;h1>hola mundo&lt;/h1></code>.</p><p>Puedes simplemente hacer un commit nuevo con el arreglo, pero usar <code>amend</code> es mejor:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>web on  master
+</span></span><span class=line><span class=cl>❯ <span class=nb>echo</span> <span class=s2>&#34;&lt;h1&gt;hola mundo&lt;/h1&gt;&#34;</span> &gt; index.html
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>web on  master <span class=o>[</span>!<span class=o>]</span>
+</span></span><span class=line><span class=cl>❯ git add .
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>web on  master <span class=o>[</span>+<span class=o>]</span>
+</span></span><span class=line><span class=cl>❯ git commit --amend
+</span></span><span class=line><span class=cl><span class=o>[</span>master 46f95e7<span class=o>]</span> usamos tags h1 en hola mundo
+</span></span><span class=line><span class=cl> Date: Sat Aug <span class=m>29</span> 12:51:02 <span class=m>2026</span> +0200
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>1</span> insertion<span class=o>(</span>+<span class=o>)</span>, <span class=m>1</span> deletion<span class=o>(</span>-<span class=o>)</span>
+</span></span></code></pre></div><p>Ahora nuestro log es mucho mas limpio:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>web on  master
+</span></span><span class=line><span class=cl>❯ git log --oneline
+</span></span><span class=line><span class=cl>46f95e7 <span class=o>(</span>HEAD -&gt; master<span class=o>)</span> usamos tags h1 en hola mundo
+</span></span><span class=line><span class=cl>585707a hola mundo
+</span></span><span class=line><span class=cl>a36508d iniciamos readme para describir el proyecto
+</span></span></code></pre></div><p>Y el archivo es correcto:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>web on  master
+</span></span><span class=line><span class=cl>❯ cat index.html
+</span></span><span class=line><span class=cl>&lt;h1&gt;hola mundo&lt;/h1&gt;
+</span></span></code></pre></div><p>Tambien puedes usarlo para cambiar el mensaje del ultimo commit, sin cambios en el stage:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>web on  master
+</span></span><span class=line><span class=cl>❯ git commit -m <span class=s2>&#34;cambiamos el mensaje&#34;</span> --amend
+</span></span><span class=line><span class=cl><span class=o>[</span>master 1252486<span class=o>]</span> cambiamos el mensaje
+</span></span><span class=line><span class=cl> Date: Sat Aug <span class=m>29</span> 12:51:02 <span class=m>2026</span> +0200
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>1</span> insertion<span class=o>(</span>+<span class=o>)</span>, <span class=m>1</span> deletion<span class=o>(</span>-<span class=o>)</span>
+</span></span></code></pre></div><blockquote><p>Amend solo afecta al último commit</p></blockquote><h3 id=otro-ejemplo-de-amend>Otro ejemplo de amend</h3><p>Es muy común que cuando tenemos que añadir multiples archivos a un commit, nos olvidemos de alguno:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>web on  master <span class=o>[</span>!?<span class=o>]</span> via  v22.23.1
+</span></span><span class=line><span class=cl>❯ git status
+</span></span><span class=line><span class=cl>En la rama master
+</span></span><span class=line><span class=cl>Cambios no rastreados para el commit:
+</span></span><span class=line><span class=cl>  <span class=o>(</span>usa <span class=s2>&#34;git add &lt;archivo&gt;...&#34;</span> para actualizar lo que será confirmado<span class=o>)</span>
+</span></span><span class=line><span class=cl>  <span class=o>(</span>usa <span class=s2>&#34;git restore &lt;archivo&gt;...&#34;</span> para descartar los cambios en el directorio de trabajo<span class=o>)</span>
+</span></span><span class=line><span class=cl>	modificados:     index.html
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Archivos sin seguimiento:
+</span></span><span class=line><span class=cl>  <span class=o>(</span>usa <span class=s2>&#34;git add &lt;archivo&gt;...&#34;</span> para incluirlo a lo que será confirmado<span class=o>)</span>
+</span></span><span class=line><span class=cl>	index.js
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>sin cambios agregados al commit <span class=o>(</span>usa <span class=s2>&#34;git add&#34;</span> y/o <span class=s2>&#34;git commit -a&#34;</span><span class=o>)</span>
+</span></span></code></pre></div><p>En este estado tenemos:</p><ul><li><code>index.html</code>, lo hemos modificado con respecto al ultimo commit.</li><li><code>index.js</code>, un script que acabamos de crear.</li></ul><p>Al hacer commit solo añadimos el <code>.js</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>web on  master <span class=o>[</span>!?<span class=o>]</span> via  v22.23.1
+</span></span><span class=line><span class=cl>❯ git add index.js
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>web on  master <span class=o>[</span>!+<span class=o>]</span> via  v22.23.1
+</span></span><span class=line><span class=cl>❯ git commit -m <span class=s2>&#34;hola mundo desde javascript en index.html&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>master 2ef419a<span class=o>]</span> hola mundo desde javascript en index.html
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>1</span> insertion<span class=o>(</span>+<span class=o>)</span>
+</span></span><span class=line><span class=cl> create mode <span class=m>100644</span> index.js
+</span></span></code></pre></div><p>Pero necesita el <code>html</code> para funcionar! Podemos hacer:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>web on  master <span class=o>[</span>!<span class=o>]</span> via  v22.23.1
+</span></span><span class=line><span class=cl>❯ git add index.html
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>web on  master <span class=o>[</span>+<span class=o>]</span> via  v22.23.1
+</span></span><span class=line><span class=cl>❯ git commit -m <span class=s2>&#34;hola mundo desde javascript en index.html&#34;</span> --amend
+</span></span><span class=line><span class=cl><span class=o>[</span>master 62688f0<span class=o>]</span> hola mundo desde javascript en index.html
+</span></span><span class=line><span class=cl> Date: Sat Aug <span class=m>29</span> 13:11:20 <span class=m>2026</span> +0200
+</span></span><span class=line><span class=cl> <span class=m>2</span> files changed, <span class=m>2</span> insertions<span class=o>(</span>+<span class=o>)</span>, <span class=m>1</span> deletion<span class=o>(</span>-<span class=o>)</span>
+</span></span><span class=line><span class=cl> create mode <span class=m>100644</span> index.js
+</span></span></code></pre></div><p>También puede pasar lo contrario, ¿y si hemos metido un archivo que no tiene nada que ver en un commit? Si por ejemplo quisieramos quitar el <code>.js</code> de este último commit:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>web on  master via  v22.23.1
+</span></span><span class=line><span class=cl>❯ git rm --cached index.js
+</span></span><span class=line><span class=cl>rm <span class=s1>&#39;index.js&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>web on  master <span class=o>[</span>✘?<span class=o>]</span> via  v22.23.1
+</span></span><span class=line><span class=cl>❯ git commit --amend -m <span class=s2>&#34;creamos tag &lt;script&gt; para importar js&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>master 690c9a1<span class=o>]</span> creamos tag &lt;script&gt; para importar js
+</span></span><span class=line><span class=cl> Date: Sat Aug <span class=m>29</span> 13:11:20 <span class=m>2026</span> +0200
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>1</span> insertion<span class=o>(</span>+<span class=o>)</span>, <span class=m>1</span> deletion<span class=o>(</span>-<span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>web on  master <span class=o>[</span>?<span class=o>]</span> via  v22.23.1
+</span></span><span class=line><span class=cl>❯ git add index.js
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>web on  master <span class=o>[</span>+<span class=o>]</span> via  v22.23.1
+</span></span><span class=line><span class=cl>❯ git commit -m <span class=s2>&#34;creamos hola mundo en js&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>master ee07e4a<span class=o>]</span> creamos hola mundo en js
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>1</span> insertion<span class=o>(</span>+<span class=o>)</span>
+</span></span><span class=line><span class=cl> create mode <span class=m>100644</span> index.js
+</span></span></code></pre></div><h3 id=retrocediendo-en-el-tiempo>Retrocediendo en el tiempo</h3><p>Imagina esta situación, en un repositorio tenemos un archivo de python que funciona y al que ya hemos hecho commit:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>test-reset on  master via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ python3 main.py
+</span></span><span class=line><span class=cl>hola mundo
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>test-reset on  master via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git log --oneline
+</span></span><span class=line><span class=cl>bc578d9 <span class=o>(</span>HEAD -&gt; master<span class=o>)</span> hola mundo en python
+</span></span></code></pre></div><p>Comenzamos a editar nuestro <code>main.py</code>, pero tenemos errores:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>test-reset on  master <span class=o>[</span>!<span class=o>]</span> via 🐍 v3.14.7 took 43s
+</span></span><span class=line><span class=cl>❯ cat main.py
+</span></span><span class=line><span class=cl>saludo<span class=o>(</span><span class=s2>&#34;hola nombre&#34;</span><span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>test-reset on  master <span class=o>[</span>!<span class=o>]</span> via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ python3 main.py
+</span></span><span class=line><span class=cl>Traceback <span class=o>(</span>most recent call last<span class=o>)</span>:
+</span></span><span class=line><span class=cl>  File <span class=s2>&#34;/tmp/test-reset/main.py&#34;</span>, line 1, in &lt;module&gt;
+</span></span><span class=line><span class=cl>    saludo<span class=o>(</span><span class=s2>&#34;hola nombre&#34;</span><span class=o>)</span>
+</span></span><span class=line><span class=cl>    ^^^^^^
+</span></span><span class=line><span class=cl>NameError: name <span class=s1>&#39;saludo&#39;</span> is not defined
+</span></span></code></pre></div><p>Si simplemente quieres borrar <strong>todo</strong> lo que hiciste y volver a tu ultimo commit funcional, puedes hacer <code>git reset --hard</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>test-reset on  master <span class=o>[</span>!<span class=o>]</span> via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ cat main.py
+</span></span><span class=line><span class=cl>saludo<span class=o>(</span><span class=s2>&#34;hola nombre&#34;</span><span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>test-reset on  master <span class=o>[</span>!<span class=o>]</span> via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git reset --hard
+</span></span><span class=line><span class=cl>HEAD está ahora en bc578d9 hola mundo en python
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>test-reset on  master via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ cat main.py
+</span></span><span class=line><span class=cl>print<span class=o>(</span><span class=s1>&#39;hola mundo&#39;</span><span class=o>)</span>
+</span></span></code></pre></div><p>Esto nos permite iterar y cambiar código y volver rápidamente al ultimo punto en el que sabiamos que funcionaba.</p><p>Otro ejemplo, ahora tenemos esto:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>❯ git log --oneline
+</span></span><span class=line><span class=cl>330095f <span class=o>(</span>HEAD -&gt; master<span class=o>)</span> llamamos a funcion
+</span></span><span class=line><span class=cl>b8f4cb6 creamos funcion saludo
+</span></span><span class=line><span class=cl>f59a83b imprimimos saludo con nombre
+</span></span><span class=line><span class=cl>f516fc1 creamos una variable
+</span></span><span class=line><span class=cl>e1e456c cambiamos el mensaje
+</span></span><span class=line><span class=cl>bc578d9 hola mundo en python
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>test-reset on  master via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ cat main.py
+</span></span><span class=line><span class=cl>print<span class=o>(</span><span class=s2>&#34;otro mensaje&#34;</span><span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>def saludo<span class=o>(</span>nombre<span class=o>)</span>:
+</span></span><span class=line><span class=cl>    <span class=nv>nombre</span> <span class=o>=</span> <span class=s2>&#34;diego&#34;</span>
+</span></span><span class=line><span class=cl>    print<span class=o>(</span>f<span class=s2>&#34;hola {nombre}&#34;</span><span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>saludo<span class=o>(</span><span class=s2>&#34;diego&#34;</span><span class=o>)</span>
+</span></span></code></pre></div><p>En este caso hemos hecho multiples commits, el código funciona, pero estaría mejor si tuvieramos un solo commit en el que indicamos que creamos la funcion y la llamamos, tendriamos que echar para atrás 4 commits, asi que podemos hacer:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>test-reset on  master via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git reset --mixed e1e456c
+</span></span><span class=line><span class=cl>Cambios fuera del área de stage tras el reset:
+</span></span><span class=line><span class=cl>M	main.py
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>test-reset on  master <span class=o>[</span>!<span class=o>]</span> via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git log --oneline
+</span></span><span class=line><span class=cl>e1e456c <span class=o>(</span>HEAD -&gt; master<span class=o>)</span> cambiamos el mensaje
+</span></span><span class=line><span class=cl>bc578d9 hola mundo en python
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>test-reset on  master <span class=o>[</span>!<span class=o>]</span> via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ cat main.py
+</span></span><span class=line><span class=cl>print<span class=o>(</span><span class=s2>&#34;otro mensaje&#34;</span><span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>def saludo<span class=o>(</span>nombre<span class=o>)</span>:
+</span></span><span class=line><span class=cl>    <span class=nv>nombre</span> <span class=o>=</span> <span class=s2>&#34;diego&#34;</span>
+</span></span><span class=line><span class=cl>    print<span class=o>(</span>f<span class=s2>&#34;hola {nombre}&#34;</span><span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>saludo<span class=o>(</span><span class=s2>&#34;diego&#34;</span><span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>test-reset on  master <span class=o>[</span>!<span class=o>]</span> via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git add main.py
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>test-reset on  master <span class=o>[</span>+<span class=o>]</span> via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git commit -m <span class=s2>&#34;creamos funcion saludo y la llamamos&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>master 17ddc63<span class=o>]</span> creamos funcion saludo y la llamamos
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>6</span> insertions<span class=o>(</span>+<span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>test-reset on  master via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git log --oneline
+</span></span><span class=line><span class=cl>17ddc63 <span class=o>(</span>HEAD -&gt; master<span class=o>)</span> creamos funcion saludo y la llamamos
+</span></span><span class=line><span class=cl>e1e456c cambiamos el mensaje
+</span></span><span class=line><span class=cl>bc578d9 hola mundo en python
+</span></span></code></pre></div><p>En este caso, <code>git reset --mixed &lt;commit-hash></code> devuelve el repositorio justo al estado que tenia en el hash, pero conserva todos los cambios que hicimos y los deja en el <em>working area</em>, si quieres que se queden en el <em>staging area</em>, listos para hacer commit, usa <code>--soft</code> en lugar de <code>--mixed</code>.</p></div><footer class=content__footer></footer></section><section class=page__aside><div class=aside__about><div class=aside__about><span class=about__logo role=img>ᓚᘏᗢ</span>&nbsp;<h1 class=about__title>/dev/random</h1><p class=about__description>Cultura hacker, software open source y arte hiperdigital</p></div><ul class=aside__social-links><li><a href=https://github.com/datadiego rel=me aria-label=GitHub title=GitHub><i class="fa-brands fa-github" aria-hidden=true></i></a>&nbsp;</li><li><a href=juandiegomariscal@gmail.com rel=me aria-label=Email title=Email><i class="fa-solid fa-envelope" aria-hidden=true></i></a>&nbsp;</li></ul></div><hr><div class=aside__content><p>Guia básica de Git en local</p><p>By datadiego,
 2025-06-05</p></div></section><footer class=page__footer><p><br><span class=active>$ echo $LANG<br><b></b></span><br></p><br><br><p>Este sitio está disponible en versión <a href=http://rogueo7ciqckck2yhf2dqmqxsrav3ydsobcxkun7f5dmysskcxyfgead.onion/>onion</a></p><p class=copyright>© datadiego</p><script src=https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js></script><script>mermaid.initialize({startOnLoad:!0,theme:"dark"})</script></footer></div></body></html>
