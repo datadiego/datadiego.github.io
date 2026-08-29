@@ -4,7 +4,7 @@ draft = false
 title = "Entorno Docker + MySQL"
 description = "Como crear un entorno de desarrollo con Docker y MySQL"
 date = "2025-08-17"
-tags = ["coding", "docker"]
+tags = ["coding", "docker", "guia"]
 +++
 
 

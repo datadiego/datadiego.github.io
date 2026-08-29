@@ -4,7 +4,7 @@ draft: false
 title: "Gestionando dotfiles"
 description: "Guia de como usar tus dotfiles en otras máquinas y automatizar la instalación de tu entorno"
 date: "2025-09-10"
-tags: ["guia", "linux"]
+tags: ["linux"]
 ---
 
 Linux es conocido por la altísima configuración que ofrece. Uno de los aspectos que más sorprende a quien llega de primeras a este sistema operativo es la capacidad de poder cambiar tu escritorio por completo e incluso poder tener multiples para cambiar la experiencia de usuario que prefieres en cada momento.

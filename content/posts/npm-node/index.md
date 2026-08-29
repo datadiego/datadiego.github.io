@@ -57,7 +57,7 @@ apt install npm  # instala la version de npm que viene con tu distribucion
 npm install -g npm  # actualiza npm a la ultima version
 ```
 
-## Crear un proyecto
+### Crear un proyecto
 
 Para crear un nuevo proyecto con npm, puedes usar el siguiente comando:
 
@@ -100,7 +100,7 @@ Este es el archivo base que crea `npm init -y`. Dentro podemos encontrar:
 - `type`: el tipo de modulo que usas en tu proyecto. Puede ser `commonjs` o `module`. Si usas `module`, puedes usar la sintaxis de importacion de ES6.
 - `dependencies`: las dependencias de tu proyecto. Este campo se llena automaticamente cuando instalas una dependencia.
 
-## Instalar dependencias
+### Instalar dependencias
 
 Para instalar una dependencia, puedes usar el siguiente comando:
 
@@ -126,7 +126,7 @@ Esto instalará la dependencia en el directorio global de npm, lo que significa 
 npm install -g nodemon
 ```
 
-## Ejecutar scripts
+### Ejecutar scripts
 
 Puedes ejecutar scripts definidos en el archivo `package.json` con el siguiente comando:
 
@@ -147,3 +147,69 @@ Luego, puedes ejecutar el script con el siguiente comando:
 ```bash
 npm run dev
 ```
+
+## pnpm
+
+`pnpm` (performant npm) es un gestor de paquetes para Node.js que se ha vuelto muy popular por ser **más rápido** y **más eficiente** que npm. Además, tras los múltiples ataques que ha sufrido npm a lo largo de los años, este gestor es el que se recomienda para desarrollo en este ecosistema.
+
+Su principal diferencia es que **no duplica** las dependencias. En lugar de copiar cada paquete dentro de la carpeta `node_modules` de cada proyecto, `pnpm` guarda todos los paquetes en un **almacén global** (store) y crea **enlaces simbólicos** hacia ellos. Esto hace que:
+
+- Ocupes **mucho menos espacio** en disco: si varias proyectos usan la misma versión de una librería, solo se descarga una vez.
+- Las instalaciones sean **más rápidas**, porque no hay que volver a copiar todo en cada proyecto.
+- La estructura de `node_modules` sea más **correcta y estricta**, evitando problemas de dependencias "fantasma".
+
+### Instalar pnpm
+
+La forma recomendada de instalarlo es a través de npm o `corepack`:
+
+```bash
+npm install -g pnpm
+```
+
+### ¿Cómo se usa?
+
+La mayoría de comandos son iguales que npm, solo que con `pnpm`:
+
+```bash
+pnpm init -y
+pnpm add <nombre_dependencia>
+pnpm add <nombre_dependencia> --save-dev
+pnpm install
+pnpm run dev
+```
+
+Como ves, los comandos son muy parecidos, así que si ya conoces npm, te resultará muy natural.
+
+## ¿Por qué pnpm es más seguro que npm?
+
+Más allá de la velocidad y el espacio, pnpm tiene ventajas de **seguridad** importantes. La más destacada está en cómo organiza la carpeta `node_modules`.
+
+### El problema de las dependencias fantasma
+
+Con **npm**, al instalar un paquete, todas sus dependencias transitivas se "aplanan" y se colocan directamente en `node_modules`. Es decir, si instalas `A` y `A` depende de `B`, npm coloca tanto `A` como `B` en la raíz de `node_modules`.
+
+El problema es que tu código (o cualquier paquete) puede **importar `B` directamente**, aunque tú solo declaraste `A` en tu `package.json`. Esto se llama **dependencia fantasma** (ghost dependency). Puede funcionar por casualidad hoy, pero si `A` se actualiza y deja de usar `B`, tu código se romperá sin avisar. Además, es poco seguro porque dependes de paquetes que no has declarado explícitamente.
+
+### La estructura estricta de pnpm
+
+`pnpm` **no aplana** las dependencias. Con `pnpm`, `node_modules` tiene una estructura más estricta y solo los paquetes que **declaras directamente** en tu `package.json` aparecen en la raíz.
+
+```text
+node_modules/
+└── A/          # solo tus dependencias directas
+    └── node_modules/
+        └── B/  # las transitivas quedan anidadas dentro de cada paquete
+```
+
+Esto significa que **no puedes importar un paquete que no hayas declarado**. Si intentas hacer `import B from 'B'` sin haberlo instalado, Node.js lanzará un error claro de "módulo no encontrado". Esto es más seguro porque:
+
+- **Elimina las dependencias fantasma**: estarás seguro de que lo que importas está realmente declarado en tu proyecto.
+- **Evita fallos inesperados** cuando una dependencia transitiva cambia o desaparece.
+- **Fuerza buenas prácticas**: todos los paquetes que usas quedan registrados explícitamente en `package.json`.
+
+### Menos superficie de ataque en `node_modules`
+
+Al no copiar cada paquete dentro de cada proyecto, y al enlazar contra un almacén de solo lectura global, pnpm también reduce el riesgo de que un paquete malicioso o comprometido se propague o se modifique fácilmente dentro de un proyecto concreto.
+
+Además, la instalación **no ejecuta scripts de dependencias transitivas por defecto** con tanta permisividad como npm, lo que limita vectores de ataque típicos del ecosistema (como paquetes que ejecutan código malicioso durante la instalación).
+

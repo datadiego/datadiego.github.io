@@ -4,7 +4,7 @@ title = "Nginx 101"
 draft = false
 date = "2026-05-18"
 description = "Como empezar a usar y configurar tu servidor nginx"
-tags = ["coding"]
+tags = ["linux"]
 
 +++
 

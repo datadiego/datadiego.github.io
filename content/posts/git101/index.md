@@ -6,7 +6,6 @@ date: 2025-06-05
 scheduled: 2025-05-08
 tags:
   - coding
-  - guia
 layout: layouts/post.njk
 ---
 
