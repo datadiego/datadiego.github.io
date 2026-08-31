@@ -3,7 +3,7 @@ title: "Problemas remotos"
 author: datadiego
 draft: false
 description: Como solucionar problemas con repositorios remotos
-date: 2026-08-31
+date: 2025-06-09
 # la fecha va en formato año-mes-dia
 tags:
   - git
