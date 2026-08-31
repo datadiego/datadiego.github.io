@@ -49,9 +49,7 @@
       html += '<li class="search__item" data-index="' + i + '">' +
         '<a href="' + p.url + '">' +
         '<span class="search__title">' + p.title + '</span>' +
-        (p.description ? '<span class="search__desc">' + p.description + '</span>' : '') +
         tags +
-        '<span class="search__date">' + p.date + '</span>' +
         '</a></li>';
     }
     resultsList.innerHTML = html;

@@ -110,10 +110,7 @@
 }
 
 .search__item a {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 0.35rem 0.75rem;
+    display: block;
     padding: 0.5rem 0.75rem;
     text-decoration: none;
     color: var(--fg);
@@ -125,23 +122,14 @@
 }
 
 .search__title {
+    display: block;
     font-weight: bold;
 }
 
-.search__desc {
-    color: var(--off-fg);
-    font-size: 0.8rem;
-}
-
 .search__tags {
+    display: block;
     color: var(--link);
     font-size: 0.8rem;
-}
-
-.search__date {
-    color: var(--muted);
-    font-size: 0.75rem;
-    margin-left: auto;
 }
 
 .search__empty {
