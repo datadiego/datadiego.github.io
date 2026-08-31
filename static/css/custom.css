@@ -51,6 +51,105 @@
     font-size: 0.7rem;
 }
 
+/* Search / Fuzzy Finder */
+.search {
+    margin-bottom: 1.5rem;
+}
+
+.search__input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--inner-bg);
+    border: 1px solid var(--muted);
+    padding: 0.5rem 0.75rem;
+}
+
+.search__input-wrapper:focus-within {
+    border-color: var(--fg);
+}
+
+.search__icon {
+    color: var(--muted);
+    font-size: 1.1rem;
+}
+
+.search__input {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--fg);
+    font-family: var(--font-monospace);
+    font-size: 0.875rem;
+}
+
+.search__input::placeholder {
+    color: var(--muted);
+}
+
+.search__kbd {
+    background: var(--bg);
+    border: 1px solid var(--muted);
+    border-radius: 3px;
+    padding: 0.1rem 0.4rem;
+    font-family: var(--font-monospace);
+    font-size: 0.7rem;
+    color: var(--muted);
+}
+
+.search__results {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: none;
+    border: 1px solid var(--muted);
+    border-top: none;
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.search__item a {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.35rem 0.75rem;
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+    color: var(--fg);
+}
+
+.search__item a:hover,
+.search__item--active a {
+    background: var(--inner-bg);
+}
+
+.search__title {
+    font-weight: bold;
+}
+
+.search__desc {
+    color: var(--off-fg);
+    font-size: 0.8rem;
+}
+
+.search__tags {
+    color: var(--link);
+    font-size: 0.8rem;
+}
+
+.search__date {
+    color: var(--muted);
+    font-size: 0.75rem;
+    margin-left: auto;
+}
+
+.search__empty {
+    padding: 0.75rem;
+    color: var(--muted);
+    font-size: 0.875rem;
+}
+
 /* Ocultar la barra de scroll del aside (sigue siendo scrolleable con rueda/touch) */
 .page__aside {
     scrollbar-width: none; /* Firefox */

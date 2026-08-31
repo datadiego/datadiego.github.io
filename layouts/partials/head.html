@@ -11,12 +11,16 @@
 <!-- Academicons <https://jpswalsh.github.io/academicons/> -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css" integrity="sha512-IW0nhlW5MgNydsXJO40En2EoCkTTjZhI3yuODrZIc8cQ4h1XcF53PsqDHa09NqnkXuIe0Oiyyj171BqZFwISBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
+<!-- Fuse.js for fuzzy search -->
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js"></script>
+
 <!-- risotto theme -->
 <link rel="stylesheet" href="{{ printf "css/palettes/%s.css" (.Site.Params.theme.palette | default "base16-dark") | absURL }}">
 <link rel="stylesheet" href="{{ "css/risotto.css" | absURL }}">
 <link rel="stylesheet" href="{{ "css/custom.css" | absURL }}">
 <link rel="stylesheet" href="{{ "css/syntax.css" | relURL }}">
 <script src="{{ "js/copy-code.js" | relURL }}" defer></script>
+<script src="{{ "js/fuzzy-search.js" | relURL }}" defer></script>
 
 <!-- favicon -->
 {{ if os.FileExists "static/favicon.ico" }}<link rel="icon" href="{{ "favicon.ico" | absURL }}">{{ end }}

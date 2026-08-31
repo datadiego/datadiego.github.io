@@ -1,9 +1,12 @@
 {{ define "main" }}
+    {{ partial "search.html" . }}
+
     <header class="content__header">
         <h1>{{ .Title | markdownify }}</h1>
         {{ .Content }}
     </header>
 
+    <div id="posts-list">
     {{ range .Pages }}
     <article class="post">
         <header class="post__header">
@@ -14,6 +17,7 @@
         {{ end }}
     </article>
     {{ end }}
+    </div>
 {{ end }}
 
 {{define "aside" }}
