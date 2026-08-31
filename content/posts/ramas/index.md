@@ -1,7 +1,7 @@
 ---
 title: "Branches"
 author: datadiego
-draft: true
+draft: false
 description: Como mantener diferentes versiones de desarrollo
 date: 2025-06-12
 # la fecha va en formato año-mes-dia
