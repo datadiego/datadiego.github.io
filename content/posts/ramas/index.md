@@ -412,3 +412,40 @@ copppp on  master via 🐍 v3.14.7
 * 15eec89 commit inicial
 ```
 
+## Flujo con lazygit
+
+El proceso es similar, vamos a hacer una prueba rápida en otro repositorio:
+
+```bash
+cd /tmp
+git init lazy
+cd lazy
+echo "Hola mundo" > README.md
+git add . && git commit -m "commit inicial"
+```
+
+Lanzamos lazygit y con `3n` podemos crear una rama introduciendo su nombre:
+
+![crear](./crear.png)
+
+Ahora podemos usar las flechas arriba y abajo para movernos entre ramas y *espacio* para seleccionar en cual trabajamos:
+
+![ramas](./ramas.png)
+
+Manteniendo seleccionada la rama `funcion-saludo`, recreamos la misma funcion de antes:
+
+![edit1](./edit1.png)
+
+Si te mueves con las flechas entre ramas podrás ver como el log de commits cambia.
+
+Nos movemos a master con *Espacio* y dejamos seleccionada la rama que queremos traernos con las flechas de dirección:
+
+![premerge](./premerge.png)
+
+Y ahora al pulsar `M` obtenermos las siguientes opciones:
+
+![premerge](./premerge1.png)
+
+Seleccionamos la opción `m` para traer el commit de la rama, y ya tendriamos nuestro `master` actualizado:
+
+![final](./final.png)
