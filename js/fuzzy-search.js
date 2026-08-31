@@ -19,12 +19,58 @@
             { name: 'tags', weight: 1 },
             { name: 'content', weight: 0.5 }
           ],
-          threshold: 0.4,
+          threshold: 0.15,
           ignoreLocation: true,
-          minMatchCharLength: 2
+          minMatchCharLength: 2,
+          includeMatches: true
         });
         return postsData;
       });
+  }
+
+  function escapeRegExp(s) {
+    return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function isWholeWordMatch(query, item) {
+    var fields = ['title', 'description', 'tags', 'content'];
+    var re = new RegExp('\\b' + escapeRegExp(query.toLowerCase()) + '\\b');
+    for (var f = 0; f < fields.length; f++) {
+      var val = item[fields[f]];
+      if (!val) continue;
+      var text = fields[f] === 'tags' ? val.join(' ').toLowerCase() : val.toLowerCase();
+      if (re.test(text)) return true;
+    }
+    return false;
+  }
+
+  function getSnippet(result) {
+    if (!result.matches) return '';
+    var contentMatch = null;
+    for (var m = 0; m < result.matches.length; m++) {
+      if (result.matches[m].key === 'content' || result.matches[m].key === 'description') {
+        contentMatch = result.matches[m];
+        break;
+      }
+    }
+    if (!contentMatch) return '';
+    var text = result.item[contentMatch.key];
+    if (!text) return '';
+    var q = input.value.trim().toLowerCase();
+    var lowerText = text.toLowerCase();
+    var idx = lowerText.indexOf(q);
+    if (idx === -1) return '';
+    var lineStart = text.lastIndexOf('\n', idx - 1) + 1;
+    var lineEnd = text.indexOf('\n', idx);
+    if (lineEnd === -1) lineEnd = text.length;
+    var line = text.substring(lineStart, lineEnd).trim();
+    if (line.length > 120) {
+      var offset = idx - lineStart;
+      var clipStart = Math.max(0, offset - 40);
+      var clipEnd = Math.min(line.length, offset + 80);
+      line = (clipStart > 0 ? '...' : '') + line.substring(clipStart, clipEnd) + (clipEnd < line.length ? '...' : '');
+    }
+    return line;
   }
 
   function renderResults(results) {
@@ -46,9 +92,12 @@
       if (p.tags && p.tags.length) {
         tags = '<span class="search__tags">' + p.tags.map(function (t) { return '#' + t; }).join(' ') + '</span>';
       }
+      var snippet = getSnippet(results[i]);
+      var snippetHtml = snippet ? '<span class="search__snippet">&gt; ' + snippet + '</span>' : '';
       html += '<li class="search__item" data-index="' + i + '">' +
         '<a href="' + p.url + '">' +
         '<span class="search__title">' + p.title + '</span>' +
+        snippetHtml +
         tags +
         '</a></li>';
     }
@@ -86,7 +135,9 @@
       renderResults([]);
       return;
     }
-    var results = fuse.search(query);
+    var results = fuse.search(query).filter(function (r) {
+      return isWholeWordMatch(query, r.item);
+    });
     renderResults(results);
   });
 
