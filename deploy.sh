@@ -19,6 +19,6 @@ if ! git remote | grep -qx github; then
 fi
 
 hugo build --baseURL="http://rogueo7ciqckck2yhf2dqmqxsrav3ydsobcxkun7f5dmysskcxyfgead.onion"
-sudo scp -r public/* $server:/var/www/html
 git push github master
 git push $server master
+sudo scp -r public/* $server:/var/www/html
