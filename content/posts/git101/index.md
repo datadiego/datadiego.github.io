@@ -540,3 +540,9 @@ bc578d9 hola mundo en python
 ```
 
 En este caso, `git reset --mixed <commit-hash>` devuelve el repositorio justo al estado que tenia en el hash, pero conserva todos los cambios que hicimos y los deja en el *working area*, si quieres que se queden en el *staging area*, listos para hacer commit, usa `--soft` en lugar de `--mixed`.
+
+### Finalizando
+
+Git es un software **muy extenso**, en tu día a día puede que uses pocos comandos y funciones bien, pero conviene que sepas **de que es capaz** para poder solucionar problemas cuando pasen.
+
+Es normal no acordarte de todos los comandos, apúntalos en ejemplos como los que has visto aquí, o mira documentación online cuando no recuerdes como hacer algo concreto. Usar un agente para solucionarlos también es buena idea, pero cuidado con sus soluciones y **revisa bien que está haciendo**.
