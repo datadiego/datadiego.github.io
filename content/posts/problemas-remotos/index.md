@@ -296,4 +296,111 @@ dev1 on  master via 🐍 v3.14.7
 420878b Initial commit
 ```
 
+### Otro conflicto
 
+Vamos a seguir trabajando con este lab, primero nos aseguraremos de que **ambos** devs estan sincronizados con el remoto, deberiamos ver algo así en el log:
+
+```bash
+dev1 on  master via 🐍 v3.14.7
+❯ git log --oneline
+9d939c0 (HEAD -> master, origin/master, origin/HEAD) añadimos exclamaciones
+4e554b7 devolvemos saludo en ingles
+329efee creamos funcion saludo
+420878b Initial commit
+```
+
+`dev1` crea una nueva función:
+
+```python
+def saludo(nombre):
+    return f"Hello {nombre}!"
+
+
+def despedida(nombre):
+    return f"Bye {nombre}!"
+
+
+print(saludo("Elvira"))
+print(despedida("Elvira"))
+```
+
+Y hace push al remoto con los cambios.
+
+`dev2`, por su lado, cree que deberían haber traducido el nombre de la función `saludo` a ingles para que el código sea más homogéneo y va a hacer push de esto:
+
+```bash
+def hello(name):
+    return f"Hello {name}!"
+
+
+print(hello("Elvira"))
+```
+
+Obtiene el mismo error que vimos antes. Nuestra rama ya no es igual que la del remoto, y debemos hacer `pull` antes de hacer `push`, al intentarlo, tenemos un conflicto y debemos solucionarlo.
+
+En esta ocasion vamos a usar `git pull --no-rebase`, al volver al editor encontramos:
+
+```python
+def hello(name):
+    return f"Hello {name}!"
+
+
+<<<<<<< HEAD
+print(hello("Elvira"))
+=======
+def despedida(nombre):
+    return f"Bye {nombre}!"
+
+
+print(saludo("Elvira"))
+print(despedida("Elvira"))
+>>>>>>> 000bb682381be45c7e198c08eb47952ebefc0b92
+```
+
+Si por ejemplo decidimos aceptar los cambios entrantes desde lazygit pulsando `Mi`, obtenemos:
+
+```bash
+def hello(name):
+    return f"Hello {name}!"
+
+
+def despedida(nombre):
+    return f"Bye {nombre}!"
+
+
+print(saludo("Elvira"))
+print(despedida("Elvira"))
+```
+
+Aquí es donde nuestra intuición sobre como git intenta resolver conflictos puede romper un poco, ¿por qué `print(saludo("Elvira"))` no es `print(hello("Elvira"))` si hemos decidido juntar el código entrante?
+
+Git no tiene **contexto** del código. Sólo entiende cambios en archivos de texto. No es capaz de *refactorizar* ni de aplicar inteligentemente cambios.
+
+Decidimos modificar manualmente y dejarlo asi:
+
+```python
+def hello(name):
+    return f"Hello {name}!"
+
+
+def bye(name):
+    return f"Bye {name}!"
+
+
+print(hello("Elvira"))
+print(bye("Elvira"))
+```
+
+Una vez lo tenemos, en `lazygit` hacemos `m` para ver las opciones de merge y pulsamos `c` para continuar:
+
+![merge](./merge.png)
+
+Finalmente, podremos hacer `P` para hacer *push*.
+
+#### Rebase vs No rebase
+
+Si miras tu historial de commits verás una diferencia clara entre `--rebase` y `--no-rebase`:
+
+![rebase](./rebase-vs-no.png)
+
+La opción `--rebase` deja un historial lineal, se pierde información sobre el conflicto, pero queda mas simple y ordenador, `--no-rebase` conserva todo el historial de lo sucedido.
