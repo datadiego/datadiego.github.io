@@ -3,7 +3,7 @@ title: "Branches"
 author: datadiego
 draft: true
 description: Como mantener diferentes versiones de desarrollo
-date: 2026-07-09
+date: 2025-06-12
 # la fecha va en formato año-mes-dia
 tags:
   - git
