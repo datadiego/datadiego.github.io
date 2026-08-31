@@ -1,7 +1,7 @@
 ---
 title: "Problemas remotos"
 author: datadiego
-draft: true
+draft: false
 description: Como solucionar problemas con repositorios remotos
 date: 2026-08-31
 # la fecha va en formato año-mes-dia
