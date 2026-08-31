@@ -1,0 +1,258 @@
+<!doctype html><html lang=en><head><title>Branches &ndash; /dev/random</title><meta name=description content="Cultura hacker, software open source y arte hiperdigital"><meta name=viewport content="width=device-width,initial-scale=1"><meta charset=UTF-8><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css integrity="sha512-IW0nhlW5MgNydsXJO40En2EoCkTTjZhI3yuODrZIc8cQ4h1XcF53PsqDHa09NqnkXuIe0Oiyyj171BqZFwISBw==" crossorigin=anonymous referrerpolicy=no-referrer><script src=https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js></script><link rel=stylesheet href=https://datadiego.github.io/css/palettes/base16-dark.css><link rel=stylesheet href=https://datadiego.github.io/css/risotto.css><link rel=stylesheet href=https://datadiego.github.io/css/custom.css><link rel=stylesheet href=/css/syntax.css><script src=/js/copy-code.js defer></script><script src=/js/fuzzy-search.js defer></script><meta property="og:title" content="Branches &ndash; /dev/random"><meta property="og:url" content="https://datadiego.github.io/posts/ramas/"><meta property="og:description" content="Como mantener diferentes versiones de desarrollo &ndash; "><meta property="og:locale" content="es-ES"><meta property="og:image" content></head><body><div class=page><header class=page__header><nav class="page__nav main-nav"><ul><li class=nomarker><h1 class=page__logo><a href=https://datadiego.github.io/ class=page__logo-inner>/dev/random</a></h1></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/posts/ title>Posts</a></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/about/ title>About</a></li></ul></nav></header><section class=page__body><header class=content__header><h1>Branches</h1></header><div class=content__body><p>Si ya sabes manejar repositorios locales y remotos el siguiente paso lógico a aprender en git es gestionar ramas.</p><p>Hasta ahora hemos trabajado en <code>master</code> o <code>main</code>, la rama principal en la que queda el código final que queremos distribuir, podemos crear ramas diferentes en las que crear una <em>copia</em> del estado actual del código para desarrollar una nueva funcionalidad, y luego mezclarla con el resto del código.</p><p>De nuevo, si somos los únicos que estamos desarrollando, esto quizá no tiene demasiado sentido, aunque nos va a permitir trabajar de manera más ordenada y separando claramente partes en las que desarrollamos. Pero es especialmente potente cuando trabajamos en equipo con otros. Evitará algunos problemas que ya hemos visto en posts anteriores en los que otro desarrollador puede pushear cambios que nos impiden subir nuestro código porque cada uno puede trabajar en su rama personal.</p><p>Vamos a ver como trabajar primero con ramas directamente en la linea de comandos, luego, aprenderemos a usar <code>lazygit</code> para poder trabajar de forma más cómoda.</p><h2 id=creando-ramas>Creando ramas</h2><p>Vamos a iniciar un repositorio y a crear un commit inicial:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>cd</span> /tmp
+</span></span><span class=line><span class=cl>git init <span class=nb>test</span>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> <span class=nb>test</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;Probando branches en git&#34;</span> &gt; README.md
+</span></span><span class=line><span class=cl>git add . <span class=o>&amp;&amp;</span> git commit -m <span class=s2>&#34;commit inicial&#34;</span>
+</span></span><span class=line><span class=cl>git log --oneline
+</span></span></code></pre></div><p>Ahora mismo tenemos un commit en <code>master</code>:</p><pre tabindex=0><code>1d756ec (HEAD -&gt; master) commit inicial
+</code></pre><p>Vamos a crear una funcion <code>saludo()</code> en python. Pero en lugar de usar la rama principal, lo desarrollaremos en una branch separada.</p><p>Primero creamos la rama y nos movemos a ella:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>test</span> on  master
+</span></span><span class=line><span class=cl>❯ git branch funcion-saludo
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>test</span> on  master
+</span></span><span class=line><span class=cl>❯ git checkout funcion-saludo
+</span></span><span class=line><span class=cl>Cambiado a rama <span class=s1>&#39;funcion-saludo&#39;</span>
+</span></span></code></pre></div><p>Si miramos el log y el contenido actual de la rama:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>test</span> on  funcion-saludo
+</span></span><span class=line><span class=cl>❯ git log --oneline
+</span></span><span class=line><span class=cl>15eec89 <span class=o>(</span>HEAD -&gt; funcion-saludo, master<span class=o>)</span> commit inicial
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>test</span> on  funcion-saludo
+</span></span><span class=line><span class=cl>❯ cat README.md
+</span></span><span class=line><span class=cl>Probando branches en git
+</span></span></code></pre></div><p>Es exactamente el mismo que había en la rama <code>master</code>, ya que hemos creado la rama estando en ella.</p><blockquote><p>Puedes comprobar en que rama te encuentras con <code>git branch</code> en todo momento.</p></blockquote><h2 id=modificando-nuestra-rama>Modificando nuestra rama</h2><p>Vamos a crear la función en <code>main.py</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>saludo</span><span class=p>(</span><span class=n>nombre</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=sa>f</span><span class=s2>&#34;Hola </span><span class=si>{</span><span class=n>nombre</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>saludo</span><span class=p>(</span><span class=s2>&#34;Pepe&#34;</span><span class=p>))</span>
+</span></span></code></pre></div><p>Y a hacer <em>commit</em> de estos cambios:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>test</span> on  funcion-saludo <span class=o>[</span>?<span class=o>]</span> via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git add main.py <span class=o>&amp;&amp;</span> git commit -m <span class=s2>&#34;creamos funcion de saludo&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>funcion-saludo a7ed237<span class=o>]</span> creamos funcion de saludo
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>5</span> insertions<span class=o>(</span>+<span class=o>)</span>
+</span></span><span class=line><span class=cl> create mode <span class=m>100644</span> main.py
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>test</span> on  funcion-saludo via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git log --oneline
+</span></span><span class=line><span class=cl>a7ed237 <span class=o>(</span>HEAD -&gt; funcion-saludo<span class=o>)</span> creamos funcion de saludo
+</span></span><span class=line><span class=cl>15eec89 <span class=o>(</span>master<span class=o>)</span> commit inicial
+</span></span></code></pre></div><p>En el log podemos comprobar que ahora hay un <em>commit</em> en la rama <em>master</em>, y otra en la rama que estamos ahora mismo trabajando, <em>funcion-saludo</em>.</p><p>Si nos movemos a <em>master</em> de nuevo y comprobamos que hay en esa rama:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>test</span> on  funcion-saludo via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git checkout master
+</span></span><span class=line><span class=cl>Cambiado a rama <span class=s1>&#39;master&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>test</span> on  master
+</span></span><span class=line><span class=cl>❯ ls
+</span></span><span class=line><span class=cl>.rw-r--r--@ <span class=m>25</span> datadiego <span class=m>31</span> ago 23:13 README.md
+</span></span></code></pre></div><p>Nuestro archivo <code>main.py</code> ha desaparecido! Esta en otra rama y no la hemos incorporado aún a nuestra rama *master. Para hacerlo:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>test</span> on  master
+</span></span><span class=line><span class=cl>❯ git merge funcion-saludo
+</span></span><span class=line><span class=cl>Actualizando 15eec89..a7ed237
+</span></span><span class=line><span class=cl>Fast-forward
+</span></span><span class=line><span class=cl> main.py <span class=p>|</span> <span class=m>5</span> +++++
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>5</span> insertions<span class=o>(</span>+<span class=o>)</span>
+</span></span><span class=line><span class=cl> create mode <span class=m>100644</span> main.py
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>test</span> on  master via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ ls
+</span></span><span class=line><span class=cl>.rw-r--r--@ <span class=m>72</span> datadiego <span class=m>31</span> ago 23:20 main.py
+</span></span><span class=line><span class=cl>.rw-r--r--@ <span class=m>25</span> datadiego <span class=m>31</span> ago 23:13 README.md
+</span></span></code></pre></div><p>El comando <code>git merge</code> trae los cambios de una rama a otra, ejecutala situandote primero en la rama que quieras traer los cambios, y luego indica que rama quieres traer.</p><h2 id=creando-otra-rama>Creando otra rama</h2><p>Vamos a crear otra rama llamada <code>funcion-despedida</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>copppp on  master via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git branch funcion-despedida
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>copppp on  master via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git checkout funcion-despedida
+</span></span><span class=line><span class=cl>Cambiado a rama <span class=s1>&#39;funcion-despedida&#39;</span>
+</span></span></code></pre></div><p>De nuevo, esta es una copia de <code>master</code>, donde ya tenemos el commit de la rama <code>funcion-saludo</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>copppp on  funcion-despedida <span class=o>[</span>!<span class=o>]</span> via 🐍 v3.14.7 took 53s
+</span></span><span class=line><span class=cl>❯ git log --oneline
+</span></span><span class=line><span class=cl>a7ed237 <span class=o>(</span>HEAD -&gt; funcion-despedida, master, funcion-saludo<span class=o>)</span> creamos funcion de saludo
+</span></span><span class=line><span class=cl>15eec89 commit inicial
+</span></span></code></pre></div><p>Y creamos la siguiente función en <code>main.py</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>saludo</span><span class=p>(</span><span class=n>nombre</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=sa>f</span><span class=s2>&#34;Hola </span><span class=si>{</span><span class=n>nombre</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>despedida</span><span class=p>(</span><span class=n>nombre</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=sa>f</span><span class=s2>&#34;Adios </span><span class=si>{</span><span class=n>nombre</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>saludo</span><span class=p>(</span><span class=s2>&#34;Pepe&#34;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>despedida</span><span class=p>(</span><span class=s2>&#34;Pepe&#34;</span><span class=p>))</span>
+</span></span></code></pre></div><p>Y repetimos lo mismo que antes para incorporarlo a <code>master</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>copppp on  funcion-despedida <span class=o>[</span>!<span class=o>]</span> via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git add main.py <span class=o>&amp;&amp;</span> git commit -m <span class=s2>&#34;creamos la funcion despedida&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>funcion-despedida f1c7271<span class=o>]</span> creamos la funcion despedida
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>5</span> insertions<span class=o>(</span>+<span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>copppp on  funcion-despedida via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git checkout master
+</span></span><span class=line><span class=cl>Cambiado a rama <span class=s1>&#39;master&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>copppp on  master via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git log --oneline
+</span></span><span class=line><span class=cl>a7ed237 <span class=o>(</span>HEAD -&gt; master, funcion-saludo<span class=o>)</span> creamos funcion de saludo
+</span></span><span class=line><span class=cl>15eec89 commit inicial
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>copppp on  master via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git merge funcion-despedida
+</span></span><span class=line><span class=cl>Actualizando a7ed237..f1c7271
+</span></span><span class=line><span class=cl>Fast-forward
+</span></span><span class=line><span class=cl> main.py <span class=p>|</span> <span class=m>5</span> +++++
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>5</span> insertions<span class=o>(</span>+<span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>copppp on  master via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git log --oneline
+</span></span><span class=line><span class=cl>f1c7271 <span class=o>(</span>HEAD -&gt; master, funcion-despedida<span class=o>)</span> creamos la funcion despedida
+</span></span><span class=line><span class=cl>a7ed237 <span class=o>(</span>funcion-saludo<span class=o>)</span> creamos funcion de saludo
+</span></span><span class=line><span class=cl>15eec89 commit inicial
+</span></span></code></pre></div><h2 id=actualizando-ramas>Actualizando ramas</h2><p>Si ahora nos movemos a la primera rama que creamos:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>copppp on  master via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git checkout funcion-saludo
+</span></span><span class=line><span class=cl>Cambiado a rama <span class=s1>&#39;funcion-saludo&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>copppp on  funcion-saludo via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git log --oneline
+</span></span><span class=line><span class=cl>a7ed237 <span class=o>(</span>HEAD -&gt; funcion-saludo<span class=o>)</span> creamos funcion de saludo
+</span></span><span class=line><span class=cl>15eec89 commit inicial
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>copppp on  funcion-saludo via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ cat main.py
+</span></span><span class=line><span class=cl>def saludo<span class=o>(</span>nombre<span class=o>)</span>:
+</span></span><span class=line><span class=cl>    <span class=k>return</span> f<span class=s2>&#34;Hola {nombre}&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>print<span class=o>(</span>saludo<span class=o>(</span><span class=s2>&#34;Pepe&#34;</span><span class=o>))</span>
+</span></span></code></pre></div><p>Esta rama esta ya <em>obsoleta</em> y le falta el commit que tenemos en <code>master</code>.</p><p>Imagina que cada rama la mantiene un desarrollador diferente, si se les encarga que modifiquen las funciones y las pongan enteras en ingles, ahora cada uno puede mantener su propia rama, sin pisar el trabajo del otro.</p><p>El desarrollador de la función de saludo puede traer los cambios a su rama:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>copppp on  funcion-saludo via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git merge master
+</span></span><span class=line><span class=cl>Actualizando a7ed237..f1c7271
+</span></span><span class=line><span class=cl>Fast-forward
+</span></span><span class=line><span class=cl> main.py <span class=p>|</span> <span class=m>5</span> +++++
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>5</span> insertions<span class=o>(</span>+<span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>copppp on  funcion-saludo via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ cat main.py
+</span></span><span class=line><span class=cl>def saludo<span class=o>(</span>nombre<span class=o>)</span>:
+</span></span><span class=line><span class=cl>    <span class=k>return</span> f<span class=s2>&#34;Hola {nombre}&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>def despedida<span class=o>(</span>nombre<span class=o>)</span>:
+</span></span><span class=line><span class=cl>    <span class=k>return</span> f<span class=s2>&#34;Adios {nombre}&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>print<span class=o>(</span>saludo<span class=o>(</span><span class=s2>&#34;Pepe&#34;</span><span class=o>))</span>
+</span></span><span class=line><span class=cl>print<span class=o>(</span>despedida<span class=o>(</span><span class=s2>&#34;Pepe&#34;</span><span class=o>))</span>
+</span></span></code></pre></div><p>Y modificar su parte del código:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>hello</span><span class=p>(</span><span class=n>name</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=sa>f</span><span class=s2>&#34;Hola </span><span class=si>{</span><span class=n>name</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>despedida</span><span class=p>(</span><span class=n>nombre</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=sa>f</span><span class=s2>&#34;Adios </span><span class=si>{</span><span class=n>nombre</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>hello</span><span class=p>(</span><span class=s2>&#34;Pepe&#34;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>despedida</span><span class=p>(</span><span class=s2>&#34;Pepe&#34;</span><span class=p>))</span>
+</span></span></code></pre></div><p>Luego, se podrá hacer <code>merge</code> desde <code>master</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>copppp on  funcion-saludo <span class=o>[</span>!<span class=o>]</span> via 🐍 v3.14.7 took 1m9s
+</span></span><span class=line><span class=cl>❯ git add main.py <span class=o>&amp;&amp;</span> git commit -m <span class=s2>&#34;funcion saludo en ingles&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>funcion-saludo a88d42e<span class=o>]</span> funcion saludo en ingles
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>3</span> insertions<span class=o>(</span>+<span class=o>)</span>, <span class=m>3</span> deletions<span class=o>(</span>-<span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>copppp on  funcion-saludo via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git checkout master
+</span></span><span class=line><span class=cl>Cambiado a rama <span class=s1>&#39;master&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>copppp on  master via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git merge funcion-saludo
+</span></span><span class=line><span class=cl>Actualizando f1c7271..a88d42e
+</span></span><span class=line><span class=cl>Fast-forward
+</span></span><span class=line><span class=cl> main.py <span class=p>|</span> <span class=m>6</span> +++---
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>3</span> insertions<span class=o>(</span>+<span class=o>)</span>, <span class=m>3</span> deletions<span class=o>(</span>-<span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>copppp on  master via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git log --oneline
+</span></span><span class=line><span class=cl>a88d42e <span class=o>(</span>HEAD -&gt; master, funcion-saludo<span class=o>)</span> funcion saludo en ingles
+</span></span><span class=line><span class=cl>f1c7271 <span class=o>(</span>funcion-despedida<span class=o>)</span> creamos la funcion despedida
+</span></span><span class=line><span class=cl>a7ed237 creamos funcion de saludo
+</span></span><span class=line><span class=cl>15eec89 commit inicial
+</span></span></code></pre></div><h2 id=provocando-errores>Provocando errores</h2><p>¿Que pasa si el desarrollador de <code>funcion-despedida</code> no actualiza su rama?</p><p>Primero se mueve a su rama:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>copppp on  master via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git checkout funcion-despedida
+</span></span><span class=line><span class=cl>Cambiado a rama <span class=s1>&#39;funcion-despedida&#39;</span>
+</span></span></code></pre></div><p>Y actualiza su código asi:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>def saludo<span class=o>(</span>nombre<span class=o>)</span>:
+</span></span><span class=line><span class=cl>    <span class=k>return</span> f<span class=s2>&#34;Hola {nombre}&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>def bye<span class=o>(</span>name<span class=o>)</span>:
+</span></span><span class=line><span class=cl>    <span class=k>return</span> f<span class=s2>&#34;Adios {name}&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>print<span class=o>(</span>saludo<span class=o>(</span><span class=s2>&#34;Pepe&#34;</span><span class=o>))</span>
+</span></span><span class=line><span class=cl>print<span class=o>(</span>bye<span class=o>(</span><span class=s2>&#34;Pepe&#34;</span><span class=o>))</span>
+</span></span></code></pre></div><p>Hace <em>commit</em> con sus cambios e intentamos un <em>merge</em> desde <code>master</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>copppp on  funcion-despedida <span class=o>[</span>!<span class=o>]</span> via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git add main.py <span class=o>&amp;&amp;</span> git commit -m <span class=s2>&#34;traduccion funcion despedida&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>funcion-despedida 9634dc7<span class=o>]</span> traduccion funcion despedida
+</span></span><span class=line><span class=cl> <span class=m>1</span> file changed, <span class=m>3</span> insertions<span class=o>(</span>+<span class=o>)</span>, <span class=m>3</span> deletions<span class=o>(</span>-<span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>copppp on  funcion-despedida via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git checkout master
+</span></span><span class=line><span class=cl>Cambiado a rama <span class=s1>&#39;master&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>copppp on  master via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git merge funcion-despedida
+</span></span><span class=line><span class=cl>Auto-fusionando main.py
+</span></span><span class=line><span class=cl>CONFLICTO <span class=o>(</span>contenido<span class=o>)</span>: Conflicto de fusión en main.py
+</span></span><span class=line><span class=cl>Fusión automática falló<span class=p>;</span> arregle los conflictos y luego realice un commit con el resultado.
+</span></span></code></pre></div><p>Tenemos un conflicto! Igual que podiamos provocarlos cuando no haciamos <em>pull</em> en un repositorio remoto en posts anteriores.</p><p>La solución es la misma que ya vimos, solucionar el conficto y hacer commit, en este caso:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>hello</span><span class=p>(</span><span class=n>name</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=sa>f</span><span class=s2>&#34;Hola </span><span class=si>{</span><span class=n>name</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>bye</span><span class=p>(</span><span class=n>name</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=sa>f</span><span class=s2>&#34;Adios </span><span class=si>{</span><span class=n>name</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</span> <span class=n>HEAD</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>hello</span><span class=p>(</span><span class=s2>&#34;Pepe&#34;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>despedida</span><span class=p>(</span><span class=s2>&#34;Pepe&#34;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=o>=======</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>saludo</span><span class=p>(</span><span class=s2>&#34;Pepe&#34;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>bye</span><span class=p>(</span><span class=s2>&#34;Pepe&#34;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=o>&gt;&gt;&gt;&gt;&gt;&gt;&gt;</span> <span class=n>funcion</span><span class=o>-</span><span class=n>despedida</span>
+</span></span></code></pre></div><p>Git ha podido determinar los cambios de las funciones, pero necesita que decidamos que hacer en la parte de los prints, la arreglamos para incorporar las llamadas actualizadas:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>hello</span><span class=p>(</span><span class=n>name</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=sa>f</span><span class=s2>&#34;Hola </span><span class=si>{</span><span class=n>name</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>bye</span><span class=p>(</span><span class=n>name</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=sa>f</span><span class=s2>&#34;Adios </span><span class=si>{</span><span class=n>name</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>hello</span><span class=p>(</span><span class=s2>&#34;Pepe&#34;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=n>bye</span><span class=p>(</span><span class=s2>&#34;Pepe&#34;</span><span class=p>))</span>
+</span></span></code></pre></div><p>Y hacemos <em>commit</em> de los cambios:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>copppp on  master <span class=o>(</span>MERGING<span class=o>)</span> <span class=o>[=]</span> via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git add main.py
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>copppp on  master <span class=o>(</span>MERGING<span class=o>)</span> <span class=o>[</span>+<span class=o>]</span> via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git log --oneline
+</span></span><span class=line><span class=cl>a88d42e <span class=o>(</span>HEAD -&gt; master, funcion-saludo<span class=o>)</span> funcion saludo en ingles
+</span></span><span class=line><span class=cl>f1c7271 creamos la funcion despedida
+</span></span><span class=line><span class=cl>a7ed237 creamos funcion de saludo
+</span></span><span class=line><span class=cl>15eec89 commit inicial
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>copppp on  master <span class=o>(</span>MERGING<span class=o>)</span> <span class=o>[</span>+<span class=o>]</span> via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git commit -m <span class=s2>&#34;funcion despedida en ingles&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>[</span>master c8c68bb<span class=o>]</span> funcion despedida en ingles
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>copppp on  master via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git log --oneline
+</span></span><span class=line><span class=cl>c8c68bb <span class=o>(</span>HEAD -&gt; master<span class=o>)</span> funcion despedida en ingles
+</span></span><span class=line><span class=cl>9634dc7 <span class=o>(</span>funcion-despedida<span class=o>)</span> traduccion funcion despedida
+</span></span><span class=line><span class=cl>a88d42e <span class=o>(</span>funcion-saludo<span class=o>)</span> funcion saludo en ingles
+</span></span><span class=line><span class=cl>f1c7271 creamos la funcion despedida
+</span></span><span class=line><span class=cl>a7ed237 creamos funcion de saludo
+</span></span><span class=line><span class=cl>15eec89 commit inicial
+</span></span></code></pre></div><p>Podemos ver un gráfico con la evolución de los merge que hemos hecho:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>copppp on  master via 🐍 v3.14.7
+</span></span><span class=line><span class=cl>❯ git log --oneline --graph --all --decorate
+</span></span><span class=line><span class=cl>*   c8c68bb <span class=o>(</span>HEAD -&gt; master<span class=o>)</span> funcion despedida en ingles
+</span></span><span class=line><span class=cl><span class=p>|</span><span class=se>\
+</span></span></span><span class=line><span class=cl><span class=p>|</span> * 9634dc7 <span class=o>(</span>funcion-despedida<span class=o>)</span> traduccion funcion despedida
+</span></span><span class=line><span class=cl>* <span class=p>|</span> a88d42e <span class=o>(</span>funcion-saludo<span class=o>)</span> funcion saludo en ingles
+</span></span><span class=line><span class=cl><span class=p>|</span>/
+</span></span><span class=line><span class=cl>* f1c7271 creamos la funcion despedida
+</span></span><span class=line><span class=cl>* a7ed237 creamos funcion de saludo
+</span></span><span class=line><span class=cl>* 15eec89 commit inicial
+</span></span></code></pre></div><h2 id=flujo-con-lazygit>Flujo con lazygit</h2><p>El proceso es similar, vamos a hacer una prueba rápida en otro repositorio:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>cd</span> /tmp
+</span></span><span class=line><span class=cl>git init lazy
+</span></span><span class=line><span class=cl><span class=nb>cd</span> lazy
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;Hola mundo&#34;</span> &gt; README.md
+</span></span><span class=line><span class=cl>git add . <span class=o>&amp;&amp;</span> git commit -m <span class=s2>&#34;commit inicial&#34;</span>
+</span></span></code></pre></div><p>Lanzamos lazygit y con <code>3n</code> podemos crear una rama introduciendo su nombre:</p><p><img src=./crear.png alt=crear></p><p>Ahora podemos usar las flechas arriba y abajo para movernos entre ramas y <em>espacio</em> para seleccionar en cual trabajamos:</p><p><img src=./ramas.png alt=ramas></p><p>Manteniendo seleccionada la rama <code>funcion-saludo</code>, recreamos la misma funcion de antes:</p><p><img src=./edit1.png alt=edit1></p><p>Si te mueves con las flechas entre ramas podrás ver como el log de commits cambia.</p><p>Nos movemos a master con <em>Espacio</em> y dejamos seleccionada la rama que queremos traernos con las flechas de dirección:</p><p><img src=./premerge.png alt=premerge></p><p>Y ahora al pulsar <code>M</code> obtenermos las siguientes opciones:</p><p><img src=./premerge1.png alt=premerge></p><p>Seleccionamos la opción <code>m</code> para traer el commit de la rama, y ya tendriamos nuestro <code>master</code> actualizado:</p><p><img src=./final.png alt=final></p></div><footer class=content__footer></footer></section><section class=page__aside><div class=aside__about><div class=aside__about><span class=about__logo role=img>ᓚᘏᗢ</span>&nbsp;<h1 class=about__title>/dev/random</h1><p class=about__description>Cultura hacker, software open source y arte hiperdigital</p></div><ul class=aside__social-links><li><a href=https://github.com/datadiego rel=me aria-label=GitHub title=GitHub><i class="fa-brands fa-github" aria-hidden=true></i></a>&nbsp;</li><li><a href=juandiegomariscal@gmail.com rel=me aria-label=Email title=Email><i class="fa-solid fa-envelope" aria-hidden=true></i></a>&nbsp;</li></ul></div><hr><div class=aside__content><p>Como mantener diferentes versiones de desarrollo</p><p>By datadiego,
+2025-06-12</p></div></section><footer class=page__footer><p><br><span class=active>$ echo $LANG<br><b></b></span><br></p><br><br><p>Este sitio está disponible en versión <a href=http://rogueo7ciqckck2yhf2dqmqxsrav3ydsobcxkun7f5dmysskcxyfgead.onion/>onion</a></p><p class=copyright>© datadiego</p><script src=https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js></script><script>mermaid.initialize({startOnLoad:!0,theme:"dark"})</script></footer></div></body></html>
