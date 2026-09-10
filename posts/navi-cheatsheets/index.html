@@ -1,0 +1,89 @@
+<!doctype html><html lang=en><head><title>Cheatsheets en Linux &ndash; /dev/random</title><meta name=description content="Cultura hacker, software open source y arte hiperdigital"><meta name=viewport content="width=device-width,initial-scale=1"><meta charset=UTF-8><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css integrity="sha512-IW0nhlW5MgNydsXJO40En2EoCkTTjZhI3yuODrZIc8cQ4h1XcF53PsqDHa09NqnkXuIe0Oiyyj171BqZFwISBw==" crossorigin=anonymous referrerpolicy=no-referrer><script src=https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js></script><link rel=stylesheet href=https://datadiego.github.io/css/palettes/base16-dark.css><link rel=stylesheet href=https://datadiego.github.io/css/risotto.css><link rel=stylesheet href=https://datadiego.github.io/css/custom.css><link rel=stylesheet href=/css/syntax.css><script src=/js/copy-code.js defer></script><script src=/js/fuzzy-search.js defer></script><meta property="og:title" content="Cheatsheets en Linux &ndash; /dev/random"><meta property="og:url" content="https://datadiego.github.io/posts/navi-cheatsheets/"><meta property="og:description" content="Como no volver a olvidar comandos en tu distro &ndash; "><meta property="og:locale" content="es-ES"><meta property="og:image" content></head><body><div class=page><header class=page__header><nav class="page__nav main-nav"><ul><li class=nomarker><h1 class=page__logo><a href=https://datadiego.github.io/ class=page__logo-inner>/dev/random</a></h1></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/posts/ title>Posts</a></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/about/ title>About</a></li></ul></nav></header><section class=page__body><header class=content__header><h1>Cheatsheets en Linux</h1></header><div class=content__body><p>Da igual si eres nuevo en Linux o llevar usándolo años, los comandos se olvidan.</p><p>A base de usar a diario el sistema y tirar de terminal vas a saber los más comunes y que siempre usas, con esos no tendrás problema. Pero muchos son <strong>largos</strong>, en ocasiones con varios pipes, y además <strong>no se usan a diario</strong>.</p><p>La mayoría de usuarios tenemos algun directorio en nuestro sistema con varios archivos <em>Markdown</em> donde escribimos nuestras guias y comandos. Buscar entre ellos no es difícil, pero no es lo mejor.</p><p>En este post vamos a tratar como recordar comandos, que herramientas tenemos en linux para aliviar esta tarea, y como usarlas en nuestro dia a dia.</p><p>Primero empezaremos por recordar las formas más comunes de informarnos sobre comandos:</p><h2 id=man>man</h2><p>La herramienta <code>man</code> viene incluida en cualquier distro, su uso es simple <code>man &lt;comando></code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>man mkdir
+</span></span></code></pre></div><p>Esta nos mostrará el manual completo del comando que necesitamos, junto a una explicación de sus <em>flags</em> y opciones disponibles.</p><p>No es una opción rápida, pero en muchas ocasiones tendremos muy buena información aqui.</p><h2 id=help>&ndash;help</h2><p>Esta es una opción disponible en muchos comandos, similar a <code>man</code>, nos mostrará que podemos hacer con el comando, y que opciones podemos usar, de manera mucho más resumida que <code>man</code>.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>grep --help
+</span></span></code></pre></div><p>Aún así, no esperes ejemplos en la mayoría de casos, pero es la opción más rápida si necesitas saber que flags tienes disponibles y que hace cada una.</p><h2 id=history--grep-comando>history | grep &ldquo;comando&rdquo;</h2><p>Si mandaste un comando hace un tiempo y solo recuerdas una parte del mismo, puedes utilizar el comando previo para buscar en el historial de comandos y filtrar por una palabra clave:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>❯ <span class=nb>history</span> <span class=p>|</span> grep netstat
+</span></span><span class=line><span class=cl>  <span class=m>488</span>  netstat -putan <span class=p>|</span> grep <span class=m>1234</span>
+</span></span><span class=line><span class=cl>  <span class=m>496</span>  netstat -putan <span class=p>|</span> grep <span class=m>1234</span>
+</span></span><span class=line><span class=cl>  <span class=m>500</span>  netstat -putan <span class=p>|</span> grep <span class=m>1234</span>
+</span></span><span class=line><span class=cl>  <span class=m>505</span>  <span class=nb>history</span> <span class=p>|</span> grep netstat
+</span></span></code></pre></div><p>Durante mucho tiempo, cuando quería <em>anotar</em> algún comando que sabia que iba a querer guardar en mis notas más tarde o accederlo de esta forma hacia esto:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>comando <span class=c1>#IMPORTANTE</span>
+</span></span></code></pre></div><p>De forma que luego podia hacer:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>history</span> <span class=p>|</span> grep <span class=s2>&#34;#IMPORTANTE&#34;</span>
+</span></span></code></pre></div><p>Esto viene bien en servidores donde preferimos no instalar <em>demasiadas</em> cosas, pero en un sistema de diario, donde tengamos más libertad tenemos mejores opciones como las que veremos adelante:</p><h2 id=fzf>fzf</h2><p><a href=https://github.com/junegunn/fzf>fzf</a> es un <code>fuzzy finder</code> en tu terminal, te sirve para buscar directorios, archivos y comandos.</p><p>En muchos casos lo tienes directamente disponible a través de tu gestor de paquetes. Una vez instalado, con una terminal abierta podrás usar dos atajos:</p><h3 id=ctrl--t>Ctrl + T</h3><p>Busca archivos por nombre o formato, simplemente escribe el nombre y navega por los resultados:</p><p><img src=./archivos.png alt=archivos></p><h3 id=ctrl--r>Ctrl + R</h3><p>Busca comandos <strong>que ya has lanzado previamente</strong>, es muy similar a lo que haciamos con <code>history</code>, pero mucho más rápido e interactivo</p><p><img src=./comandos0.png alt=comandos></p><h2 id=tldr>tldr</h2><p><a href=https://github.com/tldr-pages/tldr>tldr</a> es similar a <code>--help</code>, pero muy orientado a encontrar ejemplos rápidos de como funciona un comando:</p><p><img src=./tldr.png alt=tldr></p><p>Si no sabes como se usa un comando nuevo, o no recuerdas como hacer algo con uno, muy seguramente lo encuentres con <code>tldr</code>.</p><h2 id=cheatsh>cheat.sh</h2><p><a href=https://cheat.sh/>cheat.sh</a> es un servicio web de consulta, pensado para llamarlo mediante curl:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>!<span class=o>[</span>cheat<span class=o>](</span>./cheat.png<span class=o>)</span>
+</span></span></code></pre></div><h2 id=navi>navi</h2><p>Para mi, la mejor forma de tener un sistema fiable con el que recordarlos.</p><p><a href>navi</a> es similar a tldr + fzf, pero te deja <strong>crear</strong> tus propias páginas de cheatsheets con los comandos que prefieras, olvidándote de buscar en tus markdown manualmente.</p><p>En mi caso, me gusta almacenar mis cheatsheets en <code>~/.cheatsheets</code>, un ejemplo:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>.cheatsheets on  master
+</span></span><span class=line><span class=cl>❯ ls
+</span></span><span class=line><span class=cl>.rw-r--r--@ <span class=m>360</span> datadiego <span class=m>10</span> sep 15:25 basic.cheat
+</span></span><span class=line><span class=cl>.rw-r--r--@ <span class=m>221</span> datadiego <span class=m>10</span> sep 15:25 procesos.cheat
+</span></span><span class=line><span class=cl>.rw-r--r--@ <span class=m>127</span> datadiego <span class=m>10</span> sep 15:25 red.cheat
+</span></span></code></pre></div><p>Por ejemplo, <code>basic.cheat</code>:</p><pre tabindex=0><code># Básicos
+
+% Directorio actual
+pwd
+
+% Listar archivos y directorios
+ls
+
+% Listar todos los archivos
+ls -la
+
+% Moverse a un directorio
+cd &lt;directorio&gt;
+
+% Crear archivo
+touch &lt;archivo&gt;
+
+% Leer archivo
+cat &lt;archivo&gt;
+
+% Crear directorio
+mkdir &lt;nombre&gt;
+
+% Crear ruta de directorios
+mkdir -p &lt;ruta&gt;
+
+% Encontrar archivos por nombre
+find &lt;directorio&gt; -name &#34;*.txt&#34;
+</code></pre><p>Es importante que las partes de cada comando que necesites rellenar tu como usuario las envuelvas en <code>&lt;></code>. Navi te pedirá que las rellenes cuando las selecciones:</p><p><img src=./navi2.png alt=navi2></p><p>Por último, configura navi en <code>~/.config/navi/config.yaml</code>:</p><pre tabindex=0><code>style:
+  tag:
+    width_percentage: 40
+    min_width: 20
+  comment:
+    width_percentage: 10
+    min_width: 0
+    max_width: 10
+  snippet:
+    width_percentage: 50
+    min_width: 0
+
+cheats:
+  paths:
+    - /home/datadiego/.cheatsheets
+</code></pre><p>La parte importante en realidad es:</p><pre tabindex=0><code>cheats:
+  paths:
+    - /home/datadiego/.cheatsheets
+</code></pre><p>Configuralo con la ruta a donde tengas tus archivos de cheatsheets para que al abrir <code>navi</code> los encuentre, el resto de configuración ayuda a que se muestre bien en terminales más pequeñas, pero no es necesario.</p><h3 id=un-ultimo-detalle>Un ultimo detalle</h3><p>Por defecto <code>navi</code> ejecuta el comando, pero en ocasiones necesito usar un pipe junto al mismo, o redirigir la salida a un archivo, en mi <code>.bashrc</code> se carga lo siguiente:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>_navi_call<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>   <span class=nb>local</span> <span class=nv>result</span><span class=o>=</span><span class=s2>&#34;</span><span class=k>$(</span>navi <span class=s2>&#34;</span><span class=nv>$@</span><span class=s2>&#34;</span> &lt;/dev/tty<span class=k>)</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>   <span class=nb>printf</span> <span class=s2>&#34;%s&#34;</span> <span class=s2>&#34;</span><span class=nv>$result</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>_navi_widget<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>   <span class=nb>local</span> -r <span class=nv>input</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>READLINE_LINE</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>   <span class=nb>local</span> -r <span class=nv>last_command</span><span class=o>=</span><span class=s2>&#34;</span><span class=k>$(</span><span class=nb>echo</span> <span class=s2>&#34;</span><span class=si>${</span><span class=nv>input</span><span class=si>}</span><span class=s2>&#34;</span> <span class=p>|</span> navi fn widget::last_command<span class=k>)</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   <span class=k>if</span> <span class=o>[</span> -z <span class=s2>&#34;</span><span class=si>${</span><span class=nv>last_command</span><span class=si>}</span><span class=s2>&#34;</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>      <span class=nb>local</span> -r <span class=nv>output</span><span class=o>=</span><span class=s2>&#34;</span><span class=k>$(</span>_navi_call --print<span class=k>)</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>   <span class=k>else</span>
+</span></span><span class=line><span class=cl>      <span class=nb>local</span> -r <span class=nv>find</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>last_command</span><span class=si>}</span><span class=s2>_NAVIEND&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=nb>local</span> -r <span class=nv>replacement</span><span class=o>=</span><span class=s2>&#34;</span><span class=k>$(</span>_navi_call --print --query <span class=s2>&#34;</span><span class=nv>$last_command</span><span class=s2>&#34;</span><span class=k>)</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=nb>local</span> <span class=nv>output</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$input</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=o>[</span> -n <span class=s2>&#34;</span><span class=nv>$replacement</span><span class=s2>&#34;</span> <span class=o>]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>         <span class=nv>output</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>input</span><span class=si>}</span><span class=s2>_NAVIEND&#34;</span>
+</span></span><span class=line><span class=cl>         <span class=nv>output</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>output</span><span class=p>//</span><span class=nv>$find</span><span class=p>/</span><span class=nv>$replacement</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=k>fi</span>
+</span></span><span class=line><span class=cl>   <span class=k>fi</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>   <span class=nv>READLINE_LINE</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$output</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>   <span class=nv>READLINE_POINT</span><span class=o>=</span><span class=si>${#</span><span class=nv>READLINE_LINE</span><span class=si>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>bind</span> -x <span class=s1>&#39;&#34;\C-g&#34;: _navi_widget&#39;</span>
+</span></span></code></pre></div><p>Con esto tengo un atajo <code>Ctrl + G</code> que me abre <code>navi</code> directamente, y no se ejecuta el comando, solo se pega en mi terminal para que lo lance, modifique o añada otro comportamiento :)</p></div><footer class=content__footer></footer></section><section class=page__aside><div class=aside__about><div class=aside__about><span class=about__logo role=img>ᓚᘏᗢ</span>&nbsp;<h1 class=about__title>/dev/random</h1><p class=about__description>Cultura hacker, software open source y arte hiperdigital</p></div><ul class=aside__social-links><li><a href=https://github.com/datadiego rel=me aria-label=GitHub title=GitHub><i class="fa-brands fa-github" aria-hidden=true></i></a>&nbsp;</li><li><a href=juandiegomariscal@gmail.com rel=me aria-label=Email title=Email><i class="fa-solid fa-envelope" aria-hidden=true></i></a>&nbsp;</li></ul></div><hr><div class=aside__content><p>Como no volver a olvidar comandos en tu distro</p><p>By datadiego,
+2026-09-10</p></div></section><footer class=page__footer><p><br><span class=active>$ echo $LANG<br><b></b></span><br></p><br><br><p>Este sitio está disponible en versión <a href=http://rogueo7ciqckck2yhf2dqmqxsrav3ydsobcxkun7f5dmysskcxyfgead.onion/>onion</a></p><p class=copyright>© datadiego</p><script src=https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js></script><script>mermaid.initialize({startOnLoad:!0,theme:"dark"})</script></footer></div></body></html>
