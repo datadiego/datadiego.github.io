@@ -1,7 +1,7 @@
 ---
 title: "Cheatsheets en Linux"
 author: datadiego
-draft: true
+draft: false
 description: Como no volver a olvidar comandos en tu distro
 date: 2026-09-10
 tags:
