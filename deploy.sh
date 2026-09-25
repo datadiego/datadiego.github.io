@@ -13,12 +13,12 @@ if ! command -v hugo >/dev/null 2>&1; then
   exit 1
 fi
 
-if ! git remote | grep -qx github; then
+if ! git remote | grep -qx origin; then
   echo "Error: no existe el remoto 'github'." >&2
   exit 1
 fi
 
 hugo build --baseURL="http://rogueo7ciqckck2yhf2dqmqxsrav3ydsobcxkun7f5dmysskcxyfgead.onion"
-git push github master
-git push $server master
+git push origin master
+#git push $server master
 sudo scp -r public/* $server:/var/www/html
