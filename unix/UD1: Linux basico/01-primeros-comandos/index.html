@@ -1,0 +1,2213 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://datadiego.github.io/unix/UD1%3A%20Linux%20basico/01-primeros-comandos/">
+      
+      
+        <link rel="prev" href="../00-introduccion/">
+      
+      
+        <link rel="next" href="../02-gestor-paquetes/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Comandos I - Linux</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../overrides/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+<script type="module">
+  import mermaid from 'https://unpkg.com/mermaid/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+</script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#comandos-i" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Linux" class="md-header__button md-logo" aria-label="Linux" data-md-component="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" width="2.4rem" height="2.4rem">
+  <rect fill="none" height="10.5" width="12.5" y="2.75" x="1.75"/>
+  <path fill="none" d="m8.75 10.25h2.5m-6.5-4.5 2.5 2.25-2.5 2.25"/>
+</svg>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Linux
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Comandos I
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Linux" class="md-nav__button md-logo" aria-label="Linux" data-md-component="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" width="2.4rem" height="2.4rem">
+  <rect fill="none" height="10.5" width="12.5" y="2.75" x="1.75"/>
+  <path fill="none" d="m8.75 10.25h2.5m-6.5-4.5 2.5 2.25-2.5 2.25"/>
+</svg>
+    </a>
+    Linux
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD0: Introduccion a Linux
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            UD0: Introduccion a Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20Introduccion%20a%20Linux/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20Introduccion%20a%20Linux/1-cuando-usarlo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cuando usar Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20Introduccion%20a%20Linux/2-componentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Componentes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20Introduccion%20a%20Linux/3-distros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Distros
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20Introduccion%20a%20Linux/4-instalando-vm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Máquinas virtuales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD1: Linux basico
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            UD1: Linux basico
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Comandos I
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Comandos I
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sobre-el-miedo-a-la-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sobre el miedo a la terminal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ventajas-de-usar-la-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ventajas de usar la terminal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tus-primeros-comandos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tus primeros comandos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tus primeros comandos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pwd" class="md-nav__link">
+    <span class="md-ellipsis">
+      pwd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ls" class="md-nav__link">
+    <span class="md-ellipsis">
+      ls
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anadiendo-flags-a-comandos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Añadiendo flags a comandos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mostrando-todos-los-archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mostrando todos los archivos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#echo" class="md-nav__link">
+    <span class="md-ellipsis">
+      echo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cd" class="md-nav__link">
+    <span class="md-ellipsis">
+      cd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rutas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rutas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rutas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#relativas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relativas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#absoluta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Absoluta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autocompletado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autocompletado
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#otras-formas-de-moverse" class="md-nav__link">
+    <span class="md-ellipsis">
+      Otras formas de moverse
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mkdir" class="md-nav__link">
+    <span class="md-ellipsis">
+      mkdir
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nano" class="md-nav__link">
+    <span class="md-ellipsis">
+      nano
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cat" class="md-nav__link">
+    <span class="md-ellipsis">
+      cat
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rm" class="md-nav__link">
+    <span class="md-ellipsis">
+      rm
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finalizando" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finalizando
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-gestor-paquetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gestión de paquetes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-editores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Editores de texto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-shell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shell
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-comandos-medio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Comandos II
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-comandos-avanzado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expansión de conceptos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-redirecciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Redirecciones y descriptores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-sistema-archivos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sistema de archivos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-recordando-comandos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ayudas con comandos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-instalacion-apps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Otras formas de instalar aplicaciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD2: Administracion de sistemas
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            UD2: Administracion de sistemas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/1-usuarios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Usuarios
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/2-permisos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Permisos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/3-grupos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Grupos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/4-procesos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Procesos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/5-servicios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Servicios
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/6-enlaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Enlaces
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/7-shell-scripting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shell scripting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD3: Gestion de dotfiles
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            UD3: Gestion de dotfiles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Gestion%20de%20dotfiles/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Gestion%20de%20dotfiles/1-iniciando/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Iniciando el proyecto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Gestion%20de%20dotfiles/2-gestionando-dotfiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gestionando dotfiles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Gestion%20de%20dotfiles/3-automatizar-instalacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Automatizar instalación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Gestion%20de%20dotfiles/4-Makefile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Makefile
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD4: Agentes de IA
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            UD4: Agentes de IA
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/1-problemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Consideraciones sobre esta tecnología
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/2-ollama/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ollama
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/3-agentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agentes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/4-integracion-ide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ollama + IDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/5-como-usar-ia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Como utilizar IA de forma efectiva
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/6-invokeai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Invokeai
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#sobre-el-miedo-a-la-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sobre el miedo a la terminal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ventajas-de-usar-la-terminal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ventajas de usar la terminal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tus-primeros-comandos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tus primeros comandos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tus primeros comandos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pwd" class="md-nav__link">
+    <span class="md-ellipsis">
+      pwd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ls" class="md-nav__link">
+    <span class="md-ellipsis">
+      ls
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ls">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#anadiendo-flags-a-comandos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Añadiendo flags a comandos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mostrando-todos-los-archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mostrando todos los archivos
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#echo" class="md-nav__link">
+    <span class="md-ellipsis">
+      echo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cd" class="md-nav__link">
+    <span class="md-ellipsis">
+      cd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rutas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rutas
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rutas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#relativas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relativas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#absoluta" class="md-nav__link">
+    <span class="md-ellipsis">
+      Absoluta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autocompletado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autocompletado
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#otras-formas-de-moverse" class="md-nav__link">
+    <span class="md-ellipsis">
+      Otras formas de moverse
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mkdir" class="md-nav__link">
+    <span class="md-ellipsis">
+      mkdir
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nano" class="md-nav__link">
+    <span class="md-ellipsis">
+      nano
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cat" class="md-nav__link">
+    <span class="md-ellipsis">
+      cat
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rm" class="md-nav__link">
+    <span class="md-ellipsis">
+      rm
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finalizando" class="md-nav__link">
+    <span class="md-ellipsis">
+      Finalizando
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="comandos-i">Comandos I</h1>
+<p>Busca la terminal en tu launcher de aplicaciones y ejecútala, vamos a ver como usar la terminal.</p>
+<h2 id="sobre-el-miedo-a-la-terminal">Sobre el miedo a la terminal</h2>
+<p>La terminal es una interfaz que te permite interactuar con tu equipo lanzando comandos de texto. De primeras puede sentirse como algo <strong>obsoleto</strong> y complejo.</p>
+<p>Muchos usuarios suelen tener miedo a Linux por la terminal. La realidad es que la mayoría de distros pueden usarse <strong>sin tener que pasar por la terminal</strong> para un uso básico. Puedes instalar software, configurar tu equipo y ejecutar aplicaciones sin necesidad de usarla.</p>
+<blockquote>
+<p>Mi madre usa gnome desde hace años, nunca ha tenido que abrir una terminal.</p>
+</blockquote>
+<h2 id="ventajas-de-usar-la-terminal">Ventajas de usar la terminal</h2>
+<p>Aprender a usarla te va a aportar varias ventajas:</p>
+<ul>
+<li>Más eficaz a la hora de realizar acciones, para la mayoría de tareas es más rápida.</li>
+<li>Hay cosas que simplemente no se pueden hacer mediante una interfaz, o al menos no de una manera tan cómoda.</li>
+<li>Podrás modificar mucho más cómo el sistema debe responder, y qué quieres que haga.</li>
+<li>Automatizar tareas repetitivas de manera simple.</li>
+<li>Poder usar agentes de IA de manera más eficaz.</li>
+</ul>
+<p>Además, este tipo de interfaz tiene una ventaja sobre usar una interfaz gráfica. Puedes <strong>compartir</strong> comandos, problemas y soluciones mucho más fácil.</p>
+<p>Si usas una interfaz gráfica vas a tener que describir <strong>todo</strong> el problema, a que menú fuiste, donde hiciste click, en que caja escribiste algo o que opciones activaste, incluso compartir <em>screenshots</em> o videos.</p>
+<blockquote>
+<p>Como muestra de esto último, el tutorial que seguiste anteriormente para montar la VM ha requerido 16 imágenes. El resto del curso en dos materias ninguna, solo comandos de terminal en su mayoría.</p>
+</blockquote>
+<p>La solución será igual de complicada, tendrán que guiarte a que menu debes ir, donde pulsar, que opciones configurar.</p>
+<p>Con terminal, simplemente puedes plantear tu duda, por ejemplo:</p>
+<blockquote>
+<p>Estoy siguiendo una guia sobre linux, intento crear un archivo y leerlo pero me da error, además no aparece en la carpeta donde estoy, estos son los pasos que he seguido:</p>
+</blockquote>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>~/pruebas
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>❯<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;hola mundo&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>.holamundo.txt
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>~/pruebas
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>❯<span class="w"> </span>cat<span class="w"> </span>holamundo.txt
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>cat:<span class="w"> </span>holamundo.txt:<span class="w"> </span>No<span class="w"> </span>existe<span class="w"> </span>el<span class="w"> </span>fichero<span class="w"> </span>o<span class="w"> </span>el<span class="w"> </span>directorio
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>~/pruebas
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>❯<span class="w"> </span>ls
+</span></code></pre></div>
+<p>Y un usuario responder:</p>
+<blockquote>
+<p>Tuviste un error muy tonto, has creado el archivo con el nombre .holamundo.txt, los archivos que empiezan por <code>.</code> son archivos ocultos, puedes usar <code>ls -la</code> para verlos:</p>
+</blockquote>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>~/pruebas
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>❯<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;hola mundo&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>.holamundo.txt
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>~/pruebas
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>❯<span class="w"> </span>ls<span class="w"> </span>-la
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>.rw-r--r--@<span class="w"> </span><span class="m">11</span><span class="w"> </span>datadiego<span class="w"> </span><span class="m">16</span><span class="w"> </span>sep<span class="w"> </span><span class="m">16</span>:44<span class="w"> </span>.holamundo.txt
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>~/pruebas
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>❯<span class="w"> </span>cat<span class="w"> </span>.holamundo.txt
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>hola<span class="w"> </span>mundo
+</span></code></pre></div>
+<blockquote>
+<p>Quizá intentabas hacer esto:</p>
+</blockquote>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>~/pruebas
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>❯<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;hola mundo&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>./holamundo.txt
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>~/pruebas
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>❯<span class="w"> </span>cat<span class="w"> </span>holamundo.txt
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>hola<span class="w"> </span>mundo
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>~/pruebas
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>❯<span class="w"> </span>ls
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>.rw-r--r--@<span class="w"> </span><span class="m">11</span><span class="w"> </span>datadiego<span class="w"> </span><span class="m">16</span><span class="w"> </span>sep<span class="w"> </span><span class="m">16</span>:45<span class="w"> </span>holamundo.txt
+</span></code></pre></div>
+<blockquote>
+<p>Aqui <code>./</code> se refiere a <em>crear el archivo en este directorio</em>, aunque puedes obviarlo y simplemente hacer:</p>
+</blockquote>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>~/pruebas
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>❯<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;hola mundo&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>holamundo.txt
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>~/pruebas
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>❯<span class="w"> </span>ls
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>.rw-r--r--@<span class="w"> </span><span class="m">11</span><span class="w"> </span>datadiego<span class="w"> </span><span class="m">16</span><span class="w"> </span>sep<span class="w"> </span><span class="m">16</span>:46<span class="w"> </span>holamundo.txt
+</span></code></pre></div>
+<h2 id="tus-primeros-comandos">Tus primeros comandos</h2>
+<p>Cuando abras la terminal verás tu <em>prompt</em>, está esperando que escribas algo y pulses <code>enter</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>❯<span class="w"> </span>socorro
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>bash:<span class="w"> </span>socorro:<span class="w"> </span>instrucción<span class="w"> </span>no<span class="w"> </span>encontrada...
+</span></code></pre></div>
+<p>Si introduces un comando que <strong>no existe</strong> dará error.</p>
+<h3 id="pwd">pwd</h3>
+<p>Un comando muy simple, te dice <strong>donde estás situado</strong> en el sistema de archivos ahora mismo, la terminal puede moverse entre directorios igual que harías desde el gestor de archivos.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>❯<span class="w"> </span><span class="nb">pwd</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>/home/datadiego
+</span></code></pre></div>
+<p>Por defecto, cuando abres tu terminal estarás en <em>tu home</em>, este es el directorio <strong>de tu usuario</strong>. Similar a esto en Windows:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>C:\Users\Diego\
+</span></code></pre></div>
+<h3 id="ls">ls</h3>
+<p>Te muestra <strong>que hay</strong> donde estás situado:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>❯ ls
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a> Descargas    Escritorio   Música   Documentos
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a> Imágenes       Vídeos
+</span></code></pre></div>
+<h4 id="anadiendo-flags-a-comandos">Añadiendo flags a comandos</h4>
+<p>A muchos comandos podemos añadir <code>flags</code>, opciones extra que modifican el comportamiento del comando, o en muchas ocasiones son necesarias para que funcione.</p>
+<p>Vamos a probar a añadir la flag <code>-l</code> a nuestro comando:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>❯<span class="w"> </span>ls<span class="w"> </span>-l
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>total<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>drwxr-xr-x.<span class="w"> </span><span class="m">1</span><span class="w"> </span>datadiego<span class="w"> </span>datadiego<span class="w"> </span><span class="m">2458</span><span class="w"> </span>sep<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">19</span>:43<span class="w">  </span>Descargas
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>drwxr-xr-x.<span class="w"> </span><span class="m">1</span><span class="w"> </span>datadiego<span class="w"> </span>datadiego<span class="w">  </span><span class="m">250</span><span class="w"> </span>sep<span class="w"> </span><span class="m">16</span><span class="w"> </span><span class="m">10</span>:03<span class="w">  </span>Documentos
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>drwxr-xr-x.<span class="w"> </span><span class="m">1</span><span class="w"> </span>datadiego<span class="w"> </span>datadiego<span class="w">    </span><span class="m">0</span><span class="w"> </span>ago<span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">09</span>:18<span class="w">  </span>Escritorio
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>drwxr-xr-x.<span class="w"> </span><span class="m">1</span><span class="w"> </span>datadiego<span class="w"> </span>datadiego<span class="w">  </span><span class="m">320</span><span class="w"> </span>sep<span class="w"> </span><span class="m">15</span><span class="w"> </span><span class="m">21</span>:23<span class="w">  </span>Imágenes
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>drwxr-xr-x.<span class="w"> </span><span class="m">1</span><span class="w"> </span>datadiego<span class="w"> </span>datadiego<span class="w">    </span><span class="m">0</span><span class="w"> </span>ago<span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">09</span>:18<span class="w">  </span>Música
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>drwxr-xr-x.<span class="w"> </span><span class="m">1</span><span class="w"> </span>datadiego<span class="w"> </span>datadiego<span class="w">    </span><span class="m">0</span><span class="w"> </span>ago<span class="w"> </span><span class="m">25</span><span class="w"> </span><span class="m">09</span>:18<span class="w">  </span>Vídeos
+</span></code></pre></div>
+<p>Ahora nos muestra más información y los presenta en formato lista.</p>
+<h4 id="mostrando-todos-los-archivos">Mostrando todos los archivos</h4>
+<p>Los archivos y directorios que empiezan por <code>.</code> están ocultos, puedes verlos con <code>ls -a</code>.</p>
+<p>Además, puedes combinarlo con la flag anterior, tanto <code>ls -l -a</code> como <code>ls -la</code> son válidos.</p>
+<h3 id="echo">echo</h3>
+<p>Comando bastante simple, pero en ocasiones útil, como veremos más adelante, devuelve el texto que escribamos:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>~
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>❯<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s1">&#39;hola mundo&#39;</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>hola<span class="w"> </span>mundo
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>~
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>❯<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;hola linux&quot;</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>hola<span class="w"> </span>linux
+</span></code></pre></div>
+<p>Tambien puedes usarlo para crear un archivo usando una <em>redirección</em>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>~/Escritorio
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>❯<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;hola mundo&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>holamundo.txt
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>~/Escritorio
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>❯<span class="w"> </span>ls
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>.rw-r--r--@<span class="w"> </span><span class="m">11</span><span class="w"> </span>datadiego<span class="w"> </span><span class="m">17</span><span class="w"> </span>sep<span class="w"> </span><span class="m">20</span>:41<span class="w"> </span>holamundo.txt
+</span></code></pre></div>
+<h3 id="cd">cd</h3>
+<p>Nos permite <strong>cambiar de directorio</strong> indicando una ruta:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>~
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>❯<span class="w"> </span>ls
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">16</span><span class="w"> </span>sep<span class="w"> </span><span class="m">19</span>:43<span class="w"> </span>Descargas
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">16</span><span class="w"> </span>sep<span class="w"> </span><span class="m">10</span>:03<span class="w"> </span>Documentos
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">25</span><span class="w"> </span>ago<span class="w"> </span><span class="m">09</span>:18<span class="w"> </span>Escritorio
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">15</span><span class="w"> </span>sep<span class="w"> </span><span class="m">21</span>:23<span class="w"> </span>Imágenes
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">25</span><span class="w"> </span>ago<span class="w"> </span><span class="m">09</span>:18<span class="w"> </span>Música
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">25</span><span class="w"> </span>ago<span class="w"> </span><span class="m">09</span>:18<span class="w"> </span>Vídeos
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
+</span><span id="__span-11-10"><a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>~
+</span><span id="__span-11-11"><a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>❯<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>Escritorio/
+</span><span id="__span-11-12"><a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>
+</span><span id="__span-11-13"><a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>~/Escritorio
+</span><span id="__span-11-14"><a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>❯
+</span></code></pre></div>
+<p>Si lanzas <code>cd</code> sin ninguna ruta, te devuelve a tu <code>home</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>~/Escritorio
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>❯<span class="w"> </span><span class="nb">pwd</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>/home/datadiego/Escritorio
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>~/Escritorio
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>❯<span class="w"> </span><span class="nb">cd</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>~
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>❯<span class="w"> </span><span class="nb">pwd</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>/home/datadiego
+</span></code></pre></div>
+<h3 id="rutas">Rutas</h3>
+<p>Una ruta es el camino que debe seguir tu sistema para llegar hasta un directorio o archivo.</p>
+<p>Existen dos tipos de rutas</p>
+<h4 id="relativas">Relativas</h4>
+<p>Una ruta que tiene en cuenta <strong>donde estás situado en este momento</strong>, por ejemplo:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>~
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>❯<span class="w"> </span><span class="nb">pwd</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>/home/datadiego
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>~
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>❯<span class="w"> </span>ls
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">16</span><span class="w"> </span>sep<span class="w"> </span><span class="m">19</span>:43<span class="w"> </span>Descargas
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">16</span><span class="w"> </span>sep<span class="w"> </span><span class="m">10</span>:03<span class="w"> </span>Documentos
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">25</span><span class="w"> </span>ago<span class="w"> </span><span class="m">09</span>:18<span class="w"> </span>Escritorio
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">15</span><span class="w"> </span>sep<span class="w"> </span><span class="m">21</span>:23<span class="w"> </span>Imágenes
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">25</span><span class="w"> </span>ago<span class="w"> </span><span class="m">09</span>:18<span class="w"> </span>Música
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">25</span><span class="w"> </span>ago<span class="w"> </span><span class="m">09</span>:18<span class="w"> </span>Vídeos
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>~
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>❯<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>Escritorio/
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>~/Escritorio
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>❯<span class="w"> </span><span class="nb">pwd</span>
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>/home/datadiego/Escritorio
+</span></code></pre></div>
+<p>Al mirar con <code>ls</code> hemos podido ver donde podemos movernos directamente, piensa en una ruta relativa cómo en una habitación contigua a la que entras por una puerta.</p>
+<h4 id="absoluta">Absoluta</h4>
+<p>Una ruta que empieza desde la raiz del sistema <code>/</code> y describe por donde debe ir hasta llegar a un directorio, el ejemplo anterior con una ruta absoluta sería:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>~
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>❯<span class="w"> </span><span class="nb">pwd</span>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>/home/datadiego
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>~
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>❯<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/home/datadiego/Escritorio/
+</span></code></pre></div>
+<p>Si antes comparábamos movernos usando rutas relativas con entrar por una puerta, movernos con rutas absolutas te permite <em>teletransportarte</em> a cualquier sitio, independientemente de si el directorio está en una <em>habitación</em> contigua:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>~/Escritorio
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>❯<span class="w"> </span><span class="nb">pwd</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>/home/datadiego/Escritorio
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>~/Escritorio
+</span><span id="__span-15-6"><a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>❯<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>/home/datadiego/Descargas/
+</span></code></pre></div>
+<p>Para llegar a <code>Descargas</code> desde nuestro escritorio con rutas relativas tendríamos que haber hecho:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>~/Escritorio
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>❯<span class="w"> </span><span class="nb">pwd</span>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>/home/datadiego/Escritorio
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>~/Escritorio
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>❯<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>~
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>❯<span class="w"> </span><span class="nb">pwd</span>
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>/home/datadiego
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>~
+</span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>❯<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>Descargas/
+</span><span id="__span-16-14"><a id="__codelineno-16-14" name="__codelineno-16-14" href="#__codelineno-16-14"></a>
+</span><span id="__span-16-15"><a id="__codelineno-16-15" name="__codelineno-16-15" href="#__codelineno-16-15"></a>~/Descargas
+</span><span id="__span-16-16"><a id="__codelineno-16-16" name="__codelineno-16-16" href="#__codelineno-16-16"></a>❯<span class="w"> </span><span class="nb">pwd</span>
+</span><span id="__span-16-17"><a id="__codelineno-16-17" name="__codelineno-16-17" href="#__codelineno-16-17"></a>/home/datadiego/Descargas
+</span></code></pre></div>
+<h4 id="autocompletado">Autocompletado</h4>
+<p>Linux puede autocompletar rutas cuando estás escribiendo comandos, prueba a escribir <code>cd</code>, poner un espacio y pulsar <code>tabulador</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>~
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>❯<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>Descargas/<span class="w">   </span>Escritorio/<span class="w">  </span>Música/<span class="w">  </span>Vídeos/
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>Documentos/<span class="w">  </span>Imágenes/
+</span></code></pre></div>
+<p>Te mostrará <strong>donde puedes moverte donde estás situado</strong>.</p>
+<p>Tampoco tienes por qué escribir todo el nombre de un directorio cuando te mueves a el, si pones <code>cd Esc</code> y tabulas, se completará.</p>
+<blockquote>
+<p>Usa esto <strong>TODO</strong> el rato, el tabulador no solo te ahorra tiempo, también te confirma que donde vas <strong>existe</strong>, si escribes un directorio o archivo que no existe y tabulas, nunca completará la palabra</p>
+</blockquote>
+<h3 id="otras-formas-de-moverse">Otras formas de moverse</h3>
+<p><code>cd ..</code> te lleva al directorio <strong>superior</strong> en la estructura de archivos:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>~
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>❯<span class="w"> </span><span class="nb">pwd</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>/home/datadiego
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>~
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>❯<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>Descargas/
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>~/Descargas
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>❯<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>~
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>❯<span class="w"> </span><span class="nb">pwd</span>
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>/home/datadiego
+</span></code></pre></div>
+<p><code>cd -</code> te lleva al directorio <strong>anterior en el tiempo</strong>, no importa donde esté:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>~
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>❯<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>Descargas/
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>~/Descargas
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>❯<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>../Escritorio/
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>~/Escritorio
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>❯<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>-
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>~/Descargas
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>❯<span class="w"> </span><span class="nb">pwd</span>
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>/home/datadiego/Descargas
+</span></code></pre></div>
+<h2 id="mkdir">mkdir</h2>
+<p>Nos permite crear directorios:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>~
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>❯<span class="w"> </span>mkdir<span class="w"> </span>prueba
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>~
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>❯<span class="w"> </span>ls
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">16</span><span class="w"> </span>sep<span class="w"> </span><span class="m">19</span>:43<span class="w"> </span>Descargas
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">16</span><span class="w"> </span>sep<span class="w"> </span><span class="m">10</span>:03<span class="w"> </span>Documentos
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">25</span><span class="w"> </span>ago<span class="w"> </span><span class="m">09</span>:18<span class="w"> </span>Escritorio
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">15</span><span class="w"> </span>sep<span class="w"> </span><span class="m">21</span>:23<span class="w"> </span>Imágenes
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">25</span><span class="w"> </span>ago<span class="w"> </span><span class="m">09</span>:18<span class="w"> </span>Música
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">16</span><span class="w"> </span>sep<span class="w"> </span><span class="m">20</span>:41<span class="w"> </span>prueba
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">25</span><span class="w"> </span>ago<span class="w"> </span><span class="m">09</span>:18<span class="w"> </span>Vídeos
+</span><span id="__span-20-13"><a id="__codelineno-20-13" name="__codelineno-20-13" href="#__codelineno-20-13"></a>
+</span><span id="__span-20-14"><a id="__codelineno-20-14" name="__codelineno-20-14" href="#__codelineno-20-14"></a>~
+</span><span id="__span-20-15"><a id="__codelineno-20-15" name="__codelineno-20-15" href="#__codelineno-20-15"></a>❯<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>prueba/
+</span><span id="__span-20-16"><a id="__codelineno-20-16" name="__codelineno-20-16" href="#__codelineno-20-16"></a>
+</span><span id="__span-20-17"><a id="__codelineno-20-17" name="__codelineno-20-17" href="#__codelineno-20-17"></a>~/prueba
+</span><span id="__span-20-18"><a id="__codelineno-20-18" name="__codelineno-20-18" href="#__codelineno-20-18"></a>❯
+</span></code></pre></div>
+<p>Podemos usar <code>mkdir -p</code> para crear una estructura de directorios completa:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>~/prueba
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>❯<span class="w"> </span>mkdir<span class="w"> </span>proyecto/media/imagenes
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>mkdir:<span class="w"> </span>no<span class="w"> </span>se<span class="w"> </span>puede<span class="w"> </span>crear<span class="w"> </span>el<span class="w"> </span>directorio<span class="w"> </span>«proyecto/media/imagenes»:<span class="w"> </span>No<span class="w"> </span>existe<span class="w"> </span>el<span class="w"> </span>fichero<span class="w"> </span>o<span class="w"> </span>el<span class="w"> </span>directorio
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>~/prueba
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>❯<span class="w"> </span>mkdir<span class="w"> </span>proyecto/media/imagenes<span class="w"> </span>-p
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>~/prueba
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>❯<span class="w"> </span>ls
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">16</span><span class="w"> </span>sep<span class="w"> </span><span class="m">20</span>:43<span class="w"> </span>proyecto
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>~/prueba
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>❯<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>proyecto/
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a>~/prueba/proyecto
+</span><span id="__span-21-16"><a id="__codelineno-21-16" name="__codelineno-21-16" href="#__codelineno-21-16"></a>❯<span class="w"> </span>ls
+</span><span id="__span-21-17"><a id="__codelineno-21-17" name="__codelineno-21-17" href="#__codelineno-21-17"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">16</span><span class="w"> </span>sep<span class="w"> </span><span class="m">20</span>:43<span class="w"> </span>media
+</span><span id="__span-21-18"><a id="__codelineno-21-18" name="__codelineno-21-18" href="#__codelineno-21-18"></a>
+</span><span id="__span-21-19"><a id="__codelineno-21-19" name="__codelineno-21-19" href="#__codelineno-21-19"></a>~/prueba/proyecto
+</span><span id="__span-21-20"><a id="__codelineno-21-20" name="__codelineno-21-20" href="#__codelineno-21-20"></a>❯<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>media/
+</span><span id="__span-21-21"><a id="__codelineno-21-21" name="__codelineno-21-21" href="#__codelineno-21-21"></a>
+</span><span id="__span-21-22"><a id="__codelineno-21-22" name="__codelineno-21-22" href="#__codelineno-21-22"></a>prueba/proyecto/media
+</span><span id="__span-21-23"><a id="__codelineno-21-23" name="__codelineno-21-23" href="#__codelineno-21-23"></a>❯<span class="w"> </span>ls
+</span><span id="__span-21-24"><a id="__codelineno-21-24" name="__codelineno-21-24" href="#__codelineno-21-24"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">16</span><span class="w"> </span>sep<span class="w"> </span><span class="m">20</span>:43<span class="w"> </span>imagenes
+</span><span id="__span-21-25"><a id="__codelineno-21-25" name="__codelineno-21-25" href="#__codelineno-21-25"></a>
+</span><span id="__span-21-26"><a id="__codelineno-21-26" name="__codelineno-21-26" href="#__codelineno-21-26"></a>prueba/proyecto/media
+</span><span id="__span-21-27"><a id="__codelineno-21-27" name="__codelineno-21-27" href="#__codelineno-21-27"></a>❯<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>imagenes/
+</span><span id="__span-21-28"><a id="__codelineno-21-28" name="__codelineno-21-28" href="#__codelineno-21-28"></a>
+</span><span id="__span-21-29"><a id="__codelineno-21-29" name="__codelineno-21-29" href="#__codelineno-21-29"></a>proyecto/media/imagenes
+</span><span id="__span-21-30"><a id="__codelineno-21-30" name="__codelineno-21-30" href="#__codelineno-21-30"></a>❯
+</span></code></pre></div>
+<p>En el ejemplo hemos creado la siguiente estructura dentro de <code>~/prueba</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>prueba
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>└── proyecto
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>    └── media
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>        └── imagenes
+</span></code></pre></div>
+<h2 id="nano">nano</h2>
+<p><code>nano</code> es un editor de texto en terminal que viene instalado en la mayoría de distribuciones, podemos crear cualquier archivo con <code>nano &lt;nombre_archivo&gt;</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>~/prueba
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>❯<span class="w"> </span>nano<span class="w"> </span>holamundo.txt
+</span></code></pre></div>
+<p>Esto abrirá un editor en el que podemos escribir nuestro documento.</p>
+<p>Para guardarlo pulsa <code>Ctrl + x</code>, confirma con <code>S</code> o <code>Y</code> según te indiquen abajo, y finalmente modifica (si quieres) el nombre del archivo que estás editando, si no lo quieres editar, pulsa <code>enter</code>.</p>
+<h2 id="cat">cat</h2>
+<p>Sirve para leer archivos:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>~/prueba
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>❯<span class="w"> </span>ls
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>.rw-r--r--@<span class="w"> </span><span class="m">11</span><span class="w"> </span>datadiego<span class="w"> </span><span class="m">16</span><span class="w"> </span>sep<span class="w"> </span><span class="m">20</span>:50<span class="w"> </span>holamundo.txt
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>drwxr-xr-x@<span class="w">  </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">16</span><span class="w"> </span>sep<span class="w"> </span><span class="m">20</span>:43<span class="w"> </span>proyecto
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>~/prueba
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>❯<span class="w"> </span>cat<span class="w"> </span>holamundo.txt
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>hola<span class="w"> </span>linux
+</span></code></pre></div>
+<p>Recuerda que puedes usar <code>echo</code> junto a una redirección para hacer archivos simples en estas pruebas iniciales:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>~/Escritorio
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>❯<span class="w"> </span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;mi texto&quot;</span><span class="w"> </span>&gt;<span class="w"> </span>archivo
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>~/Escritorio
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>❯<span class="w"> </span>cat<span class="w"> </span>archivo
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>mi<span class="w"> </span>texto
+</span></code></pre></div>
+<h2 id="rm">rm</h2>
+<p>Te permite borrar archivos:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>~/prueba
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>❯<span class="w"> </span>cat<span class="w"> </span>holamundo.txt
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>hola<span class="w"> </span>linux
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a>~/prueba
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a>❯<span class="w"> </span>rm<span class="w"> </span>holamundo.txt
+</span><span id="__span-26-7"><a id="__codelineno-26-7" name="__codelineno-26-7" href="#__codelineno-26-7"></a>
+</span><span id="__span-26-8"><a id="__codelineno-26-8" name="__codelineno-26-8" href="#__codelineno-26-8"></a>~/prueba
+</span><span id="__span-26-9"><a id="__codelineno-26-9" name="__codelineno-26-9" href="#__codelineno-26-9"></a>❯<span class="w"> </span>cat<span class="w"> </span>holamundo.txt
+</span><span id="__span-26-10"><a id="__codelineno-26-10" name="__codelineno-26-10" href="#__codelineno-26-10"></a>cat:<span class="w"> </span>holamundo.txt:<span class="w"> </span>No<span class="w"> </span>existe<span class="w"> </span>el<span class="w"> </span>fichero<span class="w"> </span>o<span class="w"> </span>el<span class="w"> </span>directorio
+</span></code></pre></div>
+<p>Y directorios con la flag <code>-fr</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>~/prueba
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>❯<span class="w"> </span>tree<span class="w"> </span>.
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>.
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>└──<span class="w"> </span>proyecto
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="w">    </span>└──<span class="w"> </span>media
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a><span class="w">        </span>└──<span class="w"> </span>imagenes
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a><span class="m">4</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">0</span><span class="w"> </span>files
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>
+</span><span id="__span-27-10"><a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>~/prueba
+</span><span id="__span-27-11"><a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a>❯<span class="w"> </span>ls
+</span><span id="__span-27-12"><a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a>drwxr-xr-x@<span class="w"> </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">16</span><span class="w"> </span>sep<span class="w"> </span><span class="m">20</span>:43<span class="w"> </span>proyecto
+</span><span id="__span-27-13"><a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a>
+</span><span id="__span-27-14"><a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a>~/prueba
+</span><span id="__span-27-15"><a id="__codelineno-27-15" name="__codelineno-27-15" href="#__codelineno-27-15"></a>❯<span class="w"> </span>rm<span class="w"> </span>-rf<span class="w"> </span>proyecto/
+</span><span id="__span-27-16"><a id="__codelineno-27-16" name="__codelineno-27-16" href="#__codelineno-27-16"></a>
+</span><span id="__span-27-17"><a id="__codelineno-27-17" name="__codelineno-27-17" href="#__codelineno-27-17"></a>~/prueba
+</span><span id="__span-27-18"><a id="__codelineno-27-18" name="__codelineno-27-18" href="#__codelineno-27-18"></a>❯<span class="w"> </span>ls
+</span></code></pre></div>
+<h2 id="finalizando">Finalizando</h2>
+<p>Con esto tienes <strong>más que de sobra</strong> para empezar a practicar el uso de la terminal.</p>
+<p>Son comandos que hacen cosas simples, pero que <strong>se usan a diario</strong>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>

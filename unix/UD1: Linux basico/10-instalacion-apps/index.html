@@ -1,0 +1,1654 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://datadiego.github.io/unix/UD1%3A%20Linux%20basico/10-instalacion-apps/">
+      
+      
+        <link rel="prev" href="../09-recordando-comandos/">
+      
+      
+        <link rel="next" href="../../UD2%3A%20Administracion%20de%20sistemas/0-introduccion/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Otras formas de instalar aplicaciones - Linux</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../overrides/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+<script type="module">
+  import mermaid from 'https://unpkg.com/mermaid/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+</script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#otras-formas-de-instalar-aplicaciones" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Linux" class="md-header__button md-logo" aria-label="Linux" data-md-component="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" width="2.4rem" height="2.4rem">
+  <rect fill="none" height="10.5" width="12.5" y="2.75" x="1.75"/>
+  <path fill="none" d="m8.75 10.25h2.5m-6.5-4.5 2.5 2.25-2.5 2.25"/>
+</svg>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Linux
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Otras formas de instalar aplicaciones
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Linux" class="md-nav__button md-logo" aria-label="Linux" data-md-component="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" width="2.4rem" height="2.4rem">
+  <rect fill="none" height="10.5" width="12.5" y="2.75" x="1.75"/>
+  <path fill="none" d="m8.75 10.25h2.5m-6.5-4.5 2.5 2.25-2.5 2.25"/>
+</svg>
+    </a>
+    Linux
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD0: Introduccion a Linux
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            UD0: Introduccion a Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20Introduccion%20a%20Linux/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20Introduccion%20a%20Linux/1-cuando-usarlo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cuando usar Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20Introduccion%20a%20Linux/2-componentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Componentes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20Introduccion%20a%20Linux/3-distros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Distros
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20Introduccion%20a%20Linux/4-instalando-vm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Máquinas virtuales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD1: Linux basico
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            UD1: Linux basico
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-primeros-comandos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Comandos I
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-gestor-paquetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gestión de paquetes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-editores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Editores de texto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-shell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shell
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-comandos-medio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Comandos II
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-comandos-avanzado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expansión de conceptos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-redirecciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Redirecciones y descriptores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-sistema-archivos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sistema de archivos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-recordando-comandos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ayudas con comandos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Otras formas de instalar aplicaciones
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Otras formas de instalar aplicaciones
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#formas-de-instalar-aplicaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formas de instalar aplicaciones
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Formas de instalar aplicaciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#descargando-el-paquete" class="md-nav__link">
+    <span class="md-ellipsis">
+      Descargando el paquete
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-a-traves-de-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación a través de scripts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-a-traves-de-flatpak" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación a través de Flatpak
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Snap
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#binario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Binario
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desde-codigo-fuente" class="md-nav__link">
+    <span class="md-ellipsis">
+      Desde código fuente
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD2: Administracion de sistemas
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            UD2: Administracion de sistemas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/1-usuarios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Usuarios
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/2-permisos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Permisos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/3-grupos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Grupos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/4-procesos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Procesos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/5-servicios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Servicios
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/6-enlaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Enlaces
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/7-shell-scripting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shell scripting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD3: Gestion de dotfiles
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            UD3: Gestion de dotfiles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Gestion%20de%20dotfiles/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Gestion%20de%20dotfiles/1-iniciando/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Iniciando el proyecto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Gestion%20de%20dotfiles/2-gestionando-dotfiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gestionando dotfiles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Gestion%20de%20dotfiles/3-automatizar-instalacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Automatizar instalación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Gestion%20de%20dotfiles/4-Makefile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Makefile
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD4: Agentes de IA
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            UD4: Agentes de IA
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/1-problemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Consideraciones sobre esta tecnología
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/2-ollama/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ollama
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/3-agentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agentes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/4-integracion-ide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ollama + IDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/5-como-usar-ia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Como utilizar IA de forma efectiva
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/6-invokeai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Invokeai
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#formas-de-instalar-aplicaciones" class="md-nav__link">
+    <span class="md-ellipsis">
+      Formas de instalar aplicaciones
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Formas de instalar aplicaciones">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#descargando-el-paquete" class="md-nav__link">
+    <span class="md-ellipsis">
+      Descargando el paquete
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-a-traves-de-scripts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación a través de scripts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#instalacion-a-traves-de-flatpak" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación a través de Flatpak
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#snap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Snap
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#binario" class="md-nav__link">
+    <span class="md-ellipsis">
+      Binario
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#desde-codigo-fuente" class="md-nav__link">
+    <span class="md-ellipsis">
+      Desde código fuente
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="otras-formas-de-instalar-aplicaciones">Otras formas de instalar aplicaciones</h1>
+<p>Hasta ahora has usado tu gestor de paquetes para instalar aplicaciones, si bien los repositorios de tu distro tienen <strong>muchas</strong> apps, lo más seguro es que tarde o temprano des con alguna que <strong>no está ahí</strong>.</p>
+<p>Eso no significa que no puedes instalarla, en Linux tenemos múltiples formas de instalar aplicaciones, cada una con diferentes aspectos a tener en cuenta.</p>
+<h2 id="formas-de-instalar-aplicaciones">Formas de instalar aplicaciones</h2>
+<p>En cualquier distribución de Linux, puedes instalar aplicaciones de varias maneras:</p>
+<ul>
+<li><strong>A través del gestor de paquetes</strong>: Usando el gestor de paquetes de tu distribución (por ejemplo, <code>apt</code>, <code>yum</code>, <code>dnf</code>).</li>
+<li><strong>Descargando el paquete</strong>: Descargando el paquete <code>.deb</code> o <code>.rpm</code> directamente desde el sitio web del desarrollador.</li>
+<li><strong>Compilando desde el código fuente</strong>: Descargando el código fuente y compilándolo en tu sistema.</li>
+<li><strong>Flatpak</strong>: Usando el gestor de paquetes Flatpak para instalar aplicaciones en Linux.</li>
+<li><strong>Snap</strong>: Usando el gestor de paquetes Snap para instalar aplicaciones en Linux.</li>
+<li><strong>Scripts</strong>: Muchos desarrolladores publican scripts para instalar aplicaciones en Linux.</li>
+</ul>
+<p>Cada una tiene sus propias ventajas y desventajas, que iremos viendo en detalle.</p>
+<h3 id="descargando-el-paquete">Descargando el paquete</h3>
+<p>Muchas veces, un paquete no está disponible en el gestor de paquetes, pero sí en el sitio web del desarrollador en formato <code>.deb</code>(para Debian/Ubuntu) o <code>.rpm</code>(para Fedora/Red Hat).</p>
+<p>Solo tienes que descargar el paquete y usar el gestor de paquetes correspondiente para instalarlo, por ejemplo:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>&lt;ruta_del_paquete&gt;.deb
+</span></code></pre></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>rpm<span class="w"> </span>install<span class="w"> </span>&lt;ruta_del_paquete&gt;.rpm
+</span></code></pre></div>
+<p>No olvides reemplazar <code>&lt;ruta_del_paquete&gt;</code> con la ruta real del paquete que deseas instalar. Generalmente lo tendrás en tu directorio de descargas.</p>
+<h3 id="instalacion-a-traves-de-scripts">Instalación a través de scripts</h3>
+<p>Muchas veces, los desarrolladores publican scripts para instalar aplicaciones en Linux. Estos scripts suelen ser más simples y fáciles de usar que los paquetes tradicionales. Solo tienes que copiarlos y ejecutarlos en tu terminal.</p>
+<p>Es el caso de <a href="https://zed.dev/">zed</a>, por ejemplo.</p>
+<h3 id="instalacion-a-traves-de-flatpak">Instalación a través de Flatpak</h3>
+<p>Flatpak es universal y no depende de la distribución de Linux.</p>
+<p>Primero necesitas instalar Flatpak desde el gestor de paquetes de tu distribución:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>flatpak
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>flatpak
+</span></code></pre></div>
+<p>Luego puedes entrar a <a href="https://flathub.org/">Flathub</a> para buscar y descargar aplicaciones Flatpak.</p>
+<p>Para ejecutarlas, simplemente usa el comando <code>flatpak run</code> seguido del nombre del paquete:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>flatpak<span class="w"> </span>run<span class="w"> </span>&lt;nombre_del_paquete&gt;
+</span></code></pre></div>
+<h3 id="snap">Snap</h3>
+<p>Snap es otro gestor de paquetes universal que no depende de la distribución de Linux.</p>
+<p>Instalar Snap es similar a Flatpak:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>snapd
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>snapd
+</span></code></pre></div>
+<p>Luego puedes buscar y descargar aplicaciones Snap desde <a href="https://snapcraft.io/">Snapcraft</a>.</p>
+<p>Instalar una aplicación Snap es similar a Flatpak:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>snap<span class="w"> </span>install<span class="w"> </span>&lt;nombre_del_paquete&gt;
+</span></code></pre></div>
+<p>Y puedes ejecutarla con:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>snap<span class="w"> </span>run<span class="w"> </span>&lt;nombre_del_paquete&gt;
+</span></code></pre></div>
+<h3 id="binario">Binario</h3>
+<p>En ocasiones encontrarás repositorios que proporcionan binarios precompilados para tu distribución.</p>
+<p>Por ejemplo, <a href="https://github.com/Strophox/tetro-tui">tetrotui</a> ofrece binarios en la seccion de <a href="https://github.com/Strophox/tetro-tui/releases">releases</a>.</p>
+<p>Solo tienes que descargar el binario, descomprimirlo, darle permisos de ejecución y ejecutarlo:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>chmod<span class="w"> </span>+x<span class="w"> </span>&lt;nombre_del_binario&gt;
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>./&lt;nombre_del_binario&gt;
+</span></code></pre></div>
+<p>Puedes automatizar esta tarea:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">URL</span><span class="o">=</span><span class="s2">&quot;https://github.com/Strophox/tetro-tui/releases/download/v3.1.0/tetro-tui_v3.1_x86_64-unknown-linux-gnu.zip&quot;</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nv">TMP_DIR</span><span class="o">=</span><span class="s2">&quot;</span><span class="k">$(</span>mktemp<span class="w"> </span>-d<span class="k">)</span><span class="s2">&quot;</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>wget<span class="w"> </span>-q<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$URL</span><span class="s2">&quot;</span><span class="w"> </span>-O<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$TMP_DIR</span><span class="s2">/tetro.zip&quot;</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>unzip<span class="w"> </span>-q<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$TMP_DIR</span><span class="s2">/tetro.zip&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$TMP_DIR</span><span class="s2">&quot;</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>chmod<span class="w"> </span>+x<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$TMP_DIR</span><span class="s2">/tetro-tui&quot;</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>sudo<span class="w"> </span>mv<span class="w"> </span><span class="s2">&quot;</span><span class="nv">$TMP_DIR</span><span class="s2">/tetro-tui&quot;</span><span class="w"> </span>/usr/local/bin/tetro-tui
+</span></code></pre></div>
+<h3 id="desde-codigo-fuente">Desde código fuente</h3>
+<p>Muchas aplicaciones también se pueden instalar desde el código fuente. Esto requiere habilidades técnicas y puede ser más complejo, pero es una opción valiosa cuando no hay paquetes disponibles para tu distribución.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
