@@ -1,0 +1,1795 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://datadiego.github.io/unix/UD1%3A%20Linux%20basico/03-editores/">
+      
+      
+        <link rel="prev" href="../02-gestor-paquetes/">
+      
+      
+        <link rel="next" href="../04-shell/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Editores de texto - Linux</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../overrides/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+<script type="module">
+  import mermaid from 'https://unpkg.com/mermaid/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+</script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#editores-de-texto" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Linux" class="md-header__button md-logo" aria-label="Linux" data-md-component="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" width="2.4rem" height="2.4rem">
+  <rect fill="none" height="10.5" width="12.5" y="2.75" x="1.75"/>
+  <path fill="none" d="m8.75 10.25h2.5m-6.5-4.5 2.5 2.25-2.5 2.25"/>
+</svg>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Linux
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Editores de texto
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Linux" class="md-nav__button md-logo" aria-label="Linux" data-md-component="logo">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" width="2.4rem" height="2.4rem">
+  <rect fill="none" height="10.5" width="12.5" y="2.75" x="1.75"/>
+  <path fill="none" d="m8.75 10.25h2.5m-6.5-4.5 2.5 2.25-2.5 2.25"/>
+</svg>
+    </a>
+    Linux
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD0: Introduccion a Linux
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            UD0: Introduccion a Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20Introduccion%20a%20Linux/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20Introduccion%20a%20Linux/1-cuando-usarlo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Cuando usar Linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20Introduccion%20a%20Linux/2-componentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Componentes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20Introduccion%20a%20Linux/3-distros/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Distros
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20Introduccion%20a%20Linux/4-instalando-vm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Máquinas virtuales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD1: Linux basico
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            UD1: Linux basico
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-primeros-comandos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Comandos I
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-gestor-paquetes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gestión de paquetes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Editores de texto
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Editores de texto
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-editores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tipos de editores
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tipos de editores">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#editor-de-texto-ide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Editor de texto / IDE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gui-tui" class="md-nav__link">
+    <span class="md-ellipsis">
+      GUI / TUI
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editores-de-texto_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Editores de texto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Editores de texto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nano" class="md-nav__link">
+    <span class="md-ellipsis">
+      nano
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#micro" class="md-nav__link">
+    <span class="md-ellipsis">
+      micro
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vi" class="md-nav__link">
+    <span class="md-ellipsis">
+      vi
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ides" class="md-nav__link">
+    <span class="md-ellipsis">
+      IDEs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IDEs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visual-studio-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      visual studio code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zed" class="md-nav__link">
+    <span class="md-ellipsis">
+      zed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neovim" class="md-nav__link">
+    <span class="md-ellipsis">
+      neovim
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#druk" class="md-nav__link">
+    <span class="md-ellipsis">
+      druk
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fresh" class="md-nav__link">
+    <span class="md-ellipsis">
+      fresh
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#con-cual-me-quedo" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Con cual me quedo?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-shell/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shell
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-comandos-medio/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Comandos II
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-comandos-avanzado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Expansión de conceptos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-redirecciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Redirecciones y descriptores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-sistema-archivos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Sistema de archivos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-recordando-comandos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ayudas con comandos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-instalacion-apps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Otras formas de instalar aplicaciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD2: Administracion de sistemas
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            UD2: Administracion de sistemas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/1-usuarios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Usuarios
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/2-permisos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Permisos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/3-grupos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Grupos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/4-procesos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Procesos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/5-servicios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Servicios
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/6-enlaces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Enlaces
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Administracion%20de%20sistemas/7-shell-scripting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shell scripting
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD3: Gestion de dotfiles
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            UD3: Gestion de dotfiles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Gestion%20de%20dotfiles/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Gestion%20de%20dotfiles/1-iniciando/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Iniciando el proyecto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Gestion%20de%20dotfiles/2-gestionando-dotfiles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Gestionando dotfiles
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Gestion%20de%20dotfiles/3-automatizar-instalacion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Automatizar instalación
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Gestion%20de%20dotfiles/4-Makefile/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Makefile
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD4: Agentes de IA
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            UD4: Agentes de IA
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/1-problemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Consideraciones sobre esta tecnología
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/2-ollama/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ollama
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/3-agentes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Agentes
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/4-integracion-ide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ollama + IDE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/5-como-usar-ia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Como utilizar IA de forma efectiva
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Agentes%20de%20IA/6-invokeai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Invokeai
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#tipos-de-editores" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tipos de editores
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Tipos de editores">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#editor-de-texto-ide" class="md-nav__link">
+    <span class="md-ellipsis">
+      Editor de texto / IDE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gui-tui" class="md-nav__link">
+    <span class="md-ellipsis">
+      GUI / TUI
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#editores-de-texto_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Editores de texto
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Editores de texto">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nano" class="md-nav__link">
+    <span class="md-ellipsis">
+      nano
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#micro" class="md-nav__link">
+    <span class="md-ellipsis">
+      micro
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vi" class="md-nav__link">
+    <span class="md-ellipsis">
+      vi
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ides" class="md-nav__link">
+    <span class="md-ellipsis">
+      IDEs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IDEs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#visual-studio-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      visual studio code
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#zed" class="md-nav__link">
+    <span class="md-ellipsis">
+      zed
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neovim" class="md-nav__link">
+    <span class="md-ellipsis">
+      neovim
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#druk" class="md-nav__link">
+    <span class="md-ellipsis">
+      druk
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fresh" class="md-nav__link">
+    <span class="md-ellipsis">
+      fresh
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#con-cual-me-quedo" class="md-nav__link">
+    <span class="md-ellipsis">
+      ¿Con cual me quedo?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="editores-de-texto">Editores de texto</h1>
+<p>Tanto si estas programando como si usas Linux a nivel básico, necesitarás un buen editor de texto para trabajar cómodo.</p>
+<p>Hay <strong>demasiados</strong> editores de texto como para tratar todos en un mismo post, pero comentaré cuales he ido usando a lo largo del tiempo, sus ventajas e inconvenientes, y cuales se ajustan según que tipo de desarrollador seas.</p>
+<h2 id="tipos-de-editores">Tipos de editores</h2>
+<p>Antes de ver que editores puedes usar, vamos a clasificarlos rápidamente:</p>
+<h3 id="editor-de-texto-ide">Editor de texto / IDE</h3>
+<p>Un <strong>editor de texto</strong> es un <em>bloc de notas</em> de windows, puede tener algunas funcionalidades avanzadas, pero no le pidas nada demasiado especial. Son perfectos para editar archivos de configuración o escribir markdown y texto plano, son muy ligeros debido a esto.</p>
+<p>Los <strong>IDE</strong> están pensados para editar código, los hay más minimalistas y autenticas bestias llenas de funcionalidades, no son la mejor opción para editar un simple archivo de configuración, en ocasiones tardarás más en abrir tu IDE que en editar la linea que necesitas, pero cuando estás programando o editando muchos archivos, los editores básicos de texto se quedan cortos y un IDE es la mejor opción.</p>
+<h3 id="gui-tui">GUI / TUI</h3>
+<p>Las GUI (Graphical User Interface) son aplicaciones <strong>gráficas</strong>, son las que estarás más acostumbrado a usar, <em>Word</em> es un editor de texto con interfaz gráfica, igual que tu <em>Bloc de notas</em>, son <strong>mucho más pesadas</strong> dependiendo de que hagan, pero pueden hacer cosas que una <em>TUI</em> no pueden, como renderizar gráficos e imágenes más fácilmente.</p>
+<p>Las TUI (Terminal User Interface) son aplicaciones de terminal, con una interfaz que está creada con símbolos disponibles en una fuente de texto. Son mucho más limitadas en lo que pueden mostrar en pantalla, pero esto es lo que las hace más especiales, son más minimalistas en cuanto a que se muestra, pero suelen ser muy eficaces, hacen lo mismo (o más) que una GUI en muchos casos, y su consumo de ram es <strong>mínimo</strong> al lado de las aplicaciones gráficas.</p>
+<h2 id="editores-de-texto_1">Editores de texto</h2>
+<h3 id="nano">nano</h3>
+<p>Es el editor que suelen incluir la mayoría de distribuciones, funciona directamente en terminal, asi que podrás usarlo sin problema en un servidor con tty.</p>
+<p><img alt="nano" src="../../imgs/nano.png" /></p>
+<p>Es muy ligero, no tiene resaltado de sintaxis ni ayudas, y aunque en la parte inferior aparecen los comandos que tenemos disponibles, no son los que estarás acostumbrado, lo que puede incomodar. Aun asi, recomiendo que aprendas a usarlo <em>mínimamente</em>, con saber cambiar algo y guardar el archivo basta, ya que muchos servidores tendrán este editor y será el que uses para configurarlos.</p>
+<h3 id="micro">micro</h3>
+<p>Un sustituto moderno a <code>nano</code>, sigue siendo terminal, pero visualmente es bastante más atractivo, también tiene resaltado de sintaxis y puede ser más que suficiente para editar código en tu día a día:</p>
+<p><img alt="micro" src="../../imgs/micro.png" /></p>
+<p>Al funcionar en terminal, podrás usarlo directamente en tus servidores sin problema.</p>
+<h3 id="vi">vi</h3>
+<p>Otro editor que viene incluido en muchas distribuciones, es un editor muy minimalista de tipo <strong>modal</strong>, por lo que tendrás que moverte entre los modos <em>normal</em> para moverte en el texto, <em>visual</em> para seleccionar e <em>insertar</em> para escribir, te permite editar texto de forma <strong>muy efectiva</strong> y rápida, pero tiene una curva de dificultad considerable que no todo el mundo está dispuesto a superar.</p>
+<p><img alt="vi" src="../../imgs/vi.png" /></p>
+<p>No lo recomiendo si acabas de empezar a programar o empiezas en Linux, pero tenlo <strong>muy en cuenta</strong> cuando veas que necesitas editar texto más rápido y has dejado de pelearte con la sintaxis de los lenguajes.</p>
+<h2 id="ides">IDEs</h2>
+<h3 id="visual-studio-code">visual studio code</h3>
+<p>Prácticamente el estandar para muchos. Dispone de <strong>muchisimos</strong> plugins para personalizarlo como quieras, será raro que no encuentres uno para lo que necesites.</p>
+<p><img alt="code" src="../../imgs/code.png" /></p>
+<p>Por contra, es un editor gráfico, no puedes usarlo tan directamente en un servidor, y tiene <strong>muchisima telemetria</strong> de Microsoft.</p>
+<p>Es el editor que más recursos consume en toda esta lista, necesitando hasta 2GB de RAM o más dependiendo de tus plugins y proyecto. El resto de editores de la lista ninguno llega a 1GB de memoria, y en algunos casos quedan por debajo de 500MB.</p>
+<h3 id="zed">zed</h3>
+<p>Una alternativa a <em>vs code</em>, sigue siendo una interfaz gráfica, pero es <strong>mucho mas ligero</strong> y necesita menos recursos al estar escrito en Rust.</p>
+<p>No tiene un ecosistema de plugins tan extensos como code, pero sus LSP funcionan automáticamente, y la terminal se integra muy bien.</p>
+<p><img alt="zed" src="../../imgs/zed.png" /></p>
+<h3 id="neovim">neovim</h3>
+<p>Neovim está basado en vi, sigue siendo un editor modal, pero te permite configurarlo hasta el extremo para tener un <strong>IDE</strong> completamente personalizado a tu gusto.</p>
+<p>Cada usuario tiene un neovim que se usa de forma distinta, tiene un ecosistema de plugins <strong>muy completo</strong>, con <strong>LSP</strong> para código, integración con git, terminales integradas, gestor de archivos, fuzzy search...</p>
+<p><img alt="neovim" src="../../imgs/neovim.png" /></p>
+<p>Es el que uso, una vez aprendes a editar modalmente es dificil volver a un editor clásico, y opciones como poder usar comandos de regex para buscar y editar texto hacen que seas <strong>muy eficiente</strong> escribiendo código.</p>
+<p>Debes probarlo tarde o temprano, y darle una buena oportunidad durante dos o tres dias hasta sentirte cómodo.</p>
+<h3 id="druk">druk</h3>
+<p><a href="https://druk.sh/">druk</a> es un IDE minimalista para terminal, <strong>hiper ligero y rápido</strong>, pero que incluye LSP, gestor para git, terminal integrada y demuestra que un setup mínimo es más que suficiente para editar código en tu dia a dia.</p>
+<p><img alt="druk" src="../../imgs/druk.png" /></p>
+<h3 id="fresh">fresh</h3>
+<p><a href="https://getfresh.dev/">fresh</a> es un ide relativamente nuevo, también en terminal, y muy similar a druk, <strong>hiper ligero y muy rápido en arrancar y leer archivos</strong>, con <strong>LSP</strong>, terminal integrada y muy pensado para trabajar junto a agentes de IA.</p>
+<p><img alt="fresh" src="../../imgs/fresh.png" /></p>
+<blockquote>
+<p>Aunque tiene muy buena interfaz, a dia de hoy trabajar con LSP en este editor requiere algo de configuración, druk es mucho mas automático en esto, pero más limitado y minimalista en interfaz.</p>
+</blockquote>
+<h2 id="con-cual-me-quedo">¿Con cual me quedo?</h2>
+<p>El editor es una elección <strong>muy personal</strong>, yo aprendería a al menos editar y guardar archivos con <strong>nano</strong> primero, lo encontrarás en todos sitios, incluyendo servidores, así que es necesario conocerlo.</p>
+<p>En tu equipo, cuando hagas ediciones pequeñas de configuraciones, para evitar tener que lidiar con los comandos extraños de nano, elegiría <strong>micro</strong>.</p>
+<p>En cuanto a <strong>IDE</strong> para programar, donde necesitas un buen syntax highlight, servidores de lenguaje, terminal integrada e integración con git/github es más complicado.</p>
+<p>La recomendación fácil para alguien que empieza es vscode, pero cuando lo usas en un equipo con pocos recursos y a través de una máquina virtual va a tener un consumo de memoria enorme que puede ahogar tu máquina. El ecosistema de plugins puede ser llamativo, pero en mi opinión ningún plugin compensa ese consumo.</p>
+<p>A día de hoy, si estuviera empezando de cero, intentaría dar una buena oportunidad a <strong>druk</strong> y <strong>fresh</strong>, son muy ligeros y tienen <strong>todo</strong> lo que necesitas para editar código, son hiper ligeros y funcionan directamente en terminal, asi que podrás instalarlos incluso en un servidor.</p>
+<p>Aunque sea mi favorito, me cuesta recomendar <strong>neovim</strong>, editar código se siente como jugar a un <em>street fighter</em> con el texto, donde haces combos para editar de forma eficiente lo que necesitas, pero alguien que solo quiere escribir texto se volverá loco tratando de entender sus motions y acciones.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
