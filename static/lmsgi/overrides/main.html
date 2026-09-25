@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+<script type="module">
+  import mermaid from 'https://unpkg.com/mermaid/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+</script>
+{% endblock %}
