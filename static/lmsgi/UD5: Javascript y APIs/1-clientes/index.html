@@ -20,7 +20,7 @@
     
     
       
-        <title>Clientes - LMSGI</title>
+        <title>Clientes HTTP - LMSGI</title>
       
     
     
@@ -79,7 +79,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#clientes" class="md-skip">
+        <a href="#clientes-http" class="md-skip">
           Skip to content
         </a>
       
@@ -115,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Clientes
+              Clientes HTTP
             
           </span>
         </div>
@@ -1458,7 +1458,7 @@
   
   
   <span class="md-ellipsis">
-    Clientes
+    Clientes HTTP
     
   </span>
   
@@ -1471,7 +1471,7 @@
   
   
   <span class="md-ellipsis">
-    Clientes
+    Clientes HTTP
     
   </span>
   
@@ -1532,6 +1532,15 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clientes-gui" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clientes GUI
+    </span>
+  </a>
   
 </li>
       
@@ -1619,6 +1628,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#clientes-gui" class="md-nav__link">
+    <span class="md-ellipsis">
+      Clientes GUI
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1635,7 +1653,7 @@
 
 
 
-<h1 id="clientes">Clientes</h1>
+<h1 id="clientes-http">Clientes HTTP</h1>
 <p>Un cliente es quien realiza peticiones a un servidor.</p>
 <p>En nuestro caso en esta materia, el cliente más común es un navegador web, pero debemos aprender a utilizar otros si realmente queremos tener más versatilidad a la hora de interactuar con servidores HTTP.</p>
 <p>Utilizaremos <a href="https://dummyjson.com/docs">dummyjson.com</a> para llamar a una API externa.</p>
@@ -1766,6 +1784,23 @@
 </span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>│<span class="w"> </span><span class="m">0</span><span class="w"> </span>│<span class="w"> </span>Emily<span class="w">     </span>│<span class="w"> </span>Johnson<span class="w">  </span>│<span class="w">  </span><span class="m">29</span><span class="w"> </span>│<span class="w"> </span>emily.johnson@x.dummyjson.com<span class="w"> </span>│<span class="w"> </span>emilys<span class="w">   </span>│
 </span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>╰───┴───────────┴──────────┴─────┴───────────────────────────────┴──────────╯
 </span></code></pre></div>
+<h2 id="clientes-gui">Clientes GUI</h2>
+<p>También dispones de clientes con interfaz gráfica.</p>
+<p>No vamos a entrar demasiado en ellos, son bastante intuitivos de usar y comprender. Los más famosos son:</p>
+<ul>
+<li><a href="https://www.postman.com/">Postman</a></li>
+<li><a href="https://hoppscotch.io/">Hoppscotch</a></li>
+<li><a href="https://yaak.app/">Yaak</a></li>
+<li><a href="https://www.usebruno.com/">Bruno</a></li>
+</ul>
+<p>En algunos equipos puede que tengas que usarlas para compartir las peticiones que creas, o usar las de otros compañeros. Pero presentan algunos problemas que el resto de clientes que hemos estudiado no tienen:</p>
+<ul>
+<li>Dependes en muchos casos de conexión a estos servicios. Si postman se cae, no podéis trabajar con el</li>
+<li>Los scripts que hagas con cualquier herramienta de CLI se ejecutan en cualquier sistema de forma más cómoda</li>
+<li>No podéis usarlos en entornos sin interfaz</li>
+<li>Carecen de control de versiones, los scripts que hagas con cualquier herramienta de CLI pueden vivir en un repositorio</li>
+<li>Más lentos de crear a costa de su intuitividad, si sabes usar <code>httpie</code> o <code>nu</code>, tardarás menos en crear la petición</li>
+</ul>
 
 
 
