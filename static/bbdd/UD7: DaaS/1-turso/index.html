@@ -1,0 +1,2597 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://datadiego.github.io/bbdd/UD7%3A%20DaaS/1-turso/">
+      
+      
+        <link rel="prev" href="../0-introduccion/">
+      
+      
+        <link rel="next" href="../2-supabase/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Turso - Bases de datos</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../overrides/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+<script type="module">
+  import mermaid from 'https://unpkg.com/mermaid/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+</script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#turso" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Bases de datos" class="md-header__button md-logo" aria-label="Bases de datos" data-md-component="logo">
+      
+  <img src="../../imgs/db.svg" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bases de datos
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Turso
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Bases de datos" class="md-nav__button md-logo" aria-label="Bases de datos" data-md-component="logo">
+      
+  <img src="../../imgs/db.svg" alt="logo">
+
+    </a>
+    Bases de datos
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Inicio
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD0: La naturaleza de los datos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            UD0: La naturaleza de los datos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20La%20naturaleza%20de%20los%20datos/0-datos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20La%20naturaleza%20de%20los%20datos/1-naturaleza/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Naturaleza y clasificación de los datos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20La%20naturaleza%20de%20los%20datos/2-entidad-atributo-valor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Entidad, atributo, clave y valor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20La%20naturaleza%20de%20los%20datos/3-abstraccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Abstracción de la realidad
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD1: Almacenamiento de datos en archivos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            UD1: Almacenamiento de datos en archivos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD1%3A%20Almacenamiento%20de%20datos%20en%20archivos/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Almacenamiento básico
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD1%3A%20Almacenamiento%20de%20datos%20en%20archivos/1-ficheros-planos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Texto plano
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD1%3A%20Almacenamiento%20de%20datos%20en%20archivos/2-csv/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CSV
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD1%3A%20Almacenamiento%20de%20datos%20en%20archivos/3-json/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    JSON
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD1%3A%20Almacenamiento%20de%20datos%20en%20archivos/4-yml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    YML
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD1%3A%20Almacenamiento%20de%20datos%20en%20archivos/5-toml/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    TOML
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD1%3A%20Almacenamiento%20de%20datos%20en%20archivos/6-nu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Nushell
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD2: Introduccion a bases de datos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            UD2: Introduccion a bases de datos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Introduccion%20a%20bases%20de%20datos/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conceptos básicos de bases de datos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Introduccion%20a%20bases%20de%20datos/1-servidor/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bases de datos de servidor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Introduccion%20a%20bases%20de%20datos/2-embebido/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bases de datos embebidas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Introduccion%20a%20bases%20de%20datos/3-centralizado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modelo centralizado
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Introduccion%20a%20bases%20de%20datos/4-distribuido/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modelo distribuido
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Introduccion%20a%20bases%20de%20datos/5-relacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Relacionales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Introduccion%20a%20bases%20de%20datos/6-no-relacional/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    No relacionales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20Introduccion%20a%20bases%20de%20datos/7-SQL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD3: Bases de datos embebidas
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            UD3: Bases de datos embebidas
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/00-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/01-CREATE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CREATE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/02-DROP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DROP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/03-INSERT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    INSERT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/04-SELECT/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SELECT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/05-funciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/06-UPDATE/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    UPDATE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/07-claves-primarias-foraneas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Claves primarias y foráneas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/08-DELETE-DROP/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DROP y DELETE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/09-ALTER/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ALTER
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/10-Diagramas-erd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Diagramas ER
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/11-JOIN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    JOIN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/12-VIEW/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    VIEW
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/13-TRIGGER/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    TRIGGER
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/14-integraciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Integraciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/15-transacciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transacciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/16-crud/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Modelos CRUD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/17-pragmas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    PRAGMAS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD4: Bases de datos en servidor
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            UD4: Bases de datos en servidor
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Bases%20de%20datos%20en%20servidor/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Bases%20de%20datos%20en%20servidor/1-configuracion-mysql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MySQL: Instalación y configuración
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Bases%20de%20datos%20en%20servidor/2-usuarios-permisos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Usuarios y permisos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Bases%20de%20datos%20en%20servidor/3-datatypes-mysql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Datatypes en MySQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Bases%20de%20datos%20en%20servidor/4-conexiones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conexiones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Bases%20de%20datos%20en%20servidor/5-integracion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Integraciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD5: Docker y bases de datos
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            UD5: Docker y bases de datos
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD5%3A%20Docker%20y%20bases%20de%20datos/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD5%3A%20Docker%20y%20bases%20de%20datos/1-primeros-pasos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Primeros pasos con Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD5%3A%20Docker%20y%20bases%20de%20datos/2-conceptos-docker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Conceptos básicos de Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD5%3A%20Docker%20y%20bases%20de%20datos/3-lazydocker/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lazydocker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD5%3A%20Docker%20y%20bases%20de%20datos/4-entorno-mysql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Entorno MySQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD5%3A%20Docker%20y%20bases%20de%20datos/5-entorno-postgresql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Entorno PostgreSQL
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD6: Bases de datos NoSQL
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            UD6: Bases de datos NoSQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD6%3A%20Bases%20de%20datos%20NoSQL/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD6%3A%20Bases%20de%20datos%20NoSQL/1-mongodb/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MongoDB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD6%3A%20Bases%20de%20datos%20NoSQL/2-redis/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Redis
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD7: DaaS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            UD7: DaaS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Turso
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Turso
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#deuda-tecnica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deuda técnica
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iniciar-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iniciar sesión
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crear-la-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear la base de datos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#informacion-de-la-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Información de la base de datos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crear-una-tabla" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear una tabla
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#salir-de-la-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      Salir de la shell
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conectar-turso-a-tu-aplicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conectar Turso a tu aplicación
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conectar Turso a tu aplicación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#token-de-autenticacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token de autenticación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url-de-conexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      URL de conexión
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archivo-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      Archivo .env
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conexion-con-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conexión con Python
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conexion-con-bun" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conexión con Bun
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#revocar-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Revocar tokens
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#destruir-una-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Destruir una base de datos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-supabase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Supabase
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3-firebase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Firebase
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#deuda-tecnica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deuda técnica
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#instalacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Instalación
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#iniciar-sesion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Iniciar sesión
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crear-la-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear la base de datos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#informacion-de-la-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Información de la base de datos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crear-una-tabla" class="md-nav__link">
+    <span class="md-ellipsis">
+      Crear una tabla
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#salir-de-la-shell" class="md-nav__link">
+    <span class="md-ellipsis">
+      Salir de la shell
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conectar-turso-a-tu-aplicacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conectar Turso a tu aplicación
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conectar Turso a tu aplicación">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#token-de-autenticacion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Token de autenticación
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#url-de-conexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      URL de conexión
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archivo-env" class="md-nav__link">
+    <span class="md-ellipsis">
+      Archivo .env
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conexion-con-python" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conexión con Python
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#conexion-con-bun" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conexión con Bun
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#revocar-tokens" class="md-nav__link">
+    <span class="md-ellipsis">
+      Revocar tokens
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#destruir-una-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Destruir una base de datos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="turso">Turso</h1>
+<p><a href="https://turso.tech/">Turso</a> es un servicio de base de datos en la nube, te permite crear bases de datos SQL en la nube sin tener que preocuparte por la infraestructura de servidor.</p>
+<p>Turso está basado en <a href="https://github.com/tursodatabase/libsql">LibSQL</a>, un fork del conocido <a href="https://www.sqlite.org/">SQLite</a>, lo que significa que puedes usar SQLite para empezar el desarrollo localmente y luego desplegarlo en Turso, facilitando la migración de tu aplicación a la nube.</p>
+<p>Aunque puedes usar la <a href="https://docs.turso.tech/quickstart">documentación oficial</a> para empezar a usar Turso, aquí tienes una guía rápida para comenzar.</p>
+<h2 id="deuda-tecnica">Deuda técnica</h2>
+<p>Una de las ventajas de turso es que genera relativamente poca dependencia del proveedor (<em>vendor lock-in</em>). Al estar usando <em>SQLite</em>, si en algún momento quieres dejar de usar turso, migrar los datos y continuar gestionandolo por tu cuenta se hace con pocos cambios en el código.</p>
+<p>Sin embargo, Turso sí aporta funcionalidades que no obtendrías simplemente utilizando SQLite, especialmente su sistema de réplicas y distribución geográfica. Si tu aplicación depende de estas características, dejar Turso puede ser más costoso: tendrías que implementar y mantener por tu cuenta mecanismos de replicación, sincronización y distribución.</p>
+<h2 id="instalacion">Instalación</h2>
+<p>Crea una cuenta e <a href="https://app.turso.tech/login">inicia sesión</a> en Turso.</p>
+<p>Lanza el siguiente comando para instalar la herramienta de línea de comandos de Turso:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>-sSfL<span class="w"> </span>https://get.tur.so/install.sh<span class="w"> </span><span class="p">|</span><span class="w"> </span>bash
+</span></code></pre></div>
+<p>Prueba a lanzar <code>turso</code> en la terminal para ver si se instaló correctamente y los comandos disponibles:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>❯ turso
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>Turso CLI
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Usage:
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>  turso [command]
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>Available Commands:
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>  auth         Authenticate with Turso
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>  config       Manage your CLI configuration
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>  db           Manage databases
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>  dev          starts a local development server for Turso
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>  group        Manage your database groups
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>  help         Help about any command
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>  org          Manage your organizations
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>  plan         Manage your organization plan
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>  quickstart   New to Turso? Start here!
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>  relax        Sometimes you feel like you&#39;re working too hard... relax!
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>  update       Update the CLI to the latest version
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>Flags:
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>  -c, --config-path string   Path to the directory with config file
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>  -h, --help                 help for turso
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>  -v, --version              version for turso
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>Use &quot;turso [command] --help&quot; for more information about a command.
+</span></code></pre></div>
+<p>Si tienes algun error al ejecutar <code>turso</code>, asegúrate de añadir el <code>PATH</code> a tu <code>.bashrc</code>. Abre el archivo <code>~/.bashrc</code> y añade la siguiente línea al final del archivo:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">PATH</span><span class="o">=</span><span class="s2">&quot;/home/datadiego/.turso:</span><span class="nv">$PATH</span><span class="s2">&quot;</span>
+</span></code></pre></div>
+<blockquote>
+<p>Cuando se termina de instalar la aplicación, te darán la ruta que debes añadir al $PATH</p>
+<p>Asegúrate de usar <strong>tu</strong> ruta de instalación de Turso, que puede ser diferente a la mía.</p>
+</blockquote>
+<h2 id="iniciar-sesion">Iniciar sesión</h2>
+<p>Vamos a iniciar sesión en Turso desde la línea de comandos. Ejecuta el siguiente comando:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>turso<span class="w"> </span>auth<span class="w"> </span>login
+</span></code></pre></div>
+<p>Se abrirá una ventana del navegador donde podrás iniciar sesión en tu cuenta de Turso. Una vez que hayas iniciado sesión, vuelve a la terminal y verás un mensaje de éxito:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>❯ turso auth login
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>Opening your browser at:
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>https://api.turso.tech?port=38251&amp;redirect=true&amp;state=FIk3W5p9dsFpgfAxexV16SJCsJ2P7lJG&amp;type=cli
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>Waiting for authentication...
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>✔  Success! Logged in as datadiego
+</span></code></pre></div>
+<h2 id="crear-la-base-de-datos">Crear la base de datos</h2>
+<p>Usamos el comando <code>turso db create &lt;nombre&gt;</code> para crear una nueva base de datos:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>turso<span class="w"> </span>db<span class="w"> </span>create<span class="w"> </span>testing
+</span></code></pre></div>
+<p>Nos da tres opciones para interactuar con la base de datos:</p>
+<ul>
+<li>Abrir una consola SQL interactiva con <code>turso db shell &lt;nombre&gt;</code>. Esto nos permite ejecutar consultas SQL directamente en la base de datos.</li>
+<li>Ver información sobre la base de datos con <code>turso db show &lt;nombre&gt;</code>. Esto nos da información sobre la base de datos, incluyendo la URL de conexión.</li>
+<li>Crear un token de autenticación con <code>turso db tokens create &lt;nombre&gt;</code>. Esto es necesario para conectarnos a la base de datos desde nuestra aplicación, pero para interactuar directamente desde la línea de comandos no es necesario.</li>
+</ul>
+<h2 id="informacion-de-la-base-de-datos">Información de la base de datos</h2>
+<p>Si lanzas <code>db show &lt;nombre&gt;</code> verás algo similar a esto:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>❯<span class="w"> </span>turso<span class="w"> </span>db<span class="w"> </span>show<span class="w"> </span>testing
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Name:<span class="w">               </span>testing
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>URL:<span class="w">                </span>libsql://testing-datadiego.aws-eu-west-1.turso.io
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>ID:<span class="w">                 </span>01a0a432-7901-7e22-a5c0-a7224a69f931
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>Group:<span class="w">              </span>testing
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>Locations:<span class="w">          </span>aws-eu-west-1
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>Size:<span class="w">               </span><span class="m">0</span><span class="w"> </span>B
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>Archived:<span class="w">           </span>No
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>Bytes<span class="w"> </span>Synced:<span class="w">       </span><span class="m">0</span><span class="w"> </span>B
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>Is<span class="w"> </span>Schema:<span class="w">          </span>No
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>Type:<span class="w">               </span>SQLite
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>Delete<span class="w"> </span>Protection:<span class="w">  </span>No
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>Database<span class="w"> </span>Instances:
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>NAME<span class="w">              </span>TYPE<span class="w">        </span>LOCATION
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>aws-eu-west-1<span class="w">     </span>primary<span class="w">     </span>aws-eu-west-1
+</span></code></pre></div>
+<p>Algunos campos importantes a tener en cuenta:</p>
+<ul>
+<li><strong>Name</strong>: Nombre de la base de datos.</li>
+<li><strong>URL</strong>: URL de conexión a la base de datos. Esta es la URL que usaremos para conectarnos a la base de datos desde nuestra aplicación.</li>
+<li><strong>ID</strong>: ID de la base de datos.</li>
+<li><strong>Group</strong>: Grupo al que pertenece la base de datos. Los grupos son una forma de organizar tus bases de datos en Turso.</li>
+<li><strong>Locations</strong>: Ubicación de la base de datos. Esto es importante para la latencia y el rendimiento de la base de datos.</li>
+</ul>
+<h2 id="crear-una-tabla">Crear una tabla</h2>
+<p>Iniciamos una shell de SQL con <code>turso db shell &lt;nombre&gt;</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>❯<span class="w"> </span>turso<span class="w"> </span>db<span class="w"> </span>shell<span class="w"> </span>testing
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Connected<span class="w"> </span>to<span class="w"> </span>testing<span class="w"> </span>at<span class="w"> </span>libsql://testing-datadiego.aws-eu-west-1.turso.io
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Welcome<span class="w"> </span>to<span class="w"> </span>Turso<span class="w"> </span>SQL<span class="w"> </span>shell!
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>Type<span class="w"> </span><span class="s2">&quot;.quit&quot;</span><span class="w"> </span>to<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>the<span class="w"> </span>shell<span class="w"> </span>and<span class="w"> </span><span class="s2">&quot;.help&quot;</span><span class="w"> </span>to<span class="w"> </span>list<span class="w"> </span>all<span class="w"> </span>available<span class="w"> </span>commands.
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>→
+</span></code></pre></div>
+<p>Y mandamos nuestra primera query de SQL:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span><span class="n">ID</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTOINCREMENT</span><span class="p">,</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span><span class="n">name</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span><span class="n">points</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="p">);</span>
+</span></code></pre></div>
+<p>Ahora podemos ver la tabla creada con el comando <code>.tables</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>datadiego@~<span class="w"> </span>turso<span class="w"> </span>db<span class="w"> </span>shell<span class="w"> </span>datatest
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>Connected<span class="w"> </span>to<span class="w"> </span>datatest<span class="w"> </span>at<span class="w"> </span>libsql://datatest-datadiego.aws-eu-west-1.turso.io
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>Welcome<span class="w"> </span>to<span class="w"> </span>Turso<span class="w"> </span>SQL<span class="w"> </span>shell!
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>Type<span class="w"> </span><span class="s2">&quot;.quit&quot;</span><span class="w"> </span>to<span class="w"> </span><span class="nb">exit</span><span class="w"> </span>the<span class="w"> </span>shell<span class="w"> </span>and<span class="w"> </span><span class="s2">&quot;.help&quot;</span><span class="w"> </span>to<span class="w"> </span>list<span class="w"> </span>all<span class="w"> </span>available<span class="w"> </span>commands.
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>→<span class="w">  </span>CREATE<span class="w"> </span>TABLE<span class="w"> </span>users<span class="w"> </span><span class="o">(</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>...<span class="w">   </span>ID<span class="w"> </span>INTEGER<span class="w"> </span>PRIMARY<span class="w"> </span>KEY<span class="w"> </span>AUTOINCREMENT,
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>...<span class="w">   </span>name<span class="w"> </span>TEXT<span class="w"> </span>NOT<span class="w"> </span>NULL,
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a>...<span class="w">   </span>points<span class="w"> </span>INTEGER<span class="w"> </span>DEFAULT<span class="w"> </span><span class="m">0</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a>...<span class="w"> </span><span class="o">)</span><span class="p">;</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a>→<span class="w">  </span>.tables
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a>users<span class="w"> </span>
+</span></code></pre></div>
+<p>Si introducimos <code>.schema</code> veremos la definición de la tabla:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="err">→</span><span class="w">  </span><span class="p">.</span><span class="k">schema</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span><span class="w">                      </span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">ID</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="n">AUTOINCREMENT</span><span class="p">,</span><span class="w">     </span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">name</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w">                       </span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">points</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="w">                  </span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="p">);</span><span class="w">  </span>
+</span></code></pre></div>
+<p>Podemos insertar datos en la tabla con el comando <code>INSERT</code>:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">points</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;test1&#39;</span><span class="p">,</span><span class="w"> </span><span class="k">NULL</span><span class="p">);</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">users</span><span class="w"> </span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">points</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;test2&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+</span></code></pre></div>
+<p>Y consultar los datos con <code>SELECT</code>:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="err">→</span><span class="w">  </span><span class="k">select</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">users</span><span class="p">;</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="n">ID</span><span class="w">     </span><span class="n">NAME</span><span class="w">      </span><span class="n">POINTS</span><span class="w"> </span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="mi">1</span><span class="w">      </span><span class="n">test2</span><span class="w">     </span><span class="mi">10</span><span class="w">         </span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="mi">2</span><span class="w">      </span><span class="n">test1</span><span class="w">     </span><span class="k">NULL</span><span class="w"> </span>
+</span></code></pre></div>
+<h2 id="salir-de-la-shell">Salir de la shell</h2>
+<p>Para salir de la shell de SQL, simplemente escribe <code>.quit</code> y presiona <code>Enter</code>:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="err">→</span><span class="w">  </span><span class="p">.</span><span class="n">quit</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="n">datadiego</span><span class="o">@~</span><span class="w"> </span>
+</span></code></pre></div>
+<h2 id="conectar-turso-a-tu-aplicacion">Conectar Turso a tu aplicación</h2>
+<p>Para conectarte a Turso desde tu aplicación, necesitas dos elementos:</p>
+<h3 id="token-de-autenticacion">Token de autenticación</h3>
+<p>Token de autenticación, piensa en el token como en una combinación de <em>usuario+contraseña</em> que te permite acceder a la base de datos.</p>
+<p>Puedes crear <strong>múltiples</strong> tokens, destinados a diferentes propósitos, por ejemplo:</p>
+<ul>
+<li>Desarrollador: Este token solo lo tiene el desarrollador de la app.</li>
+<li>Colaborador: Este token solo lo tiene un colaborador en el proyecto.</li>
+<li>Aplicación: Este token es el que la app usa para acceder a turso.</li>
+</ul>
+<blockquote>
+<p>Este token <strong>no debe ser expuesto nunca en tu aplicación</strong>, o todo el mundo obtendría acceso a modificar y eliminar datos de la misma libremente. Ten en cuenta que usas SQLite de fondo, <strong>no hay permisos de usuario</strong>, si tienes el token, puedes extraer toda la información de la base de datos, luego hacer <code>DROP</code> a todas las tablas y dejar la aplicación completamente comprometida.</p>
+</blockquote>
+<p>Para crear el token:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>turso<span class="w"> </span>db<span class="w"> </span>tokens<span class="w"> </span>create<span class="w"> </span>&lt;nombre&gt;
+</span></code></pre></div>
+<blockquote>
+<p>Sustituye <code>&lt;nombre&gt;</code> por el nombre de tu base de datos.</p>
+</blockquote>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>❯<span class="w"> </span>turso<span class="w"> </span>db<span class="w"> </span>tokens<span class="w"> </span>create<span class="w"> </span>testing
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>eyJhbGciOiJFZERTQSIsInR5cCI6IkpXVCJ9.eyJhIjoicnciLCJpYXQiOjE3ODk0NjE0NDAsImlkIjoiMDFhMGE0MzItNzkwMS03ZTIyLWE1YzAtYTcyMjRhNjlmOTMxIiwia2lkIjoiMnc2ZTlEODJNNkc4U0FLT1RUZkZ0VXFrRlhCdjFPbmcyckItZkYzSnlYMCIsInJpZCI6ImRiMjdmZmVjLWVjZjUtNGM3OC1iMjI0LWFkYWI0YTA1NzBhMCJ9.bjZ4zKQxB_kwBRv_C4pyNivwjQjHp1cgfBv552bnTm1IX9hvvWDdPtIhjPiLlqStUM_8QYP7CXJb97vPuSTyCA
+</span></code></pre></div>
+<blockquote>
+<p>Deberías guardar de forma segura el token en un gestor de secretos o contraseñas, <code>turso</code> no te volverá a mostrar ningún token creado previamente por seguridad.</p>
+</blockquote>
+<h3 id="url-de-conexion">URL de conexión</h3>
+<p>Para poder conectar necesitas también la URL de conexión, puedes verla con <code>turso db show --url &lt;nombre&gt;</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>❯<span class="w"> </span>turso<span class="w"> </span>db<span class="w"> </span>show<span class="w"> </span>--url<span class="w"> </span>testing
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>libsql://testing-datadiego.aws-eu-west-1.turso.io
+</span></code></pre></div>
+<h3 id="archivo-env">Archivo .env</h3>
+<p>Teniendo estos dos datos localizados, podemos empezar a crear nuestro proyecto usando <em>turso</em>, crea un directorio para el mismo y crea un archivo <code>.env</code> dentro del proyecto, rellenando con los valores que ya obtuviste previamente:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>TURSO_DATABASE_URL=&quot;&quot;
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>TURSO_AUTH_TOKEN=&quot;&quot;
+</span></code></pre></div>
+<blockquote>
+<p>Asegúrate de no subir este archivo a tu repositorio ni de compartir el token con nadie. Usa tu archivo <code>.gitignore</code> para que nunca se suba al realizar un commit.</p>
+</blockquote>
+<h3 id="conexion-con-python">Conexión con Python</h3>
+<p>Teniendo nuestro <code>.env</code> listo, vamos a usar <code>Python</code> para conectarnos.</p>
+<p>Iniciamos un entorno virtual con <code>uv</code> o <code>pip</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a><span class="nb">test</span><span class="w"> </span>on<span class="w"> </span><span class="w"> </span>master<span class="w"> </span><span class="o">[</span>?<span class="o">]</span><span class="w"> </span>via<span class="w"> </span>🐍<span class="w"> </span>v3.14.7
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>❯<span class="w"> </span>uv<span class="w"> </span>init
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>Initialized<span class="w"> </span>project<span class="w"> </span><span class="sb">`</span><span class="nb">test</span><span class="sb">`</span>
+</span></code></pre></div>
+<p>Y descargamos las dependencias necesarias, <code>libsql-experimental</code> para conectar con turso, y <code>dotenv</code> para acceder a nuestros secretos en el <code>.env</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>❯<span class="w"> </span>uv<span class="w"> </span>add<span class="w"> </span>libsql-experimental<span class="w"> </span>dotenv
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>Resolved<span class="w"> </span><span class="m">4</span><span class="w"> </span>packages<span class="w"> </span><span class="k">in</span><span class="w"> </span>4ms
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">      </span>Built<span class="w"> </span><span class="nb">test</span><span class="w"> </span>@<span class="w"> </span>file:///tmp/test<span class="w">                               </span>Prepared<span class="w"> </span><span class="m">1</span><span class="w"> </span>package<span class="w"> </span><span class="k">in</span><span class="w"> </span>3ms
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>Uninstalled<span class="w"> </span><span class="m">1</span><span class="w"> </span>package<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="m">0</span>.15ms
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>Installed<span class="w"> </span><span class="m">1</span><span class="w"> </span>package<span class="w"> </span><span class="k">in</span><span class="w"> </span>1ms
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w"> </span>~<span class="w"> </span><span class="nv">test</span><span class="o">==</span><span class="m">0</span>.1.0<span class="w"> </span><span class="o">(</span>from<span class="w"> </span>file:///tmp/test<span class="o">)</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="nb">test</span><span class="w"> </span>on<span class="w"> </span><span class="w"> </span>master<span class="w"> </span><span class="o">[</span>?<span class="o">]</span><span class="w"> </span>is<span class="w"> </span>📦<span class="w"> </span>v0.1.0<span class="w"> </span>via<span class="w"> </span>🐍<span class="w"> </span>v3.14.7
+</span></code></pre></div>
+<p>Crea <code>main.py</code> y añade el siguiente código:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">libsql_experimental</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">libsql</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">dotenv</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="n">dotenv</span><span class="o">.</span><span class="n">load_dotenv</span><span class="p">()</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="n">url</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;TURSO_DATABASE_URL&quot;</span><span class="p">)</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="n">auth_token</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">getenv</span><span class="p">(</span><span class="s2">&quot;TURSO_AUTH_TOKEN&quot;</span><span class="p">)</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a><span class="n">conn</span> <span class="o">=</span> <span class="n">libsql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;hello.db&quot;</span><span class="p">,</span> <span class="n">sync_url</span><span class="o">=</span><span class="n">url</span><span class="p">,</span> <span class="n">auth_token</span><span class="o">=</span><span class="n">auth_token</span><span class="p">)</span>
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a><span class="n">conn</span><span class="o">.</span><span class="n">sync</span><span class="p">()</span>
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a><span class="c1">#select all from users;</span>
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a><span class="n">users</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;select * from users&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a><span class="nb">print</span><span class="p">(</span><span class="n">users</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Ejecuta el script y verás los datos de la tabla <code>users</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>❯<span class="w"> </span>uv<span class="w"> </span>run<span class="w"> </span>main.py
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="o">[(</span><span class="m">1</span>,<span class="w"> </span><span class="s1">&#39;test1&#39;</span>,<span class="w"> </span>None<span class="o">)</span>,<span class="w"> </span><span class="o">(</span><span class="m">2</span>,<span class="w"> </span><span class="s1">&#39;test2&#39;</span>,<span class="w"> </span><span class="m">10</span><span class="o">)]</span>
+</span></code></pre></div>
+<p>Este script usa lo que en <code>turso</code> se conoce como una <em>réplica local</em>, si miras los archivos de tu proyecto:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="nb">test</span><span class="w"> </span>on<span class="w"> </span><span class="w"> </span>master<span class="w"> </span><span class="o">[</span>?<span class="o">]</span><span class="w"> </span>is<span class="w"> </span>📦<span class="w"> </span>v0.1.0<span class="w"> </span>via<span class="w"> </span>🐍<span class="w"> </span>v3.14.7
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>❯<span class="w"> </span>ls
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>.rw-r--r--@<span class="w"> </span>131k<span class="w"> </span>datadiego<span class="w"> </span><span class="m">15</span><span class="w"> </span>sep<span class="w"> </span><span class="m">11</span>:31<span class="w"> </span>hello.db
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>.rw-r--r--@<span class="w">   </span><span class="m">68</span><span class="w"> </span>datadiego<span class="w"> </span><span class="m">15</span><span class="w"> </span>sep<span class="w"> </span><span class="m">11</span>:31<span class="w"> </span>hello.db-info
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>.rw-r--r--@<span class="w">  </span>33k<span class="w"> </span>datadiego<span class="w"> </span><span class="m">15</span><span class="w"> </span>sep<span class="w"> </span><span class="m">11</span>:31<span class="w"> </span>hello.db-shm
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>.rw-r--r--@<span class="w">  </span>29k<span class="w"> </span>datadiego<span class="w"> </span><span class="m">15</span><span class="w"> </span>sep<span class="w"> </span><span class="m">11</span>:31<span class="w"> </span>hello.db-wal
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>.rw-r--r--@<span class="w">  </span><span class="m">341</span><span class="w"> </span>datadiego<span class="w"> </span><span class="m">15</span><span class="w"> </span>sep<span class="w"> </span><span class="m">11</span>:31<span class="w"> </span>main.py
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>.rw-r--r--@<span class="w">  </span><span class="m">409</span><span class="w"> </span>datadiego<span class="w"> </span><span class="m">15</span><span class="w"> </span>sep<span class="w"> </span><span class="m">11</span>:25<span class="w"> </span>pyproject.toml
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>.rw-r--r--@<span class="w">    </span><span class="m">0</span><span class="w"> </span>datadiego<span class="w"> </span><span class="m">15</span><span class="w"> </span>sep<span class="w"> </span><span class="m">11</span>:24<span class="w"> </span>README.md
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>drwxr-xr-x@<span class="w">    </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">15</span><span class="w"> </span>sep<span class="w"> </span><span class="m">11</span>:24<span class="w"> </span>src
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>.rw-r--r--@<span class="w"> </span><span class="m">6</span>,7k<span class="w"> </span>datadiego<span class="w"> </span><span class="m">15</span><span class="w"> </span>sep<span class="w"> </span><span class="m">11</span>:25<span class="w"> </span>uv.lock
+</span></code></pre></div>
+<p>Verás un <code>hello.db</code> junto a varios archivos de sqlite, esta base de datos se sincroniza con la que está alojada en turso.</p>
+<p>Puedes ver como conectarte a Turso usando otros SDKs en la <a href="https://docs.turso.tech/sdk/introduction">documentación oficial</a></p>
+<p>Si no hay un SDK disponible de forma oficial o de la comunidad, puedes interactuar con <a href="https://docs.turso.tech/sdk/http/quickstart">HTTP</a>.</p>
+<h3 id="conexion-con-bun">Conexión con Bun</h3>
+<p>En <code>bun</code> es aún más simple, solo necesitas la libreria <code>@libsql/client</code>, crear tu <code>.env</code> y conectar asi:</p>
+<div class="language-ts highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="k">import</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">createClient</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="kr">from</span><span class="w"> </span><span class="s2">&quot;@libsql/client&quot;</span><span class="p">;</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createClient</span><span class="p">({</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="w">  </span><span class="nx">url</span><span class="o">:</span><span class="w"> </span><span class="kt">Bun.env.TURSO_DATABASE_URL</span><span class="p">,</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="w">  </span><span class="nx">authToken</span><span class="o">:</span><span class="w"> </span><span class="kt">Bun.env.TURSO_AUTH_TOKEN</span><span class="p">,</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="p">});</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="kd">const</span><span class="w"> </span><span class="nx">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">execute</span><span class="p">(</span><span class="s2">&quot;select * from users&quot;</span><span class="p">);</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">users</span><span class="p">.</span><span class="nx">rows</span><span class="p">);</span>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="k">await</span><span class="w"> </span><span class="nx">db</span><span class="p">.</span><span class="nx">close</span><span class="p">();</span>
+</span></code></pre></div>
+<h2 id="revocar-tokens">Revocar tokens</h2>
+<p>Puedes eliminar los tokens de autenticación de la base de datos con <code>turso group tokens invalidate &lt;nombre&gt;</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>❯<span class="w"> </span>turso<span class="w"> </span>group<span class="w"> </span>tokens<span class="w"> </span>invalidate<span class="w"> </span>testing
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>To<span class="w"> </span>invalidate<span class="w"> </span>tokens<span class="w"> </span><span class="k">for</span><span class="w"> </span>group<span class="w"> </span>testing,<span class="w"> </span>tokens<span class="w"> </span>from<span class="w"> </span>all<span class="w"> </span>its<span class="w"> </span>databases<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>invalidated.
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>All<span class="w"> </span>your<span class="w"> </span>active<span class="w"> </span>connections<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>databases<span class="w"> </span><span class="k">in</span><span class="w"> </span>that<span class="w"> </span>group<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>dropped<span class="w"> </span>and<span class="w"> </span>there<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>a<span class="w"> </span>short<span class="w"> </span>downtime.
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>Are<span class="w"> </span>you<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span><span class="k">do</span><span class="w"> </span>this?<span class="w"> </span><span class="o">[</span>y/n<span class="o">]</span>:<span class="w"> </span>y
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>✔<span class="w">  </span>Success!<span class="w"> </span>Tokens<span class="w"> </span>invalidated<span class="w"> </span>successfully.
+</span></code></pre></div>
+<blockquote>
+<p>Si uno de los tokens ha sido comprometido, borra los tokens, crea de nuevo todos, envíalos a quienes los necesiten y actualiza tu <code>.env</code>.</p>
+</blockquote>
+<h2 id="destruir-una-base-de-datos">Destruir una base de datos</h2>
+<p>Si ya no necesitas la base de datos, puedes eliminarla con <code>turso db destroy &lt;nombre&gt;</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>❯<span class="w"> </span>turso<span class="w"> </span>db<span class="w"> </span>destroy<span class="w"> </span>testing
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>Database<span class="w"> </span>testing<span class="w"> </span>and<span class="w"> </span>all<span class="w"> </span>its<span class="w"> </span>data<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>destroyed.
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>Are<span class="w"> </span>you<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span><span class="k">do</span><span class="w"> </span>this?<span class="w"> </span><span class="o">[</span>y/n<span class="o">]</span>:<span class="w"> </span>y
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>Destroyed<span class="w"> </span>database<span class="w"> </span>testing<span class="w"> </span><span class="k">in</span><span class="w"> </span>606ms.
+</span></code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
