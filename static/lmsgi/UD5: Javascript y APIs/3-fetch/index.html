@@ -8,13 +8,11 @@
       
       
       
-        <link rel="canonical" href="https://datadiego.github.io/lmsgi/UD4%3A%20JavaScript/2-operadores/">
+        <link rel="canonical" href="https://datadiego.github.io/lmsgi/UD5%3A%20Javascript%20y%20APIs/3-fetch/">
       
       
-        <link rel="prev" href="../1-variables/">
+        <link rel="prev" href="../2-asincronia/">
       
-      
-        <link rel="next" href="../3-control-de-flujo/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +20,7 @@
     
     
       
-        <title>Operadores - LMSGI</title>
+        <title>Fetch - LMSGI</title>
       
     
     
@@ -81,7 +79,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#operadores" class="md-skip">
+        <a href="#fetch" class="md-skip">
           Skip to content
         </a>
       
@@ -117,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Operadores
+              Fetch
             
           </span>
         </div>
@@ -1128,20 +1126,18 @@
       
   
   
-    
   
   
-  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
           <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
@@ -1157,10 +1153,287 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             UD4: JavaScript
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20JavaScript/00-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20JavaScript/01-variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Variables
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20JavaScript/02-operadores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Operadores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20JavaScript/03-control-de-flujo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Control de flujo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20JavaScript/04-funciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20JavaScript/05-metodos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Métodos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20JavaScript/06-metodos-arrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Métodos de arrays
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20JavaScript/07-timers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Intervalos y timeouts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20JavaScript/08-manipulacion-dom-basica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Manipulacion de DOM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20JavaScript/09-manipulacion-dom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Manipulación de DOM con funciones utilitarias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD5: Javascript y APIs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            UD5: Javascript y APIs
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
@@ -1194,12 +1467,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../1-variables/" class="md-nav__link">
+      <a href="../1-clientes/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    Variables
+    Clientes HTTP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2-asincronia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Asincronia
     
   </span>
   
@@ -1231,7 +1527,7 @@
   
   
   <span class="md-ellipsis">
-    Operadores
+    Fetch
     
   </span>
   
@@ -1244,7 +1540,7 @@
   
   
   <span class="md-ellipsis">
-    Operadores
+    Fetch
     
   </span>
   
@@ -1267,81 +1563,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#operadores-aritmeticos" class="md-nav__link">
+  <a href="#fetch-con-thencatch" class="md-nav__link">
     <span class="md-ellipsis">
-      Operadores aritméticos
+      fetch con then/catch
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#incremento-y-decremento" class="md-nav__link">
+  <a href="#fetch-con-await" class="md-nav__link">
     <span class="md-ellipsis">
-      Incremento y decremento
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#operadores-de-asignacion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Operadores de asignación
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#operadores-de-comparacion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Operadores de comparación
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#operadores-logicos" class="md-nav__link">
-    <span class="md-ellipsis">
-      Operadores lógicos
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#operador-ternario" class="md-nav__link">
-    <span class="md-ellipsis">
-      Operador ternario
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#operador-de-concatenacion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Operador de concatenación
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#precedencia-de-operadores" class="md-nav__link">
-    <span class="md-ellipsis">
-      Precedencia de operadores
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#buenas-practicas" class="md-nav__link">
-    <span class="md-ellipsis">
-      Buenas prácticas
+      fetch con await
     </span>
   </a>
   
@@ -1351,235 +1584,6 @@
   
 </nav>
       
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../3-control-de-flujo/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Control de flujo
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../4-funciones/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Funciones
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../5-metodos/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Métodos
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../6-manipulacion-dom-basica/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Manipulacion de DOM
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../6-metodos-arrays/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Métodos de arrays
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../999-manipulacion-dom/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Manipulación de DOM con funciones utilitarias
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
-        
-          
-          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    UD5: Javascript y APIs
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_7">
-            <span class="md-nav__icon md-icon"></span>
-            UD5: Javascript y APIs
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../UD5%3A%20Javascript%20y%20APIs/0-introduccion/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Introducción
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../UD5%3A%20Javascript%20y%20APIs/1-clientes/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Clientes HTTP
-    
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -1619,81 +1623,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#operadores-aritmeticos" class="md-nav__link">
+  <a href="#fetch-con-thencatch" class="md-nav__link">
     <span class="md-ellipsis">
-      Operadores aritméticos
+      fetch con then/catch
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#incremento-y-decremento" class="md-nav__link">
+  <a href="#fetch-con-await" class="md-nav__link">
     <span class="md-ellipsis">
-      Incremento y decremento
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#operadores-de-asignacion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Operadores de asignación
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#operadores-de-comparacion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Operadores de comparación
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#operadores-logicos" class="md-nav__link">
-    <span class="md-ellipsis">
-      Operadores lógicos
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#operador-ternario" class="md-nav__link">
-    <span class="md-ellipsis">
-      Operador ternario
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#operador-de-concatenacion" class="md-nav__link">
-    <span class="md-ellipsis">
-      Operador de concatenación
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#precedencia-de-operadores" class="md-nav__link">
-    <span class="md-ellipsis">
-      Precedencia de operadores
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#buenas-practicas" class="md-nav__link">
-    <span class="md-ellipsis">
-      Buenas prácticas
+      fetch con await
     </span>
   </a>
   
@@ -1715,260 +1656,52 @@
 
 
 
-<h1 id="operadores">Operadores</h1>
-<p>Los operadores son símbolos que nos permiten <strong>realizar operaciones</strong> con uno o más valores (llamados <em>operandos</em>). Por ejemplo, <code>+</code>, <code>-</code>, <code>*</code> o <code>&amp;&amp;</code>.</p>
-<h2 id="operadores-aritmeticos">Operadores aritméticos</h2>
-<p>Son los que usamos para hacer cálculos matemáticos.</p>
-<table>
-<thead>
-<tr>
-<th>Operador</th>
-<th>Descripción</th>
-<th>Ejemplo</th>
-<th>Resultado</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>+</code></td>
-<td>Suma</td>
-<td><code>5 + 3</code></td>
-<td><code>8</code></td>
-</tr>
-<tr>
-<td><code>-</code></td>
-<td>Resta</td>
-<td><code>5 - 3</code></td>
-<td><code>2</code></td>
-</tr>
-<tr>
-<td><code>*</code></td>
-<td>Multiplicación</td>
-<td><code>5 * 3</code></td>
-<td><code>15</code></td>
-</tr>
-<tr>
-<td><code>/</code></td>
-<td>División</td>
-<td><code>5 / 2</code></td>
-<td><code>2.5</code></td>
-</tr>
-<tr>
-<td><code>%</code></td>
-<td>Módulo (resto)</td>
-<td><code>5 % 2</code></td>
-<td><code>1</code></td>
-</tr>
-<tr>
-<td><code>**</code></td>
-<td>Potencia</td>
-<td><code>5 ** 2</code></td>
-<td><code>25</code></td>
-</tr>
-</tbody>
-</table>
-<div class="language-js highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">let</span><span class="w"> </span><span class="nx">suma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span><span class="w">      </span><span class="c1">// 15</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kd">let</span><span class="w"> </span><span class="nx">resto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">10</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mf">3</span><span class="p">;</span><span class="w">     </span><span class="c1">// 1</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kd">let</span><span class="w"> </span><span class="nx">potencia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="mf">4</span><span class="p">;</span><span class="w">  </span><span class="c1">// 16</span>
+<h1 id="fetch">Fetch</h1>
+<p><code>fetch</code> es una función asíncrona que nos permite realizar llamadas http a otros servidores</p>
+<h2 id="fetch-con-thencatch">fetch con then/catch</h2>
+<p>La versión con then y catch:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;https://dummyjson.com/users&quot;</span><span class="p">)</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">response</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">())</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="nx">users</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">users</span><span class="p">)</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="p">})</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">.</span><span class="k">catch</span><span class="p">(</span><span class="nx">error</span><span class="w"> </span><span class="p">=&gt;{</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">    </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">error</span><span class="p">)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="p">})</span>
 </span></code></pre></div>
-<blockquote>
-<p>El operador <code>+</code> tiene un <strong>doble comportamiento</strong>: si los dos operandos son números, suma; pero si alguno es un string, <strong>concatena</strong> convirtiendo el otro a string (ya vimos la coerción de tipos en el tema de variables).</p>
-</blockquote>
-<div class="language-js highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="mf">1</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2</span><span class="w">        </span><span class="c1">// 3  (números, suma)</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="s2">&quot;1&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2</span><span class="w">      </span><span class="c1">// &quot;12&quot; (string, concatena)</span>
+<p>Ten en cuenta que el método <code>json()</code> devuelve otra promesa, asi que debemos resolverla antes de acceder a los datos que nos ha devuelto fetch.</p>
+<h2 id="fetch-con-await">fetch con await</h2>
+<p>Bastante más simple:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;https://dummyjson.com/users&quot;</span><span class="p">)</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">users</span><span class="p">)</span>
 </span></code></pre></div>
-<h2 id="incremento-y-decremento">Incremento y decremento</h2>
-<p><code>++</code> y <code>--</code> incrementan o decrementan una variable en 1.</p>
-<div class="language-js highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kd">let</span><span class="w"> </span><span class="nx">contador</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0</span><span class="p">;</span>
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nx">contador</span><span class="o">++</span><span class="p">;</span><span class="w">   </span><span class="c1">// ahora vale 1</span>
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="nx">contador</span><span class="o">--</span><span class="p">;</span><span class="w">   </span><span class="c1">// ahora vale 0</span>
+<p>Esto funciona si lo ejecutas con node, por ejemplo como <code>node main.js</code>, pero si lo cargas desde html, obtendrás un error:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Uncaught SyntaxError: await is only valid in async functions, async generators and modules main.js:1:18
 </span></code></pre></div>
-<p>Hay una diferencia sutil:</p>
-<ul>
-<li><code>contador++</code> devuelve el valor <strong>antes</strong> de incrementar (post-incremento).</li>
-<li><code>++contador</code> devuelve el valor <strong>después</strong> de incrementar (pre-incremento).</li>
-</ul>
-<div class="language-js highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kd">let</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5</span><span class="p">;</span>
-</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kd">let</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">a</span><span class="o">++</span><span class="p">;</span><span class="w">   </span><span class="c1">// b = 5,  a = 6</span>
-</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kd">let</span><span class="w"> </span><span class="nx">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">++</span><span class="nx">a</span><span class="p">;</span><span class="w">   </span><span class="c1">// c = 7,  a = 7</span>
+<p>Cuando lo ejecutamos en node, se hace como un modulo, para usarlo en nuestro html tenemos dos opciones, o bien cargamos el script como un modulo:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;es&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;</span>Fetch<span class="p">&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;css/style.css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;main.js&quot;</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span><span class="p">&gt;</span><span class="w"> </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
 </span></code></pre></div>
-<h2 id="operadores-de-asignacion">Operadores de asignación</h2>
-<p>Asignan un valor a una variable. La forma básica es <code>=</code>.</p>
-<table>
-<thead>
-<tr>
-<th>Operador</th>
-<th>Equivalente</th>
-<th>Ejemplo</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>+=</code></td>
-<td><code>x = x + 5</code></td>
-<td><code>x += 5</code></td>
-</tr>
-<tr>
-<td><code>-=</code></td>
-<td><code>x = x - 5</code></td>
-<td><code>x -= 5</code></td>
-</tr>
-<tr>
-<td><code>*=</code></td>
-<td><code>x = x * 5</code></td>
-<td><code>x *= 5</code></td>
-</tr>
-<tr>
-<td><code>/=</code></td>
-<td><code>x = x / 5</code></td>
-<td><code>x /= 5</code></td>
-</tr>
-<tr>
-<td><code>%=</code></td>
-<td><code>x = x % 5</code></td>
-<td><code>x %= 5</code></td>
-</tr>
-</tbody>
-</table>
-<div class="language-js highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">let</span><span class="w"> </span><span class="nx">total</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">100</span><span class="p">;</span>
-</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nx">total</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="mf">20</span><span class="p">;</span><span class="w">   </span><span class="c1">// total = 120</span>
-</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="nx">total</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mf">2</span><span class="p">;</span><span class="w">    </span><span class="c1">// total = 240</span>
+<p>O lo ejecutamos desde una función asíncrona:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">getUsers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">async</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">response</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">fetch</span><span class="p">(</span><span class="s2">&quot;https://dummyjson.com/users&quot;</span><span class="p">)</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">users</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">()</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">users</span><span class="p">.</span><span class="nx">users</span><span class="p">[</span><span class="mf">0</span><span class="p">].</span><span class="nx">username</span><span class="p">)</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">}</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="nx">getUsers</span><span class="p">()</span>
 </span></code></pre></div>
-<h2 id="operadores-de-comparacion">Operadores de comparación</h2>
-<p>Comparan dos valores y devuelven un <strong>boolean</strong> (<code>true</code> o <code>false</code>).</p>
-<table>
-<thead>
-<tr>
-<th>Operador</th>
-<th>Significado</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>==</code></td>
-<td>Igual (compara valor)</td>
-</tr>
-<tr>
-<td><code>===</code></td>
-<td>Estrictamente igual (valor y tipo)</td>
-</tr>
-<tr>
-<td><code>!=</code></td>
-<td>Distinto</td>
-</tr>
-<tr>
-<td><code>!==</code></td>
-<td>Estrictamente distinto</td>
-</tr>
-<tr>
-<td><code>&gt;</code></td>
-<td>Mayor que</td>
-</tr>
-<tr>
-<td><code>&lt;</code></td>
-<td>Menor que</td>
-</tr>
-<tr>
-<td><code>&gt;=</code></td>
-<td>Mayor o igual que</td>
-</tr>
-<tr>
-<td><code>&lt;=</code></td>
-<td>Menor o igual que</td>
-</tr>
-</tbody>
-</table>
-<div class="language-js highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="mf">5</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">3</span><span class="w">       </span><span class="c1">// true</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="mf">10</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">10</span><span class="w">    </span><span class="c1">// true</span>
-</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="s2">&quot;hola&quot;</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;hola&quot;</span><span class="w">  </span><span class="c1">// true</span>
-</span></code></pre></div>
-<blockquote>
-<p><strong><code>==</code> vs <code>===</code></strong>: ya vimos que JavaScript hace coerción de tipos. <code>==</code> permite la coerción implícita, mientras que <code>===</code> exige que el valor <strong>y el tipo</strong> coincidan.</p>
-</blockquote>
-<div class="language-js highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="mf">5</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s2">&quot;5&quot;</span><span class="w">    </span><span class="c1">// true  (convierte el string a número)</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="mf">5</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;5&quot;</span><span class="w">   </span><span class="c1">// false (tipos distintos)</span>
-</span></code></pre></div>
-<blockquote>
-<p><strong>Regla de oro</strong>: usa siempre <code>===</code> y <code>!==</code>. Evitan bugs difíciles de detectar que provoca la coerción implícita de <code>==</code>.</p>
-</blockquote>
-<h2 id="operadores-logicos">Operadores lógicos</h2>
-<p>Combinan condiciones booleanas.</p>
-<table>
-<thead>
-<tr>
-<th>Operador</th>
-<th>Descripción</th>
-<th>Ejemplo</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&amp;&amp;</code></td>
-<td>AND (ambas ciertas)</td>
-<td><code>edad &gt;= 18 &amp;&amp; mayor</code></td>
-</tr>
-<tr>
-<td><code>||</code></td>
-<td>OR (al menos una cierta)</td>
-<td><code>dia === "sab" || ...</code></td>
-</tr>
-<tr>
-<td><code>!</code></td>
-<td>Negación (invierte)</td>
-<td><code>!activo</code></td>
-</tr>
-</tbody>
-</table>
-<div class="language-js highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="kd">let</span><span class="w"> </span><span class="nx">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">25</span><span class="p">;</span>
-</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="kd">let</span><span class="w"> </span><span class="nx">carnet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nx">edad</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">18</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">carnet</span><span class="w">         </span><span class="c1">// true (ambas ciertas)</span>
-</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nx">edad</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">30</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">carnet</span><span class="w">          </span><span class="c1">// true (una cierta)</span>
-</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="o">!</span><span class="p">(</span><span class="nx">edad</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">18</span><span class="p">)</span><span class="w">                </span><span class="c1">// false (niega)</span>
-</span></code></pre></div>
-<blockquote>
-<p>Además de devolver un boolean, <code>&amp;&amp;</code> y <code>||</code> tienen un comportamiento <em>short-circuit</em>: devuelven uno de sus operandos (no <code>false</code>/<code>true</code> necesariamente). <code>&amp;&amp;</code> devuelve el primer valor <strong>falsy</strong> o el último si todos son truthy; <code>||</code> devuelve el primer valor <strong>truthy</strong>. Esto se usa para asignar valores por defecto:</p>
-</blockquote>
-<div class="language-js highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kd">let</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">usuario</span><span class="p">.</span><span class="nx">nombre</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="s2">&quot;anónimo&quot;</span><span class="p">;</span>
-</span></code></pre></div>
-<h2 id="operador-ternario">Operador ternario</h2>
-<p>Es el único operador que necesita tres operandos. Funciona como un <code>if / else</code> compacto que devuelve un valor.</p>
-<div class="language-js highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nx">condicion</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="nx">valorSiVerdadero</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="nx">valorSiFalso</span>
-</span></code></pre></div>
-<div class="language-js highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kd">let</span><span class="w"> </span><span class="nx">edad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">20</span><span class="p">;</span>
-</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="kd">let</span><span class="w"> </span><span class="nx">mensaje</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">edad</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">18</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="s2">&quot;Mayor de edad&quot;</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;Menor de edad&quot;</span><span class="p">;</span>
-</span></code></pre></div>
-<h2 id="operador-de-concatenacion">Operador de concatenación</h2>
-<p>El operador <code>+</code> también se usa para unir strings. Cuando uno de los operandos es un string, el resultado es un string:</p>
-<div class="language-js highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="s2">&quot;hola&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot; &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;mundo&quot;</span><span class="w">   </span><span class="c1">// &quot;hola mundo&quot;</span>
-</span></code></pre></div>
-<p>Para interpolar variables en un string se recomienda usar <strong>template literals</strong> (con backticks y <code>${}</code>):</p>
-<div class="language-js highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kd">let</span><span class="w"> </span><span class="nx">nombre</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Ana&quot;</span><span class="p">;</span>
-</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="kd">let</span><span class="w"> </span><span class="nx">mensaje</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`Hola </span><span class="si">${</span><span class="nx">nombre</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span><span class="w">   </span><span class="c1">// &quot;Hola Ana&quot;</span>
-</span></code></pre></div>
-<h2 id="precedencia-de-operadores">Precedencia de operadores</h2>
-<p>Igual que en matemáticas, no todos los operadores se evalúan a la vez. Hay un orden de prioridad (la <strong>precedencia</strong>), y también asociatividad.</p>
-<p>Algunas reglas útiles:</p>
-<ul>
-<li><code>()</code> tiene la mayor prioridad: <strong>úsalo siempre que haya dudas</strong> para hacer la intención explícita.</li>
-<li>El <code>**</code> se evalúa antes que <code>*</code>, <code>/</code>, <code>%</code>.</li>
-<li>La multiplicación/división van antes que la suma/resta.</li>
-<li>Los operadores de comparación van después que los aritméticos.</li>
-<li>Los operadores lógicos <code>&amp;&amp;</code> van antes que <code>||</code>.</li>
-<li>La asignación <code>=</code> es de las últimas.</li>
-</ul>
-<div class="language-js highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="mf">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">4</span><span class="w">          </span><span class="c1">// 14 (primero el *)</span>
-</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="p">(</span><span class="mf">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">4</span><span class="w">        </span><span class="c1">// 20 (los paréntesis mandan)</span>
-</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="mf">5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s2">&quot;3&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">4</span><span class="w">        </span><span class="c1">// &quot;534&quot; (la coerción altera el resultado)</span>
-</span></code></pre></div>
-<h2 id="buenas-practicas">Buenas prácticas</h2>
-<ul>
-<li>Usa siempre <strong><code>===</code> y <code>!==</code></strong>, nunca <code>==</code> o <code>!=</code>.</li>
-<li>Añade <strong>paréntesis</strong> para aclarar la precedencia cuando la expresión no sea obvia.</li>
-<li>No abuses del operador ternario; si la condición es compleja, mejor un <code>if / else</code>.</li>
-<li>Usa <strong>template literals</strong> para concatenar con variables en lugar de <code>+</code>.</li>
-<li>Evita restar o comparar strings cuando en realidad quieres hacer operaciones numéricas; la coerción implícita es fuente de bugs.</li>
-</ul>
 
 
 

@@ -1,0 +1,2694 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://datadiego.github.io/lmsgi/UD4%3A%20JavaScript/06-metodos-arrays/">
+      
+      
+        <link rel="prev" href="../05-metodos/">
+      
+      
+        <link rel="next" href="../07-timers/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.22">
+    
+    
+      
+        <title>Métodos de arrays - LMSGI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.84d31ad4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../overrides/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+<script type="module">
+  import mermaid from 'https://unpkg.com/mermaid/dist/mermaid.esm.min.mjs';
+  mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+</script>
+
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#metodos-de-arrays" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="LMSGI" class="md-header__button md-logo" aria-label="LMSGI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            LMSGI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Métodos de arrays
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="LMSGI" class="md-nav__button md-logo" aria-label="LMSGI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    LMSGI
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    LMSGI
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD0: Introduccion
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            UD0: Introduccion
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20Introduccion/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción a los lenguajes de marcas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20Introduccion/1-marcado/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Texto plano vs estructurado
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD0%3A%20Introduccion/2-lenguajes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lenguajes de marcado
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD1: Markdown
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            UD1: Markdown
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD1%3A%20Markdown/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD1%3A%20Markdown/1-mermaid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mermaid
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD1%3A%20Markdown/2-multimarkdown/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Multimarkdown
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD1%3A%20Markdown/3-pandoc/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pandoc
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD1%3A%20Markdown/4-mkdocs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Mkdocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD1%3A%20Markdown/5-hugo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hugo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD1%3A%20Markdown/6-deploy-basico/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción a actions en Github
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD1%3A%20Markdown/7-deploy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy en github.io
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD1%3A%20Markdown/8-deploy-neocities/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deploy en neocities
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD2: HTML
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            UD2: HTML
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20HTML/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20HTML/1-estructura-documentos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Estructura de documentos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20HTML/2-estructura-proyecto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Estructura de proyecto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20HTML/3-etiquetas-texto/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Etiquetas de texto
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20HTML/4-etiquetas-semanticas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Etiquetas semánticas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20HTML/5-elementos-multimedia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Elementos multimedia
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20HTML/6-tablas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tablas
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20HTML/7-formularios/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Formularios
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20HTML/8-atributos-globales/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Atributos globales
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD2%3A%20HTML/999-arte-hipermedia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    999 arte hipermedia
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD3: CSS
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            UD3: CSS
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20CSS/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20CSS/1-selectores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Selectores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20CSS/2-unidades/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Unidades
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20CSS/3-texto-colores-fondos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Texto, colores y fondos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20CSS/4-display/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Display
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20CSS/5-flexbox/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Flexbox
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20CSS/6-posicionamiento/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Posicionamiento
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD3%3A%20CSS/7-medias-queries/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Media queries
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD4: JavaScript
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            UD4: JavaScript
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-variables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Variables
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-operadores/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Operadores
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-control-de-flujo/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Control de flujo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-funciones/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Funciones
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-metodos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Métodos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Métodos de arrays
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Métodos de arrays
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pushpop" class="md-nav__link">
+    <span class="md-ellipsis">
+      push/pop
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      sort
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="sort">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orden-por-valor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Orden por valor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sort-sin-comparador" class="md-nav__link">
+    <span class="md-ellipsis">
+      sort sin comparador
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-error-del-booleano" class="md-nav__link">
+    <span class="md-ellipsis">
+      El error del booleano
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orden-alfabetico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Orden alfabético
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#localecompare" class="md-nav__link">
+    <span class="md-ellipsis">
+      localeCompare()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordenar-objetos-por-propiedad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ordenar objetos por propiedad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sort-modifica-el-array-original" class="md-nav__link">
+    <span class="md-ellipsis">
+      sort modifica el array original
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tosorted" class="md-nav__link">
+    <span class="md-ellipsis">
+      toSorted
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      filter
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map" class="md-nav__link">
+    <span class="md-ellipsis">
+      map
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reduce" class="md-nav__link">
+    <span class="md-ellipsis">
+      reduce
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#find-y-findindex" class="md-nav__link">
+    <span class="md-ellipsis">
+      find y findIndex
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#some-y-every" class="md-nav__link">
+    <span class="md-ellipsis">
+      some y every
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#includes-e-indexof" class="md-nav__link">
+    <span class="md-ellipsis">
+      includes e indexOf
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#foreach" class="md-nav__link">
+    <span class="md-ellipsis">
+      forEach
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#join" class="md-nav__link">
+    <span class="md-ellipsis">
+      join
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slice" class="md-nav__link">
+    <span class="md-ellipsis">
+      slice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#splice" class="md-nav__link">
+    <span class="md-ellipsis">
+      splice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flat" class="md-nav__link">
+    <span class="md-ellipsis">
+      flat
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#at" class="md-nav__link">
+    <span class="md-ellipsis">
+      at
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encadenar-metodos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encadenar métodos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-timers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Intervalos y timeouts
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-manipulacion-dom-basica/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Manipulacion de DOM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-manipulacion-dom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Manipulación de DOM con funciones utilitarias
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD5: Javascript y APIs
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            UD5: Javascript y APIs
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD5%3A%20Javascript%20y%20APIs/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD5%3A%20Javascript%20y%20APIs/1-clientes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clientes HTTP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD5%3A%20Javascript%20y%20APIs/2-asincronia/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Asincronia
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD5%3A%20Javascript%20y%20APIs/3-fetch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Fetch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pushpop" class="md-nav__link">
+    <span class="md-ellipsis">
+      push/pop
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sort" class="md-nav__link">
+    <span class="md-ellipsis">
+      sort
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="sort">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ejemplo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ejemplo
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orden-por-valor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Orden por valor
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sort-sin-comparador" class="md-nav__link">
+    <span class="md-ellipsis">
+      sort sin comparador
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#el-error-del-booleano" class="md-nav__link">
+    <span class="md-ellipsis">
+      El error del booleano
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orden-alfabetico" class="md-nav__link">
+    <span class="md-ellipsis">
+      Orden alfabético
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#localecompare" class="md-nav__link">
+    <span class="md-ellipsis">
+      localeCompare()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ordenar-objetos-por-propiedad" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ordenar objetos por propiedad
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sort-modifica-el-array-original" class="md-nav__link">
+    <span class="md-ellipsis">
+      sort modifica el array original
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tosorted" class="md-nav__link">
+    <span class="md-ellipsis">
+      toSorted
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#filter" class="md-nav__link">
+    <span class="md-ellipsis">
+      filter
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#map" class="md-nav__link">
+    <span class="md-ellipsis">
+      map
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reduce" class="md-nav__link">
+    <span class="md-ellipsis">
+      reduce
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#find-y-findindex" class="md-nav__link">
+    <span class="md-ellipsis">
+      find y findIndex
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#some-y-every" class="md-nav__link">
+    <span class="md-ellipsis">
+      some y every
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#includes-e-indexof" class="md-nav__link">
+    <span class="md-ellipsis">
+      includes e indexOf
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#foreach" class="md-nav__link">
+    <span class="md-ellipsis">
+      forEach
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#join" class="md-nav__link">
+    <span class="md-ellipsis">
+      join
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slice" class="md-nav__link">
+    <span class="md-ellipsis">
+      slice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#splice" class="md-nav__link">
+    <span class="md-ellipsis">
+      splice
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flat" class="md-nav__link">
+    <span class="md-ellipsis">
+      flat
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#at" class="md-nav__link">
+    <span class="md-ellipsis">
+      at
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#encadenar-metodos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encadenar métodos
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="metodos-de-arrays">Métodos de arrays</h1>
+<p>Los métodos que incluyen los <code>arrays</code> en javascript son <strong>fundamentales</strong>, vas a usarlos <strong>mucho</strong>.</p>
+<p>Para entender bien estos métodos necesitarás entender bien las <a href="../04-funciones/">funciones anónimas y funciones de alto nivel</a>.</p>
+<h2 id="pushpop">push/pop</h2>
+<p>Sirven para meter nuevos elementos en un array y sacarlos:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="o">&gt;</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">array</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">,</span><span class="mf">4</span><span class="p">]</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kc">undefined</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="o">&gt;</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mf">5</span><span class="p">)</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="mf">6</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="o">&gt;</span><span class="w"> </span><span class="nx">array</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="p">[</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="w"> </span><span class="p">]</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="o">&gt;</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="s2">&quot;hola!&quot;</span><span class="p">)</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="mf">7</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="o">&gt;</span><span class="w"> </span><span class="nx">array</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="p">[</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;hola!&#39;</span><span class="w"> </span><span class="p">]</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="o">&gt;</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">pop</span><span class="p">()</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="s1">&#39;hola!&#39;</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="o">&gt;</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">pop</span><span class="p">()</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="mf">5</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="o">&gt;</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">pop</span><span class="p">()</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="mf">4</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="o">&gt;</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">pop</span><span class="p">()</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="mf">3</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="o">&gt;</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">pop</span><span class="p">()</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="mf">2</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="o">&gt;</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">pop</span><span class="p">()</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="mf">1</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a><span class="o">&gt;</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">pop</span><span class="p">()</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="mf">0</span>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="o">&gt;</span><span class="w"> </span><span class="nx">array</span><span class="p">.</span><span class="nx">pop</span><span class="p">()</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="kc">undefined</span>
+</span></code></pre></div>
+<h2 id="sort">sort</h2>
+<p>Permite ordenar los elementos de una lista, generalmente de manera alfabética con strings, o por valor.</p>
+<p>La función espera una función de comparación que define cómo se deben ordenar los elementos:</p>
+<ul>
+<li>Si la función devuelve un valor negativo, el primer elemento va antes que el segundo.</li>
+<li>Si la función devuelve un valor positivo, el primer elemento va después que el segundo.</li>
+<li>Si la función devuelve 0, los dos elementos se consideran <strong>equivalentes</strong>, y el orden entre ellos no cambia.</li>
+</ul>
+<h3 id="ejemplo">Ejemplo</h3>
+<p>Vamos a aplicar primero un algoritmo de ordenación a mano, luego veremos como funciona en javascript.</p>
+<p>El algoritmo que vamos a usar es el de <strong>ordenación de burbuja</strong> (<code>bubble sort</code>), que es el más sencillo de entender:</p>
+<ol>
+<li>Cogemos <strong>dos elementos vecinos</strong> y los comparamos con nuestra condición.</li>
+<li>Si no están en el orden que queremos, los <strong>intercambiamos</strong>.</li>
+<li>Cuando llegamos al final del array, <strong>volvemos a empezar desde el principio</strong>.</li>
+</ol>
+<p>Ese punto 3 es el que más se olvida: al terminar una pasada el elemento más grande (o el más pequeño) ya está en su sitio, pero el resto puede seguir desordenado, así que hay que repetir la operación.</p>
+<p>Tenemos el siguiente array:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>[0, 3, 1, 2]
+</span></code></pre></div>
+<p>Y nuestra condición para ordenar es <code>a - b</code>:</p>
+<p>Cogemos los dos primeros elementos de la lista:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>0 - 3 es negativo, el primer elemento va antes que el segundo
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>El array se mantiene en [0, 3, 1, 2]
+</span></code></pre></div>
+<p>Continuamos con los siguientes, 3 y 1:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>3 - 1 es positivo, el primer elemento va después del segundo
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>El array pasa a ser [0, 1, 3, 2]
+</span></code></pre></div>
+<p>Terminamos la pasada con los siguientes, 3 y 2:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>3 - 2 es positivo, el primer elemento va después del segundo
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>El array pasa a ser [0, 1, 2, 3]
+</span></code></pre></div>
+<p>El array ya está ordenado, pero <strong>hemos tenido suerte</strong>: el <code>3</code> ya era el elemento más grande y en una sola pasada ha ido a su sitio. Si el array hubiera sido <code>[4, 3, 2, 1]</code> necesitaríamos más pasadas:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Primera pasada:  4 y 3 -&gt; [3, 4, 2, 1]
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>                 4 y 2 -&gt; [3, 2, 4, 1]
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>                 4 y 1 -&gt; [3, 2, 1, 4]
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Segunda pasada:  3 y 2 -&gt; [2, 3, 1, 4]
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>                 3 y 1 -&gt; [2, 1, 3, 4]
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>                 3 y 4 -&gt; ya está bien
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>Tercera pasada:  2 y 1 -&gt; [1, 2, 3, 4]
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>                 2 y 3 -&gt; ya está bien
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>                 3 y 4 -&gt; ya está bien
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>3 pasadas para 4 elementos
+</span></code></pre></div>
+<blockquote>
+<p>Esto es lo que hace javascript por debajo (<code>sort</code> usa Timsort, que es mucho más eficiente), pero el concepto es el mismo: <strong>le entregas dos elementos y le dices cuál va antes</strong>.</p>
+</blockquote>
+<p>¿Y si cambiamos la condicion a <code>b - a</code>?</p>
+<p>Volvemos a empezar con el mismo array del principio <code>[0, 3, 1, 2]</code>, cogemos 0 y 3:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>3 - 0 es positivo, el primer elemento va después del segundo
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>El array pasa a ser [3, 0, 1, 2]
+</span></code></pre></div>
+<p>Continuamos con 0 y 1:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>1 - 0 es positivo, el primer elemento va después del segundo
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>El array pasa a ser [3, 1, 0, 2]
+</span></code></pre></div>
+<p>Continuamos con 0 y 2:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>2 - 0 es positivo, el primer elemento va después del segundo
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>El array pasa a ser [3, 1, 2, 0]
+</span></code></pre></div>
+<p>Volvemos a comenzar desde los dos primeros elementos 3 y 1:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>1 - 3 es negativo, el primer elemento va antes del segundo
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>El array se queda igual porque no podemos mover 3 antes [3, 1, 2, 0]
+</span></code></pre></div>
+<p>Continuamos con 1 y 2, y después con 2 y 0:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>2 - 1 es positivo, el primer elemento va después del segundo
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>El array pasa a ser [3, 2, 1, 0]
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>0 - 2 es negativo, el array se queda igual
+</span></code></pre></div>
+<p>Una tercera pasada no cambia nada, ya que todos los elementos están en orden:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>[3, 2, 1, 0]
+</span></code></pre></div>
+<h3 id="orden-por-valor">Orden por valor</h3>
+<p>Sabiendo lo anterior, podemos hacer:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">]</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="nx">numeros</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numeros</span><span class="p">)</span><span class="w"> </span><span class="c1">// [0, 1, 2, 3]</span>
+</span></code></pre></div>
+<p>Y para ordenarlo al revés, <code>b - a</code>:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">]</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nx">numeros</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">a</span><span class="p">)</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numeros</span><span class="p">)</span><span class="w"> </span><span class="c1">// [3, 2, 1, 0]</span>
+</span></code></pre></div>
+<h3 id="sort-sin-comparador"><code>sort</code> sin comparador</h3>
+<p>Si no le pasas una función, <code>sort</code> <strong>convierte los elementos a string</strong> y los ordena alfabéticamente. Con números esto puedo provocar problemas:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">9</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">80</span><span class="p">]</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a><span class="nx">numeros</span><span class="p">.</span><span class="nx">sort</span><span class="p">()</span>
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numeros</span><span class="p">)</span><span class="w"> </span><span class="c1">// [1, 10, 80, 9]</span>
+</span></code></pre></div>
+<p><strong>Si el array no es de strings, siempre necesitas un comparador</strong>.</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">9</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">80</span><span class="p">]</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nx">numeros</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span>
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numeros</span><span class="p">)</span><span class="w"> </span><span class="c1">// [1, 9, 10, 80]</span>
+</span></code></pre></div>
+<h3 id="el-error-del-booleano">El error del booleano</h3>
+<p>Mucha gente escribe el comparador como si fuera una pregunta de sí o no, y <strong>no funciona</strong>:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">]</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a><span class="nx">numeros</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span>
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numeros</span><span class="p">)</span><span class="w"> </span><span class="c1">// [3, 1, 2]</span>
+</span></code></pre></div>
+<p>El motivo es que el comparador espera un número, y un booleano nunca es negativo:</p>
+<ul>
+<li><code>true</code> se convierte en <code>1</code></li>
+<li><code>false</code> se convierte en <code>0</code></li>
+</ul>
+<p>Nunca hay negativos, así que el algoritmo no tiene forma de saber que un elemento va <strong>antes</strong> que otro, y el array se queda como estaba.</p>
+<blockquote>
+<p>Recuerda, necesitas que tu condición de ordenación devuelva positivos o negativos según el resultado.</p>
+</blockquote>
+<h3 id="orden-alfabetico">Orden alfabético</h3>
+<p>El más simple si tenemos un array de strings, no hace falta comparador:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">frutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;manzana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;melocoton&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;manzana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;platano&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;manzana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;melon&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sandia&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;ciruela&quot;</span><span class="p">]</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="nx">frutas</span><span class="p">.</span><span class="nx">sort</span><span class="p">()</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">frutas</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>[ &#39;ciruela&#39;, &#39;manzana&#39;, &#39;manzana&#39;, &#39;manzana&#39;, &#39;melocoton&#39;, &#39;melon&#39;, &#39;platano&#39;, &#39;sandia&#39; ]
+</span></code></pre></div>
+<p>Fíjate en que las tres <code>"manzana"</code> se quedan en el mismo orden en que estaban: eso es la <strong>estabilidad</strong> de la que hablábamos antes.</p>
+<h3 id="localecompare"><code>localeCompare()</code></h3>
+<p>El comparador por defecto de <code>sort</code> usa el código UTF-16, que ordena por tabla ascii, así que las mayúsculas y los acentos se colocan de forma poco intuitiva:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="p">[</span><span class="s2">&quot;Manzana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;manzana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;melocotón&quot;</span><span class="p">].</span><span class="nx">sort</span><span class="p">()</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="c1">// [ &#39;Manzana&#39;, &#39;manzana&#39;, &#39;melocotón&#39; ] -&gt; la mayuscula antes que la minuscula</span>
+</span></code></pre></div>
+<p><code>localeCompare()</code> es un método de strings que hace la comparación "como una persona":</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="s2">&quot;a&quot;</span><span class="p">.</span><span class="nx">localeCompare</span><span class="p">(</span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="o">-</span><span class="mf">1</span><span class="w"> </span><span class="c1">// negativo si la primera palabra va antes</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="s2">&quot;a&quot;</span><span class="p">.</span><span class="nx">localeCompare</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="mf">0</span><span class="w"> </span><span class="c1">// 0 si son la misma</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="s2">&quot;b&quot;</span><span class="p">.</span><span class="nx">localeCompare</span><span class="p">(</span><span class="s2">&quot;a&quot;</span><span class="p">)</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="mf">1</span><span class="w"> </span><span class="c1">// positivo si la primera palabra va después</span>
+</span></code></pre></div>
+<blockquote>
+<p>La spec solo garantiza que devuelve un valor <strong>negativo</strong>, <strong>cero</strong> o <strong>positivo</strong>, no que sean exactamente <code>-1</code>, <code>0</code> y <code>1</code>. Por eso hay que comprobar <code>&lt; 0</code> y <code>&gt; 0</code>, y no <code>=== -1</code> y <code>=== 1</code>.</p>
+</blockquote>
+<p>Y también funciona con acentos y mayúsculas, como debe ser:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="p">[</span><span class="s2">&quot;Manzana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;manzana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;melocotón&quot;</span><span class="p">].</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">a</span><span class="p">.</span><span class="nx">localeCompare</span><span class="p">(</span><span class="nx">b</span><span class="p">))</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="c1">// [ &#39;manzana&#39;, &#39;Manzana&#39;, &#39;melocotón&#39; ]</span>
+</span></code></pre></div>
+<h3 id="ordenar-objetos-por-propiedad">Ordenar objetos por propiedad</h3>
+<p>Si los strings están en un array de objetos, debemos usar <code>localeCompare()</code> sobre la propiedad, porque lo que queremos comparar es el nombre y no el objeto:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">frutas_peso</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;manzanas&quot;</span><span class="p">,</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">    </span><span class="s2">&quot;kilos&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">12</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">    </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;platanos&quot;</span><span class="p">,</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="w">    </span><span class="s2">&quot;kilos&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="w">    </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;melocotones&quot;</span><span class="p">,</span>
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="w">    </span><span class="s2">&quot;kilos&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">6</span>
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="w">    </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;sandias&quot;</span><span class="p">,</span>
+</span><span id="__span-22-16"><a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="w">    </span><span class="s2">&quot;kilos&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">24</span>
+</span><span id="__span-22-17"><a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-22-18"><a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a><span class="p">]</span>
+</span><span id="__span-22-19"><a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a>
+</span><span id="__span-22-20"><a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a><span class="nx">frutas_peso</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">a</span><span class="p">.</span><span class="nx">nombre</span><span class="p">.</span><span class="nx">localeCompare</span><span class="p">(</span><span class="nx">b</span><span class="p">.</span><span class="nx">nombre</span><span class="p">))</span>
+</span><span id="__span-22-21"><a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">frutas_peso</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Y si la propiedad es un número, usamos la resta, igual que con un array de números normal:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="nx">frutas_peso</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">a</span><span class="p">.</span><span class="nx">kilos</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">kilos</span><span class="p">)</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">frutas_peso</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">fruta</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">fruta</span><span class="p">.</span><span class="nx">nombre</span><span class="p">))</span><span class="w"> </span><span class="c1">// [ &#39;platanos&#39;, &#39;melocotones&#39;, &#39;manzanas&#39;, &#39;sandias&#39; ]</span>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="nx">frutas_peso</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">kilos</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">a</span><span class="p">.</span><span class="nx">kilos</span><span class="p">)</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">frutas_peso</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">fruta</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">fruta</span><span class="p">.</span><span class="nx">nombre</span><span class="p">))</span><span class="w"> </span><span class="c1">// [ &#39;sandias&#39;, &#39;manzanas&#39;, &#39;melocotones&#39;, &#39;platanos&#39; ]</span>
+</span></code></pre></div>
+<h3 id="sort-modifica-el-array-original"><code>sort</code> modifica el array original</h3>
+<p>Esto es importante y conviene recordarlo: <strong><code>sort</code> muta el array</strong> y devuelve <strong>la misma referencia</strong>, no una copia.</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">]</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">ordenados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ordenados</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="nx">numeros</span><span class="p">)</span><span class="w"> </span><span class="c1">// true, son el mismo array</span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numeros</span><span class="p">)</span><span class="w"> </span><span class="c1">// [1, 2, 3], también se ha modificado</span>
+</span></code></pre></div>
+<h2 id="tosorted">toSorted</h2>
+<p><code>sort</code> modifica el orden del array original y lo devuelve, <code>toSorted</code> solo lo devuelve, en caso de que no queramos modificarlo.</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="o">&gt;</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;z&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;b&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;c&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="p">]</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="kc">undefined</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a><span class="o">&gt;</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">a</span><span class="p">.</span><span class="nx">toSorted</span><span class="p">()</span>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="kc">undefined</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a><span class="o">&gt;</span><span class="w"> </span><span class="nx">b</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a><span class="p">[</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;z&#39;</span><span class="w"> </span><span class="p">]</span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a><span class="o">&gt;</span><span class="w"> </span><span class="nx">a</span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a><span class="p">[</span><span class="w"> </span><span class="s1">&#39;z&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="w"> </span><span class="p">]</span>
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a><span class="o">&gt;</span><span class="w"> </span><span class="nx">a</span><span class="p">.</span><span class="nx">sort</span><span class="p">()</span>
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a><span class="p">[</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;z&#39;</span><span class="w"> </span><span class="p">]</span>
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a><span class="o">&gt;</span><span class="w"> </span><span class="nx">a</span>
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a><span class="p">[</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;c&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;z&#39;</span><span class="w"> </span><span class="p">]</span>
+</span></code></pre></div>
+<p><code>toSorted</code> acepta el mismo comparador que <code>sort</code>, así que funciona exactamente igual:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">10</span><span class="p">,</span><span class="w"> </span><span class="mf">9</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">80</span><span class="p">]</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">ordenados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">toSorted</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">ordenados</span><span class="p">)</span><span class="w"> </span><span class="c1">// [1, 9, 10, 80]</span>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numeros</span><span class="p">)</span><span class="w"> </span><span class="c1">// [10, 9, 1, 80], intacto</span>
+</span></code></pre></div>
+<h2 id="filter">filter</h2>
+<p>Nos permite filtrar según la condición que expresemos en una función:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="mf">1</span><span class="p">,</span><span class="mf">2</span><span class="p">,</span><span class="mf">3</span><span class="p">,</span><span class="mf">4</span><span class="p">,</span><span class="mf">5</span><span class="p">,</span><span class="mf">6</span><span class="p">,</span><span class="mf">7</span><span class="p">,</span><span class="mf">8</span><span class="p">,</span><span class="mf">9</span><span class="p">]</span>
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">filtrados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">numero</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">numero</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">5</span><span class="p">)</span>
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numeros</span><span class="p">)</span>
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">filtrados</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Otro ejemplo:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">usuarios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-28-3"><a id="__codelineno-28-3" name="__codelineno-28-3" href="#__codelineno-28-3"></a><span class="w">    </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;celia&quot;</span><span class="p">,</span>
+</span><span id="__span-28-4"><a id="__codelineno-28-4" name="__codelineno-28-4" href="#__codelineno-28-4"></a><span class="w">    </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">22</span>
+</span><span id="__span-28-5"><a id="__codelineno-28-5" name="__codelineno-28-5" href="#__codelineno-28-5"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-28-6"><a id="__codelineno-28-6" name="__codelineno-28-6" href="#__codelineno-28-6"></a><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-28-7"><a id="__codelineno-28-7" name="__codelineno-28-7" href="#__codelineno-28-7"></a><span class="w">    </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;paco&quot;</span><span class="p">,</span>
+</span><span id="__span-28-8"><a id="__codelineno-28-8" name="__codelineno-28-8" href="#__codelineno-28-8"></a><span class="w">    </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span>
+</span><span id="__span-28-9"><a id="__codelineno-28-9" name="__codelineno-28-9" href="#__codelineno-28-9"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-28-10"><a id="__codelineno-28-10" name="__codelineno-28-10" href="#__codelineno-28-10"></a><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-28-11"><a id="__codelineno-28-11" name="__codelineno-28-11" href="#__codelineno-28-11"></a><span class="w">    </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;pablo&quot;</span><span class="p">,</span>
+</span><span id="__span-28-12"><a id="__codelineno-28-12" name="__codelineno-28-12" href="#__codelineno-28-12"></a><span class="w">    </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">43</span>
+</span><span id="__span-28-13"><a id="__codelineno-28-13" name="__codelineno-28-13" href="#__codelineno-28-13"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-28-14"><a id="__codelineno-28-14" name="__codelineno-28-14" href="#__codelineno-28-14"></a><span class="p">]</span>
+</span><span id="__span-28-15"><a id="__codelineno-28-15" name="__codelineno-28-15" href="#__codelineno-28-15"></a>
+</span><span id="__span-28-16"><a id="__codelineno-28-16" name="__codelineno-28-16" href="#__codelineno-28-16"></a><span class="kd">const</span><span class="w"> </span><span class="nx">usuarios_filtrados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">usuarios</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">usuario</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">usuario</span><span class="p">.</span><span class="nx">edad</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">30</span><span class="p">)</span>
+</span><span id="__span-28-17"><a id="__codelineno-28-17" name="__codelineno-28-17" href="#__codelineno-28-17"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">usuarios_filtrados</span><span class="p">)</span>
+</span></code></pre></div>
+<p><code>filter</code> solo espera una condición <code>true</code> o <code>false</code> para filtrar los elementos, puedes crear filtros de muchos tipos y añadir mas condicionales:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">usuarios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a><span class="w">    </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;celia&quot;</span><span class="p">,</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a><span class="w">    </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">22</span><span class="p">,</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a><span class="w">    </span><span class="s2">&quot;email&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;celia@gmail.com&quot;</span>
+</span><span id="__span-29-6"><a id="__codelineno-29-6" name="__codelineno-29-6" href="#__codelineno-29-6"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-29-7"><a id="__codelineno-29-7" name="__codelineno-29-7" href="#__codelineno-29-7"></a><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-29-8"><a id="__codelineno-29-8" name="__codelineno-29-8" href="#__codelineno-29-8"></a><span class="w">    </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;paco&quot;</span><span class="p">,</span>
+</span><span id="__span-29-9"><a id="__codelineno-29-9" name="__codelineno-29-9" href="#__codelineno-29-9"></a><span class="w">    </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span>
+</span><span id="__span-29-10"><a id="__codelineno-29-10" name="__codelineno-29-10" href="#__codelineno-29-10"></a><span class="w">    </span><span class="s2">&quot;email&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;paco@proton.me&quot;</span>
+</span><span id="__span-29-11"><a id="__codelineno-29-11" name="__codelineno-29-11" href="#__codelineno-29-11"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-29-12"><a id="__codelineno-29-12" name="__codelineno-29-12" href="#__codelineno-29-12"></a><span class="w">  </span><span class="p">{</span>
+</span><span id="__span-29-13"><a id="__codelineno-29-13" name="__codelineno-29-13" href="#__codelineno-29-13"></a><span class="w">    </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;pablo&quot;</span><span class="p">,</span>
+</span><span id="__span-29-14"><a id="__codelineno-29-14" name="__codelineno-29-14" href="#__codelineno-29-14"></a><span class="w">    </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">43</span><span class="p">,</span>
+</span><span id="__span-29-15"><a id="__codelineno-29-15" name="__codelineno-29-15" href="#__codelineno-29-15"></a><span class="w">    </span><span class="s2">&quot;email&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;pablo@gmail.com&quot;</span>
+</span><span id="__span-29-16"><a id="__codelineno-29-16" name="__codelineno-29-16" href="#__codelineno-29-16"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-29-17"><a id="__codelineno-29-17" name="__codelineno-29-17" href="#__codelineno-29-17"></a><span class="p">]</span>
+</span><span id="__span-29-18"><a id="__codelineno-29-18" name="__codelineno-29-18" href="#__codelineno-29-18"></a>
+</span><span id="__span-29-19"><a id="__codelineno-29-19" name="__codelineno-29-19" href="#__codelineno-29-19"></a><span class="c1">//usuarios que tienen mas de 30 años o su nombre empieza por &quot;pa&quot;</span>
+</span><span id="__span-29-20"><a id="__codelineno-29-20" name="__codelineno-29-20" href="#__codelineno-29-20"></a><span class="kd">const</span><span class="w"> </span><span class="nx">usuarios_filtrados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">usuarios</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">usuario</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">usuario</span><span class="p">.</span><span class="nx">edad</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">30</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">usuario</span><span class="p">.</span><span class="nx">nombre</span><span class="p">.</span><span class="nx">startsWith</span><span class="p">(</span><span class="s2">&quot;pa&quot;</span><span class="p">))</span>
+</span><span id="__span-29-21"><a id="__codelineno-29-21" name="__codelineno-29-21" href="#__codelineno-29-21"></a><span class="c1">//filtro aleatorio</span>
+</span><span id="__span-29-22"><a id="__codelineno-29-22" name="__codelineno-29-22" href="#__codelineno-29-22"></a><span class="kd">const</span><span class="w"> </span><span class="nx">usuarios_random</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">usuarios</span><span class="p">.</span><span class="nx">filter</span><span class="p">(()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Math</span><span class="p">.</span><span class="nx">random</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">0.5</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
+</span><span id="__span-29-23"><a id="__codelineno-29-23" name="__codelineno-29-23" href="#__codelineno-29-23"></a><span class="c1">//usuarios de gmail</span>
+</span><span id="__span-29-24"><a id="__codelineno-29-24" name="__codelineno-29-24" href="#__codelineno-29-24"></a><span class="kd">const</span><span class="w"> </span><span class="nx">usuarios_gmail</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">usuarios</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">u</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">u</span><span class="p">.</span><span class="nx">email</span><span class="p">.</span><span class="nx">endsWith</span><span class="p">(</span><span class="s2">&quot;gmail.com&quot;</span><span class="p">))</span>
+</span><span id="__span-29-25"><a id="__codelineno-29-25" name="__codelineno-29-25" href="#__codelineno-29-25"></a>
+</span><span id="__span-29-26"><a id="__codelineno-29-26" name="__codelineno-29-26" href="#__codelineno-29-26"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Mas de 30 años y su nombre empieza por pa:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">usuarios_filtrados</span><span class="p">)</span>
+</span><span id="__span-29-27"><a id="__codelineno-29-27" name="__codelineno-29-27" href="#__codelineno-29-27"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Random:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">usuarios_random</span><span class="p">)</span>
+</span><span id="__span-29-28"><a id="__codelineno-29-28" name="__codelineno-29-28" href="#__codelineno-29-28"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;Gmail:&quot;</span><span class="p">,</span><span class="w"> </span><span class="nx">usuarios_gmail</span><span class="p">)</span>
+</span></code></pre></div>
+<p><code>filter</code> <strong>no modifica</strong> el array original, devuelve uno nuevo con solo los elementos que cumplen la condición, y puede devolver <strong>un array vacío</strong> si ningún elemento la cumple:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]</span>
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>
+</span><span id="__span-30-3"><a id="__codelineno-30-3" name="__codelineno-30-3" href="#__codelineno-30-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">mayores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">numero</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">numero</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">10</span><span class="p">)</span>
+</span><span id="__span-30-4"><a id="__codelineno-30-4" name="__codelineno-30-4" href="#__codelineno-30-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mayores</span><span class="p">)</span><span class="w"> </span><span class="c1">// []</span>
+</span></code></pre></div>
+<h2 id="map">map</h2>
+<p><code>map</code> transforma <strong>cada</strong> elemento del array y devuelve un array <strong>nuevo</strong> con los resultados, manteniendo la posición de cada elemento.</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">]</span>
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">dobles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">numero</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">numero</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">2</span><span class="p">)</span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dobles</span><span class="p">)</span><span class="w"> </span><span class="c1">// [2, 4, 6, 8]</span>
+</span></code></pre></div>
+<p>La diferencia con <code>filter</code>: <code>filter</code> decide si cada elemento se queda o se va, <code>map</code> decide <strong>qué se queda</strong>. El array resultado tiene siempre la misma longitud.</p>
+<p>Con objetos es donde más se usa, por ejemplo para quedarte solo con los datos que te interesan:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">usuarios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;celia&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">22</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;email&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;celia@gmail.com&quot;</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;paco&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;email&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;paco@proton.me&quot;</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;pablo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">43</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;email&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;pablo@gmail.com&quot;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a><span class="p">]</span>
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a><span class="kd">const</span><span class="w"> </span><span class="nx">nombres</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">usuarios</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">usuario</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">usuario</span><span class="p">.</span><span class="nx">nombre</span><span class="p">)</span>
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nombres</span><span class="p">)</span><span class="w"> </span><span class="c1">// [ &#39;celia&#39;, &#39;paco&#39;, &#39;pablo&#39; ]</span>
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a>
+</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a><span class="kd">const</span><span class="w"> </span><span class="nx">resumen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">usuarios</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">usuario</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">usuario</span><span class="p">.</span><span class="nx">nombre</span><span class="si">}</span><span class="sb"> (</span><span class="si">${</span><span class="nx">usuario</span><span class="p">.</span><span class="nx">edad</span><span class="si">}</span><span class="sb">)`</span><span class="p">)</span>
+</span><span id="__span-32-11"><a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">resumen</span><span class="p">)</span><span class="w"> </span><span class="c1">// [ &#39;celia (22)&#39;, &#39;paco (20)&#39;, &#39;pablo (43)&#39; ]</span>
+</span></code></pre></div>
+<p><code>map</code> también se usa para transformar strings en número, algo muy habitual cuando los datos vienen de un formulario o de una URL:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">valores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;10&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;9&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;80&quot;</span><span class="p">]</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">valores</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">valor</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nb">Number</span><span class="p">(</span><span class="nx">valor</span><span class="p">))</span>
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numeros</span><span class="p">)</span><span class="w"> </span><span class="c1">// [10, 9, 80]</span>
+</span></code></pre></div>
+<p>O para manipular todos los strings de un array:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">lista</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;Hola&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;HOLA&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;hoLA&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;HoLa&quot;</span><span class="p">]</span>
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">nueva_lista</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">lista</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">palabra</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">palabra</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">())</span>
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nueva_lista</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="reduce">reduce</h2>
+<p><code>reduce</code> es el más complejo de todos, y el más potente. Recorre el array <strong>reduciéndolo a un único valor</strong>: un número, un objeto, una cadena...</p>
+<p>La función recibe dos argumentos:</p>
+<ul>
+<li><code>acumulador</code>: el resultado que llevamos acumulado hasta ahora.</li>
+<li><code>elemento</code>: el elemento actual que estamos recorriendo.</li>
+</ul>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">]</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">suma</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">acumulador</span><span class="p">,</span><span class="w"> </span><span class="nx">numero</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">acumulador</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">numero</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">suma</span><span class="p">)</span><span class="w"> </span><span class="c1">// 10</span>
+</span></code></pre></div>
+<blockquote>
+<p>El <code>0</code> del final es el <strong>valor inicial</strong> del acumulador, y es obligatorio si el tipo que estamos reduciendo no es un número. Sin él, el primer elemento del array sería el acumulador inicial y en este caso el resultado sería <code>NaN</code>.</p>
+</blockquote>
+<p>El proceso por dentro es ir sumando poco a poco:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>0 + 1 -&gt; 1
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>1 + 2 -&gt; 3
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>3 + 3 -&gt; 6
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>6 + 4 -&gt; 10
+</span></code></pre></div>
+<p>Su uso más típico es sumar una propiedad de un array de objetos:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">usuarios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;celia&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">22</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;paco&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-37-4"><a id="__codelineno-37-4" name="__codelineno-37-4" href="#__codelineno-37-4"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;pablo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">43</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-37-5"><a id="__codelineno-37-5" name="__codelineno-37-5" href="#__codelineno-37-5"></a><span class="p">]</span>
+</span><span id="__span-37-6"><a id="__codelineno-37-6" name="__codelineno-37-6" href="#__codelineno-37-6"></a>
+</span><span id="__span-37-7"><a id="__codelineno-37-7" name="__codelineno-37-7" href="#__codelineno-37-7"></a><span class="kd">const</span><span class="w"> </span><span class="nx">suma_edades</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">usuarios</span><span class="p">.</span><span class="nx">reduce</span><span class="p">((</span><span class="nx">total</span><span class="p">,</span><span class="w"> </span><span class="nx">usuario</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">total</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">usuario</span><span class="p">.</span><span class="nx">edad</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span>
+</span><span id="__span-37-8"><a id="__codelineno-37-8" name="__codelineno-37-8" href="#__codelineno-37-8"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">suma_edades</span><span class="p">)</span><span class="w"> </span><span class="c1">// 85</span>
+</span></code></pre></div>
+<p>Con la edad media:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">media</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">suma_edades</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nx">usuarios</span><span class="p">.</span><span class="nx">length</span>
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">media</span><span class="p">)</span><span class="w"> </span><span class="c1">// 28.333333333333332</span>
+</span></code></pre></div>
+<h2 id="find-y-findindex">find y findIndex</h2>
+<p>Si lo que buscamos es <strong>un solo elemento</strong>, usamos <code>find</code>. Devuelve el primer elemento que cumple la condición, o <code>undefined</code> si no hay ninguno:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">usuarios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;celia&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">22</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;paco&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;pablo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">43</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a><span class="p">]</span>
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a>
+</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a><span class="kd">const</span><span class="w"> </span><span class="nx">pablo</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">usuarios</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">usuario</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">usuario</span><span class="p">.</span><span class="nx">nombre</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;pablo&quot;</span><span class="p">)</span>
+</span><span id="__span-39-8"><a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">pablo</span><span class="p">)</span><span class="w"> </span><span class="c1">// { nombre: &#39;pablo&#39;, edad: 43 }</span>
+</span><span id="__span-39-9"><a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a>
+</span><span id="__span-39-10"><a id="__codelineno-39-10" name="__codelineno-39-10" href="#__codelineno-39-10"></a><span class="kd">const</span><span class="w"> </span><span class="nx">nadie</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">usuarios</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">usuario</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">usuario</span><span class="p">.</span><span class="nx">edad</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">80</span><span class="p">)</span>
+</span><span id="__span-39-11"><a id="__codelineno-39-11" name="__codelineno-39-11" href="#__codelineno-39-11"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nadie</span><span class="p">)</span><span class="w"> </span><span class="c1">// undefined</span>
+</span></code></pre></div>
+<p><code>findIndex</code> funciona igual pero devuelve la <strong>posición</strong> en lugar del elemento, y <code>-1</code> si no lo encuentra:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">posicion</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">usuarios</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">(</span><span class="nx">usuario</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">usuario</span><span class="p">.</span><span class="nx">nombre</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;pablo&quot;</span><span class="p">)</span>
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">posicion</span><span class="p">)</span><span class="w"> </span><span class="c1">// 2</span>
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">no_existe</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">usuarios</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">(</span><span class="nx">usuario</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">usuario</span><span class="p">.</span><span class="nx">nombre</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s2">&quot;luis&quot;</span><span class="p">)</span>
+</span><span id="__span-40-5"><a id="__codelineno-40-5" name="__codelineno-40-5" href="#__codelineno-40-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">no_existe</span><span class="p">)</span><span class="w"> </span><span class="c1">// -1</span>
+</span></code></pre></div>
+<h2 id="some-y-every">some y every</h2>
+<p><code>some</code> responde a "¿hay <strong>al menos uno</strong> que cumple la condición?", y <code>every</code> a "¿<strong>todos</strong> cumplen la condición?".</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">]</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a>
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a><span class="nx">numeros</span><span class="p">.</span><span class="nx">some</span><span class="p">(</span><span class="nx">numero</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">numero</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">4</span><span class="p">)</span>
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="kc">true</span>
+</span><span id="__span-41-5"><a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a>
+</span><span id="__span-41-6"><a id="__codelineno-41-6" name="__codelineno-41-6" href="#__codelineno-41-6"></a><span class="nx">numeros</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="nx">numero</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">numero</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">4</span><span class="p">)</span>
+</span><span id="__span-41-7"><a id="__codelineno-41-7" name="__codelineno-41-7" href="#__codelineno-41-7"></a><span class="kc">false</span>
+</span></code></pre></div>
+<p>Con el ejemplo de los usuarios, "mayores de edad" queda mucho más legible así:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">usuarios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-42-2"><a id="__codelineno-42-2" name="__codelineno-42-2" href="#__codelineno-42-2"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;celia&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">22</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-42-3"><a id="__codelineno-42-3" name="__codelineno-42-3" href="#__codelineno-42-3"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;paco&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-42-4"><a id="__codelineno-42-4" name="__codelineno-42-4" href="#__codelineno-42-4"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;pablo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">43</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-42-5"><a id="__codelineno-42-5" name="__codelineno-42-5" href="#__codelineno-42-5"></a><span class="p">]</span>
+</span><span id="__span-42-6"><a id="__codelineno-42-6" name="__codelineno-42-6" href="#__codelineno-42-6"></a>
+</span><span id="__span-42-7"><a id="__codelineno-42-7" name="__codelineno-42-7" href="#__codelineno-42-7"></a><span class="nx">usuarios</span><span class="p">.</span><span class="nx">some</span><span class="p">(</span><span class="nx">usuario</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">usuario</span><span class="p">.</span><span class="nx">edad</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">18</span><span class="p">)</span><span class="w"> </span><span class="c1">// true</span>
+</span><span id="__span-42-8"><a id="__codelineno-42-8" name="__codelineno-42-8" href="#__codelineno-42-8"></a><span class="nx">usuarios</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="nx">usuario</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">usuario</span><span class="p">.</span><span class="nx">edad</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">18</span><span class="p">)</span><span class="w"> </span><span class="c1">// true</span>
+</span><span id="__span-42-9"><a id="__codelineno-42-9" name="__codelineno-42-9" href="#__codelineno-42-9"></a><span class="nx">usuarios</span><span class="p">.</span><span class="nx">every</span><span class="p">(</span><span class="nx">usuario</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">usuario</span><span class="p">.</span><span class="nx">edad</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">30</span><span class="p">)</span><span class="w"> </span><span class="c1">// false, celia y paco no</span>
+</span></code></pre></div>
+<p>Ambos devuelven un <code>boolean</code> y <strong>no</strong> forman un array. Ojo: en un array <strong>vacío</strong>, <code>some</code> devuelve <code>false</code> y <code>every</code> devuelve <code>true</code>, porque no hay ningún elemento que incumpla.</p>
+<h2 id="includes-e-indexof">includes e indexOf</h2>
+<p>Para saber si <strong>un valor exacto</strong> está en el array:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">frutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;manzana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;melocoton&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sandia&quot;</span><span class="p">]</span>
+</span><span id="__span-43-2"><a id="__codelineno-43-2" name="__codelineno-43-2" href="#__codelineno-43-2"></a>
+</span><span id="__span-43-3"><a id="__codelineno-43-3" name="__codelineno-43-3" href="#__codelineno-43-3"></a><span class="kd">const</span><span class="w"> </span><span class="nx">sandia</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">frutas</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&quot;sandia&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// true</span>
+</span><span id="__span-43-4"><a id="__codelineno-43-4" name="__codelineno-43-4" href="#__codelineno-43-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">platano</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">frutas</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="s2">&quot;platano&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// false</span>
+</span><span id="__span-43-5"><a id="__codelineno-43-5" name="__codelineno-43-5" href="#__codelineno-43-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sandia</span><span class="p">,</span><span class="w"> </span><span class="nx">platano</span><span class="p">)</span>
+</span></code></pre></div>
+<p><code>indexOf</code> devuelve la posición, o <code>-1</code> si no está:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">frutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;manzana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;melocoton&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sandia&quot;</span><span class="p">]</span>
+</span><span id="__span-44-2"><a id="__codelineno-44-2" name="__codelineno-44-2" href="#__codelineno-44-2"></a>
+</span><span id="__span-44-3"><a id="__codelineno-44-3" name="__codelineno-44-3" href="#__codelineno-44-3"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">frutas</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;sandia&quot;</span><span class="p">))</span><span class="w"> </span><span class="c1">// 2</span>
+</span><span id="__span-44-4"><a id="__codelineno-44-4" name="__codelineno-44-4" href="#__codelineno-44-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">frutas</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s2">&quot;platano&quot;</span><span class="p">))</span><span class="w"> </span><span class="c1">// -1</span>
+</span></code></pre></div>
+<blockquote>
+<p>Ambos usan comparación estricta, así que el <code>1</code> string y el <code>1</code> número <strong>no son el mismo valor</strong> para ellos:</p>
+</blockquote>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]</span>
+</span><span id="__span-45-2"><a id="__codelineno-45-2" name="__codelineno-45-2" href="#__codelineno-45-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">mezcla</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;2&quot;</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]</span>
+</span><span id="__span-45-3"><a id="__codelineno-45-3" name="__codelineno-45-3" href="#__codelineno-45-3"></a>
+</span><span id="__span-45-4"><a id="__codelineno-45-4" name="__codelineno-45-4" href="#__codelineno-45-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numeros</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="mf">2</span><span class="p">))</span><span class="w"> </span><span class="c1">// true</span>
+</span><span id="__span-45-5"><a id="__codelineno-45-5" name="__codelineno-45-5" href="#__codelineno-45-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mezcla</span><span class="p">.</span><span class="nx">includes</span><span class="p">(</span><span class="mf">2</span><span class="p">))</span><span class="w"> </span><span class="c1">// false, el 2 de la lista es un string</span>
+</span></code></pre></div>
+<blockquote>
+<p>Con objetos y arrays tampoco funciona, porque se comparan por <strong>referencia</strong> (la posición en memoria), no por contenido:</p>
+</blockquote>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">([{</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;celia&quot;</span><span class="w"> </span><span class="p">}].</span><span class="nx">includes</span><span class="p">({</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;celia&quot;</span><span class="w"> </span><span class="p">}))</span><span class="w"> </span><span class="c1">// false, son objetos distintos</span>
+</span></code></pre></div>
+<h2 id="foreach">forEach</h2>
+<p><code>forEach</code> recorre el array y ejecuta una función en cada elemento. No devuelve nada útil, sirve para hacer algo con cada elemento:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]</span>
+</span><span id="__span-47-2"><a id="__codelineno-47-2" name="__codelineno-47-2" href="#__codelineno-47-2"></a>
+</span><span id="__span-47-3"><a id="__codelineno-47-3" name="__codelineno-47-3" href="#__codelineno-47-3"></a><span class="nx">numeros</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">numero</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numero</span><span class="p">))</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a>1
+</span><span id="__span-48-2"><a id="__codelineno-48-2" name="__codelineno-48-2" href="#__codelineno-48-2"></a>2
+</span><span id="__span-48-3"><a id="__codelineno-48-3" name="__codelineno-48-3" href="#__codelineno-48-3"></a>3
+</span></code></pre></div>
+<p>Su uso típico es cuando hay que guardar el resultado fuera, porque no podemos devolverlo:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">usuarios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-49-2"><a id="__codelineno-49-2" name="__codelineno-49-2" href="#__codelineno-49-2"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;celia&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">22</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-49-3"><a id="__codelineno-49-3" name="__codelineno-49-3" href="#__codelineno-49-3"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;paco&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-49-4"><a id="__codelineno-49-4" name="__codelineno-49-4" href="#__codelineno-49-4"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;pablo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">43</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-49-5"><a id="__codelineno-49-5" name="__codelineno-49-5" href="#__codelineno-49-5"></a><span class="p">]</span>
+</span><span id="__span-49-6"><a id="__codelineno-49-6" name="__codelineno-49-6" href="#__codelineno-49-6"></a>
+</span><span id="__span-49-7"><a id="__codelineno-49-7" name="__codelineno-49-7" href="#__codelineno-49-7"></a><span class="kd">const</span><span class="w"> </span><span class="nx">nombres</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span>
+</span><span id="__span-49-8"><a id="__codelineno-49-8" name="__codelineno-49-8" href="#__codelineno-49-8"></a><span class="nx">usuarios</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">usuario</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">nombres</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">usuario</span><span class="p">.</span><span class="nx">nombre</span><span class="p">))</span>
+</span><span id="__span-49-9"><a id="__codelineno-49-9" name="__codelineno-49-9" href="#__codelineno-49-9"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">nombres</span><span class="p">)</span><span class="w"> </span><span class="c1">// [ &#39;celia&#39;, &#39;paco&#39;, &#39;pablo&#39; ]</span>
+</span></code></pre></div>
+<p>También es muy usado cuando necesitamos modificar el DOM:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">frutas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;platano&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;manzana&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;sandia&quot;</span><span class="p">]</span>
+</span><span id="__span-50-2"><a id="__codelineno-50-2" name="__codelineno-50-2" href="#__codelineno-50-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">ul</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&quot;#frutas&quot;</span><span class="p">)</span>
+</span><span id="__span-50-3"><a id="__codelineno-50-3" name="__codelineno-50-3" href="#__codelineno-50-3"></a><span class="nx">frutas</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">fruta</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-50-4"><a id="__codelineno-50-4" name="__codelineno-50-4" href="#__codelineno-50-4"></a><span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">li</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s2">&quot;li&quot;</span><span class="p">)</span>
+</span><span id="__span-50-5"><a id="__codelineno-50-5" name="__codelineno-50-5" href="#__codelineno-50-5"></a><span class="w">  </span><span class="nx">li</span><span class="p">.</span><span class="nx">textContent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">fruta</span>
+</span><span id="__span-50-6"><a id="__codelineno-50-6" name="__codelineno-50-6" href="#__codelineno-50-6"></a><span class="w">  </span><span class="nx">ul</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">li</span><span class="p">)</span>
+</span><span id="__span-50-7"><a id="__codelineno-50-7" name="__codelineno-50-7" href="#__codelineno-50-7"></a><span class="p">})</span>
+</span></code></pre></div>
+<blockquote>
+<p>Si necesitas el resultado, usa <code>map</code>. Además <code>forEach</code> no puede romper el recorrido: no acepta <code>break</code> ni <code>continue</code>, y con <code>return</code> solo sales de la función de esa vuelta, no del bucle. Para eso están <code>for</code>, <code>for...of</code> o <code>some</code>/<code>every</code>.</p>
+</blockquote>
+<h2 id="join">join</h2>
+<p><code>join</code> convierte un array en una <strong>cadena de texto</strong>, uniendo sus elementos con el separador que le pases:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">palabras</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;hola&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;mundo&quot;</span><span class="p">]</span>
+</span><span id="__span-51-2"><a id="__codelineno-51-2" name="__codelineno-51-2" href="#__codelineno-51-2"></a>
+</span><span id="__span-51-3"><a id="__codelineno-51-3" name="__codelineno-51-3" href="#__codelineno-51-3"></a><span class="nx">palabras</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// &#39;hola mundo&#39;</span>
+</span><span id="__span-51-4"><a id="__codelineno-51-4" name="__codelineno-51-4" href="#__codelineno-51-4"></a><span class="nx">palabras</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;-&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// &#39;hola-mundo&#39;</span>
+</span><span id="__span-51-5"><a id="__codelineno-51-5" name="__codelineno-51-5" href="#__codelineno-51-5"></a><span class="nx">palabras</span><span class="p">.</span><span class="nx">join</span><span class="p">()</span><span class="w"> </span><span class="c1">// &#39;hola,mundo&#39;, sin separador usa la coma</span>
+</span></code></pre></div>
+<p>Es el conversor array a texto ideal para construir URLs, y también para facilitar el <code>console.log</code>:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">7</span>
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a><span class="kd">const</span><span class="w"> </span><span class="nx">usuario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;celia&quot;</span>
+</span><span id="__span-52-3"><a id="__codelineno-52-3" name="__codelineno-52-3" href="#__codelineno-52-3"></a>
+</span><span id="__span-52-4"><a id="__codelineno-52-4" name="__codelineno-52-4" href="#__codelineno-52-4"></a><span class="kd">const</span><span class="w"> </span><span class="nx">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`https://api.ejemplo.com/usuarios/</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb">/</span><span class="si">${</span><span class="nx">usuario</span><span class="si">}</span><span class="sb">?roles=</span><span class="si">${</span><span class="p">[</span><span class="s2">&quot;admin&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;editor&quot;</span><span class="p">].</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;,&quot;</span><span class="p">)</span><span class="si">}</span><span class="sb">`</span>
+</span><span id="__span-52-5"><a id="__codelineno-52-5" name="__codelineno-52-5" href="#__codelineno-52-5"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">url</span><span class="p">)</span><span class="w"> </span><span class="c1">// https://api.ejemplo.com/usuarios/7/celia?roles=admin,editor</span>
+</span></code></pre></div>
+<p>Para unir en un array de arrays, <code>join</code> aplana un nivel al hacer la conversion:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-53-1"><a id="__codelineno-53-1" name="__codelineno-53-1" href="#__codelineno-53-1"></a><span class="p">[[</span><span class="s2">&quot;admin&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;editor&quot;</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="s2">&quot;lector&quot;</span><span class="p">]].</span><span class="nx">join</span><span class="p">(</span><span class="s2">&quot;;&quot;</span><span class="p">)</span>
+</span><span id="__span-53-2"><a id="__codelineno-53-2" name="__codelineno-53-2" href="#__codelineno-53-2"></a><span class="c1">// &#39;admin,editor;lector&#39;</span>
+</span></code></pre></div>
+<h2 id="slice">slice</h2>
+<p><code>slice</code> devuelve <strong>una copia</strong> de una parte del array, <strong>sin modificar el original</strong>. Recibe el índice de inicio y el de final, y el final <strong>no se incluye</strong>:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="mf">5</span><span class="p">]</span>
+</span><span id="__span-54-2"><a id="__codelineno-54-2" name="__codelineno-54-2" href="#__codelineno-54-2"></a>
+</span><span id="__span-54-3"><a id="__codelineno-54-3" name="__codelineno-54-3" href="#__codelineno-54-3"></a><span class="nx">numeros</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">)</span><span class="w"> </span><span class="c1">// [1, 2], del 1 hasta el 3 sin incluirlo</span>
+</span><span id="__span-54-4"><a id="__codelineno-54-4" name="__codelineno-54-4" href="#__codelineno-54-4"></a><span class="nx">numeros</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="c1">// [2, 3, 4, 5], desde el 2 hasta el final</span>
+</span><span id="__span-54-5"><a id="__codelineno-54-5" name="__codelineno-54-5" href="#__codelineno-54-5"></a><span class="nx">numeros</span><span class="p">.</span><span class="nx">slice</span><span class="p">()</span><span class="w"> </span><span class="c1">// copia entera</span>
+</span></code></pre></div>
+<p>Acepta índices negativos, contando desde el final (<code>-1</code> es el último):</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-55-1"><a id="__codelineno-55-1" name="__codelineno-55-1" href="#__codelineno-55-1"></a><span class="nx">numeros</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="o">-</span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="c1">// [4, 5], los dos ultimos</span>
+</span></code></pre></div>
+<h2 id="splice">splice</h2>
+<p><code>splice</code> es <code>slice</code> pero <strong>sí modifica</strong> el array original. Necesita saber <strong>desde dónde</strong> empieza y <strong>cuántos</strong> elementos borra, y devuelve los elementos que ha eliminado:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-56-1"><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="o">&gt;</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">]</span>
+</span><span id="__span-56-2"><a id="__codelineno-56-2" name="__codelineno-56-2" href="#__codelineno-56-2"></a><span class="kc">undefined</span>
+</span><span id="__span-56-3"><a id="__codelineno-56-3" name="__codelineno-56-3" href="#__codelineno-56-3"></a><span class="o">&gt;</span><span class="w"> </span><span class="kd">const</span><span class="w"> </span><span class="nx">eliminados</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numeros</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;a&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;b&quot;</span><span class="p">)</span>
+</span><span id="__span-56-4"><a id="__codelineno-56-4" name="__codelineno-56-4" href="#__codelineno-56-4"></a><span class="p">[</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="p">]</span>
+</span><span id="__span-56-5"><a id="__codelineno-56-5" name="__codelineno-56-5" href="#__codelineno-56-5"></a><span class="o">&gt;</span><span class="w"> </span><span class="nx">numeros</span>
+</span><span id="__span-56-6"><a id="__codelineno-56-6" name="__codelineno-56-6" href="#__codelineno-56-6"></a><span class="p">[</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="p">]</span>
+</span></code></pre></div>
+<p>Fíjate en que los argumentos sobrantes después de los dos primeros son los elementos <strong>nuevos</strong> que se insertan en esa posición. Por eso <code>splice</code> sirve para añadir o quitar elementos en medio del array.</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-57-1"><a id="__codelineno-57-1" name="__codelineno-57-1" href="#__codelineno-57-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">]</span>
+</span><span id="__span-57-2"><a id="__codelineno-57-2" name="__codelineno-57-2" href="#__codelineno-57-2"></a>
+</span><span id="__span-57-3"><a id="__codelineno-57-3" name="__codelineno-57-3" href="#__codelineno-57-3"></a><span class="nx">numeros</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;nuevo&quot;</span><span class="p">)</span><span class="w"> </span><span class="c1">// inserta sin borrar nada</span>
+</span><span id="__span-57-4"><a id="__codelineno-57-4" name="__codelineno-57-4" href="#__codelineno-57-4"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numeros</span><span class="p">)</span><span class="w"> </span><span class="c1">// [0, &#39;nuevo&#39;, 1, 2, 3]</span>
+</span><span id="__span-57-5"><a id="__codelineno-57-5" name="__codelineno-57-5" href="#__codelineno-57-5"></a>
+</span><span id="__span-57-6"><a id="__codelineno-57-6" name="__codelineno-57-6" href="#__codelineno-57-6"></a><span class="nx">numeros</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="c1">// borra un elemento</span>
+</span><span id="__span-57-7"><a id="__codelineno-57-7" name="__codelineno-57-7" href="#__codelineno-57-7"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">numeros</span><span class="p">)</span><span class="w"> </span><span class="c1">// [0, 1, 2, 3]</span>
+</span></code></pre></div>
+<blockquote>
+<p>Si solo quieres quitar elementos del final, <code>pop()</code> elimina el último y devuelve su valor, y <code>shift()</code> el primero. Para quitar varios del final de golpe, <code>numeros.length = numeros.length - 2</code>.</p>
+</blockquote>
+<h2 id="flat">flat</h2>
+<p><code>flat</code> <strong>aplana</strong> un array de arrays en un solo array, hasta un nivel de profundidad por defecto:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-58-1"><a id="__codelineno-58-1" name="__codelineno-58-1" href="#__codelineno-58-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">anidado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">4</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mf">5</span><span class="p">]]]</span>
+</span><span id="__span-58-2"><a id="__codelineno-58-2" name="__codelineno-58-2" href="#__codelineno-58-2"></a>
+</span><span id="__span-58-3"><a id="__codelineno-58-3" name="__codelineno-58-3" href="#__codelineno-58-3"></a><span class="nx">anidado</span><span class="p">.</span><span class="nx">flat</span><span class="p">()</span><span class="w"> </span><span class="c1">// [1, 2, 3, 4, [5]]</span>
+</span><span id="__span-58-4"><a id="__codelineno-58-4" name="__codelineno-58-4" href="#__codelineno-58-4"></a><span class="nx">anidado</span><span class="p">.</span><span class="nx">flat</span><span class="p">(</span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="c1">// [1, 2, 3, 4, 5]</span>
+</span></code></pre></div>
+<p>El argumento es cuántos niveles de profundidad queremos aplanar. No modifica el array original:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-59-1"><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">aplanado</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">anidado</span><span class="p">.</span><span class="nx">flat</span><span class="p">(</span><span class="kc">Infinity</span><span class="p">)</span><span class="w"> </span><span class="c1">// aplana todo, sin importar la profundidad</span>
+</span></code></pre></div>
+<h2 id="at">at</h2>
+<p><code>at</code> devuelve un elemento por su posición, y a diferencia de los corchetes <strong>acepta índices negativos</strong>, así que es la forma más cómoda de coger el último elemento:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-60-1"><a id="__codelineno-60-1" name="__codelineno-60-1" href="#__codelineno-60-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">numeros</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">0</span><span class="p">,</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">]</span>
+</span><span id="__span-60-2"><a id="__codelineno-60-2" name="__codelineno-60-2" href="#__codelineno-60-2"></a>
+</span><span id="__span-60-3"><a id="__codelineno-60-3" name="__codelineno-60-3" href="#__codelineno-60-3"></a><span class="nx">numeros</span><span class="p">[</span><span class="mf">0</span><span class="p">]</span><span class="w"> </span><span class="c1">// 0</span>
+</span><span id="__span-60-4"><a id="__codelineno-60-4" name="__codelineno-60-4" href="#__codelineno-60-4"></a><span class="nx">numeros</span><span class="p">.</span><span class="nx">at</span><span class="p">(</span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="c1">// 0</span>
+</span><span id="__span-60-5"><a id="__codelineno-60-5" name="__codelineno-60-5" href="#__codelineno-60-5"></a><span class="nx">numeros</span><span class="p">.</span><span class="nx">at</span><span class="p">(</span><span class="o">-</span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="c1">// 4, el ultimo</span>
+</span><span id="__span-60-6"><a id="__codelineno-60-6" name="__codelineno-60-6" href="#__codelineno-60-6"></a><span class="nx">numeros</span><span class="p">.</span><span class="nx">at</span><span class="p">(</span><span class="o">-</span><span class="mf">2</span><span class="p">)</span><span class="w"> </span><span class="c1">// 3, el penultimo</span>
+</span></code></pre></div>
+<h2 id="encadenar-metodos">Encadenar métodos</h2>
+<p>Como <code>filter</code>, <code>map</code>, <code>sort</code>, <code>slice</code> y compañía devuelven arrays nuevos, podemos encadenar sus llamadas para no crear mil variables intermedias:</p>
+<div class="language-js highlight"><pre><span></span><code><span id="__span-61-1"><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a><span class="kd">const</span><span class="w"> </span><span class="nx">usuarios</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-61-2"><a id="__codelineno-61-2" name="__codelineno-61-2" href="#__codelineno-61-2"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;celia&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">22</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;email&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;celia@gmail.com&quot;</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-61-3"><a id="__codelineno-61-3" name="__codelineno-61-3" href="#__codelineno-61-3"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;paco&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;email&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;paco@proton.me&quot;</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-61-4"><a id="__codelineno-61-4" name="__codelineno-61-4" href="#__codelineno-61-4"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;pablo&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">43</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;email&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;pablo@gmail.com&quot;</span><span class="w"> </span><span class="p">},</span>
+</span><span id="__span-61-5"><a id="__codelineno-61-5" name="__codelineno-61-5" href="#__codelineno-61-5"></a><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="s2">&quot;nombre&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;sofia&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;edad&quot;</span><span class="o">:</span><span class="w"> </span><span class="mf">51</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;email&quot;</span><span class="o">:</span><span class="w"> </span><span class="s2">&quot;sofia@gmail.com&quot;</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-61-6"><a id="__codelineno-61-6" name="__codelineno-61-6" href="#__codelineno-61-6"></a><span class="p">]</span>
+</span><span id="__span-61-7"><a id="__codelineno-61-7" name="__codelineno-61-7" href="#__codelineno-61-7"></a>
+</span><span id="__span-61-8"><a id="__codelineno-61-8" name="__codelineno-61-8" href="#__codelineno-61-8"></a><span class="kd">const</span><span class="w"> </span><span class="nx">mayores</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">usuarios</span>
+</span><span id="__span-61-9"><a id="__codelineno-61-9" name="__codelineno-61-9" href="#__codelineno-61-9"></a><span class="w">  </span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">usuario</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">usuario</span><span class="p">.</span><span class="nx">edad</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mf">21</span><span class="p">)</span>
+</span><span id="__span-61-10"><a id="__codelineno-61-10" name="__codelineno-61-10" href="#__codelineno-61-10"></a><span class="w">  </span><span class="p">.</span><span class="nx">sort</span><span class="p">((</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">)</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">b</span><span class="p">.</span><span class="nx">edad</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nx">a</span><span class="p">.</span><span class="nx">edad</span><span class="p">)</span>
+</span><span id="__span-61-11"><a id="__codelineno-61-11" name="__codelineno-61-11" href="#__codelineno-61-11"></a><span class="w">  </span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">usuario</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">usuario</span><span class="p">.</span><span class="nx">nombre</span><span class="si">}</span><span class="sb"> - </span><span class="si">${</span><span class="nx">usuario</span><span class="p">.</span><span class="nx">edad</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span><span id="__span-61-12"><a id="__codelineno-61-12" name="__codelineno-61-12" href="#__codelineno-61-12"></a>
+</span><span id="__span-61-13"><a id="__codelineno-61-13" name="__codelineno-61-13" href="#__codelineno-61-13"></a><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">mayores</span><span class="p">)</span>
+</span><span id="__span-61-14"><a id="__codelineno-61-14" name="__codelineno-61-14" href="#__codelineno-61-14"></a><span class="c1">// [ &#39;sofia - 51&#39;, &#39;pablo - 43&#39;, &#39;celia - 22&#39; ]</span>
+</span></code></pre></div>
+<p>El orden importa: primero filtramos (o no nos llegaría lo que filtramos), después ordenamos y por último transformamos en texto, cuando ya no queda nada que ordenar.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["content.code.copy"], "search": "../../assets/javascripts/workers/search.973d3a69.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.f55a23d4.min.js"></script>
+      
+    
+  </body>
+</html>
