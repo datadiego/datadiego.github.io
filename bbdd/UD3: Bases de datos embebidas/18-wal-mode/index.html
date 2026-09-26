@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://datadiego.github.io/bbdd/UD4%3A%20Bases%20de%20datos%20en%20servidor/2-usuarios-permisos/">
+        <link rel="canonical" href="https://datadiego.github.io/bbdd/UD3%3A%20Bases%20de%20datos%20embebidas/18-wal-mode/">
       
       
-        <link rel="prev" href="../1-configuracion-mysql/">
+        <link rel="prev" href="../17-pragmas/">
       
       
-        <link rel="next" href="../3-datatypes-mysql/">
+        <link rel="next" href="../../UD4%3A%20Bases%20de%20datos%20en%20servidor/0-introduccion/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>Usuarios y permisos - Bases de datos</title>
+        <title>Concurrencia - Bases de datos</title>
       
     
     
@@ -81,7 +81,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#usuarios-y-permisos" class="md-skip">
+        <a href="#concurrencia" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Usuarios y permisos
+              Concurrencia
             
           </span>
         </div>
@@ -828,18 +828,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
         
           
           <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
@@ -855,7 +857,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             UD3: Bases de datos embebidas
@@ -869,7 +871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/00-introduccion/" class="md-nav__link">
+      <a href="../00-introduccion/" class="md-nav__link">
         
   
   
@@ -892,7 +894,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/01-CREATE/" class="md-nav__link">
+      <a href="../01-CREATE/" class="md-nav__link">
         
   
   
@@ -915,7 +917,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/02-DROP/" class="md-nav__link">
+      <a href="../02-DROP/" class="md-nav__link">
         
   
   
@@ -938,7 +940,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/03-INSERT/" class="md-nav__link">
+      <a href="../03-INSERT/" class="md-nav__link">
         
   
   
@@ -961,7 +963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/04-SELECT/" class="md-nav__link">
+      <a href="../04-SELECT/" class="md-nav__link">
         
   
   
@@ -984,7 +986,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/05-funciones/" class="md-nav__link">
+      <a href="../05-funciones/" class="md-nav__link">
         
   
   
@@ -1007,7 +1009,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/06-UPDATE/" class="md-nav__link">
+      <a href="../06-UPDATE/" class="md-nav__link">
         
   
   
@@ -1030,7 +1032,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/07-claves-primarias-foraneas/" class="md-nav__link">
+      <a href="../07-claves-primarias-foraneas/" class="md-nav__link">
         
   
   
@@ -1053,7 +1055,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/08-DELETE-DROP/" class="md-nav__link">
+      <a href="../08-DELETE-DROP/" class="md-nav__link">
         
   
   
@@ -1076,7 +1078,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/09-ALTER/" class="md-nav__link">
+      <a href="../09-ALTER/" class="md-nav__link">
         
   
   
@@ -1099,7 +1101,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/10-Diagramas-erd/" class="md-nav__link">
+      <a href="../10-Diagramas-erd/" class="md-nav__link">
         
   
   
@@ -1122,7 +1124,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/11-JOIN/" class="md-nav__link">
+      <a href="../11-JOIN/" class="md-nav__link">
         
   
   
@@ -1145,7 +1147,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/12-VIEW/" class="md-nav__link">
+      <a href="../12-VIEW/" class="md-nav__link">
         
   
   
@@ -1168,7 +1170,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/13-TRIGGER/" class="md-nav__link">
+      <a href="../13-TRIGGER/" class="md-nav__link">
         
   
   
@@ -1191,7 +1193,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/14-integraciones/" class="md-nav__link">
+      <a href="../14-integraciones/" class="md-nav__link">
         
   
   
@@ -1214,7 +1216,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/15-transacciones/" class="md-nav__link">
+      <a href="../15-transacciones/" class="md-nav__link">
         
   
   
@@ -1237,7 +1239,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/16-crud/" class="md-nav__link">
+      <a href="../16-crud/" class="md-nav__link">
         
   
   
@@ -1260,128 +1262,12 @@
   
   
     <li class="md-nav__item">
-      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/17-pragmas/" class="md-nav__link">
+      <a href="../17-pragmas/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     PRAGMAS
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../UD3%3A%20Bases%20de%20datos%20embebidas/18-wal-mode/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Concurrencia
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-    
-      
-      
-  
-  
-    
-  
-  
-  
-    
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
-        
-          
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
-            
-  
-  
-  <span class="md-ellipsis">
-    UD4: Bases de datos en servidor
-    
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_6">
-            <span class="md-nav__icon md-icon"></span>
-            UD4: Bases de datos en servidor
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../0-introduccion/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Introducción
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../1-configuracion-mysql/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    MySQL: Instalación y configuración
     
   </span>
   
@@ -1413,7 +1299,7 @@
   
   
   <span class="md-ellipsis">
-    Usuarios y permisos
+    Concurrencia
     
   </span>
   
@@ -1426,7 +1312,7 @@
   
   
   <span class="md-ellipsis">
-    Usuarios y permisos
+    Concurrencia
     
   </span>
   
@@ -1449,18 +1335,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#usuarios" class="md-nav__link">
+  <a href="#laboratorio" class="md-nav__link">
     <span class="md-ellipsis">
-      Usuarios
+      Laboratorio
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#permisos" class="md-nav__link">
+  <a href="#modo-delete" class="md-nav__link">
     <span class="md-ellipsis">
-      Permisos
+      Modo DELETE
     </span>
   </a>
   
@@ -1475,6 +1361,51 @@
 
               
             
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    UD4: Bases de datos en servidor
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            UD4: Bases de datos en servidor
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
                 
   
@@ -1482,7 +1413,76 @@
   
   
     <li class="md-nav__item">
-      <a href="../3-datatypes-mysql/" class="md-nav__link">
+      <a href="../../UD4%3A%20Bases%20de%20datos%20en%20servidor/0-introduccion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introducción
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Bases%20de%20datos%20en%20servidor/1-configuracion-mysql/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MySQL: Instalación y configuración
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Bases%20de%20datos%20en%20servidor/2-usuarios-permisos/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Usuarios y permisos
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../UD4%3A%20Bases%20de%20datos%20en%20servidor/3-datatypes-mysql/" class="md-nav__link">
         
   
   
@@ -1505,7 +1505,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../4-conexiones/" class="md-nav__link">
+      <a href="../../UD4%3A%20Bases%20de%20datos%20en%20servidor/4-conexiones/" class="md-nav__link">
         
   
   
@@ -1528,7 +1528,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../5-integracion/" class="md-nav__link">
+      <a href="../../UD4%3A%20Bases%20de%20datos%20en%20servidor/5-integracion/" class="md-nav__link">
         
   
   
@@ -2012,18 +2012,18 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#usuarios" class="md-nav__link">
+  <a href="#laboratorio" class="md-nav__link">
     <span class="md-ellipsis">
-      Usuarios
+      Laboratorio
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#permisos" class="md-nav__link">
+  <a href="#modo-delete" class="md-nav__link">
     <span class="md-ellipsis">
-      Permisos
+      Modo DELETE
     </span>
   </a>
   
@@ -2045,92 +2045,78 @@
 
 
 
-<h1 id="usuarios-y-permisos">Usuarios y permisos</h1>
-<p>Hasta ahora hemos usado el usuario de administración que nos da <code>sudo mysql</code>.</p>
-<p>Este usuario puede realizar <strong>cualquier acción en la base de datos</strong>, sin limitaciones.</p>
-<p>Es peligroso dar acceso sin limite a nuestro servidor mysql, deberiamos limitar <em>que pueden hacer</em> y desde donde se pueden conectar los usuarios.</p>
-<p>Vamos a seguir usando nuestra base de datos llamada <em>prueba</em> para aprender a crear usuarios y dar diferentes permisos.</p>
-<h2 id="usuarios">Usuarios</h2>
-<p>Los usuarios por <code>nombre@ip</code>, podemos dar acceso a ciertas IPs, limitar un usuario a que solo pueda acceder localmente, o que pueda entrar desde cualquier ip.</p>
-<table>
-<thead>
-<tr>
-<th>ip</th>
-<th>acceso</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>localhost</td>
-<td>Sólo desde la máquina que corre mysql</td>
-</tr>
-<tr>
-<td>%</td>
-<td>Cualquier IP, pública o privada</td>
-</tr>
-<tr>
-<td>173.15.26.101</td>
-<td>Sólo esta IP pública</td>
-</tr>
-</tbody>
-</table>
-<p>Tanto para <code>%</code> como para una IP pública, tendrás que abrir el puerto en el que tengas configurado tu servidor mysql:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>ufw<span class="w"> </span><span class="nb">enable</span>
-</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>allow<span class="w"> </span><span class="m">3306</span>
-</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>sudo<span class="w"> </span>ufw<span class="w"> </span>reload
+<h1 id="concurrencia">Concurrencia</h1>
+<p>La concurrencia es cuando <strong>dos o más tareas</strong> suceden al mismo tiempo.</p>
+<p>En una base de datos es muy común que múltiples usuarios interactúen a la vez con la misma, y es importante entender como nuestra base de datos actúa en esos momentos.</p>
+<p>En el caso de <em>SQLite</em>, por defecto la base de datos <strong>se bloquea</strong> en muchas ocasiones cuando dos o más clientes intentan interactuar con la misma. </p>
+<p>Para evitarlo, tenemos diferentes modos de trabajo, que podemos activar con:</p>
+<div class="language-sql highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">PRAGMA</span><span class="w"> </span><span class="n">journal_mode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">modo</span>
 </span></code></pre></div>
-<p>Para crear usuarios usa <code>CREATE USER usuario@ip IDENTIFIE by 'contraseña'</code>:</p>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">#</span><span class="w"> </span><span class="n">este</span><span class="w"> </span><span class="n">usuario</span><span class="w"> </span><span class="n">solo</span><span class="w"> </span><span class="n">puede</span><span class="w"> </span><span class="n">acceder</span><span class="w"> </span><span class="n">desde</span><span class="w"> </span><span class="n">localhost</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;lenny&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;1234&#39;</span><span class="p">;</span>
+<p>Los modos disponibles son:</p>
+<ul>
+<li>DELETE (por defecto)</li>
+<li>TRUNCATE</li>
+<li>PERSIST</li>
+<li>MEMORY</li>
+<li>WAL</li>
+</ul>
+<h2 id="laboratorio">Laboratorio</h2>
+<p>Para experimentar con estos modos, podemos partir de un laboratorio simple con python:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 </span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="o">#</span><span class="w"> </span><span class="n">este</span><span class="w"> </span><span class="n">usuario</span><span class="w"> </span><span class="n">puede</span><span class="w"> </span><span class="n">acceder</span><span class="w"> </span><span class="n">desde</span><span class="w"> </span><span class="n">cualquier</span><span class="w"> </span><span class="n">sitio</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">USER</span><span class="w"> </span><span class="s1">&#39;manolo&#39;</span><span class="o">@</span><span class="s1">&#39;%&#39;</span><span class="w"> </span><span class="n">IDENTIFIED</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="s1">&#39;1234&#39;</span><span class="p">;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">db</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;app.db&quot;</span><span class="p">)</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;PRAGMA journal_mode=DELETE;&quot;</span><span class="p">)</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="s2">CREATE TABLE IF NOT EXISTS ejemplo (</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="s2">    id INTEGER PRIMARY KEY AUTOINCREMENT,</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="s2">    texto TEXT,</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="s2">    created_at DATETIME DEFAULT CURRENT_TIMESTAMP</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="s2">);</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="n">duracion</span> <span class="o">=</span> <span class="mi">10</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="n">inicio</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span>
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Insertando datos&quot;</span><span class="p">)</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="k">while</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span> <span class="o">-</span> <span class="n">inicio</span> <span class="o">&lt;</span> <span class="n">duracion</span><span class="p">:</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>        <span class="s2">&quot;INSERT INTO ejemplo (texto) VALUES (?);&quot;</span><span class="p">,</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>        <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Prueba #</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,)</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>    <span class="p">)</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>    <span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>    <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Insertadas </span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2"> filas en </span><span class="si">{</span><span class="n">duracion</span><span class="si">}</span><span class="s2"> segundos&quot;</span><span class="p">)</span>
 </span></code></pre></div>
-<p>Luego podrás entrar al usuario con <code>mysql -u usuario -p</code>:</p>
-<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>❯<span class="w"> </span>mysql<span class="w"> </span>-u<span class="w"> </span>lenny<span class="w"> </span>-p
-</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>Enter<span class="w"> </span>password:
-</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>Welcome<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>MySQL<span class="w"> </span>monitor.<span class="w">  </span>Commands<span class="w"> </span>end<span class="w"> </span>with<span class="w"> </span><span class="p">;</span><span class="w"> </span>or<span class="w"> </span><span class="se">\g</span>.
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>Your<span class="w"> </span>MySQL<span class="w"> </span>connection<span class="w"> </span>id<span class="w"> </span>is<span class="w"> </span><span class="m">11</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>Server<span class="w"> </span>version:<span class="w"> </span><span class="m">8</span>.4.10<span class="w"> </span>Source<span class="w"> </span>distribution
-</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
-</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>Copyright<span class="w"> </span><span class="o">(</span>c<span class="o">)</span><span class="w"> </span><span class="m">2000</span>,<span class="w"> </span><span class="m">2026</span>,<span class="w"> </span>Oracle<span class="w"> </span>and/or<span class="w"> </span>its<span class="w"> </span>affiliates.
-</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
-</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>Oracle<span class="w"> </span>is<span class="w"> </span>a<span class="w"> </span>registered<span class="w"> </span>trademark<span class="w"> </span>of<span class="w"> </span>Oracle<span class="w"> </span>Corporation<span class="w"> </span>and/or<span class="w"> </span>its
-</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>affiliates.<span class="w"> </span>Other<span class="w"> </span>names<span class="w"> </span>may<span class="w"> </span>be<span class="w"> </span>trademarks<span class="w"> </span>of<span class="w"> </span>their<span class="w"> </span>respective
-</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>owners.
-</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>
-</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>Type<span class="w"> </span><span class="s1">&#39;help;&#39;</span><span class="w"> </span>or<span class="w"> </span><span class="s1">&#39;\h&#39;</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>help.<span class="w"> </span>Type<span class="w"> </span><span class="s1">&#39;\c&#39;</span><span class="w"> </span>to<span class="w"> </span>clear<span class="w"> </span>the<span class="w"> </span>current<span class="w"> </span>input<span class="w"> </span>statement.
-</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>
-</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>mysql&gt;<span class="w"> </span>show<span class="w"> </span>databases<span class="p">;</span>
-</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>+--------------------+
-</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="p">|</span><span class="w"> </span>Database<span class="w">           </span><span class="p">|</span>
-</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>+--------------------+
-</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="p">|</span><span class="w"> </span>information_schema<span class="w"> </span><span class="p">|</span>
-</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="p">|</span><span class="w"> </span>performance_schema<span class="w"> </span><span class="p">|</span>
-</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>+--------------------+
-</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="m">2</span><span class="w"> </span>rows<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="o">(</span><span class="m">0</span>,00<span class="w"> </span>sec<span class="o">)</span>
+<p>En este laboratorio creamos una tabla sencilla, y metemos datos durante varios segundos. En algunos casos querremos cambiar este bloque:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">while</span> <span class="n">time</span><span class="o">.</span><span class="n">monotonic</span><span class="p">()</span> <span class="o">-</span> <span class="n">inicio</span> <span class="o">&lt;</span> <span class="n">duracion</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>        <span class="s2">&quot;INSERT INTO ejemplo (texto) VALUES (?);&quot;</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>        <span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Prueba #</span><span class="si">{</span><span class="n">n</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,)</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="p">)</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>    <span class="n">n</span> <span class="o">+=</span> <span class="mi">1</span>
 </span></code></pre></div>
-<p>Como ves, <code>lenny</code> no tiene acceso a la base de datos <strong>prueba</strong> que creamos anteriormente.</p>
-<p>Tampoco puede <strong>darse permisos a si mismo</strong> para leerlos, estos cambios se harán mediante el usuario administrador, u otro usuario que ya tenga los permisos necesarios para dárselos a otros.</p>
-<h2 id="permisos">Permisos</h2>
-<p>Podemos manejar los permisos de un usuario con la sentencia <code>GRANT</code>:</p>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">ALL</span><span class="w"> </span><span class="k">PRIVILEGES</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">prueba</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;lenny&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
-</span></code></pre></div>
-<p>Esta sentencia da privilegio para lanzar <strong>cualquier</strong> comando en <strong>cualquier</strong> tabla dentro de la base de datos <strong>prueba</strong>.</p>
-<p>Para mantener una base de datos segura, debemos aplicar el principio de <strong>minimo privilegio</strong>, dandole a <code>lenny</code> solo las operaciones que necesite, por ejemplo:</p>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">prueba</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;lenny&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
-</span></code></pre></div>
-<p>Puede leer datos, pero no modificarlos ni insertarlos.</p>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="p">,</span><span class="w"> </span><span class="k">INSERT</span><span class="p">,</span><span class="w"> </span><span class="k">UPDATE</span><span class="p">,</span><span class="w"> </span><span class="k">DELETE</span>
-</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">ON</span><span class="w"> </span><span class="n">prueba</span><span class="p">.</span><span class="o">*</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;lenny&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
-</span></code></pre></div>
-<p>Puede leer, crear y modificar filas, pero no puede crear tablas ni modificar las ya existentes.</p>
-<div class="language-sql highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="p">,</span><span class="w"> </span><span class="k">INSERT</span><span class="p">,</span><span class="w"> </span><span class="k">UPDATE</span><span class="p">,</span><span class="w"> </span><span class="k">DELETE</span>
-</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">ON</span><span class="w"> </span><span class="n">prueba</span><span class="p">.</span><span class="n">clientes</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;lenny&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
-</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="k">GRANT</span><span class="w"> </span><span class="k">SELECT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">prueba</span><span class="p">.</span><span class="n">pedidos</span><span class="w"> </span><span class="k">TO</span><span class="w"> </span><span class="s1">&#39;lenny&#39;</span><span class="o">@</span><span class="s1">&#39;localhost&#39;</span><span class="p">;</span>
-</span></code></pre></div>
-<p>Puede leer, crear y modificar datos en la tabla de clientes, pero solo puede leer la tabla de pedidos.</p>
+<p>Por una lectura, para comprobar todos los casos.</p>
+<h2 id="modo-delete">Modo DELETE</h2>
+<p>Es el modo por defecto, en este modo:</p>
+<ul>
+<li><strong>Lectura -&gt; Lectura</strong>: pueden coexistir, no hay problema.</li>
+<li><strong>Lectura -&gt; Escritura</strong>: La escritura puede quedar bloqueada esperando a que terminen las lecturas.</li>
+<li><strong>Escritura -&gt; Lectura</strong>: La lectura puede quedar bloqueada hasta que termine la escritura.</li>
+<li><strong>Escritura -&gt; Escritura</strong>: No se pueden ejecutar simultáneamente.</li>
+</ul>
+<p>Usando el laboratorio anterior, podemos comprobar que mientras estamos escribiendo con el script, no podemos insertar datos:</p>
+<p><img alt="lab1" src="../../imgs/lab1.png" /></p>
+<p>Lo mismo sucede si intentamos leer mientras escribimos:</p>
+<p><img alt="lab2" src="../../imgs/lab2.png" /></p>
+<p>Tampoco podemos insertar mientras se lee:</p>
+<p><img alt="lab3" src="../../imgs/lab3.png" /></p>
+<p>Si que podemos leer ambas a la vez sin problema:</p>
+<p><img alt="lab4" src="../../imgs/lab4.png" /></p>
 
 
 
