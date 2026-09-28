@@ -1710,6 +1710,30 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#bun" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bun
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bun">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modo-watch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modo watch
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1781,6 +1805,30 @@
       Nodejs
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bun" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bun
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bun">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modo-watch" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modo watch
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -1871,6 +1919,62 @@ A -- transpilación --&gt; B -- ejecutar en --&gt; C</code></pre>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>pnpm<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>tsc
 </span></code></pre></div>
 <p>Verás que todo el código transpilado aparece en el directorio <code>dist</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">test</span><span class="w"> </span>on<span class="w"> </span><span class="w"> </span>master<span class="w"> </span><span class="o">[</span>?<span class="o">]</span><span class="w"> </span>is<span class="w"> </span>📦<span class="w"> </span>v1.0.0<span class="w"> </span>via<span class="w"> </span><span class="w"> </span>v22.23.1
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>❯<span class="w"> </span>ls<span class="w"> </span>dist/
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>.rw-r--r--@<span class="w"> </span><span class="m">41</span><span class="w"> </span>datadiego<span class="w"> </span><span class="m">29</span><span class="w"> </span>sep<span class="w"> </span><span class="m">00</span>:17<span class="w"> </span>main.js
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="nb">test</span><span class="w"> </span>on<span class="w"> </span><span class="w"> </span>master<span class="w"> </span><span class="o">[</span>?<span class="o">]</span><span class="w"> </span>is<span class="w"> </span>📦<span class="w"> </span>v1.0.0<span class="w"> </span>via<span class="w"> </span><span class="w"> </span>v22.23.1
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>❯<span class="w"> </span>cat<span class="w"> </span>dist/main.js
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="s2">&quot;use strict&quot;</span><span class="p">;</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>console.log<span class="o">(</span><span class="s2">&quot;hola mundo&quot;</span><span class="o">)</span><span class="p">;</span>
+</span></code></pre></div>
+<blockquote>
+<p>Verás que el único cambio que ha provocado esto, es la primera linea con <code>"use strict"</code></p>
+</blockquote>
+<p>Crea un <code>index.html</code> en la raíz del proyecto:</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&quot;en&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&quot;UTF-8&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&quot;viewport&quot;</span> <span class="na">content</span><span class="o">=</span><span class="s">&quot;width=device-width, initial-scale=1&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="p">&lt;</span><span class="nt">title</span><span class="p">&gt;&lt;/</span><span class="nt">title</span><span class="p">&gt;</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>    <span class="p">&lt;</span><span class="nt">link</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;css/style.css&quot;</span> <span class="na">rel</span><span class="o">=</span><span class="s">&quot;stylesheet&quot;</span><span class="p">&gt;</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;module&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;./dist/main.js&quot;</span><span class="p">&gt;</span><span class="w"> </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<p>Ahora puedes arrancar un servidor de desarrollo, y comprobar que tu html carga el js generado.</p>
+<h2 id="bun">Bun</h2>
+<p>En bun el proceso es algo menos manual, y más simple.</p>
+<p>En otro directorio, lanza:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>bun<span class="w"> </span>init
+</span></code></pre></div>
+<p>Selecciona el proyecto tipo "Blank", verás que Bun crea un proyecto más completo de entrada:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>/tmp/test-bun<span class="w"> </span>via<span class="w"> </span>🥟<span class="w"> </span>v1.4.0<span class="w"> </span>took<span class="w"> </span>14s
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>❯<span class="w"> </span>ls
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>.rw-r--r--@<span class="w"> </span><span class="m">6</span>,7k<span class="w"> </span>datadiego<span class="w"> </span><span class="m">29</span><span class="w"> </span>sep<span class="w"> </span><span class="m">00</span>:36<span class="w"> </span>bun.lock
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>.rw-r--r--@<span class="w">   </span><span class="m">30</span><span class="w"> </span>datadiego<span class="w"> </span><span class="m">29</span><span class="w"> </span>sep<span class="w"> </span><span class="m">00</span>:44<span class="w"> </span>index.ts
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>drwxr-xr-x@<span class="w">    </span>-<span class="w"> </span>datadiego<span class="w"> </span><span class="m">29</span><span class="w"> </span>sep<span class="w"> </span><span class="m">00</span>:36<span class="w"> </span>node_modules
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>.rw-r--r--@<span class="w">  </span><span class="m">195</span><span class="w"> </span>datadiego<span class="w"> </span><span class="m">29</span><span class="w"> </span>sep<span class="w"> </span><span class="m">00</span>:36<span class="w"> </span>package.json
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>.rw-r--r--@<span class="w">  </span><span class="m">223</span><span class="w"> </span>datadiego<span class="w"> </span><span class="m">29</span><span class="w"> </span>sep<span class="w"> </span><span class="m">00</span>:36<span class="w"> </span>README.md
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>.rw-r--r--@<span class="w">  </span><span class="m">735</span><span class="w"> </span>datadiego<span class="w"> </span><span class="m">29</span><span class="w"> </span>sep<span class="w"> </span><span class="m">00</span>:40<span class="w"> </span>tsconfig.json
+</span></code></pre></div>
+<p>Este ya incluye un <code>tsconfig.json</code> y ha descargado typescript.</p>
+<blockquote>
+<p>Puedes borrar el archivo <code>index.ts</code> que se creó, no lo usaremos.</p>
+</blockquote>
+<p>Vamos a seguir la misma estructura que en el anterior, un directorio <code>src</code> que tendrá un archivo <code>main.ts</code> con un hola mundo.</p>
+<p>Para compilarlo, simplemente haz:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>bun<span class="w"> </span>build<span class="w"> </span>src/*<span class="w"> </span>--outdir<span class="o">=</span>dist
+</span></code></pre></div>
+<p>Este comando transpilará todos los archivos <code>ts</code> al directorio <code>dist</code></p>
+<h3 id="modo-watch">Modo watch</h3>
+<p>Tener que transpilar los archivos ts cada vez que cambiamos nuestro código es tedioso, pero bun incluye un modo <em>watch</em>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>bun<span class="w"> </span>build<span class="w"> </span>src/*<span class="w"> </span>--outdir<span class="o">=</span>dist<span class="w"> </span>--watch
+</span></code></pre></div>
+<p>Ahora cada vez que editemos cualquier archivo en <code>src</code> se volverá a transpilar todo.</p>
 
 
 
