@@ -812,6 +812,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#dividir-paginas-en-carpetas-y-usar-diferentes-indexhtml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dividir páginas en carpetas y usar diferentes index.html
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1797,6 +1806,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#dividir-paginas-en-carpetas-y-usar-diferentes-indexhtml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dividir páginas en carpetas y usar diferentes index.html
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2035,120 +2053,31 @@
 </span></code></pre></div>
 <p>Además, nada te obliga a tener un directorio como <code>pages</code>, ya has visto que obliga a tener que referenciar a otros archivos de formas diferentes.</p>
 <p>Debes analizar que ganas y que pierdes con cada estructura, si la página solo necesita dos o tres archivos <code>html</code> podríamos dejarlos en la raiz sin que molesten ni hagan demasiado ruido.</p>
-<p>Esta estructura es la que genera <code>hugo</code> en un proyecto:</p>
+<h2 id="dividir-paginas-en-carpetas-y-usar-diferentes-indexhtml">Dividir páginas en carpetas y usar diferentes <code>index.html</code></h2>
+<p>Una estructura que verás mucho es una similar a esta:</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>.
 </span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>├── index.html
-</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>├── index.json
-</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>├── index.xml
-</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>├── sitemap.xml
-</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>├── about
-</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>│   └── index.html
-</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>├── articles
-</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>│   └── index.html
-</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>├── blog
-</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>│   └── index.html
-</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>├── categories
-</span><span id="__span-19-13"><a id="__codelineno-19-13" name="__codelineno-19-13" href="#__codelineno-19-13"></a>│   ├── index.html
-</span><span id="__span-19-14"><a id="__codelineno-19-14" name="__codelineno-19-14" href="#__codelineno-19-14"></a>│   └── index.xml
-</span><span id="__span-19-15"><a id="__codelineno-19-15" name="__codelineno-19-15" href="#__codelineno-19-15"></a>├── css
-</span><span id="__span-19-16"><a id="__codelineno-19-16" name="__codelineno-19-16" href="#__codelineno-19-16"></a>│   ├── about.css
-</span><span id="__span-19-17"><a id="__codelineno-19-17" name="__codelineno-19-17" href="#__codelineno-19-17"></a>│   ├── colours.css
-</span><span id="__span-19-18"><a id="__codelineno-19-18" name="__codelineno-19-18" href="#__codelineno-19-18"></a>│   ├── custom.css
-</span><span id="__span-19-19"><a id="__codelineno-19-19" name="__codelineno-19-19" href="#__codelineno-19-19"></a>│   ├── footer.css
-</span><span id="__span-19-20"><a id="__codelineno-19-20" name="__codelineno-19-20" href="#__codelineno-19-20"></a>│   ├── header.css
-</span><span id="__span-19-21"><a id="__codelineno-19-21" name="__codelineno-19-21" href="#__codelineno-19-21"></a>│   ├── layout.css
-</span><span id="__span-19-22"><a id="__codelineno-19-22" name="__codelineno-19-22" href="#__codelineno-19-22"></a>│   ├── logo.css
-</span><span id="__span-19-23"><a id="__codelineno-19-23" name="__codelineno-19-23" href="#__codelineno-19-23"></a>│   ├── palettes
-</span><span id="__span-19-24"><a id="__codelineno-19-24" name="__codelineno-19-24" href="#__codelineno-19-24"></a>│   ├── risotto.css
-</span><span id="__span-19-25"><a id="__codelineno-19-25" name="__codelineno-19-25" href="#__codelineno-19-25"></a>│   ├── syntax.css
-</span><span id="__span-19-26"><a id="__codelineno-19-26" name="__codelineno-19-26" href="#__codelineno-19-26"></a>│   └── typography.css
-</span><span id="__span-19-27"><a id="__codelineno-19-27" name="__codelineno-19-27" href="#__codelineno-19-27"></a>├── docs
-</span><span id="__span-19-28"><a id="__codelineno-19-28" name="__codelineno-19-28" href="#__codelineno-19-28"></a>│   └── index.html
-</span><span id="__span-19-29"><a id="__codelineno-19-29" name="__codelineno-19-29" href="#__codelineno-19-29"></a>├── fonts
-</span><span id="__span-19-30"><a id="__codelineno-19-30" name="__codelineno-19-30" href="#__codelineno-19-30"></a>│   ├── JetBrainsMonoNLNerdFont-BoldItalic.ttf
-</span><span id="__span-19-31"><a id="__codelineno-19-31" name="__codelineno-19-31" href="#__codelineno-19-31"></a>│   ├── JetBrainsMonoNLNerdFont-Bold.ttf
-</span><span id="__span-19-32"><a id="__codelineno-19-32" name="__codelineno-19-32" href="#__codelineno-19-32"></a>│   ├── JetBrainsMonoNLNerdFont-Italic.ttf
-</span><span id="__span-19-33"><a id="__codelineno-19-33" name="__codelineno-19-33" href="#__codelineno-19-33"></a>│   ├── JetBrainsMonoNLNerdFont-Medium.ttf
-</span><span id="__span-19-34"><a id="__codelineno-19-34" name="__codelineno-19-34" href="#__codelineno-19-34"></a>│   ├── JetBrainsMonoNLNerdFont-Regular.ttf
-</span><span id="__span-19-35"><a id="__codelineno-19-35" name="__codelineno-19-35" href="#__codelineno-19-35"></a>│   └── JetBrainsMonoNLNerdFont-SemiBold.ttf
-</span><span id="__span-19-36"><a id="__codelineno-19-36" name="__codelineno-19-36" href="#__codelineno-19-36"></a>├── images
-</span><span id="__span-19-37"><a id="__codelineno-19-37" name="__codelineno-19-37" href="#__codelineno-19-37"></a>│   └── rice.svg
-</span><span id="__span-19-38"><a id="__codelineno-19-38" name="__codelineno-19-38" href="#__codelineno-19-38"></a>├── js
-</span><span id="__span-19-39"><a id="__codelineno-19-39" name="__codelineno-19-39" href="#__codelineno-19-39"></a>│   ├── copy-code.js
-</span><span id="__span-19-40"><a id="__codelineno-19-40" name="__codelineno-19-40" href="#__codelineno-19-40"></a>│   └── fuzzy-search.js
-</span><span id="__span-19-41"><a id="__codelineno-19-41" name="__codelineno-19-41" href="#__codelineno-19-41"></a>├── posts
-</span><span id="__span-19-42"><a id="__codelineno-19-42" name="__codelineno-19-42" href="#__codelineno-19-42"></a>│   ├── automata-elemental
-</span><span id="__span-19-43"><a id="__codelineno-19-43" name="__codelineno-19-43" href="#__codelineno-19-43"></a>│   ├── basic-pentesting-1
-</span><span id="__span-19-44"><a id="__codelineno-19-44" name="__codelineno-19-44" href="#__codelineno-19-44"></a>│   ├── basic-pentesting-2
-</span><span id="__span-19-45"><a id="__codelineno-19-45" name="__codelineno-19-45" href="#__codelineno-19-45"></a>│   ├── burning-ai-apps
-</span><span id="__span-19-46"><a id="__codelineno-19-46" name="__codelineno-19-46" href="#__codelineno-19-46"></a>│   ├── burningbase-intro
-</span><span id="__span-19-47"><a id="__codelineno-19-47" name="__codelineno-19-47" href="#__codelineno-19-47"></a>│   ├── cloudflare
-</span><span id="__span-19-48"><a id="__codelineno-19-48" name="__codelineno-19-48" href="#__codelineno-19-48"></a>│   ├── comandos-basicos-linux
-</span><span id="__span-19-49"><a id="__codelineno-19-49" name="__codelineno-19-49" href="#__codelineno-19-49"></a>│   ├── crear-docker
-</span><span id="__span-19-50"><a id="__codelineno-19-50" name="__codelineno-19-50" href="#__codelineno-19-50"></a>│   ├── deploy-gh-pages
-</span><span id="__span-19-51"><a id="__codelineno-19-51" name="__codelineno-19-51" href="#__codelineno-19-51"></a>│   ├── despliegue-caddy
-</span><span id="__span-19-52"><a id="__codelineno-19-52" name="__codelineno-19-52" href="#__codelineno-19-52"></a>│   ├── dns101
-</span><span id="__span-19-53"><a id="__codelineno-19-53" name="__codelineno-19-53" href="#__codelineno-19-53"></a>│   ├── docker
-</span><span id="__span-19-54"><a id="__codelineno-19-54" name="__codelineno-19-54" href="#__codelineno-19-54"></a>│   ├── entorno-docker-mysql
-</span><span id="__span-19-55"><a id="__codelineno-19-55" name="__codelineno-19-55" href="#__codelineno-19-55"></a>│   ├── foremost
-</span><span id="__span-19-56"><a id="__codelineno-19-56" name="__codelineno-19-56" href="#__codelineno-19-56"></a>│   ├── gestionar-dotfiles
-</span><span id="__span-19-57"><a id="__codelineno-19-57" name="__codelineno-19-57" href="#__codelineno-19-57"></a>│   ├── git101
-</span><span id="__span-19-58"><a id="__codelineno-19-58" name="__codelineno-19-58" href="#__codelineno-19-58"></a>│   ├── git-bare-repos
-</span><span id="__span-19-59"><a id="__codelineno-19-59" name="__codelineno-19-59" href="#__codelineno-19-59"></a>│   ├── glitch-0-introduccion
-</span><span id="__span-19-60"><a id="__codelineno-19-60" name="__codelineno-19-60" href="#__codelineno-19-60"></a>│   ├── glitch-1-image-audio
-</span><span id="__span-19-61"><a id="__codelineno-19-61" name="__codelineno-19-61" href="#__codelineno-19-61"></a>│   ├── glitch-2-camera
-</span><span id="__span-19-62"><a id="__codelineno-19-62" name="__codelineno-19-62" href="#__codelineno-19-62"></a>│   ├── glitch-3-ffmpeg
-</span><span id="__span-19-63"><a id="__codelineno-19-63" name="__codelineno-19-63" href="#__codelineno-19-63"></a>│   ├── index.html
-</span><span id="__span-19-64"><a id="__codelineno-19-64" name="__codelineno-19-64" href="#__codelineno-19-64"></a>│   ├── index.xml
-</span><span id="__span-19-65"><a id="__codelineno-19-65" name="__codelineno-19-65" href="#__codelineno-19-65"></a>│   ├── kioptrix
-</span><span id="__span-19-66"><a id="__codelineno-19-66" name="__codelineno-19-66" href="#__codelineno-19-66"></a>│   ├── mercury
-</span><span id="__span-19-67"><a id="__codelineno-19-67" name="__codelineno-19-67" href="#__codelineno-19-67"></a>│   ├── nginx101
-</span><span id="__span-19-68"><a id="__codelineno-19-68" name="__codelineno-19-68" href="#__codelineno-19-68"></a>│   ├── npm-node
-</span><span id="__span-19-69"><a id="__codelineno-19-69" name="__codelineno-19-69" href="#__codelineno-19-69"></a>│   ├── nunjucks
-</span><span id="__span-19-70"><a id="__codelineno-19-70" name="__codelineno-19-70" href="#__codelineno-19-70"></a>│   ├── onion-hidden-service
-</span><span id="__span-19-71"><a id="__codelineno-19-71" name="__codelineno-19-71" href="#__codelineno-19-71"></a>│   ├── primera-distro
-</span><span id="__span-19-72"><a id="__codelineno-19-72" name="__codelineno-19-72" href="#__codelineno-19-72"></a>│   ├── primeros-pasos-linux
-</span><span id="__span-19-73"><a id="__codelineno-19-73" name="__codelineno-19-73" href="#__codelineno-19-73"></a>│   ├── problemas-remotos
-</span><span id="__span-19-74"><a id="__codelineno-19-74" name="__codelineno-19-74" href="#__codelineno-19-74"></a>│   ├── ramas
-</span><span id="__span-19-75"><a id="__codelineno-19-75" name="__codelineno-19-75" href="#__codelineno-19-75"></a>│   ├── repositorios-remotos
-</span><span id="__span-19-76"><a id="__codelineno-19-76" name="__codelineno-19-76" href="#__codelineno-19-76"></a>│   ├── reverse-tunnel-gnome-boxes
-</span><span id="__span-19-77"><a id="__codelineno-19-77" name="__codelineno-19-77" href="#__codelineno-19-77"></a>│   ├── rpi-video
-</span><span id="__span-19-78"><a id="__codelineno-19-78" name="__codelineno-19-78" href="#__codelineno-19-78"></a>│   ├── sistema-archivos
-</span><span id="__span-19-79"><a id="__codelineno-19-79" name="__codelineno-19-79" href="#__codelineno-19-79"></a>│   ├── tor-proxy
-</span><span id="__span-19-80"><a id="__codelineno-19-80" name="__codelineno-19-80" href="#__codelineno-19-80"></a>│   ├── turso
-</span><span id="__span-19-81"><a id="__codelineno-19-81" name="__codelineno-19-81" href="#__codelineno-19-81"></a>│   ├── venus
-</span><span id="__span-19-82"><a id="__codelineno-19-82" name="__codelineno-19-82" href="#__codelineno-19-82"></a>│   ├── virtualbox-vm
-</span><span id="__span-19-83"><a id="__codelineno-19-83" name="__codelineno-19-83" href="#__codelineno-19-83"></a>│   ├── visualizar-joins
-</span><span id="__span-19-84"><a id="__codelineno-19-84" name="__codelineno-19-84" href="#__codelineno-19-84"></a>│   └── wordpress-linode
-</span><span id="__span-19-85"><a id="__codelineno-19-85" name="__codelineno-19-85" href="#__codelineno-19-85"></a>├── series
-</span><span id="__span-19-86"><a id="__codelineno-19-86" name="__codelineno-19-86" href="#__codelineno-19-86"></a>│   ├── index.html
-</span><span id="__span-19-87"><a id="__codelineno-19-87" name="__codelineno-19-87" href="#__codelineno-19-87"></a>│   └── index.xml
-</span><span id="__span-19-88"><a id="__codelineno-19-88" name="__codelineno-19-88" href="#__codelineno-19-88"></a>├── showcase
-</span><span id="__span-19-89"><a id="__codelineno-19-89" name="__codelineno-19-89" href="#__codelineno-19-89"></a>│   └── index.html
-</span><span id="__span-19-90"><a id="__codelineno-19-90" name="__codelineno-19-90" href="#__codelineno-19-90"></a>└── tags
-</span><span id="__span-19-91"><a id="__codelineno-19-91" name="__codelineno-19-91" href="#__codelineno-19-91"></a>    ├── bases-de-datos
-</span><span id="__span-19-92"><a id="__codelineno-19-92" name="__codelineno-19-92" href="#__codelineno-19-92"></a>    ├── ciberseguridad
-</span><span id="__span-19-93"><a id="__codelineno-19-93" name="__codelineno-19-93" href="#__codelineno-19-93"></a>    ├── coding
-</span><span id="__span-19-94"><a id="__codelineno-19-94" name="__codelineno-19-94" href="#__codelineno-19-94"></a>    ├── devops
-</span><span id="__span-19-95"><a id="__codelineno-19-95" name="__codelineno-19-95" href="#__codelineno-19-95"></a>    ├── docker
-</span><span id="__span-19-96"><a id="__codelineno-19-96" name="__codelineno-19-96" href="#__codelineno-19-96"></a>    ├── forense
-</span><span id="__span-19-97"><a id="__codelineno-19-97" name="__codelineno-19-97" href="#__codelineno-19-97"></a>    ├── git
-</span><span id="__span-19-98"><a id="__codelineno-19-98" name="__codelineno-19-98" href="#__codelineno-19-98"></a>    ├── glitch
-</span><span id="__span-19-99"><a id="__codelineno-19-99" name="__codelineno-19-99" href="#__codelineno-19-99"></a>    ├── hacking
-</span><span id="__span-19-100"><a id="__codelineno-19-100" name="__codelineno-19-100" href="#__codelineno-19-100"></a>    ├── hardware
-</span><span id="__span-19-101"><a id="__codelineno-19-101" name="__codelineno-19-101" href="#__codelineno-19-101"></a>    ├── index
-</span><span id="__span-19-102"><a id="__codelineno-19-102" name="__codelineno-19-102" href="#__codelineno-19-102"></a>    ├── index.html
-</span><span id="__span-19-103"><a id="__codelineno-19-103" name="__codelineno-19-103" href="#__codelineno-19-103"></a>    ├── index.xml
-</span><span id="__span-19-104"><a id="__codelineno-19-104" name="__codelineno-19-104" href="#__codelineno-19-104"></a>    ├── javascript
-</span><span id="__span-19-105"><a id="__codelineno-19-105" name="__codelineno-19-105" href="#__codelineno-19-105"></a>    ├── linux
-</span><span id="__span-19-106"><a id="__codelineno-19-106" name="__codelineno-19-106" href="#__codelineno-19-106"></a>    ├── multimedia
-</span><span id="__span-19-107"><a id="__codelineno-19-107" name="__codelineno-19-107" href="#__codelineno-19-107"></a>    ├── pentesting
-</span><span id="__span-19-108"><a id="__codelineno-19-108" name="__codelineno-19-108" href="#__codelineno-19-108"></a>    ├── privacy
-</span><span id="__span-19-109"><a id="__codelineno-19-109" name="__codelineno-19-109" href="#__codelineno-19-109"></a>    └── virtualización
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>├── about
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>│   └── index.html
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>└── posts
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>    ├── index.html
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>    ├── mi-primer-post
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>    │   ├── gatos.jpg
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>    │   └── index.html
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>    └── otro-post
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>        ├── coche.jpg
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>        └── index.html
 </span></code></pre></div>
-<blockquote>
-<p>Este arbol ni si quiera entra dentro de los siguientes subdirectorios que contienen los html relativos a los posts por ejemplo, imagina si todo eso estuviera en la raiz, ¿podrias encontrar algo rápidamente?</p>
-</blockquote>
+<p>Cuando usamos diferentes archivos index en diferentes directorios nos permite poder llamar directamente así:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>miweb.com -&gt; index.html
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>miweb.com/about -&gt; /about/index.html
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>miweb.com/posts/mi-primer-post -&gt; /posts/mi-primer-post/index.html
+</span></code></pre></div>
+<p>Si lo comparamos con las demás estructuras que hemos visto, en todos debemos llamar al archivo <code>html</code> que queremos encontrar:</p>
+<p><div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>miweb.com/about.html
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>miweb.com/pages/about.html
+</span></code></pre></div>
+```</p>
 
 
 
