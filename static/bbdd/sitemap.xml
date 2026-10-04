@@ -225,15 +225,15 @@
          <lastmod>2026-10-04</lastmod>
     </url>
     <url>
-         <loc>https://datadiego.github.io/bbdd/UD7%3A%20DaaS/2-supabase/</loc>
-         <lastmod>2026-10-04</lastmod>
-    </url>
-    <url>
          <loc>https://datadiego.github.io/bbdd/UD7%3A%20DaaS/2-turso-http/</loc>
          <lastmod>2026-10-04</lastmod>
     </url>
     <url>
-         <loc>https://datadiego.github.io/bbdd/UD7%3A%20DaaS/3-firebase/</loc>
+         <loc>https://datadiego.github.io/bbdd/UD7%3A%20DaaS/3-supabase/</loc>
+         <lastmod>2026-10-04</lastmod>
+    </url>
+    <url>
+         <loc>https://datadiego.github.io/bbdd/UD7%3A%20DaaS/4-firebase/</loc>
          <lastmod>2026-10-04</lastmod>
     </url>
 </urlset>
