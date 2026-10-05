@@ -2,7 +2,7 @@
 title: "The Planets: Earth"
 author: datadiego
 draft: false
-description: Un ejemplo de una publicacion
+description: Maquina vulnerable Earth
 date: 2025-03-09
 # la fecha va en formato año-mes-dia
 tags:

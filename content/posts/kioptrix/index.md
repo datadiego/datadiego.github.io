@@ -1,9 +1,9 @@
 +++
 author = "datadiego"
 draft = false
-title = "Vulnhub: Kioptrix 1"
+title = "Kioptrix #1"
 description = "Pentesting a máquina Kioptrix en Vulnhub"
-date = "2025-06-12"
+date = "2025-03-06"
 tags = ["pentesting"]
 +++
 
