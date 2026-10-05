@@ -1,9 +1,9 @@
 +++
 author = "datadiego"
 draft = false
-title = "Vulnhub: Venus"
+title = "The Planets: Venus"
 description = "Pentesting a máquina Venus en Vulnhub"
-date = "2025-03-07"
+date = "2025-03-10"
 tags = ["pentesting"]
 +++
 

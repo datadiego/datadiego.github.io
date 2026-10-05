@@ -1,5 +1,5 @@
 ---
-title: "Earth"
+title: "The Planets: Earth"
 author: datadiego
 draft: false
 description: Un ejemplo de una publicacion
