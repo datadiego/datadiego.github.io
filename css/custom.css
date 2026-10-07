@@ -150,6 +150,24 @@
     line-height: 1;
 }
 
+/* ── Logo ASCII de la portada ────────────────────── */
+/* 67 columnas × 0.6em (JetBrains Mono) = 40.2 → /41 con margen */
+.logo {
+    background: none;
+    border: 0;
+    padding: 0;
+    color: var(--fg);
+    line-height: 1.15;
+    overflow-x: clip;
+    font-size: min(1rem, calc((100vw - 8rem) / 41));
+}
+
+@supports (container-type: inline-size) {
+    .logo {
+        font-size: min(1rem, calc(100cqw / 41));
+    }
+}
+
 /* ── Search / Fuzzy Finder ──────────────────────── */
 .search {
     margin-bottom: 1.5rem;

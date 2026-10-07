@@ -89,6 +89,7 @@ body {
     padding: 1.75rem 2rem 2rem;
     overflow-wrap: break-word;
     min-width: 0;
+    container-type: inline-size;
 }
 
 @media (max-width: 45rem) {
