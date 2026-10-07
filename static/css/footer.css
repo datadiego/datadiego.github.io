@@ -7,7 +7,6 @@
     gap: 0.25rem 1.5rem;
     padding: 0.5rem 1.25rem;
     color: var(--statusbar-fg);
-    font-size: 0.8125rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
