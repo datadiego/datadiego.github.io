@@ -1,4 +1,4 @@
-/* Chroma syntax highlighting — base16-dark palette */
+/* Chroma syntax highlighting — gruvbox dark palette */
 .chroma {
   background-color: var(--inner-bg);
   color: var(--off-fg);
@@ -236,12 +236,12 @@
   height: 28px;
   padding: 0;
   border: 1px solid var(--base03);
-  border-radius: 4px;
+  border-radius: 0;
   background: var(--base01);
   color: var(--base04);
   cursor: pointer;
   opacity: 0;
-  transition: opacity 0.15s;
+  transition: opacity 0.15s, color 0.15s, border-color 0.15s;
   line-height: 0;
 }
 

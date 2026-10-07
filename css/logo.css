@@ -1,8 +1,9 @@
+/* Prompt-style logo */
 .page__logo {
     padding: 0;
     margin: 0;
-    font-weight: inherit;
-    color: var(--bg);
+    font-weight: 700;
+    font-size: 1.0625rem;
 }
 
 .page__logo:before {
@@ -10,28 +11,52 @@
 }
 
 .page__logo-inner {
-    display: block;
-    background: var(--logo);
-    opacity: 0.90;
-    padding: 0.25rem;
+    display: inline-block;
+    background: transparent;
+    border: 1px solid var(--logo);
+    color: var(--logo);
+    padding: 0.125rem 0.5rem;
+    transition: background-color 120ms ease, color 120ms ease;
 }
 
-a.page__logo-inner:link, a.page__logo-inner:visited {
-    color: inherit;
-    text-decoration: inherit;
+a.page__logo-inner:link,
+a.page__logo-inner:visited {
+    color: var(--logo);
+    text-decoration: none;
 }
 
+.page__logo-inner:hover,
 a.page__logo-inner:hover,
 a.page__logo-inner:active {
-    opacity: 1;
+    background: var(--logo);
+    color: var(--bg);
+    text-decoration: none;
+}
+
+.page__logo-inner:hover:before,
+a.page__logo-inner:hover:before,
+.page__logo-inner:hover:after,
+a.page__logo-inner:hover:after {
+    color: var(--bg);
 }
 
 .page__logo-inner:before {
-    content: "[";
-    color: var(--bg);
+    content: "❯ ";
+    color: var(--prompt);
 }
 
 .page__logo-inner:after {
-    content: "] $";
-    color: var(--bg);
+    content: " █";
+    color: var(--cursor);
+    animation: logo-blink 1.1s step-end infinite;
+}
+
+@keyframes logo-blink {
+    50% { opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .page__logo-inner:after {
+        animation: none;
+    }
 }
