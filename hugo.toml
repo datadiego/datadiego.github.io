@@ -36,14 +36,14 @@ url = "juandiegomariscal@gmail.com"
 
   [[menu.main]]
     identifier = "posts"
-    name = "Posts"
-    url = "/posts/"
+    name = "/posts"
+    url = "/posts"
     weight = 10
 
   [[menu.main]]
     identifier = "about"
-    name = "About"
-    url = "/about/"
+    name = "/about"
+    url = "/about"
     weight = 20
 
 [taxonomies]
