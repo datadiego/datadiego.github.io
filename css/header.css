@@ -86,3 +86,21 @@
     background: var(--hover);
     color: var(--bg);
 }
+
+@media (max-width: 640px) {
+    .main-nav ul {
+        flex-flow: row nowrap;
+        gap: 0.125rem 0.25rem;
+        white-space: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+
+    .main-nav ul::-webkit-scrollbar {
+        display: none;
+    }
+
+    .main-nav a {
+        padding: 0.125rem 0.25rem;
+    }
+}
