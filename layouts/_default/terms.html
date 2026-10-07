@@ -6,7 +6,7 @@
     <ul class="tags">
     {{ range $name, $taxonomy := .Data.Terms.Alphabetical }}
       {{- if ne $taxonomy.Page.Title "Index" }}
-        <li><a href="{{ $taxonomy.Page.RelPermalink }}">#{{ $taxonomy.Page.Title }}</a>&nbsp;({{ $taxonomy.Count }})</li>
+        <li><a href="{{ $taxonomy.Page.RelPermalink }}">#{{ $taxonomy.Page.Title }}</a></li>
       {{- end }}
     {{ end }}
     </ul>

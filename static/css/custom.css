@@ -77,6 +77,11 @@
     letter-spacing: 0;
 }
 
+/* Ritmo simétrico: el último bloque pega 16px al borde, como el título */
+.post > *:last-child {
+    margin-bottom: 0;
+}
+
 .post__tags a {
     color: var(--link);
     text-decoration: none;
@@ -148,6 +153,32 @@
 /* ── Search / Fuzzy Finder ──────────────────────── */
 .search {
     margin-bottom: 1.5rem;
+}
+
+/* El buscador vive en su propia franja: el ritmo lo marca el padding */
+.page__search .search {
+    margin-bottom: 0;
+}
+
+/* La nube de tags está duplicada: en la franja del buscador (móvil)
+   y en el aside (escritorio) */
+.page__search .tags-block {
+    display: none;
+}
+
+@media (max-width: 45rem) {
+    .page--has-search .page__search .tags-block {
+        display: block;
+    }
+
+    .page--has-search .page__aside .tags-block {
+        display: none;
+    }
+
+    /* El aside de /posts/ en móvil queda solo con la ventanita: sin separador */
+    .page--has-search .page__aside .aside__sep {
+        display: none;
+    }
 }
 
 .search__input-wrapper {
@@ -284,14 +315,4 @@
 
 .aside__meta p {
     margin: 0 0 0.5rem;
-}
-
-/* Ocultar la barra de scroll del aside (sigue siendo scrolleable con rueda/touch) */
-.page__aside {
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge legacy */
-}
-
-.page__aside::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Edge */
 }

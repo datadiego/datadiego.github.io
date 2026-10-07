@@ -1,0 +1,10 @@
+<div class="tags-block">
+    <h2>Tags</h2>
+    <ul class="tags">
+    {{- range $taxonomy := site.Taxonomies.tags.Alphabetical }}
+      {{- if ne $taxonomy.Page.Title "Index" }}
+        <li><a href="{{ $taxonomy.Page.RelPermalink }}">#{{ $taxonomy.Page.Title }}</a></li>
+      {{- end }}
+    {{- end }}
+    </ul>
+</div>

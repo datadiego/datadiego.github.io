@@ -1,3 +1,4 @@
+{{- $hasSearch := and (eq .Kind "section") (eq .Section "posts") -}}
 <!DOCTYPE html>
 <html lang="{{- site.Language.Locale -}}">
 
@@ -6,17 +7,24 @@
     </head>
 
     <body>
-        <div class="page">
+        <div class="page{{ if $hasSearch }} page--has-search{{ end }}">
 
             <header class="page__header">
                 <div class="titlebar">
                     <span class="titlebar__path">{{- $path := strings.TrimSuffix "/" .RelPermalink -}}{{ $path }}</span>
-                    {{- if and (eq .Kind "section") (eq .Section "posts") }}
+                    {{- if $hasSearch }}
                     <span class="titlebar__hint">pulsa <kbd>/</kbd> para buscar</span>
                     {{- end }}
                 </div>
                 {{- partial "header.html" . -}}
             </header>
+
+            {{- if $hasSearch }}
+            <section class="page__search">
+                {{- partial "search.html" . -}}
+                {{- partial "tagcloud.html" . -}}
+            </section>
+            {{- end }}
 
             <section class="page__body">
                 {{- block "main" . }}{{- end }}
@@ -24,7 +32,7 @@
 
             <section class="page__aside">
                 {{- partial "about.html" . -}}
-                <hr>
+                <hr class="aside__sep">
                 <div class="aside__content">
                     {{- block "aside" . }}{{- end }}
                 </div>
