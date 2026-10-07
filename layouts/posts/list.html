@@ -9,9 +9,6 @@
     <article class="post">
         <header class="post__header">
             <h1 class="post__title"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h1>
-            <p class="post__meta">
-                <time class="date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
-            </p>
         </header>
         {{ with .Params.description }}
         <p class="post__description">{{ . }}</p>
