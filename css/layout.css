@@ -18,6 +18,16 @@ body {
     grid-row-gap: 0;
 }
 
+/* En móvil los tags del aside suben justo detrás del buscador */
+.page--has-search {
+    grid-template-areas:
+      "header"
+      "search"
+      "body"
+      "aside"
+      "footer";
+}
+
 @media (max-width: 45rem) {
     .page {
         margin: 0.5rem;
@@ -32,6 +42,14 @@ body {
           "footer  footer";
         grid-template-columns: minmax(0, 1fr) 17rem;
         grid-column-gap: 0;
+    }
+
+    .page--has-search {
+        grid-template-areas:
+          "header  header"
+          "search  aside"
+          "body    aside"
+          "footer  footer";
     }
 }
 
@@ -51,6 +69,18 @@ body {
 
 .page__nav {
     flex-grow: 1;
+}
+
+/* Search strip */
+.page__search {
+    grid-area: search;
+    padding: 1.25rem 1rem 0.5rem;
+}
+
+@media (min-width: 45rem) {
+    .page__search {
+        padding: 1.75rem 2rem 0;
+    }
 }
 
 /* Body */
@@ -80,11 +110,6 @@ body {
     .page__aside {
         border-top: none;
         border-left: 1px solid var(--border);
-        position: sticky;
-        top: 1.25rem;
-        align-self: start;
-        max-height: calc(100vh - 2.5rem);
-        overflow-y: auto;
     }
 }
 
