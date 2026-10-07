@@ -1,0 +1,34 @@
+{{ define "main" }}
+    <header class="content__header">
+        <h1>{{ .Title | markdownify }}</h1>
+        {{ .Content }}
+    </header>
+
+    <div id="projects-list">
+    {{ range .Pages }}
+    <article class="post project-card">
+        <header class="post__header">
+            <h1 class="post__title">{{ .Title | markdownify }}</h1>
+        </header>
+        {{ with .Params.description }}
+        <p class="post__description">{{ . }}</p>
+        {{ end }}
+        {{ if .Content }}
+        <div class="post__content">
+            {{ .Content | truncate 150 }}
+        </div>
+        {{ end }}
+        {{ if or .Params.repo .Params.link }}
+        <p class="post__tags project__links">
+            {{ with .Params.repo }}
+            <a href="{{ . }}" target="_blank" rel="noopener">#repo</a>
+            {{ end }}
+            {{ with .Params.link }}
+            <a href="{{ . }}" target="_blank" rel="noopener">#link</a>
+            {{ end }}
+        </p>
+        {{ end }}
+    </article>
+    {{ end }}
+    </div>
+{{ end }}
