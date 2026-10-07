@@ -10,7 +10,11 @@
     {{ range .Pages }}
     <article class="post">
         <header class="post__header">
-            <h1><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a>{{ with .Params.author }} — {{ . }},{{ end }} <span class="date">{{ .Date.Format "2 January 2006" }}</span></h1>
+            <h1 class="post__title"><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h1>
+            <p class="post__meta">
+                {{- with .Params.author }}<span>{{ . }}</span> &middot; {{ end -}}
+                <time class="date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+            </p>
         </header>
         {{ with .Params.description }}
         <p class="post__description">{{ . }}</p>

@@ -15,7 +15,7 @@ pagerSize = 5
 home = ["HTML", "RSS", "JSON"]
 
 [params.theme]
-palette = "base16-dark"
+palette = "gruvbox-dark"
 
 [params.about]
 title = "/dev/random"

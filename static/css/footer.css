@@ -1,0 +1,33 @@
+/* Status bar */
+.page__footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.25rem 1.5rem;
+    padding: 0.5rem 1.25rem;
+    color: var(--statusbar-fg);
+    font-size: 0.8125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.page__footer p {
+    margin: 0;
+}
+
+.page__footer a:link,
+.page__footer a:visited {
+    color: var(--link);
+    text-decoration: none;
+    text-decoration-color: none;
+}
+
+.page__footer a:hover {
+    color: var(--hover);
+    text-decoration: underline;
+}
+
+.page__footer .copyright {
+    color: var(--muted);
+}

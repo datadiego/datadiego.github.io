@@ -9,6 +9,12 @@
         <div class="page">
 
             <header class="page__header">
+                <div class="titlebar">
+                    <span class="titlebar__path">{{- $path := strings.TrimSuffix "/" .RelPermalink -}}{{ $path }}</span>
+                    {{- if and (eq .Kind "section") (eq .Section "posts") }}
+                    <span class="titlebar__hint">pulsa <kbd>/</kbd> para buscar</span>
+                    {{- end }}
+                </div>
                 {{- partial "header.html" . -}}
             </header>
 
@@ -17,9 +23,7 @@
             </section>
 
             <section class="page__aside">
-                <div class="aside__about">
-                    {{- partial "about.html" . -}}
-                </div>
+                {{- partial "about.html" . -}}
                 <hr>
                 <div class="aside__content">
                     {{- block "aside" . }}{{- end }}

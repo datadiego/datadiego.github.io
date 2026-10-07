@@ -1,0 +1,96 @@
+/* Terminal window frame */
+body {
+    margin: 0;
+}
+
+.page {
+    max-width: 72rem;
+    margin: 1.25rem auto;
+    background: var(--bg);
+    border: 1px solid var(--border-strong);
+    display: grid;
+    grid-template-areas:
+      "header"
+      "body"
+      "aside"
+      "footer";
+    grid-template-columns: minmax(0, 1fr); /* https://css-tricks.com/preventing-a-grid-blowout/ */
+    grid-row-gap: 0;
+}
+
+@media (max-width: 45rem) {
+    .page {
+        margin: 0.5rem;
+    }
+}
+
+@media (min-width: 45rem) {
+    .page {
+        grid-template-areas:
+          "header  header"
+          "body    aside"
+          "footer  footer";
+        grid-template-columns: minmax(0, 1fr) 17rem;
+        grid-column-gap: 0;
+    }
+}
+
+/* Header: titlebar + nav */
+.page__header {
+    grid-area: header;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--border-strong);
+    background: var(--titlebar-bg);
+}
+
+.page__logo {
+    flex-shrink: 0;
+    margin: 0;
+}
+
+.page__nav {
+    flex-grow: 1;
+}
+
+/* Body */
+.page__body {
+    grid-area: body;
+    padding: 1.75rem 2rem 2rem;
+    overflow-wrap: break-word;
+    min-width: 0;
+}
+
+@media (max-width: 45rem) {
+    .page__body {
+        padding: 1.25rem 1rem 1.5rem;
+    }
+}
+
+/* Aside */
+.page__aside {
+    grid-area: aside;
+    color: var(--off-fg);
+    padding: 1.25rem 1.5rem 1.5rem;
+    border-top: 1px solid var(--border);
+    min-width: 0;
+}
+
+@media (min-width: 45rem) {
+    .page__aside {
+        border-top: none;
+        border-left: 1px solid var(--border);
+        position: sticky;
+        top: 1.25rem;
+        align-self: start;
+        max-height: calc(100vh - 2.5rem);
+        overflow-y: auto;
+    }
+}
+
+/* Footer: status bar */
+.page__footer {
+    grid-area: footer;
+    background: var(--statusbar-bg);
+    border-top: 1px solid var(--border-strong);
+}

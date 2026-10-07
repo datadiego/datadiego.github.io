@@ -1,0 +1,17 @@
+@import 'colours.css';
+@import 'typography.css';
+@import 'layout.css';
+@import 'header.css';
+@import 'logo.css';
+@import 'about.css';
+@import 'footer.css';
+
+html {
+    color-scheme: dark;
+    scrollbar-color: var(--border-strong) var(--bg);
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--fg);
+}

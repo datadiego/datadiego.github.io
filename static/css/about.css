@@ -1,0 +1,71 @@
+/* About/bio panel */
+.aside__about {
+    border: 1px solid var(--border);
+    background: var(--off-bg);
+    padding: 0.875rem 1rem;
+    margin-bottom: 1rem;
+}
+
+.about__logo {
+    display: inline-block;
+    height: auto;
+    font-size: 1rem;
+    line-height: 1;
+    color: var(--logo);
+    margin: 0 0.5rem 0 0;
+    vertical-align: middle;
+}
+
+.about__title {
+    display: inline;
+    vertical-align: middle;
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.about__title::before {
+    content: none;
+}
+
+.about__description {
+    margin: 0.625rem 0 0;
+    font-size: 0.875rem;
+    color: var(--off-fg);
+}
+
+/* Social media links */
+.aside__social-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    margin: 0 0 1.25rem;
+}
+
+.aside__social-links li {
+    display: inline-block;
+    margin: 0;
+}
+
+.aside__social-links li::marker {
+    content: none;
+}
+
+.aside__social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.125rem;
+    height: 2.125rem;
+    border: 1px solid var(--border-strong);
+    color: var(--off-fg);
+    text-decoration: none;
+    transition: background-color 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+
+.aside__social-links a:hover {
+    background: var(--link);
+    border-color: var(--link);
+    color: var(--bg);
+}
