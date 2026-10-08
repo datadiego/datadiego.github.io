@@ -1,23 +1,6 @@
 {{ define "main" }}
     <header class="content__header">
         <h1>{{ .Title | markdownify }}</h1>
-        {{ .Content }}
-    </header>
-
-    <div id="projects-list">
-    {{ range .Pages }}
-    <article class="post project-card">
-        <header class="post__header">
-            <h1 class="post__title"><a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a></h1>
-        </header>
-        {{ with .Params.description }}
-        <p class="post__description">{{ . }}</p>
-        {{ end }}
-        {{ if .Content }}
-        <div class="post__content">
-            {{ .Content | truncate 150 }}
-        </div>
-        {{ end }}
         {{ if or .Params.repo .Params.demo .Params.link }}
         <p class="post__tags project__links">
             {{ with .Params.repo }}
@@ -32,7 +15,27 @@
             {{ end }}
         </p>
         {{ end }}
-    </article>
+    </header>
+    <div class="content__body">
+        {{ .Content }}
+    </div>
+    <footer class="content__footer"></footer>
+{{ end }}
+
+{{define "aside" }}
+    <div class="aside__meta">
+    {{ if .Params.description }}<p>{{ .Params.description }}</p>{{ end }}
+    {{ if or (.Params.author) (.Params.date) }}
+        <p>
+            {{ if .Params.author }}By {{ .Params.author }}{{ if .Date }}, {{ end }}{{ end }}
+            {{ if .Date }}<time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>{{ end }}
+        </p>
     {{ end }}
     </div>
+
+    {{ if and (.Params.toc) (.TableOfContents) }}
+	    <hr>
+	    <h2>On this page:</h2>
+	    {{ .TableOfContents }}
+    {{ end }}
 {{ end }}

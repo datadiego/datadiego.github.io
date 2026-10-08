@@ -64,6 +64,7 @@ series = "series"
     noClasses = false
     lineNos = false
     codeFences = true
+    guessSyntax = true
 
 [params]
   mermaid = true

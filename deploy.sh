@@ -18,7 +18,7 @@ if ! git remote | grep -qx origin; then
   exit 1
 fi
 
-hugo build --baseURL="http://rogueo7ciqckck2yhf2dqmqxsrav3ydsobcxkun7f5dmysskcxyfgead.onion"
+hugo build --cleanDestinationDir --baseURL="http://rogueo7ciqckck2yhf2dqmqxsrav3ydsobcxkun7f5dmysskcxyfgead.onion"
 git push origin master
 #git push $server master
 sudo scp -r public/* $server:/var/www/html
