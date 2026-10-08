@@ -26,14 +26,14 @@
 </span></span><span class=line><span class=cl>jun <span class=m>21</span> 00:07:41 fedora nginx<span class=o>[</span>35786<span class=o>]</span>: nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 </span></span><span class=line><span class=cl>jun <span class=m>21</span> 00:07:41 fedora nginx<span class=o>[</span>35786<span class=o>]</span>: nginx: configuration file /etc/nginx/nginx.conf <span class=nb>test</span> is successful
 </span></span><span class=line><span class=cl>jun <span class=m>21</span> 00:07:41 fedora systemd<span class=o>[</span>1<span class=o>]</span>: Started nginx.service - The nginx HTTP and reverse proxy server.
-</span></span></code></pre></div><p>Está funcionando!</p><p>Prueba a abrir el navegador y entrar en <code>localhost</code>, deberías ver la página por defecto de nginx.</p><h2 id=configuración>Configuración</h2><p>Como tal, si es para desarrollo, no necesitamos configurar nada más, pero tendremos que comprobar el archivo <code>/etc/nginx/nginx.conf</code> y por lo menos comprobar la opcion <code>root</code>:</p><pre tabindex=0><code>   server {
-        listen       80;
-        listen       [::]:80;
-        server_name  _;
-        root         /usr/share/nginx/html;
-        include /etc/nginx/default.d/*.conf;
-    }
-</code></pre><p>Con esta configurción el servidor queda funcionando en el puerto <code>80</code>, y los archivos <code>html</code> se deben situar en <code>/usr/share/nginx/html/</code></p><h2 id=editando-la-página>Editando la página</h2><p>Primero, para simplificar el interactuar con el servidor y mover archivos a la ruta, podemos empezar por crear una <em>variable de entorno</em> con el path al mismo:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;export NGINX_PATH=/usr/share/nginx/html&#34;</span> &gt;&gt; ~/.bashrc
+</span></span></code></pre></div><p>Está funcionando!</p><p>Prueba a abrir el navegador y entrar en <code>localhost</code>, deberías ver la página por defecto de nginx.</p><h2 id=configuración>Configuración</h2><p>Como tal, si es para desarrollo, no necesitamos configurar nada más, pero tendremos que comprobar el archivo <code>/etc/nginx/nginx.conf</code> y por lo menos comprobar la opcion <code>root</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>   server {
+</span></span><span class=line><span class=cl>        listen       80;
+</span></span><span class=line><span class=cl>        listen       [::]:80;
+</span></span><span class=line><span class=cl>        server_name  _;
+</span></span><span class=line><span class=cl>        root         /usr/share/nginx/html;
+</span></span><span class=line><span class=cl>        include /etc/nginx/default.d/*.conf;
+</span></span><span class=line><span class=cl>    }
+</span></span></code></pre></div><p>Con esta configurción el servidor queda funcionando en el puerto <code>80</code>, y los archivos <code>html</code> se deben situar en <code>/usr/share/nginx/html/</code></p><h2 id=editando-la-página>Editando la página</h2><p>Primero, para simplificar el interactuar con el servidor y mover archivos a la ruta, podemos empezar por crear una <em>variable de entorno</em> con el path al mismo:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;export NGINX_PATH=/usr/share/nginx/html&#34;</span> &gt;&gt; ~/.bashrc
 </span></span><span class=line><span class=cl><span class=nb>source</span> ~/.bashrc
 </span></span></code></pre></div><p>Ahora podemos acceder rápidamente a la ruta con <code>$NGINX_PATH</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>echo</span> <span class=nv>$NGINX_PATH</span>
 </span></span></code></pre></div><p>Ahora lo tenemos muy facil para crear páginas:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>datadiego  /tmp/web  ♥ 00:32  cat index.html

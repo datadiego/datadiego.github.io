@@ -23,15 +23,6 @@
     color: var(--muted);
 }
 
-.titlebar__hint {
-    color: var(--muted);
-    white-space: nowrap;
-}
-
-.titlebar__hint kbd {
-    margin: 0 0.15rem;
-}
-
 /* Main menu */
 .main-nav {
     padding: 0.625rem 1.25rem;

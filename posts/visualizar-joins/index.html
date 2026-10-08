@@ -70,22 +70,22 @@ boards --- messages</pre><p>La tabla de <em>users</em> está referenciada en <em
 </span></span></span><span class=line><span class=cl><span class=k>FROM</span><span class=w> </span><span class=n>users</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=k>JOIN</span><span class=w> </span><span class=n>messages</span><span class=w> </span><span class=k>ON</span><span class=w> </span><span class=n>messages</span><span class=p>.</span><span class=n>user_id</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>users</span><span class=p>.</span><span class=n>id</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=k>JOIN</span><span class=w> </span><span class=n>boards</span><span class=w> </span><span class=k>ON</span><span class=w> </span><span class=n>messages</span><span class=p>.</span><span class=n>board_id</span><span class=w> </span><span class=o>=</span><span class=w> </span><span class=n>boards</span><span class=p>.</span><span class=n>id</span><span class=p>;</span><span class=w>
-</span></span></span></code></pre></div><p>Ahora si hemos recorrido todo el camino del <em>grafo</em>, empezando por users, messages y boards:</p><pre tabindex=0><code>╭──────────┬─────────────────────────────────────────────┬──────╮
-│ username │                   message                   │ name │
-╞══════════╪═════════════════════════════════════════════╪══════╡
-│ admin    │ hola mundo                                  │ main │
-│ user0    │ como estamos?                               │ main │
-│ user1    │ que consola es vuestra favorita?            │ tech │
-│ user0    │ como aprender typescript sin volverme loco? │ tech │
-╰──────────┴─────────────────────────────────────────────┴──────╯
-</code></pre><p>Vamos a pensar en esta misma sentencia, pero empezando por <em>boards</em>, es muy similar a lo que hemos hecho ahora, pero empezamos en otro extremo del grafo, deberiamos ir a <em>messageboard</em> y por ultimo a <em>users</em>:</p><pre tabindex=0><code>SELECT
-users.username,
-messages.message,
-boards.name
-FROM boards
-JOIN messages ON messages.board_id = boards.id
-JOIN users ON messages.user_id = users.id;
-</code></pre><p>Es muy similar a la anterior, pero primero unimos <code>messages</code> con <code>boards</code>, y por último, <code>users</code>.</p><p>El orden de los <code>JOIN</code> da igual:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=line><span class=cl><span class=k>SELECT</span><span class=w>
+</span></span></span></code></pre></div><p>Ahora si hemos recorrido todo el camino del <em>grafo</em>, empezando por users, messages y boards:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>╭──────────┬─────────────────────────────────────────────┬──────╮
+</span></span><span class=line><span class=cl>│ username │                   message                   │ name │
+</span></span><span class=line><span class=cl>╞══════════╪═════════════════════════════════════════════╪══════╡
+</span></span><span class=line><span class=cl>│ admin    │ hola mundo                                  │ main │
+</span></span><span class=line><span class=cl>│ user0    │ como estamos?                               │ main │
+</span></span><span class=line><span class=cl>│ user1    │ que consola es vuestra favorita?            │ tech │
+</span></span><span class=line><span class=cl>│ user0    │ como aprender typescript sin volverme loco? │ tech │
+</span></span><span class=line><span class=cl>╰──────────┴─────────────────────────────────────────────┴──────╯
+</span></span></code></pre></div><p>Vamos a pensar en esta misma sentencia, pero empezando por <em>boards</em>, es muy similar a lo que hemos hecho ahora, pero empezamos en otro extremo del grafo, deberiamos ir a <em>messageboard</em> y por ultimo a <em>users</em>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>SELECT
+</span></span><span class=line><span class=cl>users.username,
+</span></span><span class=line><span class=cl>messages.message,
+</span></span><span class=line><span class=cl>boards.name
+</span></span><span class=line><span class=cl>FROM boards
+</span></span><span class=line><span class=cl>JOIN messages ON messages.board_id = boards.id
+</span></span><span class=line><span class=cl>JOIN users ON messages.user_id = users.id;
+</span></span></code></pre></div><p>Es muy similar a la anterior, pero primero unimos <code>messages</code> con <code>boards</code>, y por último, <code>users</code>.</p><p>El orden de los <code>JOIN</code> da igual:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=line><span class=cl><span class=k>SELECT</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=n>users</span><span class=p>.</span><span class=n>username</span><span class=p>,</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=n>messages</span><span class=p>.</span><span class=n>message</span><span class=p>,</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=n>boards</span><span class=p>.</span><span class=n>name</span><span class=w>

