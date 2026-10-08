@@ -4,7 +4,7 @@
 </span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;Probando branches en git&#34;</span> &gt; README.md
 </span></span><span class=line><span class=cl>git add . <span class=o>&amp;&amp;</span> git commit -m <span class=s2>&#34;commit inicial&#34;</span>
 </span></span><span class=line><span class=cl>git log --oneline
-</span></span></code></pre></div><p>Ahora mismo tenemos un commit en <code>master</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>1d756ec (HEAD -&gt; master) commit inicial
+</span></span></code></pre></div><p>Ahora mismo tenemos un commit en <code>master</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>1d756ec <span class=o>(</span>HEAD -&gt; master<span class=o>)</span> commit inicial
 </span></span></code></pre></div><p>Vamos a crear una funcion <code>saludo()</code> en python. Pero en lugar de usar la rama principal, lo desarrollaremos en una branch separada.</p><p>Primero creamos la rama y nos movemos a ella:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>test</span> on  master
 </span></span><span class=line><span class=cl>❯ git branch funcion-saludo
 </span></span><span class=line><span class=cl>

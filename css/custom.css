@@ -151,6 +151,26 @@
     gap: 0.375rem;
 }
 
+/* typography.css fuerza el marcador '▸' en todo ul li; aquí sobra */
+.tags li::marker {
+    content: "";
+}
+
+.tags a {
+    display: inline-block;
+    border: 1px solid var(--border-strong);
+    padding: 0.125rem 0.5rem;
+    color: var(--fg);
+    text-decoration: none;
+    transition: background-color 120ms ease, border-color 120ms ease, color 120ms ease;
+}
+
+.tags a:hover {
+    background: var(--link);
+    border-color: var(--link);
+    color: var(--bg);
+}
+
 /* ── Search / fuzzy finder ──────────────────────── */
 .search__input-wrapper {
     display: flex;

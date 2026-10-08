@@ -13,10 +13,10 @@
 </span></span><span class=line><span class=cl>.rw-r--r--@ <span class=m>360</span> datadiego <span class=m>10</span> sep 15:25 basic.cheat
 </span></span><span class=line><span class=cl>.rw-r--r--@ <span class=m>221</span> datadiego <span class=m>10</span> sep 15:25 procesos.cheat
 </span></span><span class=line><span class=cl>.rw-r--r--@ <span class=m>127</span> datadiego <span class=m>10</span> sep 15:25 red.cheat
-</span></span></code></pre></div><p>Por ejemplo, <code>basic.cheat</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl># Básicos
+</span></span></code></pre></div><p>Por ejemplo, <code>basic.cheat</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># Básicos</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>% Directorio actual
-</span></span><span class=line><span class=cl>pwd
+</span></span><span class=line><span class=cl><span class=nb>pwd</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>% Listar archivos y directorios
 </span></span><span class=line><span class=cl>ls
@@ -25,7 +25,7 @@
 </span></span><span class=line><span class=cl>ls -la
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>% Moverse a un directorio
-</span></span><span class=line><span class=cl>cd &lt;directorio&gt;
+</span></span><span class=line><span class=cl><span class=nb>cd</span> &lt;directorio&gt;
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>% Crear archivo
 </span></span><span class=line><span class=cl>touch &lt;archivo&gt;
@@ -40,26 +40,26 @@
 </span></span><span class=line><span class=cl>mkdir -p &lt;ruta&gt;
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>% Encontrar archivos por nombre
-</span></span><span class=line><span class=cl>find &lt;directorio&gt; -name &#34;*.txt&#34;
-</span></span></code></pre></div><p>Es importante que las partes de cada comando que necesites rellenar tu como usuario las envuelvas en <code>&lt;></code>. Navi te pedirá que las rellenes cuando las selecciones:</p><p><img src=./navi2.png alt=navi2></p><p>Por último, configura navi en <code>~/.config/navi/config.yaml</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>style:
-</span></span><span class=line><span class=cl>  tag:
-</span></span><span class=line><span class=cl>    width_percentage: 40
-</span></span><span class=line><span class=cl>    min_width: 20
-</span></span><span class=line><span class=cl>  comment:
-</span></span><span class=line><span class=cl>    width_percentage: 10
-</span></span><span class=line><span class=cl>    min_width: 0
-</span></span><span class=line><span class=cl>    max_width: 10
-</span></span><span class=line><span class=cl>  snippet:
-</span></span><span class=line><span class=cl>    width_percentage: 50
-</span></span><span class=line><span class=cl>    min_width: 0
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>cheats:
-</span></span><span class=line><span class=cl>  paths:
-</span></span><span class=line><span class=cl>    - /home/datadiego/.cheatsheets
-</span></span></code></pre></div><p>La parte importante en realidad es:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>cheats:
-</span></span><span class=line><span class=cl>  paths:
-</span></span><span class=line><span class=cl>    - /home/datadiego/.cheatsheets
-</span></span></code></pre></div><p>Configuralo con la ruta a donde tengas tus archivos de cheatsheets para que al abrir <code>navi</code> los encuentre, el resto de configuración ayuda a que se muestre bien en terminales más pequeñas, pero no es necesario.</p><h3 id=un-ultimo-detalle>Un ultimo detalle</h3><p>Por defecto <code>navi</code> ejecuta el comando, pero en ocasiones necesito usar un pipe junto al mismo, o redirigir la salida a un archivo, en mi <code>.bashrc</code> se carga lo siguiente:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>_navi_call<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>find &lt;directorio&gt; -name <span class=s2>&#34;*.txt&#34;</span>
+</span></span></code></pre></div><p>Es importante que las partes de cada comando que necesites rellenar tu como usuario las envuelvas en <code>&lt;></code>. Navi te pedirá que las rellenes cuando las selecciones:</p><p><img src=./navi2.png alt=navi2></p><p>Por último, configura navi en <code>~/.config/navi/config.yaml</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>style</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>tag</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>width_percentage</span><span class=p>:</span><span class=w> </span><span class=m>40</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>min_width</span><span class=p>:</span><span class=w> </span><span class=m>20</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>comment</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>width_percentage</span><span class=p>:</span><span class=w> </span><span class=m>10</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>min_width</span><span class=p>:</span><span class=w> </span><span class=m>0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>max_width</span><span class=p>:</span><span class=w> </span><span class=m>10</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>snippet</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>width_percentage</span><span class=p>:</span><span class=w> </span><span class=m>50</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>min_width</span><span class=p>:</span><span class=w> </span><span class=m>0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>cheats</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>paths</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>/home/datadiego/.cheatsheets</span><span class=w>
+</span></span></span></code></pre></div><p>La parte importante en realidad es:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>cheats</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>paths</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>/home/datadiego/.cheatsheets</span><span class=w>
+</span></span></span></code></pre></div><p>Configuralo con la ruta a donde tengas tus archivos de cheatsheets para que al abrir <code>navi</code> los encuentre, el resto de configuración ayuda a que se muestre bien en terminales más pequeñas, pero no es necesario.</p><h3 id=un-ultimo-detalle>Un ultimo detalle</h3><p>Por defecto <code>navi</code> ejecuta el comando, pero en ocasiones necesito usar un pipe junto al mismo, o redirigir la salida a un archivo, en mi <code>.bashrc</code> se carga lo siguiente:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>_navi_call<span class=o>()</span> <span class=o>{</span>
 </span></span><span class=line><span class=cl>   <span class=nb>local</span> <span class=nv>result</span><span class=o>=</span><span class=s2>&#34;</span><span class=k>$(</span>navi <span class=s2>&#34;</span><span class=nv>$@</span><span class=s2>&#34;</span> &lt;/dev/tty<span class=k>)</span><span class=s2>&#34;</span>
 </span></span><span class=line><span class=cl>   <span class=nb>printf</span> <span class=s2>&#34;%s&#34;</span> <span class=s2>&#34;</span><span class=nv>$result</span><span class=s2>&#34;</span>
 </span></span><span class=line><span class=cl><span class=o>}</span>
