@@ -3,7 +3,7 @@ title: "Cheatsheets en Linux"
 author: datadiego
 draft: false
 description: Como no volver a olvidar comandos en tu distro
-date: 2026-09-10
+date: 2026-05-10
 tags:
   - linux
 layout: layouts/post.njk
