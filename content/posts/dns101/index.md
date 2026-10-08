@@ -142,7 +142,7 @@ Diferentes dominios pueden tener diferentes servidores de nombres autoritativos.
 
 En muchos sitios, verás que se refieren a los registros como *RR* o *Resource Records*. Esto es porque los registros DNS son un tipo de recurso que se almacena en el servidor DNS. Cada registro tiene un tipo, un nombre, un valor y un tiempo de vida (TTL).
 
-```
+```text
       0  1  2  3  4  5  6  7  8  9  0  1  2  3  4  5
     +-----------------------------------------------+
     |                      NAME                     |

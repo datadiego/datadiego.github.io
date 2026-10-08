@@ -33,7 +33,7 @@ git log --oneline
 
 Ahora mismo tenemos un commit en `master`:
 
-```
+```bash
 1d756ec (HEAD -> master) commit inicial
 ```
 

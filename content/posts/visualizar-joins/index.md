@@ -151,7 +151,7 @@ JOIN boards ON messages.board_id = boards.id;
 
 Ahora si hemos recorrido todo el camino del *grafo*, empezando por users, messages y boards:
 
-```
+```text
 ╭──────────┬─────────────────────────────────────────────┬──────╮
 │ username │                   message                   │ name │
 ╞══════════╪═════════════════════════════════════════════╪══════╡
@@ -164,7 +164,7 @@ Ahora si hemos recorrido todo el camino del *grafo*, empezando por users, messag
 
 Vamos a pensar en esta misma sentencia, pero empezando por *boards*, es muy similar a lo que hemos hecho ahora, pero empezamos en otro extremo del grafo, deberiamos ir a *messageboard* y por ultimo a *users*:
 
-```
+```sql
 SELECT
 users.username,
 messages.message,

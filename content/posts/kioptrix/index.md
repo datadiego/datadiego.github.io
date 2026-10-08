@@ -18,7 +18,7 @@ Escaneamos con `nmap -sn <ip>/<rango>`, encontramos la maquina en la ip `192.168
 
 Escaneamos con `nmap -sV 192.168.0.24` para realizar una enumeración de puertos y servicios.
 
-```
+```bash
 Nmap scan report for 192.168.0.24
 Host is up (0.0021s latency).
 Not shown: 994 closed ports
@@ -60,7 +60,7 @@ Una vez tenemos la version, podemos buscar si existen exploits con `searchsploit
 
 Con searchsploit samba 2.2.1a nos da el siguiente resultado:
 
-```
+```bash
 ------------------------------- ---------------------------------
  Exploit Title                 |  Path
 ------------------------------- ---------------------------------

@@ -32,6 +32,12 @@ body {
       "footer";
 }
 
+/* ...así que la copia del aside (y su separador) se ocultan en móvil */
+.page--has-search .page__aside .aside__sep,
+.page--has-search .page__aside .tags-block {
+    display: none;
+}
+
 @media (max-width: 45rem) {
     .page {
         width: calc(100% - 1rem);
@@ -55,6 +61,17 @@ body {
           "search  aside"
           "body    aside"
           "footer  footer";
+    }
+
+    /* En escritorio los tags viven solo en el aside: la copia de
+       detrás del buscador se oculta y la del aside vuelve a verse */
+    .page--has-search .page__search .tags-block {
+        display: none;
+    }
+
+    .page--has-search .page__aside .aside__sep,
+    .page--has-search .page__aside .tags-block {
+        display: block;
     }
 }
 

@@ -17,7 +17,7 @@ En Windows tienes diferentes *discos y particiones* como `C:` para el disco prin
 
 Por ejemplo, un documento podría tener una **ruta** como esta:
 
-```
+```text
 C:\Users\Diego\Documents\archivo.txt
 ```
 
@@ -27,7 +27,7 @@ En linux no hay diferentes discos y particiones, parte de una **raiz única** `/
 
 Un documento podría tener una **ruta** como esta:
 
-```
+```text
 /home/diego/documentos/archivo.txt
 ```
 
@@ -161,7 +161,7 @@ Contiene todos los binarios, documentación y librerias que usan los usuarios.
 
 Sigue la siguiente jerarquia:
 
-```
+```text
 /usr
 ├── bin
 ├── lib

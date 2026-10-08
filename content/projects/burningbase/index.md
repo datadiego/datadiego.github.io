@@ -33,7 +33,7 @@ En cuanto probé con un par de aplicaciones de reddit el mismo proceso que con m
 
 No solo eso, la mayoría usan servicios como *netlify*, *vercel* o la propia *firebase* para hostear gratuitamente el proyecto, por lo que usar **google dorks** como estos:
 
-```
+```text
 site:vercel.app
 site:netlify.app login
 site:github.io dashboard

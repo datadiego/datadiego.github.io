@@ -24,7 +24,7 @@ Las urls son **largas**, no están pensadas para que las recuerdes, un usuario d
 
 Ten en cuenta que están compuestas por 56 caracteres aleatorios, pero podemos usar software para encontrar algo de orden en ese caos y que empiecen por alguna palabra identificativa. Este blog usa:
 
-```
+```text
 rogueo7ciqckck2yhf2dqmqxsrav3ydsobcxkun7f5dmysskcxyfgead.onion
 ```
 
@@ -85,7 +85,7 @@ sudo cp -r rogue7jve2zbk2pwqgllfotmj6ka6ckq5p3snmp75c7gjkito6ymkuyd.onion/ /var/
 
 Vamos a configurar nuestro servicio en `/etc/tor/torrc`:
 
-```
+```text
 HiddenServiceDir /var/lib/tor/rogue/
 HiddenServicePort 80 127.0.0.1:80
 ```

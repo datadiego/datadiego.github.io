@@ -16,7 +16,7 @@ Un `Dockerfile` no es mas que un archivo de texto que contiene las instrucciones
 
 Vamos a crear un contenedor básico que use `Ubuntu` como base:
 
-```
+```dockerfile
 # Usa la imagen oficial de Ubuntu como base
 FROM ubuntu:latest
 # Establece el directorio de trabajo
@@ -41,7 +41,7 @@ La instrucción `FROM` se usa para especificar que imagen se usa como base para 
 
 Algunos ejemplos de imágenes base:
 
-```
+```dockerfile
 FROM ubuntu:latest
 FROM python:latest
 FROM node:latest
@@ -66,7 +66,7 @@ La instrucción `CMD` se usa para especificar el comando que se ejecutará cuand
 
 Algunos ejemplos de comandos utiles para Docker:
 
-```
+```dockerfile
 CMD ["python", "app.py"] # ejecutar un script de python
 CMD ["node", "app.js"] # ejecutar un script de node
 CMD ["nginx", "-g", "daemon off;"] # ejecutar nginx
@@ -82,7 +82,7 @@ Es útil para instalar paquetes o ejecutar scripts que son necesarios para la ap
 
 Vamos a añadir un par de instrucciones `RUN` al `Dockerfile` que creamos al principio:
 
-```
+```dockerfile
 FROM ubuntu:latest
 WORKDIR /cyber
 RUN apt-get update
@@ -93,7 +93,7 @@ CMD ["/bin/bash"]
 
 Vuelve a construir la imagen y ejecutar el contenedor. Deberías ver un archivo llamado `test.txt` en tu directorio de trabajo con el siguiente contenido:
 
-```
+```bash
 datadiego@/tmp/test docker run -it testdocker
 root@737d06c77b19:/cyber# ls
 test.txt
@@ -111,13 +111,13 @@ root@737d06c77b19:/cyber#
 
 La instrucción `COPY` se usa para copiar archivos o directorios desde el host al contenedor. Esta instrucción se ejecutará en el directorio de trabajo especificado por la instrucción `WORKDIR`.
 
-```
+```dockerfile
 COPY <fuente> <destino>
 ```
 
 Crea un archivo `prueba.txt` en el mismo directorio que el `Dockerfile` y añade el siguiente contenido:
 
-```
+```dockerfile
 COPY prueba.txt /cyber
 ```
 
@@ -126,7 +126,7 @@ Al construir la imagen y ejecutar el contenedor, deberías ver un archivo llamad
 ## ENV
 La instrucción `ENV` se usa para establecer variables de entorno dentro del contenedor. Estas variables estarán disponibles para cualquier comando que se ejecute en el contenedor.
 
-```
+```dockerfile
 ENV <nombre_variable> <valor_variable>
 ENV NODE_ENV=production
 ENV PORT=3000
@@ -138,14 +138,14 @@ En algunos casos, puedes ver que se usa la instrucción `ENV` para declarar vari
 
 La instrucción `ARG` se usa para declarar variables que se pueden pasar al contenedor durante la construcción de la imagen. Estas variables no estarán disponibles en el contenedor, pero se pueden usar para personalizar la construcción de la imagen. Por ejemplo:
 
-```
+```dockerfile
 ARG PORT
 ARG NODE_ENV=production
 ```
 
 El primer argumento `PORT` no tiene valor por defecto, por lo que tendrás que pasarlo al construir la imagen. El segundo argumento `NODE_ENV` tiene un valor por defecto de `production`, pero puedes cambiarlo al construir la imagen, por ejemplo:
 
-```
+```bash
 docker build --build-arg PORT=3000 --build-arg NODE_ENV=development -t test .
 ```
 
@@ -155,7 +155,7 @@ Esto pasará los argumentos al contenedor y podrás usarlos en el `Dockerfile` c
 
 Por defecto, los contenedores de Docker no exponen puertos al host por seguridad. Si necesitas disponer de un puerto para accederlo desde el host que ejecuta el contenedor, tendrás que usar la instrucción `EXPOSE` para exponer el puerto al host.
 
-```
+```dockerfile
 FROM node:latest
 WORKDIR /cyber
 COPY . .

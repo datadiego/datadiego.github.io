@@ -49,13 +49,13 @@ Este bash prompt contiene información útil, como la *ruta* en la que te encuen
 
 Por ejemplo, en un fedora por defecto veras tu usuario, hostname y la ruta en la que te encuentras:
 
-```
+```bash
 datadiego@fedora:~$ 
 ```
 
 En mi arch, simplemente tengo:
 
-```
+```bash
 ~ ❯
 ```
 
@@ -614,7 +614,7 @@ Vamos a usar algunos de estos comandos para personalizar nuestro `prompt`, utili
 
 Por ejemplo, he creado este:
 
-```
+```bash
 PS1='\[\e[38;5;197m\]\u\[\e[0m\]@\[\e[38;5;48m\]\H\[\e[0m\]:\[\e[38;5;198m\]\w\[\e[0m\]'
 ```
 

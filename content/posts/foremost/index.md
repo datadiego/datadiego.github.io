@@ -70,7 +70,7 @@ Utilizaremos `dd` para esto:
 
 Con `lsblk` podemos listar los dispositivos de memoria que tenemos conectados, en mi caso, el usb está en `sdb`, asi que haremos:
 
-```
+```bash
 sudo dd if=/dev/sdb of=usb.img bs=4M status=progress conv=fsync
 ```
 
@@ -110,7 +110,7 @@ cut -d' ' -f1 sha256 | awk '{print $1"  usb.img"}' | sha256sum -c
 
 Que nos devuelve:
 
-```
+```bash
 usb.img: La suma coincide
 ```
 

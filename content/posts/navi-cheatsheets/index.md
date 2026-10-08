@@ -119,7 +119,7 @@ En mi caso, me gusta almacenar mis cheatsheets en `~/.cheatsheets`, un ejemplo:
 
 Por ejemplo, `basic.cheat`:
 
-```
+```bash
 # Básicos
 
 % Directorio actual
@@ -156,7 +156,7 @@ Es importante que las partes de cada comando que necesites rellenar tu como usua
 
 Por último, configura navi en `~/.config/navi/config.yaml`:
 
-```
+```yaml
 style:
   tag:
     width_percentage: 40
@@ -176,7 +176,7 @@ cheats:
 
 La parte importante en realidad es:
 
-```
+```yaml
 cheats:
   paths:
     - /home/datadiego/.cheatsheets

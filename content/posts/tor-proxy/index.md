@@ -36,7 +36,7 @@ Tor (siglas de *The Onion Router*) es un protocolo de red que permite anominizar
 
 Si visitas una página, los paquetes siguen esta ruta:
 
-```
+```text
 Peticion:
 PC -> Router/NAT -> ISP -> Servidor Web 
 
@@ -48,7 +48,7 @@ La NAT es nuestra puerta de entrada a internet, nuestro proveedor de internet en
 
 Mediante tor hacemos, de manera simplificada:
 
-```
+```text
 Peticion:
 PC -> Router/NAT -> ISP -> Tor -> Servidor Web
 
@@ -62,7 +62,7 @@ Aqui el ISP solo puede ver que hacemos una petición a un nodo en la red tor, pe
 
 Si analizamos la explicación anterior:
 
-```
+```text
 Peticion:
 PC -> Router/NAT -> ISP -> Tor -> Servidor Web
 
@@ -74,7 +74,7 @@ Podemos acabar con la sensación de que simplemente pasamos de dar nuestra infor
 
 La realidad es mas bien asi:
 
-```
+```text
 Peticion:
 PC -> Router/NAT -> ISP -> Nodo entrada Tor -> Nodo intermedio Tor -> Nodo salida Tor -> Servidor Web
 
@@ -113,7 +113,7 @@ Tor oculta con quien hablas, https oculta que os decis.
 
 La URL de un sitio onion es similar a:
 
-```
+```text
 za6kfmbjya3vallyt7pgy3oyghemcgs6j2amgd2wddpauap7w56dw6ad.onion
 ```
 
@@ -227,7 +227,7 @@ Sin embargo, hay amenazas reales acerca de cómo existen ciertos ataques que un 
 
 Si una organización puede controlar **gran parte de los relays de Tor** y comienza a vigilar el tráfico, en muchos casos podrán controlar y observar ambos extremos en los nodos que envian los paquetes entre si:
 
-```
+```text
 PC -> Router/NAT -> ISP -> Nodo malicioso -> Nodo malicioso -> Nodo malicioso -> Servidor Web
 ```
 

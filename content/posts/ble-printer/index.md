@@ -30,7 +30,7 @@ BLE es una tecnología y protocolo de comunicación de corto alcance, permite la
 
 Para entender como podemos comunicarnos con uno, podemos entender cualquier dispositivo BLE siguiendo esta estructura:
 
-```
+```text
 Dispositivo BLE
 │
 ├── Servicio A
@@ -82,7 +82,7 @@ asyncio.run(main())
 
 Esto nos devolverá los dispositivos cercanos y sus direcciones *MAC*:
 
-```
+```bash
 None 32:24:A9:BB:D1:FE
 DV2_90380CE1E5D2 90:38:0C:E1:E5:D2
 None 59:A6:13:59:5E:D7
@@ -122,7 +122,7 @@ asyncio.run(main())
 
 Una vez obtenemos la dirección, usamos el cliente para obtener tanto los servicios como sus caracteristicas y propiedades, y el uuid que identifica cada uno:
 
-```
+```bash
 0000ae3a-0000-1000-8000-00805f9b34fb: Vendor specific
     0000ae3b-0000-1000-8000-00805f9b34fb ['write-without-response']
     0000ae3c-0000-1000-8000-00805f9b34fb ['notify']
@@ -197,7 +197,7 @@ asyncio.run(main())
 
 Al ejecutarlo obtenemos:
 
-```
+```bash
 Conectando a 7C:09:09:18:44:FD
 2A00:
   Raw: bytearray(b'MX10')
@@ -248,7 +248,7 @@ Vamos a buscar los siguientes términos con `grep -r`:
 
 Vamos a analizar el resultado de `grep -r "AE01"`:
 
-```
+```bash
 …/com.fun.mxw-8.07.03/sources ❯ grep -r AE01
 com/wtx/ytbbleplugin/ytbBleFastV2Module.java:                if (TextUtils.equals("aa01", hexString) || TextUtils.equals("5178ae0101001070ff", hexString) || TextUtils.equals("2221a800010020e0ff", hexString) || TextUtils.equals("2221ae0101001070ff", hexString) || TextUtils.equals("2221ae0001000000", hexString) || TextUtils.equals("5178AE01001070FF", hexString)) {
 com/wtx/ytbbleplugin/ytbBleFastV2Module.java:                } else if (TextUtils.equals("aa00", hexString) || TextUtils.equals("5178ae0101000000ff", hexString) || TextUtils.equals("2221a80001003090ff", hexString) || TextUtils.equals("2221ae0101000000ff", hexString) || TextUtils.equals("2221ae0001001000", hexString) || TextUtils.equals("5178AE01000000FF", hexString)) {
@@ -266,7 +266,7 @@ Pedimos ayuda a un agente de IA para que analice el resto del código y nos devu
 
 Dar con este archivo por un humano habría costado bastante, y requeriría de bastante tiempo. Pero ahora tenemos toda esta información recopilada por el agente:
 
-```
+```text
 Todos los comandos usan esta estructura:
 51 78 [comando] [longitud_hi] [longitud_lo] 00 [datos...] [crc8] FF
 - 51 78 = Header mágico (todos los comandos V5g)
@@ -327,7 +327,7 @@ En el ejemplo, simplemente **leimos** el valor de una característica. Esto solo
 
 El agente comenta que podemos descomponer un mensaje a la impresora de la siguiente forma:
 
-```
+```text
 51 78 [comando] [longitud_hi] [longitud_lo] 00 [datos...] [crc8] FF
 ```
 
@@ -348,7 +348,7 @@ La `longitud_hi` y `longitud_lo` son dos bytes que definen **cuantos bytes de da
 
 Vamos a verlo con algunos ejemplos:
 
-```
+```text
 51 78 A4 00 01 00 35 [crc8] FF
        │  │  │
        │  │  └── longitud_lo = 01 (1 byte de datos)
@@ -358,7 +358,7 @@ Vamos a verlo con algunos ejemplos:
 
 Otro ejemplo con más datos:
 
-```
+```text
 51 78 B1 00 02 00 4E 20 [crc8] FF
        │  │  │
        │  │  └── longitud_lo = 02 (2 bytes de datos)
@@ -399,7 +399,7 @@ Antes de meternos en imprimir, vamos a comprobar que todo lo anterior es correct
 
 Vamos a enviar el siguiente comando:
 
-```
+```text
 51    78    A1    00    02    00    30    00    F9    FF
 │     │     │     │     │     │     │     │     │     │
 │     │     │     │     │     │     │     │     │     └── Terminador

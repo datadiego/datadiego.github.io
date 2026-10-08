@@ -15,7 +15,7 @@ Tus VM están completamente aisladas del sistema host, haciendo que no puedas ac
 
 Aqui vemos la información relativa a mi tarjeta de red en el sistema host:
 
-```
+```bash
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -34,7 +34,7 @@ Aqui vemos la información relativa a mi tarjeta de red en el sistema host:
 
 Y aqui la de la máquina virtual:
 
-```
+```bash
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
     inet 127.0.0.1/8 scope host lo
@@ -80,13 +80,13 @@ En esta situación tenemos un escenario tipico para crear un **reverse ssh tunne
 
 Antes de crear el tunel en si, necesitamos modificar `/etc/ssh/sshd_config` en nuestra máquina host con la siguiente opción:
 
-```
+```text
 AllowTcpForwarding yes
 ```
 
 Luego, reinicia el servicio sshd:
 
-```
+```bash
 sudo systemctl restart sshd
 ```
 

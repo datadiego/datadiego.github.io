@@ -35,7 +35,7 @@ Tiene una tabla de `Users` con dos columnas, `username` y `password`.
 
 Lanzamos una query para obtener ambas columnas:
 
-```
+```graphql
 query ExampleQuery {
   users {
     username, password
@@ -92,7 +92,7 @@ flute:~$
 
 Hay los siguientes usuarios:
 
-```
+```bash
 flute:~$ cat /etc/passwd
 root:x:0:0:root:/root:/bin/sh
 bin:x:1:1:bin:/bin:/sbin/nologin

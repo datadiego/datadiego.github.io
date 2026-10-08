@@ -153,7 +153,7 @@ Por un lado mantengo la imagen que estoy editando abierta en una ventana, el edi
 
 Hay una parte que nos va a llamar la atención justo al principio de nuestro archivo si sabemos un poco sobre imagenes:
 
-```
+```text
 ÿØÿà JFIF  H H  ÿá*>Exif  
 ```
 
@@ -164,7 +164,7 @@ Esta parte corresponde al `header`, y vemos que si muestra datos que podemos lee
 
 Los datos del header **no deberían ser modificados**, de lo contrario, es posible que corrompamos totalmente la imagen y no se pueda abrir, vamos a demostrarlo cambiando parte del inicio de la imagen:
 
-```
+```text
 ÿØÿà JFIF  H H  ÿá*>Exif  esto romperá la imagen  
 ```
 
@@ -221,7 +221,7 @@ Copiar y pegar partes de la misma imagen produce lo esperado:
 
 Una técnica muy efectiva es **sustituir** todas las coincidencias de un caracter o conjunto de estos por otro, en neovim, podemos hacerlo con expresiones como:
 
-```
+```vim
 :%s/a/hola/g
 ```
 
@@ -253,7 +253,7 @@ Hasta ahora hemos probado solo con el formato `jpg`, pero tenemos muchos con los
 
 Vamos a probar a hacer la misma acción en estos formatos:
 
-```
+```text
 lobster.bmp
 lobster.gif
 lobster.pdf
@@ -288,7 +288,7 @@ Suele corromperse por completo, es otro formato difícil de manipular en este co
 
 Este formato es interesante, si lo abrimos, encontraremos algo como esto:
 
-```
+```text
 %PDF-1.7
 1 0 obj
 <<
@@ -361,13 +361,13 @@ Si modificamos la información del jpg vamos a obtener los mismos tipos de efect
 
 Por ejemplo, podemos cambiar esta linea:
 
-```
+```text
 /BitsPerComponent 8
 ```
 
 Por:
 
-```
+```text
 /BitsPerComponent 2
 ```
 
@@ -381,7 +381,7 @@ Con el valor `4`:
 
 Podemos jugar con los valores de *alto* y *ancho* relativos a la imagen junto a *BitsPerComponent*:
 
-```
+```text
 /Width 1440
 /Height 1152
 /ColorSpace 10 0 R

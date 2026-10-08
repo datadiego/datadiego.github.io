@@ -58,7 +58,7 @@ Vamos a utilizar Caddy como un proxy reverso, este escuchará primero en el puer
 
 Caddy funciona mediante archivos de configuración llamados `Caddyfile`:
 
-```
+```caddyfile
 cyberbunny.online {
     reverse_proxy localhost:8000
 }

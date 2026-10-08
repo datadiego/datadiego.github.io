@@ -62,7 +62,7 @@ Prueba a abrir el navegador y entrar en `localhost`, deberías ver la página po
 
 Como tal, si es para desarrollo, no necesitamos configurar nada más, pero tendremos que comprobar el archivo `/etc/nginx/nginx.conf` y por lo menos comprobar la opcion `root`:
 
-```
+```nginx
    server {
         listen       80;
         listen       [::]:80;

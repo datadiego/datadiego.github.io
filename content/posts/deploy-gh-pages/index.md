@@ -14,7 +14,7 @@ Github Pages es una herramienta que permite alojar sitios web estáticos directa
 
 Tendrás que crear un repositorio en GitHub que tenga el siguiente nombre:
 
-```
+```text
 <username>.github.io
 ```
 
