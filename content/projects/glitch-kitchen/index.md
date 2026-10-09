@@ -3,7 +3,7 @@ title: "Glitch-kitchen"
 draft: false
 description: Herramienta de procesamiento de imágenes
 repo: "https://github.com/datadiego/glitch-kitchen"
-demo: "https://glitch-kitchen-nuta.onrender.com"
+demo: "https://glitch-kitchen-grji.onrender.com/"
 ---
 
 Inspirada en [CyberChef](https://gchq.github.io/CyberChef/) y las cadenas de efectos en serie de audio.
