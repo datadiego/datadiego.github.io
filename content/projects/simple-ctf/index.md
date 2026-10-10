@@ -42,6 +42,8 @@ Se implementaron todas las funcionalidades que se necesitaban:
 
 El administrador puede dejar los registros abiertos completamente, limitarlos a quienes saben una clave secreta que puede configurar desde la interfaz web, o cerrarlos completamente y crear el manualmente los usuarios que participarán en los retos.
 
+![registros](./registros.png)
+
 También puede crear otros administradores que pueden crear tanto retos como logros.
 
 Todas las contraseñas van hasheadas usando argon2.
@@ -54,15 +56,31 @@ Disponemos de varios tipos de retos:
 - *Selección*: Preguntas con varias respuestas posibles que el usuario selecciona.
 - *Manual*: Preguntas más abiertas, el/los administradores deben revisarlas manualmente, y pueden adjuntar una nota junto a la revisión.
 
+![retos1](./retos1.png)
+
 Todas pueden ser *dinámicas*, donde los puntos obtenidos disminuyen con cada respuesta fallida, pudiendo controlar cuanto bajan, de forma que puedas hacer preguntas que sólo se puedan intentar una vez, o varias pero con peor resultado en el leaderboard.
 
 Todos los retos pueden exportarse en un *.zip* que luego se puede volver a importar para cursos nuevos, es útil para crear toda una serie de retos en local, y luego importarlos cuando estén listos, el creador puede controlar que retos son visibles a los usuarios.
+
+![retos2](./retos2.png)
 
 ### Logros
 
 Los logros se desbloquean por los usuarios bajo ciertas condiciones, y pueden dar puntos extra. Incentiva el resolver los retos para alcanzar ciertas metas, incluso con algunas que sólo se puede desbloquear un usuario.
 
+![logros1](./fb2.png)
+
 Se incluyen múltiples logros básicos que pueden usarse en cualquier instancia, deberían ser suficientes para un curso.
+
+### Medallas
+
+En ocasiones podemos tener algún error a la hora de crear un reto, puede que un alumno lo detecte, dé con una solución nueva, o aporte algo adicional en clase que merezca la pena recompensar.
+
+Las medallas se crean manualmente y se asignan a un usuario junto a los puntos que deseemos.
+
+![medallas](./medallas.png)
+
+Esto soluciona cualquier frustración por parte del alumno ante un error nuestro, y sirve para reforzar nuestros retos de un año a otro gracias a los propios usuarios.
 
 ### Feedback del usuario
 
