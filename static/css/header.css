@@ -80,15 +80,13 @@
 
 @media (max-width: 640px) {
     .main-nav ul {
-        flex-flow: row nowrap;
-        gap: 0.125rem 0.25rem;
+        flex-flow: row wrap;
+        gap: 0.25rem 0.75rem;
         white-space: nowrap;
-        overflow-x: auto;
-        scrollbar-width: none;
     }
 
-    .main-nav ul::-webkit-scrollbar {
-        display: none;
+    .main-nav li:first-child {
+        flex-basis: 100%;
     }
 
     .main-nav a {
