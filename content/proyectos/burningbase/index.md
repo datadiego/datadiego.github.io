@@ -1,10 +1,11 @@
 ---
 title: "Burningbase"
 draft: false
-description: Herramienta de pentesting
 repo: "https://github.com/datadiego/burningbase"
 link: ""
 ---
+
+Herramienta de pentesting
 
 Extrae todos los datos expuestos de manera automatizada en páginas que usen Firebase en su frontend, solo necesitas la url, burningbase buscará recursivamente el sitio en busca de las credenciales e intentará extraer por fuerza bruta los datos almacenados.
 

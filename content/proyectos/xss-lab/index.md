@@ -1,9 +1,10 @@
 ---
 title: "XSS-Lab"
 draft: false
-description: Laboratorio de pentesting XSS
 repo: "https://github.com/datadiego/xss-lab"
 ---
+
+Laboratorio de pentesting XSS
 
 Laboratorio realizado para una demostración sobre ataques XSS en varias charlas.
 

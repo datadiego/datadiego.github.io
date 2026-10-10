@@ -1,10 +1,11 @@
 ---
 title: "Material Unix"
 draft: false
-description: "Contenido para introducción a Linux"
 repo: ""
 link: "https://datadiego.github.io/unix/"
 ---
+
+Contenido para introducción a Linux
 
 Unidades didacticas online para los cursos en los que imparto clases en el FP de DAM.
 

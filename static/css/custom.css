@@ -120,6 +120,16 @@
     color: var(--off-fg);
 }
 
+.post__more {
+    color: var(--link);
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.post__more:hover {
+    text-decoration: underline;
+}
+
 .date {
     color: var(--muted);
 }

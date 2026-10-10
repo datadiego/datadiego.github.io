@@ -1,10 +1,11 @@
 ---
 title: "Material LMSGI"
 draft: false
-description: "Contenido para la materia de Lenguajes de Marcas"
 repo: ""
 link: "https://datadiego.github.io/lmsgi/"
 ---
+
+Contenido para la materia de Lenguajes de Marcas
 
 Unidades didacticas online para los cursos en los que imparto clases en el FP de DAM.
 

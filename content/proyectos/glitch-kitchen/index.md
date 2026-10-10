@@ -1,10 +1,11 @@
 ---
 title: "Glitch-kitchen"
 draft: false
-description: Herramienta de procesamiento de imágenes inspirada en las cadenas de efectos en serie de audio.
 repo: "https://github.com/datadiego/glitch-kitchen"
 demo: "https://glitch-kitchen-grji.onrender.com/"
 ---
+
+Herramienta de procesamiento de imágenes inspirada en las cadenas de efectos en serie de audio.
 
 Procesa de múltiples imágenes en batch, crea bucles para efectos destructivos, animaciones gif, efectos de feedback enviando el resultado al input, comparte tus cadenas de efectos con otros exportándolos o genera un script standalone para usarlo en tu PC.
 

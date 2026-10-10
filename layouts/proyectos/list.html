@@ -10,12 +10,18 @@
         <header class="post__header">
             <h1 class="post__title"><a href="{{ .RelPermalink }}">{{ .Title | markdownify }}</a></h1>
         </header>
-        {{ with .Params.description }}
-        <p class="post__description">{{ . }}</p>
-        {{ end }}
         {{ if .Content }}
+        {{ $link := .RelPermalink }}
+        {{ $lines := slice }}
+        {{ range split .Plain "\n" }}
+            {{ $l := trim . " \t\r" }}
+            {{ if $l }}{{ $lines = $lines | append $l }}{{ end }}
+        {{ end }}
+        {{ $paras := split (delimit $lines "\n" | truncate 150 "") "\n" }}
         <div class="post__content">
-            {{ .Content | truncate 150 }}
+            {{ range $i, $p := $paras }}
+            <p>{{ $p }}{{ if eq $i (sub (len $paras) 1) }} <a class="post__more" href="{{ $link }}">Seguir leyendo →</a>{{ end }}</p>
+            {{ end }}
         </div>
         {{ end }}
         {{ if or .Params.repo .Params.demo .Params.link }}
