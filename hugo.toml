@@ -41,15 +41,15 @@ url = "juandiegomariscal@gmail.com"
     weight = 10
 
   [[menu.main]]
-    identifier = "projects"
-    name = "/projects"
-    url = "/projects"
+    identifier = "proyectos"
+    name = "/proyectos"
+    url = "/proyectos"
     weight = 20
 
   [[menu.main]]
-    identifier = "about"
-    name = "/about"
-    url = "/about"
+    identifier = "contacto"
+    name = "/contacto"
+    url = "/contacto"
     weight = 30
 
 [taxonomies]
