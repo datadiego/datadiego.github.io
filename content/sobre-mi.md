@@ -1,5 +1,5 @@
 +++
-title = "Contacto"
+title = "Sobre mi"
 +++
 
 Me gusta construir cosas, desmontarlas para ver cómo funcionan y encontrar formas de hacerlas funcionar mejor. Empecé en el mundo de la automatización y la robótica industrial, y acabé llevando esa misma curiosidad al desarrollo de software, Linux, el hacking ético y la ciberseguridad.
