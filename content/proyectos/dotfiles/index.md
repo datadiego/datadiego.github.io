@@ -8,7 +8,11 @@ Configuración automatizada de sistemas para desarrollo, devops y ciberseguridad
 
 Desde que empecé a usar Linux, me encantó lo fácil que es poder automatizar la instalación y configuración del propio sistema. 
 
-Esto me permitía experimentar más fácilmente con otras distros, manteniendo la configuración que deseaba entre aplicaciones. Lo que me ha llevado a escribir *múltiples* repositorios con dotfiles en diferentes distros y con distintos propósitos.
+Esto me permitía experimentar más fácilmente con otras distros, manteniendo la configuración que deseaba entre aplicaciones. Lo que me ha llevado a escribir *múltiples* repositorios con dotfiles en diferentes distros y con distintos propósitos, entre ellos:
+
+- [Fedora](https://github.com/datadiego/dotfiles-noctalia), entorno hyprland con noctalia, muchos bindings personalizados, shell fish y nushell con aliases y abbreviations ya configuradas, entorno de nvim listo para usar, con snippets y LSPs.
+- [Multidistro](https://github.com/datadiego/dotfiles), proyecto antiguo, con dotfiles listos para diferentes entornos de escritorio (i3 y Hyprland) y distros (debian/ubuntu y fedora).
+- [NixOS](https://github.com/datadiego/nixos-dev), experimento con NixOS usando configuración con modulos separados, no todo lo avanzado que me gustaría, solo es el resultado de experimentar con el modelo declarativo de NixOS.
 
 Durante mi época en educación, también me sirvió para que mis alumnos pudieran tener acceso rápido a un sistema completamente configurado, normalmente:
 
