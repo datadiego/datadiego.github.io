@@ -13,6 +13,7 @@ Esto me permitía experimentar más fácilmente con otras distros, manteniendo l
 - [Fedora](https://github.com/datadiego/dotfiles-noctalia), entorno hyprland con noctalia, muchos bindings personalizados, shell fish y nushell con aliases y abbreviations ya configuradas, entorno de nvim listo para usar, con snippets y LSPs.
 - [Multidistro](https://github.com/datadiego/dotfiles), proyecto antiguo, con dotfiles listos para diferentes entornos de escritorio (i3 y Hyprland) y distros (debian/ubuntu y fedora).
 - [NixOS](https://github.com/datadiego/nixos-dev), experimento con NixOS usando configuración con modulos separados, no todo lo avanzado que me gustaría, solo es el resultado de experimentar con el modelo declarativo de NixOS.
+- [Athanor-fedora](https://github.com/datadiego/athanor-fedora) entorno basado en un proyecto de [script-wizards](https://github.com/script-wizards/athanor), con configuraciones extras.
 
 Durante mi época en educación, también me sirvió para que mis alumnos pudieran tener acceso rápido a un sistema completamente configurado, normalmente:
 
