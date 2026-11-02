@@ -1,5 +1,5 @@
 ---
-title: "Coleccion NFT Ultrazone"
+title: "NFTs Ultrazone"
 draft: false
 repo: ""
 link: "https://objkt.com/collections/fxhash/projects/11540"

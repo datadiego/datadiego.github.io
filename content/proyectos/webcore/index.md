@@ -1,5 +1,5 @@
 ---
-title: "Webcore%555"
+title: "NFTs Webcore%555"
 draft: false
 repo: ""
 link: "https://objkt.com/collections/KT1QMVMqpNSzGPH88BAdF4cGQrp7CBeaRHEE"
